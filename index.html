@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Digital Clock</title>
+  <!-- Google AdSense verification code -->
+  <!-- This script enables Google AdSense and verifies site ownership. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8196316762675719" crossorigin="anonymous"></script>
+  <style>
+    /* Reset some default margins */
+    body, h1, h2, p, label { margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .night-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    header {
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    #clock {
+      font-size: 5rem;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      margin-top: 1rem;
+    }
+    #date {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .controls {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .control-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+    .toggle {
+      accent-color: #007BFF;
+      width: 1rem;
+      height: 1rem;
+    }
+    footer {
+      margin-top: auto;
+      padding: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+    .ad-placeholder {
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      padding: 1rem;
+      max-width: 728px;
+      margin: 0 auto;
+      color: #777;
+      font-size: 1rem;
+    }
+    /* Responsive font scaling */
+    @media (max-width: 600px) {
+      #clock {
+        font-size: 3.5rem;
+      }
+      #date {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Digital Clock</h1>
+    <p>Keep track of the current time wherever you are.</p>
+  </header>
+  <main>
+    <div id="clock">--:--:--</div>
+    <div id="date"></div>
+    <div class="controls">
+      <div class="control-item">
+        <input type="checkbox" id="toggle-24h" class="toggle" />
+        <label for="toggle-24h">24‑hour format</label>
+      </div>
+      <div class="control-item">
+        <input type="checkbox" id="toggle-date" class="toggle" checked />
+        <label for="toggle-date">Show date</label>
+      </div>
+      <div class="control-item">
+        <input type="checkbox" id="toggle-night" class="toggle" />
+        <label for="toggle-night">Night mode</label>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="ad-placeholder">
+      <!-- Ad space: replace this comment with your ad code (e.g. Google AdSense) -->
+      <p>Your ad could be here.</p>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      const clockEl = document.getElementById('clock');
+      const dateEl = document.getElementById('date');
+      const toggle24h = document.getElementById('toggle-24h');
+      const toggleDate = document.getElementById('toggle-date');
+      const toggleNight = document.getElementById('toggle-night');
+
+      // Load preferences from localStorage
+      function loadPrefs() {
+        const prefs = JSON.parse(localStorage.getItem('digitalClockPrefs') || '{}');
+        toggle24h.checked = !!prefs.is24Hour;
+        toggleDate.checked = prefs.showDate !== false;
+        toggleNight.checked = !!prefs.nightMode;
+        if (prefs.nightMode) document.body.classList.add('night-mode');
+      }
+
+      function savePrefs() {
+        const prefs = {
+          is24Hour: toggle24h.checked,
+          showDate: toggleDate.checked,
+          nightMode: toggleNight.checked
+        };
+        localStorage.setItem('digitalClockPrefs', JSON.stringify(prefs));
+      }
+
+      function pad(num) {
+        return num.toString().padStart(2, '0');
+      }
+
+      function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        let ampm = '';
+
+        if (!toggle24h.checked) {
+          ampm = hours >= 12 ? ' PM' : ' AM';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+        }
+        clockEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}${toggle24h.checked ? '' : ampm}`;
+
+        if (toggleDate.checked) {
+          const dateString = now.toLocaleDateString(undefined, {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          dateEl.textContent = dateString;
+          dateEl.style.display = 'block';
+        } else {
+          dateEl.style.display = 'none';
+        }
+      }
+
+      toggle24h.addEventListener('change', () => {
+        savePrefs();
+        updateClock();
+      });
+      toggleDate.addEventListener('change', () => {
+        savePrefs();
+        updateClock();
+      });
+      toggleNight.addEventListener('change', () => {
+        if (toggleNight.checked) {
+          document.body.classList.add('night-mode');
+        } else {
+          document.body.classList.remove('night-mode');
+        }
+        savePrefs();
+      });
+
+      loadPrefs();
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+</body>
+</html>
