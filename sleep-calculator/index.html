@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Cycle Calculator</title>
+    <meta name="description" content="Calculate the best times to go to sleep or wake up based on 90‑minute sleep cycles. Enter your wake‑up time and let our sleep calculator suggest optimal bedtimes for a restful night.">
+    <meta name="keywords" content="sleep cycle calculator, sleep calculator, bedtime calculator, wake up time calculator, optimal sleep times">
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Sleep Cycle Calculator">
+    <meta property="og:description" content="Find the best bedtimes and wake‑up times with this simple sleep cycle calculator. Improve your rest by sleeping in 90‑minute cycles.">
+    <meta property="og:url" content="https://scotia1973-bot.github.io/sleep-calculator/">
+    <meta property="og:type" content="website">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #004c99;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        .calculator {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="time"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 1.5rem;
+            line-height: 1.6;
+        }
+        .ad-placeholder {
+            margin-top: 2rem;
+            border: 2px dashed #ccc;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 4px;
+            color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            background: #f1f3f5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sleep Cycle Calculator</h1>
+        <p>Find your optimal bedtimes based on 90‑minute sleep cycles.</p>
+    </header>
+    <main>
+        <section class="calculator">
+            <label for="wakeTime">Choose your wake‑up time:</label>
+            <input type="time" id="wakeTime" value="07:00">
+            <button onclick="calculateSleepTimes()">Calculate Bedtimes</button>
+            <div id="results"></div>
+        </section>
+        <div class="ad-placeholder">
+            <!-- Your ad could be here -->
+            <p>Your ad could be here.</p>
+        </div>
+    </main>
+    <footer>
+        <p>Disclaimer: This tool provides approximate recommendations for optimal sleep cycles. Individual sleep needs may vary.</p>
+    </footer>
+    <script>
+        function calculateSleepTimes() {
+            const wakeInput = document.getElementById('wakeTime').value;
+            const resultsDiv = document.getElementById('results');
+            if (!wakeInput) {
+                resultsDiv.innerHTML = '<p>Please enter a wake‑up time.</p>';
+                return;
+            }
+            // Parse the wake time (HH:MM) into minutes since midnight
+            const [wakeHour, wakeMinute] = wakeInput.split(':').map(Number);
+            const wakeMinutesTotal = wakeHour * 60 + wakeMinute;
+            const cycleMinutes = 90;
+            const timeToFallAsleep = 15; // minutes to fall asleep
+            const suggestions = [];
+            // Calculate 4 to 6 cycles before wake time (common recommendation)
+            for (let cycles = 6; cycles >= 4; cycles--) {
+                const totalSleep = cycles * cycleMinutes + timeToFallAsleep;
+                let bedtimeMinutes = wakeMinutesTotal - totalSleep;
+                // Wrap around midnight
+                while (bedtimeMinutes < 0) {
+                    bedtimeMinutes += 24 * 60;
+                }
+                const hours = Math.floor(bedtimeMinutes / 60);
+                const minutes = bedtimeMinutes % 60;
+                const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+                suggestions.push(`Go to bed at <strong>${formatTime(hours, minutes)}</strong> for ${cycles} cycles of sleep`);
+            }
+            let html = '<h3>Recommended bedtimes:</h3><ul>';
+            suggestions.forEach(item => {
+                html += `<li>${item}</li>`;
+            });
+            html += '</ul><p>These suggestions include about 15 minutes to fall asleep.</p>';
+            resultsDiv.innerHTML = html;
+        }
+        function formatTime(hour, minute) {
+            const period = hour >= 12 ? 'PM' : 'AM';
+            const h12 = hour % 12 || 12;
+            return `${h12}:${String(minute).padStart(2, '0')} ${period}`;
+        }
+    </script>
+</body>
+</html>
