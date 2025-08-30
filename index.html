@@ -84,6 +84,35 @@
       color: #777;
       font-size: 1rem;
     }
+
+    /* Navigation links */
+    .navigation {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    .navigation a {
+      margin: 0 0.5rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    .navigation a:hover {
+      text-decoration: underline;
+    }
+
+    /* Informational section styling */
+    .info {
+      margin-top: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+    .info h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
     /* Responsive font scaling */
     @media (max-width: 600px) {
       #clock {
@@ -99,6 +128,10 @@
   <header>
     <h1>Online Digital Clock</h1>
     <p>Keep track of the current time wherever you are.</p>
+    <nav class="navigation">
+      <a href="/">Home</a> |
+      <a href="/sleep-calculator/">Sleep Cycle Calculator</a>
+    </nav>
   </header>
   <main>
     <div id="clock">--:--:--</div>
@@ -123,6 +156,12 @@
       <!-- Ad space: replace this comment with your ad code (e.g. Google AdSense) -->
       <p>Your ad could be here.</p>
     </div>
+    <section class="info">
+      <h2>Why use an online digital clock?</h2>
+      <p>Our online digital clock provides an accurate time display that updates every second. Whether you're giving a presentation, hosting a meeting or working on tasks, having a large clock visible can help you stay on schedule. The 24‑hour and 12‑hour toggles make it suitable for international contexts, while the date display helps you track the day.</p>
+      <p>Unlike analog clocks that rely on mechanical movements, a digital clock uses an electronic time base to display hours, minutes and seconds numerically, making it easy to read at a glance. Online clocks are synchronised with your device’s system time, ensuring consistency even when travelling across time zones.</p>
+      <p>This site also offers a night mode that darkens the interface to reduce eye strain in low light conditions. You can save your preferences so that your chosen format loads automatically on your next visit. We hope this tool enhances your productivity and helps you manage your time effectively. For more on the benefits of digital timekeeping and tips on staying punctual, explore our resources and other tools.</p>
+    </section>
   </footer>
   <script>
     (function() {
