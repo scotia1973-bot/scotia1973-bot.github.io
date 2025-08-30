@@ -81,6 +81,34 @@
             border-radius: 4px;
             color: #666;
         }
+        /* Navigation links */
+        .navigation {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+        .navigation a {
+            margin: 0 0.5rem;
+            color: inherit;
+            text-decoration: none;
+        }
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        /* Informational section styling */
+        .info {
+            margin-top: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .info h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
         footer {
             text-align: center;
             padding: 1rem;
@@ -93,6 +121,10 @@
     <header>
         <h1>Sleep Cycle Calculator</h1>
         <p>Find your optimal bedtimes based on 90‑minute sleep cycles.</p>
+        <nav class="navigation">
+            <a href="/">Home</a> |
+            <a href="/sleep-calculator/">Sleep Cycle Calculator</a>
+        </nav>
     </header>
     <main>
         <section class="calculator">
@@ -100,6 +132,12 @@
             <input type="time" id="wakeTime" value="07:00">
             <button onclick="calculateSleepTimes()">Calculate Bedtimes</button>
             <div id="results"></div>
+        </section>
+        <section class="info">
+            <h2>How the sleep cycle calculator works</h2>
+            <p>Sleep cycles typically last about 90 minutes and consist of light sleep, deep sleep and REM sleep. Waking up at the end of a cycle helps you feel more refreshed and alert. Our calculator counts backwards from your desired wake‑up time in 90‑minute increments and includes about 15 minutes to fall asleep.</p>
+            <p>For example, if you need to wake up at 7:00&nbsp;AM and want six complete cycles of sleep, it suggests going to bed at 9:45&nbsp;PM; for five cycles, go to bed at 11:15&nbsp;PM. These recommendations are based on general research and should be used as guidelines. Everyone’s sleep needs are different, so listen to your body and adjust accordingly.</p>
+            <p>You can also use this tool to plan naps. Enter the time you need to wake up and try sleeping for one or two cycles (about 90 or 180 minutes) to avoid grogginess. For more information on sleep health, consider reading expert resources on sleep hygiene, limiting screen time before bed and creating a consistent bedtime routine.</p>
         </section>
         <div class="ad-placeholder">
             <!-- Your ad could be here -->
