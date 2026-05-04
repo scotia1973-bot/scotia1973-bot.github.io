@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.gadgethumans.com/outdoor-string-lights/sitemap.xml
