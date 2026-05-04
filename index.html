@@ -3,245 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Digital Clock – Free accurate time display</title>
-  <!-- Search engine optimisation (SEO) meta tags -->
-  <meta name="description" content="Check the current time instantly with this free online digital clock. Choose 12‑hour or 24‑hour format, display the date, and enable night mode to reduce eye strain.">
-  <meta name="keywords" content="online clock,digital clock,free clock,time now,current time,24 hour clock,12 hour clock,night mode">
-  <!-- Open Graph meta tags for rich previews on social media -->
-  <meta property="og:title" content="Online Digital Clock – Accurate time display" />
-  <meta property="og:description" content="Simple and fast online digital clock with 12/24‑hour toggle, date display and night mode. Perfect for presentations, work, or everyday use." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scotia1973-bot.github.io/" />
-  <!-- Google AdSense verification code -->
-  <!-- This script enables Google AdSense and verifies site ownership. -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8196316762675719" crossorigin="anonymous"></script>
-  <style>
-    /* Reset some default margins */
-    body, h1, h2, p, label { margin: 0; padding: 0; }
-    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      background-color: #f5f5f5;
-      color: #333;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .night-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-    header {
-      padding: 1rem;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    #clock {
-      font-size: 5rem;
-      font-weight: bold;
-      letter-spacing: 0.1rem;
-      margin-top: 1rem;
-    }
-    #date {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
-    }
-    .controls {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .control-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
-    }
-    .toggle {
-      accent-color: #007BFF;
-      width: 1rem;
-      height: 1rem;
-    }
-    footer {
-      margin-top: auto;
-      padding: 1.5rem;
-      text-align: center;
-      width: 100%;
-    }
-    .ad-placeholder {
-      border: 2px dashed #ccc;
-      border-radius: 4px;
-      padding: 1rem;
-      max-width: 728px;
-      margin: 0 auto;
-      color: #777;
-      font-size: 1rem;
-    }
-
-    /* Navigation links */
-    .navigation {
-      margin-top: 0.5rem;
-      font-size: 1rem;
-    }
-    .navigation a {
-      margin: 0 0.5rem;
-      color: inherit;
-      text-decoration: none;
-    }
-    .navigation a:hover {
-      text-decoration: underline;
-    }
-
-    /* Informational section styling */
-    .info {
-      margin-top: 2rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 1rem;
-      line-height: 1.5;
-      text-align: left;
-    }
-    .info h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-    }
-    /* Responsive font scaling */
-    @media (max-width: 600px) {
-      #clock {
-        font-size: 3.5rem;
-      }
-      #date {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+  
+  <title>GadgetHumans — AI Tools & Gear for Remote Workers</title>
+  <meta name="description" content="Expert reviews of AI tools and remote work gear. Free utility tools, buying guides, and AI prompt products. Amazon affiliate deals for developers and creators.">
+  <meta property="og:title" content="GadgetHumans — AI Tools & Gear for Remote Workers">
+  <meta property="og:description" content="Expert reviews of AI tools and remote work gear. Free utility tools, buying guides, and AI prompt products. Amazon affiliate deals for developers and creators.">
+  <meta property="og:image" content="https://www.gadgethumans.com/og-image.png">
+  <meta property="og:url" content="https://www.gadgethumans.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GadgetHumans — AI Tools & Gear | Remote Workers">
+  <meta name="twitter:description" content="Expert reviews of AI tools and remote work gear. Free utility tools, buying guides, and AI prompt products.">
+  <link rel="canonical" href="https://www.gadgethumans.com/">
+  <link rel="stylesheet" href="/css/theme.css">
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"GadgetHumans","url":"https://www.gadgethumans.com","description":"AI Tools & Gear for Remote Workers"}
+</script>
 </head>
 <body>
-  <header>
-    <h1>Online Digital Clock</h1>
-    <p>Keep track of the current time wherever you are.</p>
-    <nav class="navigation">
-      <a href="/">Home</a> |
-      <a href="/sleep-calculator/">Sleep Cycle Calculator</a>
-    </nav>
-  </header>
-  <main>
-    <div id="clock">--:--:--</div>
-    <div id="date"></div>
-    <div class="controls">
-      <div class="control-item">
-        <input type="checkbox" id="toggle-24h" class="toggle" />
-        <label for="toggle-24h">24‑hour format</label>
-      </div>
-      <div class="control-item">
-        <input type="checkbox" id="toggle-date" class="toggle" checked />
-        <label for="toggle-date">Show date</label>
-      </div>
-      <div class="control-item">
-        <input type="checkbox" id="toggle-night" class="toggle" />
-        <label for="toggle-night">Night mode</label>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="ad-placeholder">
-      <!-- Ad space: replace this comment with your ad code (e.g. Google AdSense) -->
-      <p>Your ad could be here.</p>
-    </div>
-    <section class="info">
-      <h2>Why use an online digital clock?</h2>
-      <p>Our online digital clock provides an accurate time display that updates every second. Whether you're giving a presentation, hosting a meeting or working on tasks, having a large clock visible can help you stay on schedule. The 24‑hour and 12‑hour toggles make it suitable for international contexts, while the date display helps you track the day.</p>
-      <p>Unlike analog clocks that rely on mechanical movements, a digital clock uses an electronic time base to display hours, minutes and seconds numerically, making it easy to read at a glance. Online clocks are synchronised with your device’s system time, ensuring consistency even when travelling across time zones.</p>
-      <p>This site also offers a night mode that darkens the interface to reduce eye strain in low light conditions. You can save your preferences so that your chosen format loads automatically on your next visit. We hope this tool enhances your productivity and helps you manage your time effectively. For more on the benefits of digital timekeeping and tips on staying punctual, explore our resources and other tools.</p>
-    </section>
-  </footer>
-  <script>
-    (function() {
-      const clockEl = document.getElementById('clock');
-      const dateEl = document.getElementById('date');
-      const toggle24h = document.getElementById('toggle-24h');
-      const toggleDate = document.getElementById('toggle-date');
-      const toggleNight = document.getElementById('toggle-night');
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links"><a href="/" class="active">Home</a><a href="/blog/">Blog</a><a href="/reviews/">Gear Reviews</a><a href="/guides/">Buying Guides</a><a href="/pillar/ai-tools.html">AI Tools</a><a href="/pillar/prompt-engineering.html">Prompts</a><a href="/about/">About</a></div>
+  </div>
+</nav>
+<div class="container">
+  
+  
+<div class="hero">
+  <h1>AI Tools & Gear for Remote Workers</h1>
+  <p>Expert reviews, buying guides, and free tools — everything you need to build your ideal remote work setup.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="/reviews/">Browse Gear Reviews →</a>
+    <a class="btn btn-secondary" href="/blog/">Visit Blog →</a>
+    <a class="btn btn-outline" href="https://payhip.com/b/fdwTJ" target="_blank" rel="noopener">📥 Free AI Prompts</a>
+  </div>
+</div>
 
-      // Load preferences from localStorage
-      function loadPrefs() {
-        const prefs = JSON.parse(localStorage.getItem('digitalClockPrefs') || '{}');
-        toggle24h.checked = !!prefs.is24Hour;
-        toggleDate.checked = prefs.showDate !== false;
-        toggleNight.checked = !!prefs.nightMode;
-        if (prefs.nightMode) document.body.classList.add('night-mode');
-      }
+<div class="promo" style="margin-bottom:24px;padding:16px;background:var(--card);border-radius:16px;border:1px solid var(--border);">
+  <h3 style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;text-align:center;text-transform:uppercase;letter-spacing:1px;">🔥 TRENDING GEAR</h3>
+  <div class="gear-grid">
+    <a class="gear-card" href="/reviews/sony-wh1000xm5.html">
+      <span class="emoji">🎧</span>
+      <span class="name">Sony WH-1000XM5</span>
+      <span class="desc">Headphones</span>
+      <span class="price">$299</span>
+    </a>
+    <a class="gear-card" href="/reviews/mx-master-3s.html">
+      <span class="emoji">🖱️</span>
+      <span class="name">Logitech MX Master 3S</span>
+      <span class="desc">Mice</span>
+      <span class="price">$79</span>
+    </a>
+    <a class="gear-card" href="/reviews/anker-737-power-bank.html">
+      <span class="emoji">🔋</span>
+      <span class="name">Anker 737 Power Bank (PowerCor</span>
+      <span class="desc">Portable Power</span>
+      <span class="price">$65</span>
+    </a>
+    <a class="gear-card" href="/reviews/mx-keys-s.html">
+      <span class="emoji">⌨️</span>
+      <span class="name">Logitech MX Keys S</span>
+      <span class="desc">Keyboards</span>
+      <span class="price">$84</span>
+    </a></div>
+</div>
 
-      function savePrefs() {
-        const prefs = {
-          is24Hour: toggle24h.checked,
-          showDate: toggleDate.checked,
-          nightMode: toggleNight.checked
-        };
-        localStorage.setItem('digitalClockPrefs', JSON.stringify(prefs));
-      }
+<h2 class="section-title">🏛️ Explore by Topic</h2>
+<div class="cat-grid">
+    <a class="cat-card" href="/pillar/ai-tools.html">
+      <span class="emoji">🤖</span>
+      <div class="title">Best AI Tools for Remote Workers & Creators</div>
+      <div class="desc">Comprehensive guide to the best AI tools for productivity, writing, coding, and creativity. Find the...</div>
+    </a>
+    <a class="cat-card" href="/pillar/ai-hardware.html">
+      <span class="emoji">🖥️</span>
+      <div class="title">AI Hardware Guide — Best Gear for Running AI in</div>
+      <div class="desc">Complete guide to building or buying the best hardware for AI workloads: local LLMs, inference, trai...</div>
+    </a>
+    <a class="cat-card" href="/pillar/remote-work-setup.html">
+      <span class="emoji">🏠</span>
+      <div class="title">Ultimate Remote Work Setup Guide</div>
+      <div class="desc">The definitive guide to building the perfect work-from-home setup: desks, chairs, monitors, headphon...</div>
+    </a>
+    <a class="cat-card" href="/pillar/prompt-engineering.html">
+      <span class="emoji">💡</span>
+      <div class="title">AI Prompt Engineering Master Guide — Techniques, Templates & Best Practices</div>
+      <div class="desc">Master AI prompt engineering with proven techniques, templates, and strategies. Learn chain-of-thoug...</div>
+    </a>
+    <a class="cat-card" href="/pillar/content-creation.html">
+      <span class="emoji">🎨</span>
+      <div class="title">AI Tools for Content Creators — Ultimate Toolkit</div>
+      <div class="desc">The ultimate guide to AI tools for content creators: writing, video, audio, image generation, and so...</div>
+    </a></div>
 
-      function pad(num) {
-        return num.toString().padStart(2, '0');
-      }
+<h2 class="section-title">📝 Latest Articles</h2>
+<div class="blog-list">
+    <a class="blog-item" href="/blog/ai-writing-tools-review.html">
+      <div class="title">✍️ AI Writing Tools Compared: Jasper vs Copy.ai vs ChatGPT in 2</div>
+      <div class="meta">AI Writing · May 2026</div>
+    </a>
+    <a class="blog-item" href="/blog/ai-meeting-summarizer-tools.html">
+      <div class="title">📝 Best AI Meeting Summarizers for Remote Teams 2026</div>
+      <div class="meta">AI Productivity · May 2026</div>
+    </a>
+    <a class="blog-item" href="/blog/ai-note-taking-apps-2026.html">
+      <div class="title">📓 Best AI Note-Taking Apps: Notion AI vs Mem vs Obsidian 2026</div>
+      <div class="meta">AI Productivity · May 2026</div>
+    </a>
+    <a class="blog-item" href="/blog/ai-workflow-automation-guide.html">
+      <div class="title">⚡ AI Workflow Automation Guide: Zapier vs n8n vs Make 2026</div>
+      <div class="meta">AI Productivity · May 2026</div>
+    </a>
+    <a class="blog-item" href="/blog/prompt-engineering-tips-2026.html">
+      <div class="title">💡 Prompt Engineering Tips That Actually Work (2026 Update)</div>
+      <div class="meta">Prompt Engineering · May 2026</div>
+    </a>
+    <a class="blog-item" href="/blog/github-copilot-vs-cursor.html">
+      <div class="title">💻 GitHub Copilot vs Cursor vs Codeium: Which Coding AI Wins?</div>
+      <div class="meta">AI Coding · May 2026</div>
+    </a><a class="blog-item" href="/blog/" style="text-align:center;color:var(--accent);font-weight:600;">View All Posts →</a></div>
 
-      function updateClock() {
-        const now = new Date();
-        let hours = now.getHours();
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-        let ampm = '';
+<h2 class="section-title">⭐ Top-Rated Gear</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Product</th><th>Rating</th><th>Category</th><th>Price</th><th></th></tr></thead>
+<tbody>
+<tr><td><a href="/reviews/sony-wh1000xm5.html">Sony WH-1000XM5</a></td><td>★★★★</td><td>Headphones</td><td>$299</td><td><a href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener sponsored" style="font-size:0.78rem;color:var(--success);">Buy →</a></td></tr><tr><td><a href="/reviews/mx-master-3s.html">Logitech MX Master 3S</a></td><td>★★★★</td><td>Mice</td><td>$79</td><td><a href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener sponsored" style="font-size:0.78rem;color:var(--success);">Buy →</a></td></tr><tr><td><a href="/reviews/anker-737-power-bank.html">Anker 737 Power Bank (PowerCore 24K)</a></td><td>★★★★</td><td>Portable Power</td><td>$65</td><td><a href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener sponsored" style="font-size:0.78rem;color:var(--success);">Buy →</a></td></tr><tr><td><a href="/reviews/mx-keys-s.html">Logitech MX Keys S</a></td><td>★★★★</td><td>Keyboards</td><td>$84</td><td><a href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener sponsored" style="font-size:0.78rem;color:var(--success);">Buy →</a></td></tr><tr><td><a href="/reviews/best-noise-cancelling-headphones-focus.html">Noise-Cancelling Headphones (Roundup)</a></td><td>★★★★</td><td>Headphones</td><td>$299-$549</td><td><a href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener sponsored" style="font-size:0.78rem;color:var(--success);">Buy →</a></td></tr><tr><td><a href="/reviews/best-webcam-remote-work.html">Webcams (Roundup)</a></td><td>★★★★</td><td>Webcams</td><td>$99-$199</td><td><a href="https://www.amazon.com/dp/B09DG3B6MK?tag=gadgethumans-21" target="_blank" rel="noopener sponsored" style="font-size:0.78rem;color:var(--success);">Buy →</a></td></tr>
+</tbody>
+</table>
+</div>
 
-        if (!toggle24h.checked) {
-          ampm = hours >= 12 ? ' PM' : ' AM';
-          hours = hours % 12;
-          hours = hours ? hours : 12; // the hour '0' should be '12'
-        }
-        clockEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}${toggle24h.checked ? '' : ampm}`;
+<div class="cta-section">
+  <h3>📚 Get Our Free AI Agent Prompt Library</h3>
+  <p>50+ battle-tested prompts for ChatGPT, Claude, Midjourney, and more. Free download.</p>
+  <a class="btn btn-primary" href="https://payhip.com/b/fdwTJ" target="_blank" rel="noopener">Download Free →</a>
+  <a class="btn btn-outline" href="/payhip/implementation-checklist.html" style="margin-left:8px;">€7 Implementation Checklist →</a>
+</div>
 
-        if (toggleDate.checked) {
-          const dateString = now.toLocaleDateString(undefined, {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          });
-          dateEl.textContent = dateString;
-          dateEl.style.display = 'block';
-        } else {
-          dateEl.style.display = 'none';
-        }
-      }
+<div class="affiliate-disclosure" style="text-align:center;">
+  <p>As an Amazon Associate, GadgetHumans earns from qualifying purchases. Some links are affiliate — we may earn a commission at no extra cost to you.</p>
+</div>
 
-      toggle24h.addEventListener('change', () => {
-        savePrefs();
-        updateClock();
-      });
-      toggleDate.addEventListener('change', () => {
-        savePrefs();
-        updateClock();
-      });
-      toggleNight.addEventListener('change', () => {
-        if (toggleNight.checked) {
-          document.body.classList.add('night-mode');
-        } else {
-          document.body.classList.remove('night-mode');
-        }
-        savePrefs();
-      });
-
-      loadPrefs();
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-  </script>
+</div>
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a>
+    <a href="/blog/">Blog</a>
+    <a href="/reviews/">Gear Reviews</a>
+    <a href="/guides/">Buying Guides</a>
+    <a href="/payhip/prompt-library.html">Free AI Prompts</a>
+    <a href="/affiliate/amazon-deals.html">Amazon Deals</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — AI Tools & Gear for Remote Workers</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases. Some links are affiliate — we may earn a commission at no extra cost to you.</p>
+</footer>
+<div class="toast" id="toast"></div>
+<script src="/js/script.js"></script>
 </body>
 </html>

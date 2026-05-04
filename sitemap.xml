@@ -1,172 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main pages -->
   <url>
     <loc>https://www.gadgethumans.com/</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/sleep-calculator/</loc>
+    <loc>https://www.gadgethumans.com/blog/</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Tools index -->
-  <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Root tools -->
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/mortgage-calculator.html</loc>
+    <loc>https://www.gadgethumans.com/about/</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/screen-resolution.html</loc>
+    <loc>https://www.gadgethumans.com/contact/</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.4</priority>
   </url>
-
-  <!-- Tools -->
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/stopwatch.html</loc>
+    <loc>https://www.gadgethumans.com/reviews/</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/guides/</loc>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/timer.html</loc>
+    <loc>https://www.gadgethumans.com/affiliate/amazon-deals.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/pillar/ai-tools.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/pillar/ai-hardware.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/pillar/remote-work-setup.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/pillar/prompt-engineering.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/pillar/content-creation.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/sony-wh1000xm5.html</loc>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/countdown.html</loc>
+    <loc>https://www.gadgethumans.com/reviews/mx-master-3s.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/anker-737-power-bank.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/mx-keys-s.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-noise-cancelling-headphones-focus.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-webcam-remote-work.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-ergonomic-mouse-programmers.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-ultrawide-monitor-coding.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-standing-desk-developers.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-mechanical-keyboard-programmers.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-portable-monitor-digital-nomads.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/reviews/best-microphone-podcasting.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/guides/ai-pc-build.html</loc>
+    <lastmod>2026-05-04</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/bmi.html</loc>
+    <loc>https://www.gadgethumans.com/guides/laptop-ai-development.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/converter.html</loc>
+    <loc>https://www.gadgethumans.com/guides/remote-work-gear-checklist.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/percentage.html</loc>
+    <loc>https://www.gadgethumans.com/guides/ai-content-creation-toolkit.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/age.html</loc>
+    <loc>https://www.gadgethumans.com/guides/optimize-desk-setup-ai-workflow.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/password.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-writing-tools-review.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/random.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-meeting-summarizer-tools.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/wordcount.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-note-taking-apps-2026.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/colorpicker.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-workflow-automation-guide.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/tip.html</loc>
+    <loc>https://www.gadgethumans.com/blog/prompt-engineering-tips-2026.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/dates.html</loc>
+    <loc>https://www.gadgethumans.com/blog/github-copilot-vs-cursor.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/loan.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-code-generation-trends.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/calorie.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-debugging-tools-developers.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/hex.html</loc>
+    <loc>https://www.gadgethumans.com/blog/midjourney-vs-dalle-vs-sd-2026.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/textcase.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-video-generators-2026.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/lorem.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-music-generators-creators.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/hash.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-social-media-content-automation.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/urlencode.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-seo-writing-tools.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/timezone.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-affiliate-marketing-amazon.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gadgethumans.com/gadgethumans-stopwatch/tools/birthday.html</loc>
+    <loc>https://www.gadgethumans.com/blog/ai-short-form-video-tools.html</loc>
     <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/blog/ai-content-repurposing.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/blog/run-llm-locally-macbook-guide.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/blog/best-gpu-ai-inference-2026.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/blog/ai-agent-frameworks-compared.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/blog/content-creator-desk-tour-ai.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/payhip/prompt-library.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/payhip/implementation-checklist.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.gadgethumans.com/payhip/launch-plan.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>
