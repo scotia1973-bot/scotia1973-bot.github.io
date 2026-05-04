@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 AI Prompts for Excel — Gadget Humans</title>
+    <meta name="description" content="Stop Googling Excel formulas. 20 ready-to-use AI prompts that write formulas, clean data, and build dashboards. Works with ChatGPT, Claude, Gemini, or any AI.">
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('buyBtn');
+        var btn2 = document.getElementById('buyBtn2');
+        var pdfUrl = '20_AI_Prompts_for_Excel.pdf';
+        if (btn) btn.href = pdfUrl;
+        if (btn2) btn2.href = pdfUrl;
+    });
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+        h1 { font-size: 2.2rem; color: #f8fafc; margin-bottom: 0.5rem; line-height: 1.2; }
+        h1 span { color: #22d3ee; }
+        .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 2rem; }
+        .hero { text-align: center; padding: 3rem 0; }
+        .price-box { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid #334155; border-radius: 16px; padding: 2rem; text-align: center; margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+        .price { font-size: 3rem; font-weight: 700; color: #22d3ee; }
+        .price-label { color: #94a3b8; font-size: 0.9rem; }
+        .buy-btn { display: inline-block; background: #22d3ee; color: #0f172a; font-weight: 700; font-size: 1.2rem; padding: 1rem 3rem; border-radius: 12px; text-decoration: none; margin-top: 1rem; transition: transform 0.2s, background 0.2s; }
+        .buy-btn:hover { transform: scale(1.05); background: #06b6d4; }
+        .guarantee { color: #64748b; font-size: 0.85rem; margin-top: 1rem; }
+        .section-title { font-size: 1.5rem; color: #f8fafc; margin: 2.5rem 0 1.5rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.5rem; }
+        .prompt-card { background: #1e293b; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border-left: 3px solid #22d3ee; transition: transform 0.2s; }
+        .prompt-card:hover { transform: translateX(4px); }
+        .prompt-number { color: #64748b; font-size: 0.85rem; font-weight: 600; }
+        .prompt-title { color: #22d3ee; font-size: 1.1rem; font-weight: 600; margin: 0.3rem 0; }
+        .prompt-use { color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .prompt-text { background: #0f172a; border-radius: 8px; padding: 1rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85rem; color: #cbd5e1; white-space: pre-wrap; word-break: break-word; }
+        .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+        .benefit { background: #1e293b; border-radius: 12px; padding: 1.2rem; text-align: center; }
+        .benefit-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+        .benefit-title { font-weight: 600; color: #f8fafc; }
+        .benefit-desc { color: #64748b; font-size: 0.85rem; }
+        .how-it-works { background: #1e293b; border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+        .step { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+        .step-num { background: #22d3ee; color: #0f172a; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+        .preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.5rem 0; }
+        .preview-item { background: #1e293b; border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.9rem; color: #cbd5e1; }
+        .preview-cat { color: #22d3ee; font-weight: 600; font-size: 0.8rem; }
+        .faq { margin-top: 2rem; }
+        .faq-q { font-weight: 600; color: #f8fafc; margin-top: 1.2rem; }
+        .faq-a { color: #94a3b8; font-size: 0.95rem; }
+        .badge { display: inline-block; background: #065f46; color: #34d399; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 999px; margin-bottom: 1rem; }
+        .sample-prompts { display: grid; gap: 0.6rem; margin: 1rem 0; }
+        .sample-prompt { background: #1e293b; border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.85rem; color: #94a3b8; }
+        .sample-prompt strong { color: #e2e8f0; }
+        footer { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #1e293b; }
+        @media (max-width: 600px) { .benefits, .preview-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="badge">NEW RELEASE</div>
+            <h1><span>20 AI Prompts</span> for Excel</h1>
+            <p class="subtitle">Stop Googling Excel formulas. Paste these into ChatGPT, Claude, or Gemini — get instant working formulas, clean data, and smart spreadsheets.</p>
+        </div>
+
+        <div class="price-box">
+            <div class="price-label">Instant download · No signup</div>
+            <div class="price">€3.00</div>
+            <a class="buy-btn" id="buyBtn" href="#">Download Now</a>
+            <div class="guarantee">⚡ PDF delivered instantly · 20 tested prompts · Works with any AI</div>
+        </div>
+
+        <h2 class="section-title">What You Get</h2>
+        
+        <div class="preview-grid">
+            <div class="preview-item"><div class="preview-cat">📄 Formulas</div>Write any formula from plain English</div>
+            <div class="preview-item"><div class="preview-cat">🧹 Data Cleaning</div>Fix messy data in one step</div>
+            <div class="preview-item"><div class="preview-cat">📊 Dashboards</div>Gantt charts, search boxes, filters</div>
+            <div class="preview-item"><div class="preview-cat">⚙️ VBA Macros</div>Buttons, auto-emails, automation</div>
+            <div class="preview-item"><div class="preview-cat">🔍 Lookups</div>VLOOKUP, XLOOKUP, multi-column returns</div>
+            <div class="preview-item"><div class="preview-cat">📅 Dates</div>Age calc, expiring dates, Gantt charts</div>
+        </div>
+
+        <h2 class="section-title">Sample Prompts</h2>
+        <div class="sample-prompts">
+            <div class="sample-prompt"><strong>Write a Formula:</strong> "Write an Excel formula for [what you want]. Use A1:A100 and B1:B100. Explain each part."</div>
+            <div class="sample-prompt"><strong>Clean Data:</strong> "I have data in column C with [issue]. Give me a formula to clean this."</div>
+            <div class="sample-prompt"><strong>Dynamic Dropdown:</strong> "Create a dropdown where options come from column E that grows over time."</div>
+            <div class="sample-prompt"><strong>Find Duplicates:</strong> "Find rows where columns A, B, C all match another row. Formula + highlight."</div>
+            <div class="sample-prompt"><strong>Conditional Format:</strong> "Highlight A2:A100 green if B says Yes. Exact formula."</div>
+        </div>
+        <p style="color:#64748b;font-size:0.85rem;margin-top:0.5rem;">...and 15 more prompts covering Gantt charts, pivot tables, loan calculators, VBA, and complex logic.</p>
+
+        <h2 class="section-title">Why This Works</h2>
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">⏱️</div>
+                <div class="benefit-title">Save Hours Per Week</div>
+                <div class="benefit-desc">Stop Googling. Each prompt is tested and ready to paste.</div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🤖</div>
+                <div class="benefit-title">Works With Any AI</div>
+                <div class="benefit-desc">ChatGPT, Claude, Gemini, DeepSeek — all work perfectly.</div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">📊</div>
+                <div class="benefit-title">Real-World Use</div>
+                <div class="benefit-desc">Formulas, data cleaning, dashboards, VBA — all covered.</div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🔒</div>
+                <div class="benefit-title">No Lock-In</div>
+                <div class="benefit-desc">PDF format. Works forever. No subscriptions.</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">How It Works</h2>
+        <div class="how-it-works">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div><strong>Download</strong> — Get the PDF instantly. 20 ready-to-use prompts.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div><strong>Copy a Prompt</strong> — Pick the one that matches what you need in Excel right now.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div><strong>Paste Into AI</strong> — Send it to ChatGPT, Claude, or any AI. Replace the bracketed parts.</div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div><strong>Get Your Formula</strong> — The AI returns a working Excel formula. Copy it. Done.</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq">
+            <div class="faq-q">What AI tools does this work with?</div>
+            <div class="faq-a">All of them. ChatGPT, Claude, Gemini, DeepSeek, Perplexity — these prompts work with any language model. No special setup.</div>
+            
+            <div class="faq-q">Do I need a specific version of Excel?</div>
+            <div class="faq-a">No. Prompts cover Excel 2010 through 365, with workarounds for older versions when a feature is version-specific.</div>
+            
+            <div class="faq-q">Is this a subscription?</div>
+            <div class="faq-a">No. One payment. You own the PDF forever. No recurring charges, no accounts required on our end.</div>
+            
+            <div class="faq-q">What format is it in?</div>
+            <div class="faq-a">PDF. Cleanly formatted, searchable, works on any device. Each prompt has a title, use case, the prompt text, and example output.</div>
+            
+            <div class="faq-q">Will you add more prompts?</div>
+            <div class="faq-a">This is v1.0 with 20 core prompts. If there’s demand, volume 2 covers Power Query, macros, and advanced analytics.</div>
+        </div>
+
+        <div class="price-box" style="margin-top:3rem;">
+            <div class="price-label">Instant download · 20 prompts · PDF format</div>
+            <div class="price">€3.00</div>
+            <a class="buy-btn" id="buyBtn2" href="#">Download Now</a>
+            <div class="guarantee">📄 8-page PDF · Works with ChatGPT, Claude, Gemini · No Excel version limits</div>
+        </div>
+
+        <footer>
+            <p>Gadget Humans — AI tools for people who get things done.</p>
+            <p style="margin-top:0.5rem;">As an Amazon Associate we earn from qualifying purchases.</p>
+        </footer>
+    </div>
+</body>
+</html>
