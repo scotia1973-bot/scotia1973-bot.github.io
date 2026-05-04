@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap file for search engines
-Sitemap: https://scotia1973-bot.github.io/sitemap.xml
+Sitemap: https://www.gadgethumans.com/sitemap.xml
