@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Percentage Calculator — Free Online Tool</title>
+  <meta name="description" content="Calculate percentages in three modes: X% of Y, X is what % of Y, and % change from X to Y. Instant results with clear step-by-step breakdown.">
+  <meta name="keywords" content="percentage calculator, percent of, percent change, percentage increase, percentage decrease, online calculator">
+  <meta property="og:title" content="Percentage Calculator — Free Online Tool">
+  <meta property="og:description" content="Three-mode percentage calculator: X% of Y, X is what % of Y, and % change. Instant results.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/percentage.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/percentage.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .mode-select { margin-bottom: 16px; }
+    .mode-select select { font-size: 0.95rem; }
+
+    .input-group { margin-top: 10px; }
+    .input-group label { margin-top: 8px; }
+
+    .input-row { display: flex; gap: 10px; align-items: flex-end; }
+    .input-row > div { flex: 1; }
+    .input-row label { margin-top: 0; }
+
+    .operator-label {
+      text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--accent);
+      padding: 4px 8px; min-width: 40px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .result-box {
+      margin-top: 14px; padding: 18px 16px; background: var(--bg); border-radius: var(--radius);
+      border: 1px solid var(--border); min-height: 80px; display: none;
+    }
+    .result-box.show { display: block; }
+
+    .result-value { font-size: 2rem; font-weight: 800; color: var(--accent); text-align: center; }
+    .result-label { text-align: center; font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    .result-breakdown {
+      margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+    }
+    .result-breakdown span { color: var(--text); font-weight: 600; }
+
+    .result-positive { color: var(--success) !important; }
+    .result-negative { color: var(--danger) !important; }
+
+    .info-text { font-size: 0.75rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.5; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>📊 Percentage Calculator</h1>
+    <p>Three modes — find percentages, ratios &amp; changes</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Calculate Percentage</h2>
+
+    <!-- Mode Selector -->
+    <div class="mode-select">
+      <label for="modeSelect">Mode</label>
+      <select id="modeSelect">
+        <option value="of">What is X% of Y?</option>
+        <option value="what">X is what % of Y?</option>
+        <option value="change">% change from X to Y</option>
+      </select>
+    </div>
+
+    <!-- Mode 1: What is X% of Y? -->
+    <div id="modeOf" class="input-group">
+      <div class="input-row">
+        <div>
+          <label for="ofX">X (%)</label>
+          <input type="number" id="ofX" placeholder="e.g. 20" min="0" step="any">
+        </div>
+        <div class="operator-label">% of</div>
+        <div>
+          <label for="ofY">Y</label>
+          <input type="number" id="ofY" placeholder="e.g. 200" step="any">
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode 2: X is what % of Y? -->
+    <div id="modeWhat" class="input-group" style="display:none;">
+      <div class="input-row">
+        <div>
+          <label for="whatX">X</label>
+          <input type="number" id="whatX" placeholder="e.g. 40" step="any">
+        </div>
+        <div class="operator-label">is what % of</div>
+        <div>
+          <label for="whatY">Y</label>
+          <input type="number" id="whatY" placeholder="e.g. 200" step="any">
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode 3: % change from X to Y -->
+    <div id="modeChange" class="input-group" style="display:none;">
+      <div class="input-row">
+        <div>
+          <label for="changeFrom">From (old value)</label>
+          <input type="number" id="changeFrom" placeholder="e.g. 50" step="any">
+        </div>
+        <div class="operator-label">→</div>
+        <div>
+          <label for="changeTo">To (new value)</label>
+          <input type="number" id="changeTo" placeholder="e.g. 75" step="any">
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" id="calculateBtn">Calculate</button>
+      <button class="btn btn-outline" id="clearBtn">Clear</button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-box" id="resultBox">
+      <div class="result-value" id="resultValue">—</div>
+      <div class="result-label" id="resultLabel">&nbsp;</div>
+      <div class="result-breakdown" id="resultBreakdown"></div>
+    </div>
+
+    <div class="info-text">
+      Enter values in the fields above and press Calculate or Enter for instant results.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  // DOM refs
+  const modeSelect = document.getElementById('modeSelect');
+  const modeOf = document.getElementById('modeOf');
+  const modeWhat = document.getElementById('modeWhat');
+  const modeChange = document.getElementById('modeChange');
+
+  const ofX = document.getElementById('ofX');
+  const ofY = document.getElementById('ofY');
+  const whatX = document.getElementById('whatX');
+  const whatY = document.getElementById('whatY');
+  const changeFrom = document.getElementById('changeFrom');
+  const changeTo = document.getElementById('changeTo');
+
+  const calculateBtn = document.getElementById('calculateBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const resultBox = document.getElementById('resultBox');
+  const resultValue = document.getElementById('resultValue');
+  const resultLabel = document.getElementById('resultLabel');
+  const resultBreakdown = document.getElementById('resultBreakdown');
+
+  let toastTimer = null;
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  function setMode(mode) {
+    modeOf.style.display = mode === 'of' ? 'block' : 'none';
+    modeWhat.style.display = mode === 'what' ? 'block' : 'none';
+    modeChange.style.display = mode === 'change' ? 'block' : 'none';
+    resultBox.classList.remove('show');
+  }
+
+  // Mode selector change
+  modeSelect.addEventListener('change', function() {
+    setMode(this.value);
+  });
+
+  function getActiveMode() {
+    return modeSelect.value;
+  }
+
+  function calculate() {
+    const mode = getActiveMode();
+    let result, label, breakdown;
+
+    if (mode === 'of') {
+      const pct = parseFloat(ofX.value);
+      const y = parseFloat(ofY.value);
+      if (isNaN(pct) || isNaN(y)) {
+        showToast('Please enter both values');
+        return;
+      }
+      result = (pct / 100) * y;
+      const formatted = Number.isInteger(result) ? result : result.toFixed(2);
+      label = pct + '% of ' + y;
+      breakdown = '<div>' + pct + '% × ' + y + ' = ' + formatted + '</div>';
+    } else if (mode === 'what') {
+      const x = parseFloat(whatX.value);
+      const y = parseFloat(whatY.value);
+      if (isNaN(x) || isNaN(y) || y === 0) {
+        showToast(isNaN(x) || isNaN(y) ? 'Please enter both values' : 'Y cannot be zero');
+        return;
+      }
+      result = (x / y) * 100;
+      const formatted = Number.isInteger(result) ? result : result.toFixed(2);
+      label = x + ' is what % of ' + y;
+      breakdown = '<div>(' + x + ' ÷ ' + y + ') × 100 = ' + formatted + '%</div>';
+    } else if (mode === 'change') {
+      const from = parseFloat(changeFrom.value);
+      const to = parseFloat(changeTo.value);
+      if (isNaN(from) || isNaN(to)) {
+        showToast('Please enter both values');
+        return;
+      }
+      if (from === 0) {
+        showToast('Old value cannot be zero');
+        return;
+      }
+      result = ((to - from) / Math.abs(from)) * 100;
+      const formatted = (result >= 0 ? '+' : '') + (Number.isInteger(result) ? result : result.toFixed(2)) + '%';
+      const sign = result >= 0 ? 'increase' : 'decrease';
+      label = 'Change from ' + from + ' to ' + to;
+      breakdown = '<div>((' + to + ' − ' + from + ') ÷ |' + from + '|) × 100 = ' + formatted + '</div>';
+      breakdown += '<div>This is a <span class="' + (result >= 0 ? 'result-positive' : 'result-negative') + '">' + sign + '</span> of <span>' + Math.abs(Number.isInteger(result) ? result : parseFloat(result.toFixed(2))) + '%</span></div>';
+    }
+
+    // Display
+    resultBox.classList.add('show');
+    resultLabel.textContent = label;
+
+    if (mode === 'change') {
+      const numResult = ((parseFloat(changeTo.value) - parseFloat(changeFrom.value)) / Math.abs(parseFloat(changeFrom.value))) * 100;
+      const displayVal = (numResult >= 0 ? '+' : '') + (Number.isInteger(numResult) ? numResult : numResult.toFixed(2)) + '%';
+      resultValue.textContent = displayVal;
+      resultValue.className = 'result-value ' + (numResult >= 0 ? 'result-positive' : 'result-negative');
+    } else {
+      const formatted = Number.isInteger(result) ? result : result.toFixed(2);
+      resultValue.textContent = mode === 'what' ? formatted + '%' : formatted;
+      resultValue.className = 'result-value';
+    }
+
+    resultBreakdown.innerHTML = breakdown;
+  }
+
+  function clearForm() {
+    ofX.value = '';
+    ofY.value = '';
+    whatX.value = '';
+    whatY.value = '';
+    changeFrom.value = '';
+    changeTo.value = '';
+    resultBox.classList.remove('show');
+  }
+
+  // Enter key support
+  document.querySelectorAll('input[type="number"]').forEach(inp => {
+    inp.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') calculate();
+    });
+  });
+
+  calculateBtn.addEventListener('click', calculate);
+  clearBtn.addEventListener('click', clearForm);
+
+  // Init — show mode Of by default
+  setMode('of');
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

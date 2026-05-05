@@ -302,6 +302,46 @@ nav {
 .gear-card .desc { font-size: 0.73rem; color: var(--muted); }
 .gear-card .price { font-size: 0.8rem; color: var(--success); font-weight: 600; }
 
+/* ---------- Tools Grid (homepage free tools) ---------- */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  text-align: center;
+  gap: 6px;
+  box-shadow: var(--shadow);
+}
+.tool-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.tool-card .emoji { font-size: 2rem; }
+.tool-card .name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.tool-card .desc { font-size: 0.72rem; color: var(--muted); }
+
+/* ---------- Section Footer (view all link) ---------- */
+.section-footer {
+  text-align: center;
+  margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+  .tools-grid { grid-template-columns: 1fr 1fr; }
+}
+
 /* ---------- Content Articles (clean, readable) ---------- */
 article {
   background: var(--card);
@@ -764,7 +804,7 @@ footer a:hover { color: var(--accent); }
 
   .cta-section { background: linear-gradient(135deg, var(--card), rgba(41, 151, 255, 0.06)); }
 
-  .blog-item, .review-item, .card, .cat-card, .gear-card {
+  .blog-item, .review-item, .card, .cat-card, .gear-card, .tool-card {
     box-shadow: none; /* dark mode: no shadows, cleaner */
   }
 

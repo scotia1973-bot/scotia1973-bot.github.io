@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Unit Converter — Free Online Tool</title>
+  <meta name="description" content="Free online unit converter. Convert length, weight, temperature, and volume instantly. Inches↔cm, kg↔lbs, C↔F, liters↔gallons and more.">
+  <meta name="keywords" content="unit converter, length converter, weight converter, temperature converter, volume converter, free online tool">
+  <meta property="og:title" content="Unit Converter — Free Online Tool">
+  <meta property="og:description" content="Free online unit converter. Length, weight, temperature, volume. Real-time bidirectional conversion.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/converter.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/converter.html">
+  <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>📐 Unit Converter</h1>
+    <p>Convert length, weight, temperature &amp; volume — bidirectional</p>
+  </header>
+
+  <div class="tool-card">
+    <h2 id="category-label">Length</h2>
+
+    <label for="category">Category</label>
+    <select id="category">
+      <option value="length">Length</option>
+      <option value="weight">Weight</option>
+      <option value="temperature">Temperature</option>
+      <option value="volume">Volume</option>
+    </select>
+
+    <label for="conversion">Conversion Type</label>
+    <select id="conversion"></select>
+
+    <label for="val_a" id="label_a">Inches</label>
+    <input type="text" id="val_a" inputmode="decimal" placeholder="0">
+
+    <label for="val_b" id="label_b">Centimeters</label>
+    <input type="text" id="val_b" inputmode="decimal" placeholder="0">
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const categorySelect = document.getElementById('category');
+  const conversionSelect = document.getElementById('conversion');
+  const labelA = document.getElementById('label_a');
+  const labelB = document.getElementById('label_b');
+  const valA = document.getElementById('val_a');
+  const valB = document.getElementById('val_b');
+  const categoryLabel = document.getElementById('category-label');
+
+  // Conversion definitions: category -> { label, options: [{ name, units, fn(aToB, val) }] }
+  // fn takes direction (true = a->b, false = b->a) and value, returns converted value
+  const converters = {
+    length: {
+      label: 'Length',
+      options: [
+        {
+          name: 'Inches ↔ Centimeters',
+          units: ['Inches', 'Centimeters'],
+          convert: function(aToB, v) { return aToB ? v * 2.54 : v / 2.54; }
+        },
+        {
+          name: 'Feet ↔ Meters',
+          units: ['Feet', 'Meters'],
+          convert: function(aToB, v) { return aToB ? v * 0.3048 : v / 0.3048; }
+        },
+        {
+          name: 'Inches ↔ Millimeters',
+          units: ['Inches', 'Millimeters'],
+          convert: function(aToB, v) { return aToB ? v * 25.4 : v / 25.4; }
+        }
+      ]
+    },
+    weight: {
+      label: 'Weight',
+      options: [
+        {
+          name: 'Kilograms ↔ Pounds',
+          units: ['Kilograms', 'Pounds'],
+          convert: function(aToB, v) { return aToB ? v * 2.20462 : v / 2.20462; }
+        },
+        {
+          name: 'Stone ↔ Kilograms',
+          units: ['Stone', 'Kilograms'],
+          convert: function(aToB, v) { return aToB ? v * 6.35029 : v / 6.35029; }
+        },
+        {
+          name: 'Ounces ↔ Grams',
+          units: ['Ounces', 'Grams'],
+          convert: function(aToB, v) { return aToB ? v * 28.3495 : v / 28.3495; }
+        }
+      ]
+    },
+    temperature: {
+      label: 'Temperature',
+      options: [
+        {
+          name: 'Celsius ↔ Fahrenheit',
+          units: ['°C', '°F'],
+          convert: function(aToB, v) { return aToB ? v * 9/5 + 32 : (v - 32) * 5/9; }
+        },
+        {
+          name: 'Celsius ↔ Kelvin',
+          units: ['°C', 'K'],
+          convert: function(aToB, v) { return aToB ? v + 273.15 : v - 273.15; }
+        },
+        {
+          name: 'Fahrenheit ↔ Kelvin',
+          units: ['°F', 'K'],
+          convert: function(aToB, v) { return aToB ? (v + 459.67) * 5/9 : v * 9/5 - 459.67; }
+        }
+      ]
+    },
+    volume: {
+      label: 'Volume',
+      options: [
+        {
+          name: 'Liters ↔ Gallons',
+          units: ['Liters', 'Gallons'],
+          convert: function(aToB, v) { return aToB ? v * 0.264172 : v / 0.264172; }
+        },
+        {
+          name: 'Cups ↔ Milliliters',
+          units: ['Cups', 'Milliliters'],
+          convert: function(aToB, v) { return aToB ? v * 236.588 : v / 236.588; }
+        },
+        {
+          name: 'Fluid Ounces ↔ Milliliters',
+          units: ['Fl Oz', 'Milliliters'],
+          convert: function(aToB, v) { return aToB ? v * 29.5735 : v / 29.5735; }
+        }
+      ]
+    }
+  };
+
+  let activeDirection = 'a'; // 'a' means a->b conversion, 'b' means b->a
+  let updating = false;
+
+  function populateConversions() {
+    const cat = categorySelect.value;
+    const data = converters[cat];
+    if (!data) return;
+
+    categoryLabel.textContent = data.label;
+    conversionSelect.innerHTML = '';
+    data.options.forEach(function(opt, idx) {
+      const el = document.createElement('option');
+      el.value = idx;
+      el.textContent = opt.name;
+      conversionSelect.appendChild(el);
+    });
+    updateLabels();
+    clearInputs();
+  }
+
+  function getCurrentOpt() {
+    const cat = categorySelect.value;
+    const data = converters[cat];
+    if (!data) return null;
+    const idx = parseInt(conversionSelect.value, 10);
+    return data.options[idx] || null;
+  }
+
+  function updateLabels() {
+    const opt = getCurrentOpt();
+    if (!opt) return;
+    labelA.textContent = opt.units[0];
+    labelB.textContent = opt.units[1];
+  }
+
+  function clearInputs() {
+    valA.value = '';
+    valB.value = '';
+  }
+
+  function doConvert() {
+    if (updating) return;
+    const opt = getCurrentOpt();
+    if (!opt) return;
+
+    updating = true;
+
+    if (activeDirection === 'a') {
+      // User edited valA -> convert a to b
+      const raw = valA.value.trim();
+      if (raw === '' || raw === '-' || raw === '.') {
+        valB.value = '';
+      } else {
+        const num = parseFloat(raw);
+        if (!isNaN(num)) {
+          const result = opt.convert(true, num);
+          valB.value = parseFloat(result.toPrecision(10));
+        }
+      }
+    } else {
+      // User edited valB -> convert b to a
+      const raw = valB.value.trim();
+      if (raw === '' || raw === '-' || raw === '.') {
+        valA.value = '';
+      } else {
+        const num = parseFloat(raw);
+        if (!isNaN(num)) {
+          const result = opt.convert(false, num);
+          valA.value = parseFloat(result.toPrecision(10));
+        }
+      }
+    }
+
+    updating = false;
+  }
+
+  // Event: editing valA
+  valA.addEventListener('input', function() {
+    activeDirection = 'a';
+    doConvert();
+  });
+
+  // Event: editing valB
+  valB.addEventListener('input', function() {
+    activeDirection = 'b';
+    doConvert();
+  });
+
+  // Category or conversion changed
+  categorySelect.addEventListener('change', function() {
+    populateConversions();
+    clearInputs();
+  });
+
+  conversionSelect.addEventListener('change', function() {
+    updateLabels();
+    clearInputs();
+  });
+
+  // Init
+  populateConversions();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

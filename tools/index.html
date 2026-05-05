@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Free Online Tools — 25+ Utility Tools | GadgetHumans</title>
+  <meta name="description" content="100% free online tools. Stopwatch, timer, BMI calculator, unit converter, password generator, word counter, color picker, mortgage calculator, screen resolution checker, and more. No signup, no ads.">
+  <meta name="keywords" content="free online tools, stopwatch, timer, bmi calculator, unit converter, password generator, color picker, mortgage calculator, screen resolution">
+  <meta property="og:title" content="Free Online Tools — 25+ Utility Tools">
+  <meta property="og:description" content="Free stopwatch, timer, BMI, converter, calculators, color picker and more. No ads, no signup.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .tools-header { text-align: center; padding: 48px 20px 32px; }
+    .tools-header h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); margin-bottom: 8px; }
+    .tools-header p { font-size: 1.05rem; color: var(--text2); margin-bottom: 28px; }
+    .tools-header .count-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 4px 14px; border-radius: 980px; font-size: 0.75rem; font-weight: 600; margin-bottom: 20px; }
+
+    .search-wrap { max-width: 480px; margin: 0 auto 8px; position: relative; }
+    .search-wrap input {
+      width: 100%; padding: 12px 16px 12px 42px; border: 1px solid var(--border); border-radius: 980px;
+      font-size: 0.9rem; font-family: var(--font); background: var(--card); color: var(--text);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .search-wrap input::placeholder { color: var(--muted); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; pointer-events: none; line-height: 1; }
+
+    .category-filter { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+    .cat-btn {
+      padding: 6px 16px; border: 1px solid var(--border); border-radius: 980px; background: transparent;
+      font-family: var(--font); font-size: 0.78rem; font-weight: 500; color: var(--text2); cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .cat-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .cat-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .tool-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
+      text-align: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+    }
+    .tool-tile:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .tool-tile .emoji { font-size: 2rem; }
+    .tool-tile .name { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .tool-tile .desc { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+
+    .no-results { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.9rem; display: none; }
+
+    @media (max-width: 480px) {
+      .tools-header h1 { font-size: 1.6rem; }
+      .tools-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .tool-tile { padding: 16px 10px; }
+      .tool-tile .emoji { font-size: 1.6rem; }
+      .category-filter { gap: 4px; }
+      .cat-btn { padding: 5px 12px; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="tools-header">
+  <div class="count-badge">25 Free Tools</div>
+  <h1>🛠️ Free Online Tools</h1>
+  <p>Utility tools — no signup, no ads, works offline</p>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search tools..." autocomplete="off">
+  </div>
+  <div class="category-filter" id="categoryFilter">
+    <button class="cat-btn active" data-cat="all">All</button>
+    <button class="cat-btn" data-cat="calculators">Calculators</button>
+    <button class="cat-btn" data-cat="converters">Converters</button>
+    <button class="cat-btn" data-cat="text">Text Tools</button>
+    <button class="cat-btn" data-cat="timers">Timers</button>
+    <button class="cat-btn" data-cat="generators">Generators</button>
+    <button class="cat-btn" data-cat="utilities">Utilities</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tools-grid" id="toolsGrid"></div>
+  <div class="no-results" id="noResults">No tools match your search. Try a different term.</div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<script src="../js/script.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const tools = [
+    { name: 'Mortgage Calculator', emoji: '🏠', desc: 'Monthly payments, PITI, amortization', file: 'mortgage-calculator.html', cat: 'calculators' },
+    { name: 'Screen Resolution', emoji: '🖥️', desc: 'Check your display specs', file: 'screen-resolution.html', cat: 'utilities' },
+    { name: 'Stopwatch', emoji: '⏱️', desc: 'Lap timing, 1/100th sec', file: 'stopwatch.html', cat: 'timers' },
+    { name: 'Timer', emoji: '⏲️', desc: 'Presets 1min to 1hr+', file: 'stopwatch.html', cat: 'timers' },
+    { name: 'Countdown', emoji: '⏰', desc: 'Custom HH:MM:SS', file: 'stopwatch.html', cat: 'timers' },
+    { name: 'BMI Calculator', emoji: '⚖️', desc: 'Metric or imperial', file: 'bmi.html', cat: 'calculators' },
+    { name: 'Unit Converter', emoji: '📐', desc: 'Length, weight, temp, volume', file: 'converter.html', cat: 'converters' },
+    { name: 'Percentage Calc', emoji: '💯', desc: '3 modes, step-by-step', file: 'percentage.html', cat: 'calculators' },
+    { name: 'Age Calculator', emoji: '🎂', desc: 'Years, months, days', file: 'age.html', cat: 'calculators' },
+    { name: 'Password Generator', emoji: '🔐', desc: 'Secure passwords, strength meter', file: 'password.html', cat: 'generators' },
+    { name: 'Random Number', emoji: '🎲', desc: 'Min/max roller, history', file: 'random.html', cat: 'generators' },
+    { name: 'Word Counter', emoji: '📝', desc: 'Words, chars, lines, reading time', file: 'wordcount.html', cat: 'text' },
+    { name: 'Color Picker', emoji: '🎨', desc: 'Hex, RGB, HSL values', file: 'colorpicker.html', cat: 'utilities' },
+    { name: 'Tip Calculator', emoji: '💵', desc: 'Split bill with tip', file: 'tip.html', cat: 'calculators' },
+    { name: 'Date Calculator', emoji: '📅', desc: 'Days between dates', file: 'dates.html', cat: 'calculators' },
+    { name: 'Loan Calculator', emoji: '🏦', desc: 'Amortization schedule', file: 'loan.html', cat: 'calculators' },
+    { name: 'Calorie Calculator', emoji: '🥗', desc: 'BMR + TDEE', file: 'calorie.html', cat: 'calculators' },
+    { name: 'Hex/Bin/Dec Conv', emoji: '🔢', desc: 'Number base converter', file: 'hex.html', cat: 'converters' },
+    { name: 'Case Converter', emoji: '🔤', desc: 'UPPER, lower, Title, Sentence', file: 'textcase.html', cat: 'text' },
+    { name: 'Lorem Ipsum Gen', emoji: '📄', desc: 'Paragraph generator', file: 'lorem.html', cat: 'generators' },
+    { name: 'SHA-256 Hash', emoji: '🔑', desc: 'Hash any text', file: 'hash.html', cat: 'utilities' },
+    { name: 'URL Encode/Decode', emoji: '🔗', desc: 'Encode / decode URLs', file: 'urlencode.html', cat: 'converters' },
+    { name: 'Time Zone Conv', emoji: '🌍', desc: 'Compare timezones', file: 'timezone.html', cat: 'converters' },
+    { name: 'Birthday Countdown', emoji: '🎉', desc: 'Age in seconds, next bday', file: 'birthday.html', cat: 'timers' },
+    { name: 'Text Case Conv', emoji: '🔤', desc: 'Multi-case converter', file: 'textcase.html', cat: 'text' }
+  ];
+
+  const grid = document.getElementById('toolsGrid');
+  const searchInput = document.getElementById('searchInput');
+  const noResults = document.getElementById('noResults');
+  const catBtns = document.querySelectorAll('.cat-btn');
+
+  let activeCat = 'all';
+  let searchQuery = '';
+
+  function render() {
+    const q = searchQuery.toLowerCase().trim();
+    const filtered = tools.filter(t => {
+      // Category filter
+      if (activeCat !== 'all' && t.cat !== activeCat) return false;
+      // Search filter
+      if (q) {
+        const inName = t.name.toLowerCase().includes(q);
+        const inDesc = t.desc.toLowerCase().includes(q);
+        const inCat = t.cat.toLowerCase().includes(q);
+        return inName || inDesc || inCat;
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      noResults.style.display = 'block';
+      return;
+    }
+
+    noResults.style.display = 'none';
+    grid.innerHTML = filtered.map(t => {
+      // Handle file path for root-level tools
+      const href = t.file;
+      return `<a class="tool-tile" href="${href}">
+        <span class="emoji">${t.emoji}</span>
+        <span class="name">${t.name}</span>
+        <span class="desc">${t.desc}</span>
+      </a>`;
+    }).join('');
+  }
+
+  // Search input
+  searchInput.addEventListener('input', render);
+
+  // Category buttons
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      catBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeCat = this.dataset.cat;
+      render();
+    });
+  });
+
+  // Initial render
+  render();
+})();
+</script>
+</body>
+</html>

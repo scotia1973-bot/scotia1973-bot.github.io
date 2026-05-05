@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Lorem Ipsum Generator — Free Online Tool</title>
+  <meta name="description" content="Free online Lorem Ipsum generator. Generate placeholder text with custom paragraphs, words per paragraph, or sentences per paragraph. Copy with one click.">
+  <meta name="keywords" content="lorem ipsum, lorem ipsum generator, placeholder text, dummy text, free online tool, text generator">
+  <meta property="og:title" content="Lorem Ipsum Generator — Free Online Tool">
+  <meta property="og:description" content="Generate custom Lorem Ipsum placeholder text. Choose paragraphs, words or sentences, and copy instantly.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/lorem.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/lorem.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .output-box {
+      margin-top: 14px;
+      padding: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      min-height: 120px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text);
+      user-select: text;
+      -webkit-user-select: text;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .output-box:empty::before {
+      content: "Click "Generate" to create Lorem Ipsum text…";
+      color: var(--muted);
+      font-style: italic;
+    }
+    .output-box p {
+      margin-bottom: 1em;
+    }
+    .output-box p:last-child {
+      margin-bottom: 0;
+    }
+    .lorem-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .lorem-controls > * {
+      flex: 1;
+      min-width: 120px;
+    }
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--success);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .copy-toast.show {
+      opacity: 1;
+    }
+    @media (max-width: 480px) {
+      .lorem-controls {
+        flex-direction: column;
+      }
+      .lorem-controls > * {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>📄 Lorem Ipsum Generator</h1>
+    <p>Generate placeholder text — words or sentences per paragraph</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Lorem Ipsum Generator</h2>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:2px;">Customize your placeholder text below</p>
+
+    <label for="paragraphs">Number of paragraphs</label>
+    <div class="range-wrap">
+      <input type="range" id="paragraphs" min="1" max="20" value="3">
+      <span class="val" id="paragraphs-val">3</span>
+    </div>
+
+    <div class="toggle-row" id="mode-toggle">
+      <button class="toggle-btn active" data-mode="words">Words</button>
+      <button class="toggle-btn" data-mode="sentences">Sentences</button>
+    </div>
+
+    <div class="lorem-controls">
+      <div>
+        <label for="amount">Per paragraph</label>
+        <input type="number" id="amount" min="1" max="200" value="10">
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="generate()">✨ Generate</button>
+      <button class="btn btn-outline" onclick="copyText()">📋 Copy</button>
+    </div>
+
+    <div class="output-box" id="output"></div>
+  </div>
+
+  <!-- Promo -->
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="copy-toast" id="toast">✓ Copied to clipboard</div>
+
+<script>
+(function() {
+  // ----- Lorem Ipsum base text -----
+  const LOREM_WORDS = [
+    "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
+    "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore",
+    "magna", "aliqua", "enim", "ad", "minim", "veniam", "quis", "nostrud",
+    "exercitation", "ullamco", "laboris", "nisi", "ut", "aliquip", "ex", "ea",
+    "commodo", "consequat", "duis", "aute", "irure", "dolor", "in", "reprehenderit",
+    "in", "voluptate", "velit", "esse", "cillum", "dolore", "eu", "fugiat", "nulla",
+    "pariatur", "excepteur", "sint", "occaecat", "cupidatat", "non", "proident",
+    "sunt", "in", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id",
+    "est", "laborum", "fusce", "dapibus", "tellus", "ac", "cursus", "commodo",
+    "tortor", "mauris", "condimentum", "nibh", "ut", "fermentum", "massa", "justo",
+    "sit", "amet", "risus", "nullam", "quis", "ante", "et", "eget", "orci",
+    "phasellus", "egestas", "tellus", "rutrum", "tellus", "pellentesque", "eu",
+    "tincidunt", "augue", "interdum", "velit", "laoreet", "id", "donec", "ultrices",
+    "tincidunt", "arcu", "non", "sodales", "neque", "sodales", "ut", "etiam", "sit",
+    "amet", "nisl", "purus", "in", "mollis", "nunc", "sed", "id", "semper", "risus",
+    "in", "hendrerit", "gravida", "rutrum", "quisque", "non", "tellus", "orci",
+    "ac", "auctor", "augue", "mauris", "augue", "neque", "gravida", "in", "fermentum"
+  ];
+
+  // Standard Lorem Ipsum opening (the classic first sentence)
+  const STANDARD_OPENING = ["Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit,"];
+
+  function randomWord(exclude) {
+    let w;
+    do {
+      w = LOREM_WORDS[Math.floor(Math.random() * LOREM_WORDS.length)];
+    } while (w === exclude);
+    return w;
+  }
+
+  function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  function generateSentence(wordCount) {
+    const words = [];
+    // Start with standard opening for first sentence of each paragraph, else random
+    if (wordCount <= 8) {
+      // Use subset of standard opening
+      for (let i = 0; i < Math.min(wordCount, STANDARD_OPENING.length); i++) {
+        words.push(STANDARD_OPENING[i]);
+      }
+      while (words.length < wordCount) {
+        words.push(randomWord());
+      }
+    } else {
+      // First few words from standard opening
+      for (let i = 0; i < STANDARD_OPENING.length; i++) {
+        words.push(STANDARD_OPENING[i]);
+      }
+      while (words.length < wordCount) {
+        words.push(randomWord());
+      }
+    }
+
+    // Capitalize first word
+    if (words.length > 0) {
+      words[0] = capitalize(words[0]);
+    }
+
+    // Add period
+    return words.join(' ') + '.';
+  }
+
+  function generateWordsSentence(wordCount) {
+    const words = [];
+    if (wordCount <= 8) {
+      for (let i = 0; i < Math.min(wordCount, STANDARD_OPENING.length); i++) {
+        words.push(STANDARD_OPENING[i]);
+      }
+      while (words.length < wordCount) {
+        words.push(randomWord());
+      }
+    } else {
+      for (let i = 0; i < STANDARD_OPENING.length; i++) {
+        words.push(STANDARD_OPENING[i]);
+      }
+      while (words.length < wordCount) {
+        words.push(randomWord());
+      }
+    }
+    // Lowercase first word for mid-paragraph use, but actually for words mode each paragraph is one long sentence-like thing
+    // We'll make it read naturally
+    words[0] = capitalize(words[0]);
+    return words.join(' ') + '.';
+  }
+
+  function generateParagraph(numWords) {
+    // Generate a paragraph with approximately numWords words across multiple sentences
+    const sentences = [];
+    let remaining = numWords;
+    let first = true;
+
+    while (remaining > 0) {
+      // Sentence length: 6-14 words for first sentence, 5-12 for subsequent
+      let sentenceLen;
+      if (first) {
+        sentenceLen = Math.min(remaining, 8 + Math.floor(Math.random() * 7));
+      } else {
+        sentenceLen = Math.min(remaining, 5 + Math.floor(Math.random() * 8));
+      }
+
+      if (sentenceLen < 3 && remaining > 0) sentenceLen = Math.min(remaining, 3);
+
+      const words = [];
+      if (first) {
+        // Standard opening for first sentence
+        const openingLen = Math.min(sentenceLen, STANDARD_OPENING.length);
+        for (let i = 0; i < openingLen; i++) {
+          words.push(STANDARD_OPENING[i]);
+        }
+        while (words.length < sentenceLen) {
+          words.push(randomWord());
+        }
+        words[0] = capitalize(words[0]);
+        first = false;
+      } else {
+        for (let i = 0; i < sentenceLen; i++) {
+          words.push(randomWord());
+        }
+        words[0] = capitalize(words[0]);
+      }
+
+      sentences.push(words.join(' ') + '.');
+      remaining -= sentenceLen;
+    }
+
+    return sentences.join(' ');
+  }
+
+  function generateParagraphBySentences(numSentences) {
+    const sentences = [];
+
+    for (let i = 0; i < numSentences; i++) {
+      // Sentence length: 6-14 words
+      let sentenceLen;
+      if (i === 0) {
+        sentenceLen = 8 + Math.floor(Math.random() * 7);
+      } else {
+        sentenceLen = 5 + Math.floor(Math.random() * 10);
+      }
+
+      const words = [];
+      if (i === 0) {
+        const openingLen = Math.min(sentenceLen, STANDARD_OPENING.length);
+        for (let j = 0; j < openingLen; j++) {
+          words.push(STANDARD_OPENING[j]);
+        }
+        while (words.length < sentenceLen) {
+          words.push(randomWord());
+        }
+        words[0] = capitalize(words[0]);
+      } else {
+        for (let j = 0; j < sentenceLen; j++) {
+          words.push(randomWord());
+        }
+        words[0] = capitalize(words[0]);
+      }
+
+      sentences.push(words.join(' ') + '.');
+    }
+
+    return sentences.join(' ');
+  }
+
+  // ----- UI Logic -----
+  const paragraphsRange = document.getElementById('paragraphs');
+  const paragraphsVal = document.getElementById('paragraphs-val');
+  const amountInput = document.getElementById('amount');
+  const output = document.getElementById('output');
+  const modeBtns = document.querySelectorAll('.toggle-btn');
+  const toast = document.getElementById('toast');
+
+  let currentMode = 'words'; // 'words' or 'sentences'
+
+  // Update range display
+  paragraphsRange.addEventListener('input', function() {
+    paragraphsVal.textContent = this.value;
+  });
+
+  // Mode toggle
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      modeBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentMode = this.dataset.mode;
+    });
+  });
+
+  // Clamp amount input
+  amountInput.addEventListener('change', function() {
+    let val = parseInt(this.value, 10);
+    if (isNaN(val) || val < 1) val = 1;
+    if (currentMode === 'words' && val > 200) val = 200;
+    if (currentMode === 'sentences' && val > 50) val = 50;
+    this.value = val;
+  });
+
+  // Generate function
+  window.generate = function() {
+    const numParagraphs = parseInt(paragraphsRange.value, 10) || 3;
+    const amount = parseInt(amountInput.value, 10) || 10;
+    const mode = currentMode;
+
+    const paragraphs = [];
+
+    for (let i = 0; i < numParagraphs; i++) {
+      if (mode === 'words') {
+        paragraphs.push(generateParagraph(amount));
+      } else {
+        paragraphs.push(generateParagraphBySentences(amount));
+      }
+    }
+
+    output.innerHTML = paragraphs.map(p => '<p>' + p + '</p>').join('');
+  };
+
+  // Copy function
+  window.copyText = function() {
+    const text = output.textContent || output.innerText || '';
+    if (!text.trim()) return;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast();
+      }).catch(() => {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  };
+
+  function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      showToast();
+    } catch (e) {
+      // silently fail
+    }
+    document.body.removeChild(textarea);
+  }
+
+  let toastTimer = null;
+  function showToast() {
+    clearTimeout(toastTimer);
+    toast.classList.add('show');
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  // Auto-generate on load
+  window.generate();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

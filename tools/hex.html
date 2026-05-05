@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Binary/Hex/Decimal Converter — Free Online Tool</title>
+  <meta name="description" content="Free online binary, hexadecimal, and decimal converter. Convert between number systems in real-time. Edit any field — the others update instantly.">
+  <meta name="keywords" content="binary converter, hex converter, decimal converter, number system converter, bin hex dec, free online tool">
+  <meta property="og:title" content="Binary/Hex/Decimal Converter — Free Online Tool">
+  <meta property="og:description" content="Free online binary, hex, and decimal converter. Real-time bidirectional conversion between all three number systems.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/hex.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/hex.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .three-col {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .three-col .field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .three-col label {
+      margin-top: 0;
+      margin-bottom: 4px;
+      text-align: center;
+      font-size: 0.78rem;
+    }
+    .three-col input {
+      text-align: center;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", "Menlo", monospace;
+      font-size: 0.95rem;
+      padding: 12px 8px;
+    }
+    .three-col input.error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 1px var(--danger);
+    }
+    .three-col .hint {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 4px;
+    }
+    @media (max-width: 520px) {
+      .three-col {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🔄 Binary/Hex/Decimal Converter</h1>
+    <p>Convert between number systems in real-time — edit any field</p>
+  </header>
+
+  <div class="tool-card">
+    <div class="three-col">
+      <div class="field">
+        <label for="dec">Decimal</label>
+        <input type="text" id="dec" inputmode="numeric" placeholder="0" autocomplete="off" spellcheck="false">
+        <span class="hint">Base 10</span>
+      </div>
+      <div class="field">
+        <label for="hex">Hexadecimal</label>
+        <input type="text" id="hex" inputmode="text" placeholder="0x0" autocomplete="off" spellcheck="false">
+        <span class="hint">Base 16</span>
+      </div>
+      <div class="field">
+        <label for="bin">Binary</label>
+        <input type="text" id="bin" inputmode="numeric" placeholder="0" autocomplete="off" spellcheck="false">
+        <span class="hint">Base 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const decInput = document.getElementById('dec');
+  const hexInput = document.getElementById('hex');
+  const binInput = document.getElementById('bin');
+  const toast = document.getElementById('toast');
+
+  let updating = false;
+  let toastTimer = null;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2500);
+  }
+
+  function showError(input) {
+    input.classList.add('error');
+  }
+
+  function clearErrors() {
+    [decInput, hexInput, binInput].forEach(function(el) {
+      el.classList.remove('error');
+    });
+  }
+
+  function isValidDecimal(s) {
+    if (s === '' || s === '-' || s === '.') return false;
+    return /^-?\d+$/.test(s);
+  }
+
+  function isValidHex(s) {
+    if (s === '') return false;
+    // Strip optional 0x/0X prefix
+    let val = s.replace(/^0x/i, '');
+    if (val === '') return false;
+    return /^[0-9a-fA-F]+$/.test(val);
+  }
+
+  function isValidBinary(s) {
+    if (s === '') return false;
+    return /^[01]+$/.test(s);
+  }
+
+  function getDecimalValue() {
+    const raw = decInput.value.trim();
+    if (!isValidDecimal(raw)) return null;
+    return parseInt(raw, 10);
+  }
+
+  function getHexValue() {
+    const raw = hexInput.value.trim();
+    let val = raw.replace(/^0x/i, '');
+    if (!isValidHex(raw)) return null;
+    return parseInt(val, 16);
+  }
+
+  function getBinaryValue() {
+    const raw = binInput.value.trim();
+    if (!isValidBinary(raw)) return null;
+    return parseInt(raw, 2);
+  }
+
+  // ---- Conversion helpers ----
+
+  function decToHexAndBin(num) {
+    hexInput.value = '0x' + num.toString(16).toUpperCase();
+    binInput.value = num.toString(2);
+  }
+
+  function hexToDecAndBin(str) {
+    const raw = str.replace(/^0x/i, '');
+    const num = parseInt(raw, 16);
+    decInput.value = String(num);
+    binInput.value = num.toString(2);
+  }
+
+  function binToDecAndHex(str) {
+    const num = parseInt(str, 2);
+    decInput.value = String(num);
+    hexInput.value = '0x' + num.toString(16).toUpperCase();
+  }
+
+  function doConversion(source) {
+    if (updating) return;
+    clearErrors();
+
+    const rawDec = decInput.value.trim();
+    const rawHex = hexInput.value.trim();
+    const rawBin = binInput.value.trim();
+
+    // If the source field is empty, clear all
+    if (rawDec === '' && rawHex === '' && rawBin === '') {
+      updating = true;
+      decInput.value = '';
+      hexInput.value = '';
+      binInput.value = '';
+      updating = false;
+      return;
+    }
+
+    updating = true;
+
+    try {
+      if (source === 'dec') {
+        if (!isValidDecimal(rawDec)) {
+          showError(decInput);
+          showToast('Invalid decimal number. Use digits 0-9 only.');
+          updating = false;
+          return;
+        }
+        const num = parseInt(rawDec, 10);
+        if (num < 0) {
+          showError(decInput);
+          showToast('Negative numbers are not supported.');
+          updating = false;
+          return;
+        }
+        decToHexAndBin(num);
+
+      } else if (source === 'hex') {
+        if (!isValidHex(rawHex)) {
+          showError(hexInput);
+          showToast('Invalid hexadecimal. Use digits 0-9 and A-F (0x prefix optional).');
+          updating = false;
+          return;
+        }
+        const num = getHexValue();
+        if (num < 0) {
+          showError(hexInput);
+          showToast('Negative numbers are not supported.');
+          updating = false;
+          return;
+        }
+        hexToDecAndBin(rawHex);
+
+      } else if (source === 'bin') {
+        if (!isValidBinary(rawBin)) {
+          showError(binInput);
+          showToast('Invalid binary number. Use only 0 and 1.');
+          updating = false;
+          return;
+        }
+        const num = parseInt(rawBin, 2);
+        if (num < 0) {
+          showError(binInput);
+          showToast('Negative numbers are not supported.');
+          updating = false;
+          return;
+        }
+        binToDecAndHex(rawBin);
+      }
+    } catch (e) {
+      showError(source === 'dec' ? decInput : source === 'hex' ? hexInput : binInput);
+      showToast('Conversion error. Please check your input.');
+    }
+
+    updating = false;
+  }
+
+  // ---- Event handlers ----
+
+  decInput.addEventListener('input', function() {
+    doConversion('dec');
+  });
+
+  hexInput.addEventListener('input', function() {
+    doConversion('hex');
+  });
+
+  binInput.addEventListener('input', function() {
+    doConversion('bin');
+  });
+
+  // Clear errors on focus
+  [decInput, hexInput, binInput].forEach(function(el) {
+    el.addEventListener('focus', function() {
+      el.classList.remove('error');
+    });
+  });
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

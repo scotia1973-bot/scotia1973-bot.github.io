@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Mortgage Calculator — Free Monthly Payment Estimator</title>
+  <meta name="description" content="Free mortgage calculator with multi-currency support (USD, GBP, EUR, AUD, CAD, JPY). Estimate monthly payments with principal, interest, taxes, and insurance.">
+  <meta name="keywords" content="mortgage calculator, mortgage payment calculator, home loan calculator, monthly payment calculator, home affordability calculator">
+  <meta property="og:title" content="Mortgage Calculator — Free Monthly Payment Estimator">
+  <meta property="og:description" content="Estimate your monthly mortgage payments. Free online calculator.">
+  <meta property="og:url" content="https://www.gadgethumans.com/mortgage-calculator">
+  <link rel="canonical" href="https://www.gadgethumans.com/mortgage-calculator">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .full-width { grid-column: 1 / -1; }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .result-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+    }
+    .result-card .value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .result-card .value.highlight { color: var(--success); }
+    .result-card .value.total { color: var(--danger); }
+    .result-card .label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .breakdown-table {
+      margin-top: 16px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .breakdown-table th {
+      color: var(--muted);
+      text-align: left;
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.5px;
+    }
+    .breakdown-table td {
+      padding: 6px;
+      border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+    .breakdown-table tr:hover td { background: rgba(108,92,231,0.05); }
+    .breakdown-table .total-row td { font-weight: 700; color: var(--text); border-top: 2px solid var(--accent); }
+
+    .lead-gen {
+      margin-top: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(162,155,254,0.1));
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      text-align: center;
+    }
+    .lead-gen h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .lead-gen p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+    .lead-gen .btn-large {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .lead-gen .btn-large:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+    .lead-gen .disclosure {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .amort-table-wrap {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .amort-table-wrap table { font-size: 0.78rem; }
+    .amort-table-wrap th { position: sticky; top: 0; background: var(--card); z-index: 1; }
+
+    @media (max-width: 480px) {
+      .calc-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🏠 Mortgage Calculator</h1>
+    <p>Estimate your monthly payments</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Enter Loan Details</h2>
+    <div class="row" style="margin-bottom:12px;">
+      <label style="margin:0;white-space:nowrap;">Currency:</label>
+      <select id="currency" style="width:auto;flex:0 1 auto;">
+        <option value="USD">🇺🇸 USD ($)</option>
+        <option value="GBP">🇬🇧 GBP (£)</option>
+        <option value="EUR">🇪🇺 EUR (€)</option>
+        <option value="AUD">🇦🇺 AUD (A$)</option>
+        <option value="CAD">🇨🇦 CAD (C$)</option>
+        <option value="JPY">🇯🇵 JPY (¥)</option>
+      </select>
+    </div>
+    <div class="calc-grid">
+      <div class="full-width">
+        <label id="homePriceLabel">Home Price ($)</label>
+        <input type="number" id="homePrice" value="300000" min="10000" step="10000">
+      </div>
+      <div>
+        <label id="downPaymentLabel">Down Payment ($)</label>
+        <input type="number" id="downPayment" value="60000" min="0" step="5000">
+      </div>
+      <div>
+        <label>Down Payment %</label>
+        <input type="number" id="downPercent" value="20" min="0" max="100" step="0.5">
+      </div>
+      <div>
+        <label>Interest Rate (%)</label>
+        <input type="number" id="interestRate" value="6.5" min="0" max="30" step="0.125">
+      </div>
+      <div>
+        <label>Loan Term (years)</label>
+        <select id="loanTerm">
+          <option value="30">30 years</option>
+          <option value="20">20 years</option>
+          <option value="15">15 years</option>
+          <option value="10">10 years</option>
+        </select>
+      </div>
+      <div>
+        <label>Property Tax/yr ($)</label>
+        <input type="number" id="propertyTax" value="3600" min="0" step="100">
+      </div>
+      <div>
+        <label>Insurance/yr ($)</label>
+        <input type="number" id="insurance" value="1200" min="0" step="100">
+      </div>
+      <div class="full-width">
+        <label id="pmiLabel">PMI (% if down &lt; 20%)</label>
+        <input type="number" id="pmiRate" value="0.5" min="0" max="5" step="0.1">
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" id="calcBtn">Calculate</button>
+    </div>
+
+    <div class="results-grid" id="results">
+      <div class="result-card">
+        <div class="value highlight" id="monthlyPayment">—</div>
+        <div class="label">Monthly Payment</div>
+      </div>
+      <div class="result-card">
+        <div class="value" id="principalInterest">—</div>
+        <div class="label">Principal & Interest</div>
+      </div>
+      <div class="result-card">
+        <div class="value" id="taxInsurance">—</div>
+        <div class="label">Tax & Insurance</div>
+      </div>
+      <div class="result-card">
+        <div class="value" id="pmiAmount">—</div>
+        <div class="label" id="pmiResultLabel">PMI</div>
+      </div>
+      <div class="result-card">
+        <div class="value total" id="totalInterest">—</div>
+        <div class="label">Total Interest Paid</div>
+      </div>
+      <div class="result-card">
+        <div class="value" id="totalPayment">—</div>
+        <div class="label">Total Cost</div>
+      </div>
+    </div>
+
+    <!-- Amortization Schedule -->
+    <div style="margin-top:16px;">
+      <h3 style="font-size:0.85rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Amortization Schedule (first 12 months)</h3>
+      <div class="amort-table-wrap">
+        <table class="breakdown-table">
+          <thead>
+            <tr><th>#</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr>
+          </thead>
+          <tbody id="amortBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead Gen Section -->
+  <div class="lead-gen">
+    <h3>✅ Ready to Buy?</h3>
+    <p>Get pre-approved in minutes. No obligation, free quotes from top lenders.</p>
+    <a class="btn-large" href="https://www.lendingtree.com/home/mortgage/" target="_blank" rel="noopener">
+      🔍 Check Mortgage Rates → 
+    </a>
+    <p class="disclosure">We may earn a commission if you click through and get a quote. This is not financial advice.</p>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Home & Moving Essentials</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B0B695VFMB?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09HM94VDS?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09HN7BP2C?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0B4C6DJ3K?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const homePrice = document.getElementById('homePrice');
+  const downPayment = document.getElementById('downPayment');
+  const downPercent = document.getElementById('downPercent');
+  const interestRate = document.getElementById('interestRate');
+  const loanTerm = document.getElementById('loanTerm');
+  const propertyTax = document.getElementById('propertyTax');
+  const insurance = document.getElementById('insurance');
+  const pmiRate = document.getElementById('pmiRate');
+  const currencySelect = document.getElementById('currency');
+  const homePriceLabel = document.getElementById('homePriceLabel');
+  const downPaymentLabel = document.getElementById('downPaymentLabel');
+  const pmiLabel = document.getElementById('pmiLabel');
+  const pmiResultLabel = document.getElementById('pmiResultLabel');
+
+  const CURRENCY_SYMBOLS = { USD: '$', GBP: '£', EUR: '€', AUD: 'A$', CAD: 'C$', JPY: '¥' };
+  const PMI_NAMES = { USD: 'PMI (%)', GBP: 'MIP (%)', EUR: 'MIP (%)', AUD: 'LMI (%)', CAD: 'CMHC (%)', JPY: 'MIP (%)' };
+
+  function updateCurrencyLabels() {
+    const sym = CURRENCY_SYMBOLS[currencySelect.value] || '$';
+    const pmiName = PMI_NAMES[currencySelect.value] || 'PMI (%)';
+    homePriceLabel.textContent = `Home Price (${sym})`;
+    downPaymentLabel.textContent = `Down Payment (${sym})`;
+    if (pmiLabel) pmiLabel.textContent = `${pmiName} (if down < 20%)`;
+    if (pmiResultLabel) pmiResultLabel.textContent = pmiName.replace(' (%)', '');
+    calculate();
+  }
+
+  currencySelect.addEventListener('change', updateCurrencyLabels);
+
+  // Sync down payment $ and %
+  downPayment.addEventListener('input', () => {
+    const hp = parseFloat(homePrice.value) || 0;
+    const dp = parseFloat(downPayment.value) || 0;
+    downPercent.value = hp > 0 ? ((dp / hp) * 100).toFixed(1) : 0;
+    calculate();
+  });
+  downPercent.addEventListener('input', () => {
+    const hp = parseFloat(homePrice.value) || 0;
+    const pct = parseFloat(downPercent.value) || 0;
+    downPayment.value = Math.round(hp * (pct / 100));
+    calculate();
+  });
+  homePrice.addEventListener('input', () => {
+    const hp = parseFloat(homePrice.value) || 0;
+    const dp = parseFloat(downPayment.value) || 0;
+    if (hp > 0) downPercent.value = ((dp / hp) * 100).toFixed(1);
+    calculate();
+  });
+
+  [interestRate, loanTerm, propertyTax, insurance, pmiRate].forEach(el => {
+    el.addEventListener('input', calculate);
+    el.addEventListener('change', calculate);
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', calculate);
+
+  function formatCurrency(n) {
+    const sym = CURRENCY_SYMBOLS[currencySelect.value] || '$';
+    const formatted = n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return sym === '¥' ? '¥' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : sym + formatted;
+  }
+
+  function formatCurrencyInt(n) {
+    const sym = CURRENCY_SYMBOLS[currencySelect.value] || '$';
+    const formatted = Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return sym === '¥' ? '¥' + formatted : sym + formatted;
+  }
+
+  function calculate() {
+    const P = Math.max(0, parseFloat(homePrice.value) || 0);
+    const D = Math.max(0, parseFloat(downPayment.value) || 0);
+    const loanAmt = Math.max(0, P - D);
+    const rate = Math.max(0, parseFloat(interestRate.value) || 0) / 100 / 12;
+    const term = parseInt(loanTerm.value) || 30;
+    const n = term * 12;
+    const taxYr = Math.max(0, parseFloat(propertyTax.value) || 0);
+    const insYr = Math.max(0, parseFloat(insurance.value) || 0);
+    const pmiR = Math.max(0, parseFloat(pmiRate.value) || 0) / 100;
+
+    if (loanAmt <= 0 || rate <= 0 || n <= 0) {
+      document.querySelectorAll('.result-card .value').forEach(el => el.textContent = '—');
+      document.getElementById('amortBody').innerHTML = '';
+      return;
+    }
+
+    // Monthly P&I
+    const monthlyPI = loanAmt * (rate * Math.pow(1 + rate, n)) / (Math.pow(1 + rate, n) - 1);
+    const monthlyTax = taxYr / 12;
+    const monthlyIns = insYr / 12;
+    const hasPMI = (D / P) < 0.20 && P > 0;
+    const monthlyPMI = hasPMI ? (loanAmt * pmiR) / 12 : 0;
+
+    const totalMonthly = monthlyPI + monthlyTax + monthlyIns + monthlyPMI;
+    const totalPaid = monthlyPI * n;
+    const totalInterest = totalPaid - loanAmt;
+    const totalCost = totalPaid + (taxYr * term) + (insYr * term) + (hasPMI ? (monthlyPMI * Math.min(n, 12 * Math.ceil((P * 0.20 - D) / (monthlyPI * 12)))) : 0);
+
+    document.getElementById('monthlyPayment').textContent = formatCurrency(totalMonthly);
+    document.getElementById('principalInterest').textContent = formatCurrency(monthlyPI);
+    document.getElementById('taxInsurance').textContent = formatCurrency(monthlyTax + monthlyIns);
+    document.getElementById('pmiAmount').textContent = hasPMI ? formatCurrency(monthlyPMI) : '$0.00';
+    document.getElementById('totalInterest').textContent = formatCurrencyInt(totalInterest);
+    document.getElementById('totalPayment').textContent = formatCurrencyInt(totalCost);
+
+    // Amortization table (first 12 months)
+    let balance = loanAmt;
+    const tbody = document.getElementById('amortBody');
+    tbody.innerHTML = '';
+    const monthlyR = rate;
+    for (let i = 1; i <= Math.min(12, n); i++) {
+      const interestPortion = balance * monthlyR;
+      const principalPortion = monthlyPI - interestPortion;
+      balance -= principalPortion;
+      if (balance < 0) balance = 0;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i}</td><td>${formatCurrency(monthlyPI)}</td><td>${formatCurrency(principalPortion)}</td><td>${formatCurrency(interestPortion)}</td><td>${formatCurrency(balance)}</td>`;
+      tbody.appendChild(tr);
+    }
+  }
+
+  calculate();
+})();
+</script>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mortgage Calculator",
+  "applicationCategory": "Finance",
+  "operatingSystem": "All",
+  "description": "Free mortgage calculator to estimate monthly payments with principal, interest, taxes, insurance, and PMI.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

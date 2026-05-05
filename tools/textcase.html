@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Text Case Converter — Free Online Tool</title>
+  <meta name="description" content="Free online text case converter. Instantly convert text to UPPERCASE, lowercase, Title Case, Sentence case, tOGGLE cASE, or random case. Easy copy and paste.">
+  <meta name="keywords" content="text case converter, uppercase converter, lowercase converter, title case, sentence case, toggle case, random case, free online tool">
+  <meta property="og:title" content="Text Case Converter — Free Online Tool">
+  <meta property="og:description" content="Convert your text to any case instantly. UPPERCASE, lowercase, Title Case, Sentence case, tOGGLE cASE, random case — free and easy.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/textcase.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/textcase.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      padding: 14px;
+      font-size: 1rem;
+      line-height: 1.6;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--text);
+      resize: vertical;
+      font-family: inherit;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+    }
+    textarea::placeholder {
+      color: var(--muted);
+    }
+    textarea.output-area {
+      min-height: 180px;
+      cursor: default;
+    }
+    textarea.output-area:focus {
+      cursor: text;
+    }
+    .case-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .case-btn {
+      padding: 12px 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .case-btn:hover {
+      border-color: var(--accent);
+      color: #fff;
+      background: rgba(108, 92, 231, 0.1);
+    }
+    .case-btn:active {
+      transform: scale(0.96);
+    }
+    .case-btn .sub {
+      display: block;
+      font-size: 0.6rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .action-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .action-row .btn {
+      flex: 1;
+      min-width: 80px;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .char-count {
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    @media (max-width: 500px) {
+      .case-buttons {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      textarea {
+        min-height: 140px;
+      }
+      textarea.output-area {
+        min-height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🔤 Text Case Converter</h1>
+    <p>Convert text between different letter cases instantly</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Text Case Converter</h2>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:2px;">Type or paste your text, then choose a case</p>
+
+    <div class="section-label">📝 Input</div>
+    <textarea id="text-input" placeholder="Paste or type your text here…"></textarea>
+    <div class="char-count" id="input-chars">0 characters</div>
+
+    <div class="section-label">⚙️ Convert to</div>
+    <div class="case-buttons">
+      <button class="case-btn" onclick="convertCase('uppercase')">UPPERCASE<span class="sub">ALL CAPS</span></button>
+      <button class="case-btn" onclick="convertCase('lowercase')">lowercase<span class="sub">all small</span></button>
+      <button class="case-btn" onclick="convertCase('title')">Title Case<span class="sub">Each Word Capitalized</span></button>
+      <button class="case-btn" onclick="convertCase('sentence')">Sentence case<span class="sub">First letter capital</span></button>
+      <button class="case-btn" onclick="convertCase('toggle')">tOGGLE cASE<span class="sub">Flip each letter</span></button>
+      <button class="case-btn" onclick="convertCase('random')">RaNdOm cAsE<span class="sub">Random mix</span></button>
+    </div>
+
+    <div class="section-label">✅ Output</div>
+    <textarea id="text-output" class="output-area" placeholder="Converted text will appear here…" readonly></textarea>
+    <div class="char-count" id="output-chars">0 characters</div>
+
+    <div class="action-row">
+      <button class="btn btn-outline" onclick="copyOutput()">📋 Copy</button>
+      <button class="btn btn-outline" onclick="swapText()">🔄 Swap</button>
+      <button class="btn btn-outline" onclick="clearAll()">🗑️ Clear</button>
+    </div>
+  </div>
+
+  <!-- Promo -->
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const input = document.getElementById('text-input');
+  const output = document.getElementById('text-output');
+  const inputChars = document.getElementById('input-chars');
+  const outputChars = document.getElementById('output-chars');
+  const toast = document.getElementById('toast');
+
+  let toastTimer = null;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+
+  function updateCharCounts() {
+    const inLen = input.value.length;
+    const outLen = output.value.length;
+    inputChars.textContent = inLen + ' character' + (inLen !== 1 ? 's' : '');
+    outputChars.textContent = outLen + ' character' + (outLen !== 1 ? 's' : '');
+  }
+
+  // Real-time char count updates on input
+  input.addEventListener('input', updateCharCounts);
+
+  // Expose conversion functions globally
+  window.convertCase = function(mode) {
+    const text = input.value;
+    if (!text) {
+      showToast('✏️ Enter some text first');
+      return;
+    }
+
+    let result = '';
+
+    switch (mode) {
+      case 'uppercase':
+        result = text.toUpperCase();
+        break;
+
+      case 'lowercase':
+        result = text.toLowerCase();
+        break;
+
+      case 'title': {
+        // Title Case: capitalize first letter of each major word
+        const smallWords = ['a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'with', 'from', 'in', 'of', 'is', 'as', 'it', 'up', 'so', 'yet'];
+        result = text.toLowerCase().split(/(\s+)/).map((word, i, arr) => {
+          // Keep whitespace as-is
+          if (!word.trim()) return word;
+          // Always capitalize first and last word
+          const isFirst = arr.slice(0, i).every(w => !w.trim());
+          const isLast = arr.slice(i + 1).every(w => !w.trim());
+          if (isFirst || isLast || !smallWords.includes(word.replace(/[^a-z]/g, ''))) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+          }
+          return word;
+        }).join('');
+        break;
+      }
+
+      case 'sentence': {
+        // Sentence case: capitalize first letter of each sentence
+        result = text.replace(/(?:^|([.!?]+\s+))([a-z])/g, (match, before, letter) => {
+          return (before || '') + letter.toUpperCase();
+        });
+        // Also capitalize the very first letter
+        result = result.charAt(0).toUpperCase() + result.slice(1);
+        break;
+      }
+
+      case 'toggle': {
+        // tOGGLE cASE: flip the case of each letter
+        result = text.split('').map(ch => {
+          if (ch === ch.toUpperCase()) return ch.toLowerCase();
+          if (ch === ch.toLowerCase()) return ch.toUpperCase();
+          return ch;
+        }).join('');
+        break;
+      }
+
+      case 'random': {
+        // Random case: randomly uppercase or lowercase each letter
+        result = text.split('').map(ch => {
+          if (!/[a-zA-Z]/.test(ch)) return ch;
+          return Math.random() < 0.5 ? ch.toUpperCase() : ch.toLowerCase();
+        }).join('');
+        break;
+      }
+    }
+
+    output.value = result;
+    updateCharCounts();
+  };
+
+  window.copyOutput = function() {
+    if (!output.value) {
+      showToast('✏️ No text to copy');
+      return;
+    }
+    output.select();
+    output.setSelectionRange(0, 999999);
+    navigator.clipboard.writeText(output.value).then(() => {
+      showToast('✅ Copied to clipboard');
+    }).catch(() => {
+      // Fallback
+      document.execCommand('copy');
+      showToast('✅ Copied to clipboard');
+    });
+  };
+
+  window.swapText = function() {
+    if (!output.value) {
+      showToast('✏️ No output to swap');
+      return;
+    }
+    input.value = output.value;
+    output.value = '';
+    updateCharCounts();
+    input.focus();
+  };
+
+  window.clearAll = function() {
+    input.value = '';
+    output.value = '';
+    updateCharCounts();
+    input.focus();
+  };
+
+  // Initial update
+  updateCharCounts();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

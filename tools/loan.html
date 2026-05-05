@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Loan Calculator — Free Online Tool</title>
+  <meta name="description" content="Free loan calculator. Compute monthly payment, total payment, total interest, and view a full amortization schedule. Works for any loan amount, rate, and term.">
+  <meta name="keywords" content="loan calculator, amortization, monthly payment, mortgage calculator, interest calculator">
+  <meta property="og:title" content="Loan Calculator — Free Online Tool">
+  <meta property="og:description" content="Free loan calculator with amortization schedule. Monthly payment, total interest, and more.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/loan.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/loan.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .result-item {
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 12px;
+      text-align: center;
+    }
+    .result-item .label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .result-item .value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .result-item .value.primary { color: var(--success); }
+    .result-item .value.danger { color: var(--danger); }
+    .result-item.full { grid-column: 1 / -1; }
+
+    .amortization-wrap {
+      margin-top: 14px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .amortization-wrap::-webkit-scrollbar { width: 6px; }
+    .amortization-wrap::-webkit-scrollbar-track { background: var(--bg); border-radius: 4px; }
+    .amortization-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    table.amortization {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+    table.amortization th {
+      background: var(--card);
+      color: var(--muted);
+      font-weight: 600;
+      padding: 8px 6px;
+      text-align: right;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      border-bottom: 1px solid var(--border);
+    }
+    table.amortization th:first-child { text-align: center; }
+    table.amortization td {
+      padding: 6px;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    table.amortization td:first-child { text-align: center; color: var(--muted); }
+    table.amortization tr:last-child td { border-bottom: none; }
+    table.amortization tr:hover td { background: rgba(108,92,231,0.05); }
+
+    .amort-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .clear-link {
+      float: right;
+      font-size: 0.75rem;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .clear-link:hover { color: var(--accent); }
+
+    .info-text { font-size: 0.75rem; color: var(--muted); margin-top: 10px; text-align: center; line-height: 1.5; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🏦 Loan Calculator</h1>
+    <p>Monthly payment, total interest &amp; amortization</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>
+      Calculate Your Loan
+      <a class="clear-link" id="clearLink">Clear</a>
+    </h2>
+
+    <label for="loanAmount">Loan Amount ($)</label>
+    <input type="number" id="loanAmount" placeholder="e.g. 250000" min="1" step="100">
+
+    <label for="interestRate">Annual Interest Rate (%)</label>
+    <input type="number" id="interestRate" placeholder="e.g. 6.5" min="0" max="100" step="0.01">
+
+    <label for="loanTerm">Loan Term (years)</label>
+    <input type="number" id="loanTerm" placeholder="e.g. 30" min="1" max="50" step="1">
+
+    <div class="btn-group">
+      <button class="btn btn-primary" id="calculateBtn">Calculate</button>
+    </div>
+
+    <!-- Results -->
+    <div class="result-grid" id="resultGrid" style="display:none;">
+      <div class="result-item">
+        <div class="label">Monthly Payment</div>
+        <div class="value primary" id="monthlyPayment">—</div>
+      </div>
+      <div class="result-item">
+        <div class="label">Total Payment</div>
+        <div class="value" id="totalPayment">—</div>
+      </div>
+      <div class="result-item">
+        <div class="label">Total Interest</div>
+        <div class="value danger" id="totalInterest">—</div>
+      </div>
+      <div class="result-item">
+        <div class="label">Total # of Payments</div>
+        <div class="value" id="totalPayments">—</div>
+      </div>
+    </div>
+
+    <!-- Amortization Table -->
+    <div id="amortSection" style="display:none;">
+      <div class="amort-title">Amortization Schedule (first 12 months + final)</div>
+      <div class="amortization-wrap">
+        <table class="amortization">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Payment</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="amortBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-text">
+      This calculator provides an estimate for illustrative purposes only. Actual loan terms may vary. Consult a financial professional for a full assessment.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  // DOM refs
+  const loanAmount = document.getElementById('loanAmount');
+  const interestRate = document.getElementById('interestRate');
+  const loanTerm = document.getElementById('loanTerm');
+  const calculateBtn = document.getElementById('calculateBtn');
+  const clearLink = document.getElementById('clearLink');
+  const resultGrid = document.getElementById('resultGrid');
+  const monthlyPayment = document.getElementById('monthlyPayment');
+  const totalPayment = document.getElementById('totalPayment');
+  const totalInterest = document.getElementById('totalInterest');
+  const totalPayments = document.getElementById('totalPayments');
+  const amortSection = document.getElementById('amortSection');
+  const amortBody = document.getElementById('amortBody');
+
+  let toastTimer = null;
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  function fmt(n) {
+    return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function calculate() {
+    const P = parseFloat(loanAmount.value);
+    const rPct = parseFloat(interestRate.value);
+    const years = parseFloat(loanTerm.value);
+
+    if (!P || !rPct || !years || P <= 0 || rPct <= 0 || years <= 0) {
+      showToast('Please enter valid loan amount, interest rate, and term');
+      return;
+    }
+
+    const r = (rPct / 100) / 12; // monthly interest rate
+    const n = Math.round(years * 12); // total months
+
+    let monthly;
+    if (r === 0) {
+      monthly = P / n;
+    } else {
+      monthly = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    const totalPaid = monthly * n;
+    const totalInt = totalPaid - P;
+
+    // Display summary
+    monthlyPayment.textContent = fmt(monthly);
+    totalPayment.textContent = fmt(totalPaid);
+    totalInterest.textContent = fmt(totalInt);
+    totalPayments.textContent = n;
+    resultGrid.style.display = 'grid';
+
+    // Build amortization schedule
+    let balance = P;
+    let rows = [];
+    // Show first 12 months + final year-end rows if >12 months
+    const showCount = Math.min(12, n);
+
+    for (let i = 1; i <= n; i++) {
+      const interest = balance * r;
+      const principal = monthly - interest;
+      balance = Math.max(0, balance - principal);
+
+      // Always show first 12, and then the last year
+      if (i <= 12 || i > n - 12 || i === n) {
+        rows.push({ num: i, payment: monthly, principal: principal, interest: interest, balance: balance });
+      }
+    }
+
+    // Render amortization
+    amortBody.innerHTML = rows.map(function(row) {
+      return '<tr>' +
+        '<td>' + row.num + '</td>' +
+        '<td>' + fmt(row.payment) + '</td>' +
+        '<td>' + fmt(row.principal) + '</td>' +
+        '<td>' + fmt(row.interest) + '</td>' +
+        '<td>' + fmt(row.balance) + '</td>' +
+      '</tr>';
+    }).join('');
+
+    amortSection.style.display = 'block';
+  }
+
+  function clearForm() {
+    loanAmount.value = '';
+    interestRate.value = '';
+    loanTerm.value = '';
+    resultGrid.style.display = 'none';
+    amortSection.style.display = 'none';
+  }
+
+  // Enter key support
+  document.querySelectorAll('input').forEach(function(inp) {
+    inp.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') calculate();
+    });
+  });
+
+  calculateBtn.addEventListener('click', calculate);
+  clearLink.addEventListener('click', clearForm);
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

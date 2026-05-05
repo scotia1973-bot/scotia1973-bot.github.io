@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Date Difference Calculator — Free Online Tool</title>
+  <meta name="description" content="Calculate the exact difference between two dates. See total days, months, years, weeks, and the precise breakdown in years, months, and days. Real-time update.">
+  <meta name="keywords" content="date difference calculator, days between dates, date calculator, time between dates, date math">
+  <meta property="og:title" content="Date Difference Calculator — Free Online Tool">
+  <meta property="og:description" content="Calculate the exact difference between two dates in years, months, days, weeks, and more. Real-time date picker.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/dates.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/dates.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .date-input-wrap {
+      position: relative;
+    }
+    .date-input-wrap label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .date-input-wrap input[type="date"] {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .date-input-wrap input[type="date"]:focus {
+      border-color: var(--accent);
+    }
+    .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8);
+      cursor: pointer;
+    }
+
+    .exact-result {
+      text-align: center;
+      padding: 16px 12px;
+      margin-bottom: 16px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .exact-result .big-text {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .exact-result .sub-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 0;
+    }
+    .result-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 14px 10px;
+      text-align: center;
+    }
+    .result-card .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+      line-height: 1.2;
+    }
+    .result-card .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .swap-btn-wrap {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .swap-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .swap-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .today-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .today-btn {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .today-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .info-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 480px) {
+      .two-col { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr; }
+      .result-card .value { font-size: 1.5rem; }
+      .exact-result .big-text { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>📅 Date Difference Calculator</h1>
+    <p>Calculate the exact difference between two dates</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Select Dates</h2>
+
+    <div class="two-col">
+      <div class="date-input-wrap">
+        <label>Start Date</label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="date-input-wrap">
+        <label>End Date</label>
+        <input type="date" id="endDate">
+      </div>
+    </div>
+
+    <div class="swap-btn-wrap">
+      <button class="swap-btn" id="swapBtn">⇄ Swap Dates</button>
+    </div>
+
+    <div class="today-btns">
+      <button class="today-btn" id="todayStartBtn">📅 Start = Today</button>
+      <button class="today-btn" id="todayEndBtn">📅 End = Today</button>
+    </div>
+
+    <!-- Exact breakdown -->
+    <div class="exact-result" id="exactResult" style="display:none;">
+      <div class="big-text" id="exactText">—</div>
+      <div class="sub-label">Exact Difference</div>
+    </div>
+
+    <!-- Total stats -->
+    <div class="result-grid" id="statsGrid" style="display:none;">
+      <div class="result-card">
+        <span class="value" id="totalDaysVal">—</span>
+        <span class="label">Total Days</span>
+      </div>
+      <div class="result-card">
+        <span class="value" id="totalMonthsVal">—</span>
+        <span class="label">Total Months</span>
+      </div>
+      <div class="result-card">
+        <span class="value" id="totalYearsVal">—</span>
+        <span class="label">Total Years</span>
+      </div>
+      <div class="result-card">
+        <span class="value" id="totalWeeksVal">—</span>
+        <span class="label">Total Weeks</span>
+      </div>
+    </div>
+
+    <div class="info-text">
+      Pick a start and end date above to see the difference. Results update in real time.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const startInput = document.getElementById('startDate');
+  const endInput = document.getElementById('endDate');
+  const swapBtn = document.getElementById('swapBtn');
+  const todayStartBtn = document.getElementById('todayStartBtn');
+  const todayEndBtn = document.getElementById('todayEndBtn');
+  const exactResult = document.getElementById('exactResult');
+  const exactText = document.getElementById('exactText');
+  const statsGrid = document.getElementById('statsGrid');
+  const totalDaysVal = document.getElementById('totalDaysVal');
+  const totalMonthsVal = document.getElementById('totalMonthsVal');
+  const totalYearsVal = document.getElementById('totalYearsVal');
+  const totalWeeksVal = document.getElementById('totalWeeksVal');
+
+  function formatDateInput(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+
+  function calculateDiff(startStr, endStr) {
+    const start = new Date(startStr + 'T00:00:00');
+    const end = new Date(endStr + 'T00:00:00');
+
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return null;
+
+    // Ensure start <= end for calculation
+    const from = start <= end ? new Date(start) : new Date(end);
+    const to = start <= end ? new Date(end) : new Date(start);
+
+    // Total difference in ms
+    const diffMs = to.getTime() - from.getTime();
+    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const totalWeeks = Math.floor(totalDays / 7);
+
+    // Total months: approximate using average month length
+    const totalMonthsFloat = diffMs / (1000 * 60 * 60 * 24 * (365.25 / 12));
+    const totalMonths = Math.floor(totalMonthsFloat);
+    const totalYears = Math.floor(totalMonths / 12);
+
+    // Exact years, months, days
+    let years = to.getFullYear() - from.getFullYear();
+    let months = to.getMonth() - from.getMonth();
+    let days = to.getDate() - from.getDate();
+
+    if (days < 0) {
+      months--;
+      // Get days in the previous month (of the "to" date, but go back one month)
+      const prevMonth = new Date(to.getFullYear(), to.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    return {
+      years, months, days,
+      totalDays, totalMonths, totalYears, totalWeeks,
+      start, end, from, to
+    };
+  }
+
+  function update() {
+    const startVal = startInput.value;
+    const endVal = endInput.value;
+
+    if (!startVal || !endVal) {
+      exactResult.style.display = 'none';
+      statsGrid.style.display = 'none';
+      return;
+    }
+
+    const result = calculateDiff(startVal, endVal);
+    if (!result) {
+      exactResult.style.display = 'none';
+      statsGrid.style.display = 'none';
+      return;
+    }
+
+    exactResult.style.display = 'block';
+    statsGrid.style.display = 'grid';
+
+    // Build exact breakdown text
+    const parts = [];
+    if (result.years > 0) parts.push(result.years + ' year' + (result.years !== 1 ? 's' : ''));
+    if (result.months > 0) parts.push(result.months + ' month' + (result.months !== 1 ? 's' : ''));
+    if (result.days > 0) parts.push(result.days + ' day' + (result.days !== 1 ? 's' : ''));
+    if (parts.length === 0) parts.push('0 days');
+    exactText.textContent = parts.join(', ');
+
+    // Total stats
+    totalDaysVal.textContent = result.totalDays.toLocaleString();
+    totalMonthsVal.textContent = result.totalMonths.toLocaleString();
+    totalYearsVal.textContent = result.totalYears.toLocaleString();
+    totalWeeksVal.textContent = result.totalWeeks.toLocaleString();
+  }
+
+  // Swap dates
+  swapBtn.addEventListener('click', function() {
+    const temp = startInput.value;
+    startInput.value = endInput.value;
+    endInput.value = temp;
+    update();
+  });
+
+  // Today shortcuts
+  const today = new Date();
+  const todayStr = formatDateInput(today);
+
+  todayStartBtn.addEventListener('click', function() {
+    startInput.value = todayStr;
+    update();
+  });
+
+  todayEndBtn.addEventListener('click', function() {
+    endInput.value = todayStr;
+    update();
+  });
+
+  // Real-time update
+  startInput.addEventListener('change', update);
+  startInput.addEventListener('input', update);
+  endInput.addEventListener('change', update);
+  endInput.addEventListener('input', update);
+
+  // Init defaults: start = today - 7 days, end = today
+  const defaultStart = new Date(today);
+  defaultStart.setDate(defaultStart.getDate() - 7);
+  startInput.value = formatDateInput(defaultStart);
+  endInput.value = todayStr;
+  update();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Tip Calculator — Free Online Tool</title>
+  <meta name="description" content="Calculate the right tip for any bill. Enter the bill amount, adjust tip % with a slider (0-100%), and split between up to 20 people. Instant breakdown of tip, total, and per person.">
+  <meta name="keywords" content="tip calculator, tip amount, split bill, tip percentage, restaurant bill, gratuity calculator, online tip calculator">
+  <meta property="og:title" content="Tip Calculator — Free Online Tool">
+  <meta property="og:description" content="Split bills and calculate tips instantly. Slider for tip %, adjustable number of people, real-time results.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/tip.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/tip.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .input-group { margin-top: 12px; }
+    .input-group label { margin-top: 8px; }
+
+    .slider-row { display: flex; align-items: center; gap: 12px; }
+    .slider-row input[type="range"] { flex: 1; }
+    .tip-pct-display { font-size: 1.3rem; font-weight: 700; color: var(--accent); min-width: 60px; text-align: center; }
+
+    .inline-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+    .inline-row > div { flex: 1; min-width: 120px; }
+
+    .results-grid {
+      margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
+    }
+    .result-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 14px 10px; text-align: center;
+    }
+    .result-card .value {
+      font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 2px;
+    }
+    .result-card .value.total-value { color: var(--success); }
+    .result-card .value.per-person-value { color: var(--warning); }
+    .result-card .label {
+      font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    .info-text { font-size: 0.75rem; color: var(--muted); margin-top: 14px; text-align: center; line-height: 1.5; }
+
+    /* Responsive: stack result cards on small screens */
+    @media (max-width: 420px) {
+      .results-grid { grid-template-columns: 1fr; }
+      .inline-row { flex-direction: column; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>💰 Tip Calculator</h1>
+    <p>Split bills and calculate tips in seconds</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Calculate Your Tip</h2>
+
+    <!-- Bill Amount -->
+    <div class="input-group">
+      <label for="billAmount">Bill Amount ($)</label>
+      <input type="number" id="billAmount" placeholder="e.g. 52.50" min="0" step="0.01" value="0">
+    </div>
+
+    <!-- Tip Percentage Slider -->
+    <div class="input-group">
+      <label for="tipSlider">Tip Percentage</label>
+      <div class="slider-row">
+        <input type="range" id="tipSlider" min="0" max="100" value="15" step="1">
+        <span class="tip-pct-display" id="tipPctDisplay">15%</span>
+      </div>
+    </div>
+
+    <!-- Split Between N People -->
+    <div class="input-group">
+      <label for="splitPeople">Split Between</label>
+      <div class="inline-row">
+        <div>
+          <input type="number" id="splitPeople" placeholder="Number of people" min="1" max="20" step="1" value="1">
+        </div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">1 – 20 people</div>
+    </div>
+
+    <!-- Results -->
+    <div class="results-grid" id="resultsGrid">
+      <div class="result-card">
+        <div class="value" id="tipAmountValue">$0.00</div>
+        <div class="label">Tip Amount</div>
+      </div>
+      <div class="result-card">
+        <div class="value total-value" id="totalValue">$0.00</div>
+        <div class="label">Total Bill</div>
+      </div>
+      <div class="result-card">
+        <div class="value per-person-value" id="perPersonValue">$0.00</div>
+        <div class="label">Per Person</div>
+      </div>
+    </div>
+
+    <div class="info-text">
+      Adjust the bill amount, tip percentage, or number of people — all results update instantly.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+  const billInput = document.getElementById('billAmount');
+  const tipSlider = document.getElementById('tipSlider');
+  const tipPctDisplay = document.getElementById('tipPctDisplay');
+  const splitInput = document.getElementById('splitPeople');
+
+  const tipAmountEl = document.getElementById('tipAmountValue');
+  const totalEl = document.getElementById('totalValue');
+  const perPersonEl = document.getElementById('perPersonValue');
+
+  function formatCurrency(val) {
+    return '$' + val.toFixed(2);
+  }
+
+  function update() {
+    const bill = parseFloat(billInput.value) || 0;
+    const tipPct = parseInt(tipSlider.value, 10) || 0;
+    const people = parseInt(splitInput.value, 10) || 1;
+
+    // Clamp people to valid range
+    const clampedPeople = Math.max(1, Math.min(20, people));
+    if (clampedPeople !== people) {
+      splitInput.value = clampedPeople;
+    }
+
+    tipPctDisplay.textContent = tipPct + '%';
+
+    const tipAmount = bill * (tipPct / 100);
+    const total = bill + tipAmount;
+    const perPerson = total / clampedPeople;
+
+    tipAmountEl.textContent = formatCurrency(tipAmount);
+    totalEl.textContent = formatCurrency(total);
+    perPersonEl.textContent = formatCurrency(perPerson);
+  }
+
+  // Real-time updates on any input change
+  billInput.addEventListener('input', update);
+  tipSlider.addEventListener('input', update);
+  splitInput.addEventListener('input', update);
+  splitInput.addEventListener('change', update);
+
+  // Initialize
+  update();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

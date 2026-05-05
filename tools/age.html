@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Age Calculator — Free Online Tool</title>
+  <meta name="description" content="Calculate your exact age in years, months, and days. Also see total days, weeks, and hours lived. Real-time update as you pick a date.">
+  <meta name="keywords" content="age calculator, birthday calculator, how old am i, age in years months days, exact age calculator">
+  <meta property="og:title" content="Age Calculator — Free Online Tool">
+  <meta property="og:description" content="Calculate your exact age in years, months, days, weeks, and hours. Real-time date picker.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/age.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/age.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .result-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 14px 10px;
+      text-align: center;
+    }
+    .result-card .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+      line-height: 1.2;
+    }
+    .result-card .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .result-card.highlight .value {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-card {
+      text-align: center;
+      padding: 10px 6px;
+    }
+    .stat-card .value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+    .stat-card .label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .next-birthday {
+      margin-top: 14px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .next-birthday strong {
+      color: var(--text);
+    }
+
+    .info-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .date-input-wrap {
+      position: relative;
+    }
+    .date-input-wrap input[type="date"] {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .date-input-wrap input[type="date"]:focus {
+      border-color: var(--accent);
+    }
+    .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8);
+      cursor: pointer;
+    }
+
+    .age-today-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .age-today-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    @media (max-width: 480px) {
+      .result-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .result-card .value { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🎂 Age Calculator</h1>
+    <p>Calculate your exact age in years, months &amp; days</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Your Birth Date</h2>
+
+    <div class="date-input-wrap">
+      <input type="date" id="birthDate" max="">
+    </div>
+    <div style="text-align: center;">
+      <button class="age-today-btn" id="todayBtn">📅 Jump to Today</button>
+    </div>
+
+    <!-- Result: exact age -->
+    <div class="result-grid" id="resultGrid" style="display:none;">
+      <div class="result-card highlight">
+        <span class="value" id="yearsVal">—</span>
+        <span class="label">Years</span>
+      </div>
+      <div class="result-card highlight">
+        <span class="value" id="monthsVal">—</span>
+        <span class="label">Months</span>
+      </div>
+      <div class="result-card highlight">
+        <span class="value" id="daysVal">—</span>
+        <span class="label">Days</span>
+      </div>
+    </div>
+
+    <!-- Stats: total days, weeks, hours -->
+    <div class="stats-grid" id="statsGrid" style="display:none;">
+      <div class="stat-card">
+        <span class="value" id="totalDaysVal">—</span>
+        <span class="label">Total Days</span>
+      </div>
+      <div class="stat-card">
+        <span class="value" id="totalWeeksVal">—</span>
+        <span class="label">Total Weeks</span>
+      </div>
+      <div class="stat-card">
+        <span class="value" id="totalHoursVal">—</span>
+        <span class="label">Total Hours</span>
+      </div>
+    </div>
+
+    <!-- Next birthday -->
+    <div class="next-birthday" id="nextBirthday" style="display:none;"></div>
+
+    <div class="info-text">
+      Enter your birth date above to see your exact age. Results update in real time as you pick or change the date.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const birthDateInput = document.getElementById('birthDate');
+  const todayBtn = document.getElementById('todayBtn');
+  const resultGrid = document.getElementById('resultGrid');
+  const statsGrid = document.getElementById('statsGrid');
+  const nextBirthday = document.getElementById('nextBirthday');
+
+  const yearsVal = document.getElementById('yearsVal');
+  const monthsVal = document.getElementById('monthsVal');
+  const daysVal = document.getElementById('daysVal');
+  const totalDaysVal = document.getElementById('totalDaysVal');
+  const totalWeeksVal = document.getElementById('totalWeeksVal');
+  const totalHoursVal = document.getElementById('totalHoursVal');
+
+  // Set max to today
+  const today = new Date();
+  const todayStr = formatDateInput(today);
+  birthDateInput.setAttribute('max', todayStr);
+
+  function formatDateInput(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+
+  function calculateAge(birthDate) {
+    const now = new Date();
+    const birth = new Date(birthDate);
+
+    if (isNaN(birth.getTime()) || birth > now) return null;
+
+    // Years, months, days
+    let years = now.getFullYear() - birth.getFullYear();
+    let months = now.getMonth() - birth.getMonth();
+    let days = now.getDate() - birth.getDate();
+
+    if (days < 0) {
+      months--;
+      // Get days in previous month
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    // Total stats
+    const diffMs = now.getTime() - birth.getTime();
+    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const totalWeeks = Math.floor(totalDays / 7);
+    const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+
+    // Next birthday
+    const nextBday = new Date(now.getFullYear(), birth.getMonth(), birth.getDate());
+    if (nextBday < now) {
+      nextBday.setFullYear(nextBday.getFullYear() + 1);
+    }
+    const diffToBday = nextBday.getTime() - now.getTime();
+    const daysToBday = Math.ceil(diffToBday / (1000 * 60 * 60 * 24));
+
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const nextBdayStr = nextBday.toLocaleDateString('en-US', options);
+
+    return {
+      years, months, days,
+      totalDays, totalWeeks, totalHours,
+      daysToBday, nextBdayStr
+    };
+  }
+
+  function update() {
+    const val = birthDateInput.value;
+    if (!val) {
+      resultGrid.style.display = 'none';
+      statsGrid.style.display = 'none';
+      nextBirthday.style.display = 'none';
+      return;
+    }
+
+    const result = calculateAge(val);
+    if (!result) {
+      resultGrid.style.display = 'none';
+      statsGrid.style.display = 'none';
+      nextBirthday.style.display = 'none';
+      return;
+    }
+
+    // Show grids
+    resultGrid.style.display = 'grid';
+    statsGrid.style.display = 'grid';
+    nextBirthday.style.display = 'block';
+
+    // Exact age
+    yearsVal.textContent = result.years;
+    monthsVal.textContent = result.months;
+    daysVal.textContent = result.days;
+
+    // Stats
+    totalDaysVal.textContent = result.totalDays.toLocaleString();
+    totalWeeksVal.textContent = result.totalWeeks.toLocaleString();
+    totalHoursVal.textContent = result.totalHours.toLocaleString();
+
+    // Next birthday
+    const dayWord = result.daysToBday === 1 ? 'day' : 'days';
+    let bdayMsg = '';
+    if (result.daysToBday === 0) {
+      bdayMsg = '🎉 <strong>Happy Birthday!</strong> Today is your birthday!';
+    } else {
+      bdayMsg = '🎈 Next birthday: <strong>' + result.nextBdayStr + '</strong> — in <strong>' + result.daysToBday + '</strong> ' + dayWord;
+    }
+    nextBirthday.innerHTML = bdayMsg;
+  }
+
+  // Real-time update on date change
+  birthDateInput.addEventListener('change', update);
+  birthDateInput.addEventListener('input', update);
+
+  // Jump to today
+  todayBtn.addEventListener('click', function() {
+    birthDateInput.value = todayStr;
+    update();
+  });
+
+  // Init: set a reasonable default (today - 30 years)
+  const defaultDate = new Date();
+  defaultDate.setFullYear(defaultDate.getFullYear() - 30);
+  birthDateInput.value = formatDateInput(defaultDate);
+  update();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

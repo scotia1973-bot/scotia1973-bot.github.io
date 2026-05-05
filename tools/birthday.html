@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Birthday Countdown — Free Online Tool</title>
+  <meta name="description" content="Track your age in seconds with a live counter, plus days/hours/minutes/seconds until your next birthday. Real-time birthday countdown tool.">
+  <meta name="keywords" content="birthday countdown, age in seconds, seconds lived, next birthday, birthday calculator, countdown timer, free online tool">
+  <meta property="og:title" content="Birthday Countdown — Free Online Tool">
+  <meta property="og:description" content="See your age in seconds (live updating every second), countdown to your next birthday, and birthday status — all in real time.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/birthday.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/birthday.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .date-input-wrap {
+      position: relative;
+    }
+    .date-input-wrap label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .date-input-wrap input[type="date"] {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .date-input-wrap input[type="date"]:focus {
+      border-color: var(--accent);
+    }
+    .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8);
+      cursor: pointer;
+    }
+
+    .seconds-card {
+      text-align: center;
+      padding: 20px 14px;
+      margin-top: 16px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .seconds-card .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .seconds-card .big-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .seconds-card .sub-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .countdown-block {
+      text-align: center;
+      padding: 12px 6px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .countdown-block .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-block .lbl {
+      font-size: 0.68rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .birthday-msg {
+      margin-top: 16px;
+      padding: 14px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .birthday-msg .next-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .birthday-msg.happy {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(108,92,231,0.12), rgba(162,155,254,0.08));
+    }
+    .birthday-msg.happy strong {
+      color: #a29bfe;
+    }
+
+    .today-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .today-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .info-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 480px) {
+      .countdown-grid { grid-template-columns: 1fr 1fr; }
+      .seconds-card .big-number { font-size: 2.2rem; }
+      .countdown-block .num { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🎂 Birthday Countdown</h1>
+    <p>Your age in seconds &amp; countdown to next birthday</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Your Birth Date</h2>
+
+    <div class="date-input-wrap">
+      <input type="date" id="birthDate">
+    </div>
+    <div style="text-align: center;">
+      <button class="today-btn" id="todayBtn">📅 Use Today's Date</button>
+    </div>
+
+    <!-- Seconds lived counter -->
+    <div class="seconds-card" id="secondsCard" style="display:none;">
+      <div class="label">Age in Seconds</div>
+      <div class="big-number" id="secondsLived">0</div>
+      <div class="sub-label">seconds old</div>
+    </div>
+
+    <!-- Countdown to next birthday -->
+    <div class="countdown-grid" id="countdownGrid" style="display:none;">
+      <div class="countdown-block">
+        <span class="num" id="daysCount">0</span>
+        <span class="lbl">Days</span>
+      </div>
+      <div class="countdown-block">
+        <span class="num" id="hoursCount">0</span>
+        <span class="lbl">Hours</span>
+      </div>
+      <div class="countdown-block">
+        <span class="num" id="minutesCount">0</span>
+        <span class="lbl">Minutes</span>
+      </div>
+      <div class="countdown-block">
+        <span class="num" id="secondsCount">0</span>
+        <span class="lbl">Seconds</span>
+      </div>
+    </div>
+
+    <!-- Birthday status message -->
+    <div class="birthday-msg" id="birthdayMsg" style="display:none;"></div>
+
+    <div class="info-text">
+      Pick your birth date above. Age in seconds updates every second; the countdown tracks time until your next birthday in real time.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const birthDateInput = document.getElementById('birthDate');
+  const todayBtn = document.getElementById('todayBtn');
+  const secondsCard = document.getElementById('secondsCard');
+  const countdownGrid = document.getElementById('countdownGrid');
+  const birthdayMsg = document.getElementById('birthdayMsg');
+  const secondsLived = document.getElementById('secondsLived');
+  const daysCount = document.getElementById('daysCount');
+  const hoursCount = document.getElementById('hoursCount');
+  const minutesCount = document.getElementById('minutesCount');
+  const secondsCount = document.getElementById('secondsCount');
+
+  let birthTimestamp = null;
+  let tickInterval = null;
+
+  function formatDateInput(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+
+  function padNum(n) {
+    return String(Math.floor(n)).padStart(2, '0');
+  }
+
+  function updateDisplay() {
+    if (!birthTimestamp) {
+      secondsCard.style.display = 'none';
+      countdownGrid.style.display = 'none';
+      birthdayMsg.style.display = 'none';
+      return;
+    }
+
+    const now = Date.now();
+    const nowDate = new Date(now);
+
+    // 1. Seconds lived
+    const totalSeconds = Math.floor((now - birthTimestamp) / 1000);
+    secondsLived.textContent = totalSeconds.toLocaleString();
+    secondsCard.style.display = 'block';
+
+    // 2. Next birthday countdown
+    const birthDate = new Date(birthTimestamp);
+    // Start from this year's birthday
+    const nextBday = new Date(nowDate.getFullYear(), birthDate.getMonth(), birthDate.getDate(), 0, 0, 0, 0);
+    // If this year's birthday has passed, move to next year
+    if (nextBday.getTime() <= now) {
+      nextBday.setFullYear(nextBday.getFullYear() + 1);
+    }
+
+    const diffMs = nextBday.getTime() - now;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const diffSeconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+    daysCount.textContent = diffDays;
+    hoursCount.textContent = padNum(diffHours);
+    minutesCount.textContent = padNum(diffMinutes);
+    secondsCount.textContent = padNum(diffSeconds);
+    countdownGrid.style.display = 'grid';
+
+    // 3. Birthday status message
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const nextBdayStr = nextBday.toLocaleDateString('en-US', options);
+
+    const isBirthdayToday =
+      nowDate.getMonth() === birthDate.getMonth() &&
+      nowDate.getDate() === birthDate.getDate() &&
+      nowDate.getFullYear() >= birthDate.getFullYear();
+
+    if (isBirthdayToday) {
+      birthdayMsg.className = 'birthday-msg happy';
+      birthdayMsg.innerHTML = '🎉 <strong>Happy Birthday!</strong> 🎉<div class="next-date">Wishing you an amazing day!</div>';
+    } else {
+      birthdayMsg.className = 'birthday-msg';
+      const dayWord = diffDays === 1 ? 'day' : 'days';
+      birthdayMsg.innerHTML =
+        '🎈 Your birthday is in <strong>' + diffDays + '</strong> ' + dayWord +
+        '<div class="next-date">Next birthday: ' + nextBdayStr + '</div>';
+    }
+    birthdayMsg.style.display = 'block';
+  }
+
+  function startTicking() {
+    stopTicking();
+    if (birthTimestamp) {
+      tickInterval = setInterval(updateDisplay, 1000);
+    }
+  }
+
+  function stopTicking() {
+    if (tickInterval) {
+      clearInterval(tickInterval);
+      tickInterval = null;
+    }
+  }
+
+  function handleDateChange() {
+    const val = birthDateInput.value;
+    if (!val) {
+      birthTimestamp = null;
+      stopTicking();
+      secondsCard.style.display = 'none';
+      countdownGrid.style.display = 'none';
+      birthdayMsg.style.display = 'none';
+      return;
+    }
+
+    const parsed = new Date(val + 'T00:00:00');
+    if (isNaN(parsed.getTime())) {
+      birthTimestamp = null;
+      stopTicking();
+      secondsCard.style.display = 'none';
+      countdownGrid.style.display = 'none';
+      birthdayMsg.style.display = 'none';
+      return;
+    }
+
+    birthTimestamp = parsed.getTime();
+    updateDisplay();
+    startTicking();
+  }
+
+  // Events
+  birthDateInput.addEventListener('change', handleDateChange);
+  birthDateInput.addEventListener('input', handleDateChange);
+
+  todayBtn.addEventListener('click', function() {
+    const d = new Date();
+    birthDateInput.value = formatDateInput(d);
+    handleDateChange();
+  });
+
+  // Init: set a reasonable default (today - 30 years)
+  const defaultDate = new Date();
+  defaultDate.setFullYear(defaultDate.getFullYear() - 30);
+  birthDateInput.value = formatDateInput(defaultDate);
+  handleDateChange();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Random Number Generator — Free Online Tool</title>
+  <meta name="description" content="Generate random numbers instantly. Set a min and max range, click generate, and get a random integer. Includes history of the last 10 rolls.">
+  <meta name="keywords" content="random number generator, random integer, random picker, random number between, number generator, randomizer">
+  <meta property="og:title" content="Random Number Generator — Free Online Tool">
+  <meta property="og:description" content="Generate random numbers instantly. Set min and max range, click generate, and get a random integer with roll history.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/random.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/random.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .random-display {
+      font-size: 4rem;
+      font-weight: 900;
+      text-align: center;
+      padding: 30px 10px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      margin-top: 18px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 2px;
+      transition: all 0.15s ease;
+      font-variant-numeric: tabular-nums;
+    }
+    .random-display.pop {
+      transform: scale(1.04);
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .range-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .range-row > div {
+      flex: 1;
+    }
+    .range-row label {
+      margin-top: 0;
+    }
+
+    .generate-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 16px;
+      border: none;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--accent), #a29bfe);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .generate-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .generate-btn:active {
+      transform: scale(0.97);
+    }
+
+    .history-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .history-section h3 {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .history-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 32px;
+    }
+    .history-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      animation: fadeIn 0.2s ease;
+    }
+    .history-item.new {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .history-empty {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+    .clear-btn {
+      margin-top: 8px;
+      padding: 5px 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .clear-btn:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .random-display { font-size: 3rem; min-height: 100px; padding: 20px 10px; }
+      .range-row { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← All Tools</a>
+    <h1>🎲 Random Number Generator</h1>
+    <p>Pick a random integer between any two numbers</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Enter Range</h2>
+
+    <div class="range-row">
+      <div>
+        <label for="minVal">Minimum</label>
+        <input type="number" id="minVal" value="1">
+      </div>
+      <div>
+        <label for="maxVal">Maximum</label>
+        <input type="number" id="maxVal" value="100">
+      </div>
+    </div>
+
+    <button class="generate-btn" id="generateBtn">🎲 Generate</button>
+
+    <div class="random-display" id="resultDisplay">—</div>
+
+    <div class="history-section">
+      <h3>📋 Last 10 Rolls</h3>
+      <div class="history-list" id="historyList">
+        <span class="history-empty">No rolls yet</span>
+      </div>
+      <button class="clear-btn" id="clearBtn" style="display:none;">🗑️ Clear History</button>
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  const minInput = document.getElementById('minVal');
+  const maxInput = document.getElementById('maxVal');
+  const generateBtn = document.getElementById('generateBtn');
+  const resultDisplay = document.getElementById('resultDisplay');
+  const historyList = document.getElementById('historyList');
+  const clearBtn = document.getElementById('clearBtn');
+  const toast = document.getElementById('toast');
+
+  let history = [];
+  let toastTimer = null;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2500);
+  }
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function addToHistory(value) {
+    history.unshift(value);
+    if (history.length > 10) {
+      history.pop();
+    }
+    renderHistory();
+  }
+
+  function renderHistory() {
+    if (history.length === 0) {
+      historyList.innerHTML = '<span class="history-empty">No rolls yet</span>';
+      clearBtn.style.display = 'none';
+      return;
+    }
+    clearBtn.style.display = 'inline-block';
+    let html = '';
+    for (let i = 0; i < history.length; i++) {
+      const cls = i === 0 ? 'history-item new' : 'history-item';
+      html += '<span class="' + cls + '">' + history[i] + '</span>';
+    }
+    historyList.innerHTML = html;
+  }
+
+  function generate() {
+    const minVal = parseFloat(minInput.value);
+    const maxVal = parseFloat(maxInput.value);
+
+    // Validate
+    if (isNaN(minVal) || isNaN(maxVal)) {
+      showToast('⚠️ Please enter valid numbers for both fields.');
+      return;
+    }
+
+    if (!Number.isInteger(minVal) || !Number.isInteger(maxVal)) {
+      showToast('⚠️ Please enter whole numbers (integers) only.');
+      return;
+    }
+
+    if (minVal > maxVal) {
+      showToast('⚠️ Minimum must be less than or equal to Maximum.');
+      return;
+    }
+
+    const result = getRandomInt(minVal, maxVal);
+    resultDisplay.textContent = result;
+    resultDisplay.classList.remove('pop');
+    // Force reflow for animation
+    void resultDisplay.offsetWidth;
+    resultDisplay.classList.add('pop');
+
+    addToHistory(result);
+  }
+
+  function clearHistory() {
+    history = [];
+    renderHistory();
+    resultDisplay.textContent = '—';
+    resultDisplay.classList.remove('pop');
+  }
+
+  // Press Enter on either input to generate
+  minInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') generate();
+  });
+  maxInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') generate();
+  });
+
+  generateBtn.addEventListener('click', generate);
+  clearBtn.addEventListener('click', clearHistory);
+
+  // Initial generate
+  generate();
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

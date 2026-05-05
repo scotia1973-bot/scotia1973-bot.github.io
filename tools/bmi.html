@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>BMI Calculator — Free Online Tool</title>
+  <meta name="description" content="Calculate your Body Mass Index (BMI) instantly. Toggle between metric (cm/kg) and imperial (ft/in/lbs). See your BMI category with color-coded results.">
+  <meta name="keywords" content="bmi calculator, body mass index, bmi metric, bmi imperial, bmi chart">
+  <meta property="og:title" content="BMI Calculator — Free Online Tool">
+  <meta property="og:description" content="Free BMI calculator. Metric or imperial. Instant results with color-coded categories.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/bmi.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/bmi.html">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .bmi-value { font-size: 2.5rem; font-weight: 800; }
+    .bmi-category { font-size: 1.1rem; font-weight: 600; margin-top: 4px; }
+    .bmi-range { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+    .category-chart { margin-top: 16px; display: flex; border-radius: 10px; overflow: hidden; height: 10px; }
+    .category-chart div { transition: all 0.3s; }
+    .cat-underweight { flex: 18.5; background: #74b9ff; }
+    .cat-normal { flex: 6.4; background: #00b894; }
+    .cat-overweight { flex: 5; background: #fdcb6e; }
+    .cat-obese { flex: 100; background: #e17055; }
+
+    .category-labels { display: flex; margin-top: 6px; font-size: 0.65rem; color: var(--muted); }
+    .category-labels span { flex: 1; text-align: center; }
+
+    .bmi-details { margin-top: 14px; }
+    .bmi-details-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .bmi-details-row:last-child { border-bottom: none; }
+    .bmi-details-row .label { color: var(--muted); }
+    .bmi-details-row .value { font-weight: 600; color: var(--text); }
+
+    .result-box {
+      margin-top: 14px; padding: 16px; background: var(--bg); border-radius: var(--radius);
+      border: 1px solid var(--border); text-align: center; min-height: 100px;
+    }
+
+    .result-box .bmi-value { display: block; }
+    .result-box .bmi-value.underweight { color: #74b9ff; }
+    .result-box .bmi-value.normal { color: #00b894; }
+    .result-box .bmi-value.overweight { color: #fdcb6e; }
+    .result-box .bmi-value.obese { color: #e17055; }
+    .result-box .bmi-category.underweight { color: #74b9ff; }
+    .result-box .bmi-category.normal { color: #00b894; }
+    .result-box .bmi-category.overweight { color: #fdcb6e; }
+    .result-box .bmi-category.obese { color: #e17055; }
+
+    .height-fields { display: flex; gap: 10px; }
+    .height-fields > * { flex: 1; }
+
+    .hidden { display: none !important; }
+
+    .info-text { font-size: 0.75rem; color: var(--muted); margin-top: 10px; text-align: center; line-height: 1.5; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>⚖️ BMI Calculator</h1>
+    <p>Body Mass Index — Metric &amp; Imperial</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Calculate Your BMI</h2>
+
+    <!-- Unit Toggle -->
+    <div class="toggle-row" id="unitToggle">
+      <button class="toggle-btn active" data-unit="metric">Metric (cm/kg)</button>
+      <button class="toggle-btn" data-unit="imperial">Imperial (ft/in/lbs)</button>
+    </div>
+
+    <!-- Metric Form -->
+    <div id="metricForm">
+      <label for="heightCm">Height (cm)</label>
+      <input type="number" id="heightCm" placeholder="e.g. 175" min="50" max="300" step="0.1">
+
+      <label for="weightKg">Weight (kg)</label>
+      <input type="number" id="weightKg" placeholder="e.g. 70" min="10" max="500" step="0.1">
+    </div>
+
+    <!-- Imperial Form -->
+    <div id="imperialForm" class="hidden">
+      <label>Height</label>
+      <div class="height-fields">
+        <div>
+          <input type="number" id="heightFt" placeholder="Feet" min="1" max="8" step="1">
+          <label style="margin-top: 2px; font-size: 0.7rem;">feet</label>
+        </div>
+        <div>
+          <input type="number" id="heightIn" placeholder="Inches" min="0" max="11" step="1">
+          <label style="margin-top: 2px; font-size: 0.7rem;">inches</label>
+        </div>
+      </div>
+
+      <label for="weightLbs">Weight (lbs)</label>
+      <input type="number" id="weightLbs" placeholder="e.g. 154" min="20" max="1000" step="0.1">
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" id="calculateBtn">Calculate BMI</button>
+      <button class="btn btn-outline" id="clearBtn">Clear</button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-box" id="resultBox" style="display:none;">
+      <span class="bmi-value" id="bmiValue">—</span>
+      <div class="bmi-category" id="bmiCategory">&nbsp;</div>
+      <div class="bmi-range" id="bmiRange">&nbsp;</div>
+
+      <div class="category-chart">
+        <div class="cat-underweight" id="barUnderweight"></div>
+        <div class="cat-normal" id="barNormal"></div>
+        <div class="cat-overweight" id="barOverweight"></div>
+        <div class="cat-obese" id="barObese"></div>
+      </div>
+      <div class="category-labels">
+        <span>Under</span>
+        <span>Normal</span>
+        <span>Over</span>
+        <span>Obese</span>
+      </div>
+
+      <div class="bmi-details" id="bmiDetails"></div>
+    </div>
+
+    <div class="info-text">
+      BMI is a screening measure — it doesn't diagnose body fatness or health. Consult a healthcare provider for a full assessment.
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function() {
+  // DOM refs
+  const unitToggle = document.getElementById('unitToggle');
+  const metricForm = document.getElementById('metricForm');
+  const imperialForm = document.getElementById('imperialForm');
+  const heightCm = document.getElementById('heightCm');
+  const weightKg = document.getElementById('weightKg');
+  const heightFt = document.getElementById('heightFt');
+  const heightIn = document.getElementById('heightIn');
+  const weightLbs = document.getElementById('weightLbs');
+  const calculateBtn = document.getElementById('calculateBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const resultBox = document.getElementById('resultBox');
+  const bmiValue = document.getElementById('bmiValue');
+  const bmiCategory = document.getElementById('bmiCategory');
+  const bmiRange = document.getElementById('bmiRange');
+  const bmiDetails = document.getElementById('bmiDetails');
+
+  let currentUnit = 'metric';
+  let toastTimer = null;
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  function setUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.unit === unit);
+    });
+    if (unit === 'metric') {
+      metricForm.classList.remove('hidden');
+      imperialForm.classList.add('hidden');
+    } else {
+      metricForm.classList.add('hidden');
+      imperialForm.classList.remove('hidden');
+    }
+    // Hide previous result on toggle to avoid confusion
+    resultBox.style.display = 'none';
+  }
+
+  // Unit toggle clicks
+  unitToggle.addEventListener('click', function(e) {
+    const btn = e.target.closest('.toggle-btn');
+    if (!btn || btn.classList.contains('active')) return;
+    setUnit(btn.dataset.unit);
+  });
+
+  function getCategory(bmi) {
+    if (bmi < 18.5) return { label: 'Underweight', key: 'underweight', range: '< 18.5', color: '#74b9ff' };
+    if (bmi < 25) return { label: 'Normal', key: 'normal', range: '18.5 – 24.9', color: '#00b894' };
+    if (bmi < 30) return { label: 'Overweight', key: 'overweight', range: '25 – 29.9', color: '#fdcb6e' };
+    return { label: 'Obese', key: 'obese', range: '30+', color: '#e17055' };
+  }
+
+  function calculate() {
+    let heightM, weight, heightStr, weightStr;
+
+    if (currentUnit === 'metric') {
+      const h = parseFloat(heightCm.value);
+      const w = parseFloat(weightKg.value);
+      if (!h || !w || h <= 0 || w <= 0) {
+        showToast('Please enter valid height and weight');
+        return;
+      }
+      heightM = h / 100;
+      weight = w;
+      heightStr = h + ' cm';
+      weightStr = w + ' kg';
+    } else {
+      const ft = parseFloat(heightFt.value) || 0;
+      const inc = parseFloat(heightIn.value) || 0;
+      const w = parseFloat(weightLbs.value);
+      if ((!ft && ft !== 0) || inc === null || !w || w <= 0) {
+        showToast('Please enter valid height and weight');
+        return;
+      }
+      if (ft <= 0 && inc <= 0) {
+        showToast('Please enter a valid height');
+        return;
+      }
+      heightM = ((ft * 12) + inc) * 0.0254;
+      weight = w * 0.453592;
+      heightStr = ft + 'ft ' + inc + 'in';
+      weightStr = w + ' lbs';
+    }
+
+    const bmi = weight / (heightM * heightM);
+    const bmiRounded = Math.round(bmi * 10) / 10;
+    const cat = getCategory(bmi);
+
+    // Display result
+    resultBox.style.display = 'block';
+    bmiValue.textContent = bmiRounded;
+    bmiValue.className = 'bmi-value ' + cat.key;
+    bmiCategory.textContent = cat.label;
+    bmiCategory.className = 'bmi-category ' + cat.key;
+    bmiRange.textContent = 'Category: ' + cat.range;
+
+    // Details
+    bmiDetails.innerHTML =
+      '<div class="bmi-details-row"><span class="label">Height</span><span class="value">' + heightStr + '</span></div>' +
+      '<div class="bmi-details-row"><span class="label">Weight</span><span class="value">' + weightStr + '</span></div>' +
+      '<div class="bmi-details-row"><span class="label">BMI</span><span class="value">' + bmiRounded + '</span></div>';
+  }
+
+  function clearForm() {
+    heightCm.value = '';
+    weightKg.value = '';
+    heightFt.value = '';
+    heightIn.value = '';
+    weightLbs.value = '';
+    resultBox.style.display = 'none';
+  }
+
+  // Enter key support
+  document.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') calculate();
+    });
+  });
+
+  calculateBtn.addEventListener('click', calculate);
+  clearBtn.addEventListener('click', clearForm);
+
+  // Init
+  setUnit('metric');
+})();
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

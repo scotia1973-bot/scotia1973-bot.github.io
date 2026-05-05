@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Screen Resolution Checker — What Is My Screen Resolution?</title>
+  <meta name="description" content="Check your screen resolution instantly. See your display width × height, aspect ratio, pixel density, and more. Free online tool, works on any device.">
+  <meta name="keywords" content="screen resolution, what is my screen resolution, display resolution, screen size checker, monitor resolution">
+  <meta property="og:title" content="Screen Resolution Checker — What Is My Screen Resolution?">
+  <meta property="og:description" content="Check your screen resolution instantly. Free online tool.">
+  <meta property="og:url" content="https://www.gadgethumans.com/screen-resolution">
+  <link rel="canonical" href="https://www.gadgethumans.com/screen-resolution">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-card .value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .stat-card .desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .big-res {
+      text-align: center;
+      padding: 24px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-top: 8px;
+    }
+    .big-res .res {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg,#6c5ce7,#a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .big-res .label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+    .device-info {
+      margin-top: 16px;
+      padding: 14px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .device-info strong {
+      color: var(--text);
+    }
+    .popular-resolutions {
+      margin-top: 16px;
+    }
+    .popular-resolutions h3 {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .res-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .res-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+    .res-item .name { color: var(--text); }
+    .res-item .res-value { color: var(--muted); font-family: monospace; }
+    @media (max-width: 480px) {
+      .big-res .res { font-size: 2.2rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .res-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🖥️ Screen Resolution Checker</h1>
+    <p>See your display specs instantly</p>
+  </header>
+
+  <div class="tool-card">
+    <h2>Your Screen Resolution</h2>
+    <div class="big-res">
+      <div class="res" id="resolution">— × —</div>
+      <div class="label">Width × Height (pixels)</div>
+    </div>
+
+    <div class="stat-grid" id="stats">
+      <div class="stat-card">
+        <div class="value" id="aspectRatio">—</div>
+        <div class="label">Aspect Ratio</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="colorDepth">—</div>
+        <div class="label">Color Depth</div>
+        <div class="desc">bits per pixel</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="pixelRatio">—</div>
+        <div class="label">Pixel Ratio</div>
+        <div class="desc">devicePixelRatio</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="viewport">—</div>
+        <div class="label">Viewport</div>
+        <div class="desc">browser window</div>
+      </div>
+    </div>
+
+    <div class="device-info" id="deviceInfo">
+      <strong>Detected device:</strong> <span id="deviceType">detecting...</span><br>
+      <strong>Operating system:</strong> <span id="os">detecting...</span><br>
+      <strong>Browser:</strong> <span id="browser">detecting...</span>
+    </div>
+
+    <div class="popular-resolutions">
+      <h3>Common Resolutions</h3>
+      <div class="res-list">
+        <div class="res-item"><span class="name">HD Ready</span><span class="res-value">1366×768</span></div>
+        <div class="res-item"><span class="name">Full HD</span><span class="res-value">1920×1080</span></div>
+        <div class="res-item"><span class="name">2K / QHD</span><span class="res-value">2560×1440</span></div>
+        <div class="res-item"><span class="name">4K UHD</span><span class="res-value">3840×2160</span></div>
+        <div class="res-item"><span class="name">5K</span><span class="res-value">5120×2880</span></div>
+        <div class="res-item"><span class="name">iPhone (portrait)</span><span class="res-value">393×852</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Upgrade Your Display</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B0B695VFMB?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09HM94VDS?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09HN7BP2C?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0B4C6DJ3K?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  function getAspectRatio(w, h) {
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const d = gcd(w, h);
+    return `${w / d}:${h / d}`;
+  }
+
+  function getOS() {
+    const ua = navigator.userAgent;
+    if (ua.includes('Mac OS X') || ua.includes('macOS')) return 'macOS';
+    if (ua.includes('Windows')) return 'Windows';
+    if (ua.includes('Linux') && !ua.includes('Android')) return 'Linux';
+    if (ua.includes('Android')) return 'Android';
+    if (ua.includes('iOS') || ua.includes('iPhone') || ua.includes('iPad')) return 'iOS';
+    if (ua.includes('CrOS')) return 'ChromeOS';
+    return 'Unknown';
+  }
+
+  function getBrowser() {
+    const ua = navigator.userAgent;
+    if (ua.includes('Firefox')) return 'Firefox';
+    if (ua.includes('SamsungBrowser')) return 'Samsung Internet';
+    if (ua.includes('Edg/') || ua.includes('Edge/')) return 'Edge';
+    if (ua.includes('Chrome')) return 'Chrome';
+    if (ua.includes('Safari')) return 'Safari';
+    if (ua.includes('OPR') || ua.includes('Opera')) return 'Opera';
+    return 'Unknown';
+  }
+
+  function getDeviceType() {
+    const ua = navigator.userAgent;
+    if (ua.includes('iPad') || (ua.includes('Mac') && 'ontouchend' in document)) return 'Tablet';
+    if (ua.includes('Android') && !ua.includes('Mobile')) return 'Tablet';
+    if (ua.includes('iPhone') || ua.includes('iPod') || (ua.includes('Android') && ua.includes('Mobile'))) return 'Phone';
+    if (ua.includes('TV') || ua.includes('SmartTV')) return 'TV';
+    return 'Desktop';
+  }
+
+  function update() {
+    const w = screen.width;
+    const h = screen.height;
+    const availW = screen.availWidth;
+    const availH = screen.availHeight;
+    const cd = screen.colorDepth;
+    const pr = window.devicePixelRatio || 1;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    document.getElementById('resolution').textContent = `${w} × ${h}`;
+    document.getElementById('aspectRatio').textContent = getAspectRatio(w, h);
+    document.getElementById('colorDepth').textContent = `${cd}-bit`;
+    document.getElementById('pixelRatio').textContent = `${pr}x`;
+    document.getElementById('viewport').textContent = `${vw}×${vh}`;
+    document.getElementById('deviceType').textContent = getDeviceType();
+    document.getElementById('os').textContent = getOS();
+    document.getElementById('browser').textContent = getBrowser();
+  }
+
+  update();
+  window.addEventListener('resize', () => {
+    document.getElementById('viewport').textContent = `${window.innerWidth}×${window.innerHeight}`;
+  });
+})();
+</script>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Screen Resolution Checker",
+  "applicationCategory": "Utility",
+  "operatingSystem": "All",
+  "description": "Check your screen resolution instantly. See resolution, aspect ratio, color depth, pixel ratio, and device info.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>
