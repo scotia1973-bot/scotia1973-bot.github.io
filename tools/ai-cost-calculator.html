@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>AI Cost Calculator — Free Online Tool | GadgetHumans</title>
+  <meta name="description" content="Estimate API costs across OpenAI, Anthropic, Google, Mistral, Cohere, and DeepSeek. Compare input and output token pricing for GPT-4o, Claude 3.5, Gemini and more.">
+  <meta name="keywords" content="AI cost calculator, API pricing, OpenAI pricing, Anthropic pricing, GPT-4o cost, Claude cost, Gemini cost, token calculator">
+  <meta property="og:title" content="AI Cost Calculator — Free Online Tool">
+  <meta property="og:description" content="Compare API token costs across AI providers. Estimate input/output pricing for GPT-4o, Claude 3.5, Gemini 2.0 and more.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/ai-cost-calculator.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/ai-cost-calculator.html">
+  <link rel="stylesheet" href="../css/theme.css?v=3">
+  <script src="../js/liquid-glass.js" defer></script>
+  <style>
+    .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .back-link { font-size:0.82rem;color:var(--accent);text-decoration:none;display:inline-block;margin-bottom:8px; }
+    .back-link:hover { text-decoration:underline; }
+    .cost-card {
+      background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border); border-radius: var(--radius);
+      padding: 16px; text-align: center; transition: all 0.25s ease;
+    }
+    .cost-card:hover { border-color: var(--glass-border-hover); transform: translateY(-2px); }
+    .cost-card .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .cost-card .value { font-size: 1.3rem; font-weight: 700; color: var(--text); font-family: var(--mono); }
+    .cost-card .value.accent { color: var(--accent); }
+    .cost-card .value.success { color: var(--success); }
+    .cost-card .sub { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+    .cost-detail { margin-top: 16px; }
+    .cost-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px; border-bottom: 1px solid var(--glass-border);
+      font-size: 0.85rem; transition: background 0.2s;
+    }
+    .cost-row:last-child { border-bottom: none; }
+    .cost-row:hover { background: var(--accent-dim); border-radius: var(--radius); }
+    .cost-row .provider { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--text); }
+    .cost-row .model { font-size: 0.78rem; color: var(--text2); margin-left: 24px; }
+    .cost-row .price { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+    .cost-row .price.highlight { color: var(--accent); font-weight: 600; }
+    .cost-total {
+      margin-top: 16px; padding: 16px; background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .cost-total .total-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .cost-total .total-value { font-size: 2rem; font-weight: 800; color: var(--accent); font-family: var(--mono); margin: 4px 0; }
+    .cost-total .total-sub { font-size: 0.78rem; color: var(--text2); }
+    .input-group { margin-bottom: 14px; }
+    .input-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
+    .input-group input, .input-group select {
+      width: 100%; padding: 10px 14px; background: var(--glass-bg);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border); border-radius: var(--radius);
+      font-family: var(--font); font-size: 0.9rem; color: var(--text);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-group input:focus, .input-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .input-group input::placeholder { color: var(--muted); }
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .provider-toggle { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; justify-content: center; }
+    .provider-toggle .pt-btn {
+      padding: 6px 16px; border: 1px solid var(--glass-border); border-radius: 980px;
+      background: transparent; font-family: var(--font); font-size: 0.75rem; font-weight: 500;
+      color: var(--text2); cursor: pointer; transition: all 0.2s;
+    }
+    .provider-toggle .pt-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .provider-toggle .pt-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    @media (max-width: 480px) {
+      .cost-grid { grid-template-columns: 1fr; }
+      .input-row { grid-template-columns: 1fr; }
+    }
+
+    /* Promo section */
+    .promo { margin-top: 32px; }
+    .promo h3 { font-size:0.9rem;font-weight:600;color:var(--text2);margin-bottom:12px; }
+    .promo-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px; }
+    .promo-card {
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      padding:14px 10px;background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter:blur(var(--glass-blur-sm));
+      border:1px solid var(--glass-border);border-radius:var(--radius-lg);
+      text-decoration:none;color:inherit;transition:all 0.2s;text-align:center;
+    }
+    .promo-card:hover { border-color:var(--glass-border-hover);transform:translateY(-3px); }
+    .promo-card .emoji { font-size:1.6rem; }
+    .promo-card .name { font-size:0.78rem;font-weight:600;color:var(--text);line-height:1.3; }
+    .promo-card .price { font-size:0.75rem;color:var(--success);font-weight:600; }
+    .promo-card-full { grid-column:1 / -1;flex-direction:row;justify-content:center;gap:8px;padding:12px 16px; }
+    .promo-card-full .price { font-size:0.7rem;padding:2px 10px;background:var(--success);color:#fff;border-radius:980px; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>🤖 AI Cost Calculator</h1>
+    <p>Estimate API token costs across providers in real-time</p>
+  </header>
+
+  <div class="tool-card" style="padding:24px;">
+    <h2 style="margin-bottom:16px;">Token &amp; Model Selection</h2>
+
+    <!-- Provider filter -->
+    <div class="provider-toggle" id="providerFilter">
+      <button class="pt-btn active" data-provider="all">All Providers</button>
+      <button class="pt-btn" data-provider="openai">OpenAI</button>
+      <button class="pt-btn" data-provider="anthropic">Anthropic</button>
+      <button class="pt-btn" data-provider="google">Google</button>
+      <button class="pt-btn" data-provider="mistral">Mistral</button>
+      <button class="pt-btn" data-provider="cohere">Cohere</button>
+      <button class="pt-btn" data-provider="deepseek">DeepSeek</button>
+    </div>
+
+    <!-- Token inputs -->
+    <div class="input-row">
+      <div class="input-group">
+        <label for="inputTokens">Input Tokens</label>
+        <input type="number" id="inputTokens" min="0" value="1000" step="100">
+      </div>
+      <div class="input-group">
+        <label for="outputTokens">Output Tokens</label>
+        <input type="number" id="outputTokens" min="0" value="500" step="100">
+      </div>
+    </div>
+
+    <!-- Model select -->
+    <div class="input-group">
+      <label for="modelSelect">Model</label>
+      <select id="modelSelect"></select>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="cost-grid">
+      <div class="cost-card"><div class="label">Input Cost</div><div class="value accent" id="inputCost">$0.00</div><div class="sub">per request</div></div>
+      <div class="cost-card"><div class="label">Output Cost</div><div class="value accent" id="outputCost">$0.00</div><div class="sub">per request</div></div>
+      <div class="cost-card"><div class="label">Total Cost</div><div class="value success" id="totalCost">$0.00</div><div class="sub">per request</div></div>
+      <div class="cost-card"><div class="label">Cost / 1K Tokens</div><div class="value" id="costPer1k">$0.00</div><div class="sub">blended avg</div></div>
+    </div>
+
+    <!-- Pricing table -->
+    <h3 style="margin-top:24px;font-size:0.9rem;color:var(--text2);">Pricing by Provider</h3>
+    <div class="cost-detail" id="pricingTable"></div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ─── Pricing Data ───
+  const models = [
+    // OpenAI
+    { id: 'gpt-4o', provider: 'OpenAI', inputPer1k: 0.00250, outputPer1k: 0.01000, context: '128K', name: 'GPT-4o' },
+    { id: 'gpt-4o-mini', provider: 'OpenAI', inputPer1k: 0.00015, outputPer1k: 0.00060, context: '128K', name: 'GPT-4o Mini' },
+    { id: 'gpt-4-turbo', provider: 'OpenAI', inputPer1k: 0.01000, outputPer1k: 0.03000, context: '128K', name: 'GPT-4 Turbo' },
+    { id: 'gpt-4', provider: 'OpenAI', inputPer1k: 0.03000, outputPer1k: 0.06000, context: '8K', name: 'GPT-4' },
+    { id: 'gpt-3.5-turbo', provider: 'OpenAI', inputPer1k: 0.00050, outputPer1k: 0.00150, context: '16K', name: 'GPT-3.5 Turbo' },
+    { id: 'o1', provider: 'OpenAI', inputPer1k: 0.01500, outputPer1k: 0.06000, context: '200K', name: 'o1' },
+    { id: 'o1-mini', provider: 'OpenAI', inputPer1k: 0.00300, outputPer1k: 0.01200, context: '128K', name: 'o1-mini' },
+    { id: 'o3-mini', provider: 'OpenAI', inputPer1k: 0.00110, outputPer1k: 0.00440, context: '200K', name: 'o3-mini' },
+    // Anthropic
+    { id: 'claude-3-5-sonnet', provider: 'Anthropic', inputPer1k: 0.00300, outputPer1k: 0.01500, context: '200K', name: 'Claude 3.5 Sonnet' },
+    { id: 'claude-3-5-haiku', provider: 'Anthropic', inputPer1k: 0.00080, outputPer1k: 0.00400, context: '200K', name: 'Claude 3.5 Haiku' },
+    { id: 'claude-3-opus', provider: 'Anthropic', inputPer1k: 0.01500, outputPer1k: 0.07500, context: '200K', name: 'Claude 3 Opus' },
+    { id: 'claude-4-sonnet', provider: 'Anthropic', inputPer1k: 0.00300, outputPer1k: 0.01500, context: '200K', name: 'Claude 4 Sonnet' },
+    // Google
+    { id: 'gemini-2-0-flash', provider: 'Google', inputPer1k: 0.00010, outputPer1k: 0.00040, context: '1M', name: 'Gemini 2.0 Flash' },
+    { id: 'gemini-2-0-pro', provider: 'Google', inputPer1k: 0.00200, outputPer1k: 0.00800, context: '2M', name: 'Gemini 2.0 Pro' },
+    { id: 'gemini-1-5-pro', provider: 'Google', inputPer1k: 0.00125, outputPer1k: 0.00500, context: '2M', name: 'Gemini 1.5 Pro' },
+    { id: 'gemini-1-5-flash', provider: 'Google', inputPer1k: 0.000075, outputPer1k: 0.00030, context: '1M', name: 'Gemini 1.5 Flash' },
+    // Mistral
+    { id: 'mistral-large', provider: 'Mistral', inputPer1k: 0.00200, outputPer1k: 0.00600, context: '128K', name: 'Mistral Large' },
+    { id: 'mistral-small', provider: 'Mistral', inputPer1k: 0.00020, outputPer1k: 0.00060, context: '32K', name: 'Mistral Small' },
+    { id: 'codestral', provider: 'Mistral', inputPer1k: 0.00100, outputPer1k: 0.00300, context: '256K', name: 'Codestral' },
+    // Cohere
+    { id: 'command-r-plus', provider: 'Cohere', inputPer1k: 0.00300, outputPer1k: 0.01500, context: '128K', name: 'Command R+' },
+    { id: 'command-r', provider: 'Cohere', inputPer1k: 0.00050, outputPer1k: 0.00150, context: '128K', name: 'Command R' },
+    // DeepSeek
+    { id: 'deepseek-v3', provider: 'DeepSeek', inputPer1k: 0.00027, outputPer1k: 0.00110, context: '128K', name: 'DeepSeek V3' },
+    { id: 'deepseek-r1', provider: 'DeepSeek', inputPer1k: 0.00055, outputPer1k: 0.00219, context: '128K', name: 'DeepSeek R1' }
+  ];
+
+  const providerColors = {
+    'OpenAI': '#74aa9c',
+    'Anthropic': '#d4a574',
+    'Google': '#8ab4f8',
+    'Mistral': '#c084fc',
+    'Cohere': '#f472b6',
+    'DeepSeek': '#4ade80'
+  };
+
+  let activeProvider = 'all';
+
+  // DOM refs
+  const modelSelect = document.getElementById('modelSelect');
+  const inputTokens = document.getElementById('inputTokens');
+  const outputTokens = document.getElementById('outputTokens');
+  const inputCostEl = document.getElementById('inputCost');
+  const outputCostEl = document.getElementById('outputCost');
+  const totalCostEl = document.getElementById('totalCost');
+  const costPer1kEl = document.getElementById('costPer1k');
+  const pricingTable = document.getElementById('pricingTable');
+  const providerBtns = document.querySelectorAll('.pt-btn');
+
+  // Populate model select
+  function populateModels(filter) {
+    modelSelect.innerHTML = '';
+    const filtered = filter === 'all' ? models : models.filter(m => m.provider.toLowerCase() === filter);
+    filtered.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m.id;
+      opt.textContent = `${m.provider} — ${m.name}`;
+      modelSelect.appendChild(opt);
+    });
+    if (filtered.length === 0) {
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'No models available';
+      modelSelect.appendChild(opt);
+    }
+  }
+
+  // Get selected model
+  function getSelectedModel() {
+    return models.find(m => m.id === modelSelect.value);
+  }
+
+  // Calculate costs
+  function calculate() {
+    const model = getSelectedModel();
+    if (!model) return;
+
+    const input = Math.max(0, parseInt(inputTokens.value, 10) || 0);
+    const output = Math.max(0, parseInt(outputTokens.value, 10) || 0);
+
+    const inputCost = (input / 1000) * model.inputPer1k;
+    const outputCost = (output / 1000) * model.outputPer1k;
+    const total = inputCost + outputCost;
+    const totalTokens = input + output;
+    const blended = totalTokens > 0 ? (total / totalTokens) * 1000 : 0;
+
+    inputCostEl.textContent = '$' + inputCost.toFixed(4);
+    outputCostEl.textContent = '$' + outputCost.toFixed(4);
+    totalCostEl.textContent = '$' + total.toFixed(5);
+    costPer1kEl.textContent = '$' + blended.toFixed(5);
+
+    // Build pricing table
+    const filtered = activeProvider === 'all' ? models : models.filter(m => m.provider.toLowerCase() === activeProvider);
+    let html = '';
+    filtered.forEach(m => {
+      const mInputCost = (input / 1000) * m.inputPer1k;
+      const mOutputCost = (output / 1000) * m.outputPer1k;
+      const mTotal = mInputCost + mOutputCost;
+      const isSelected = m.id === model.id;
+      const color = providerColors[m.provider] || 'var(--accent)';
+      html += `<div class="cost-row"${isSelected ? ' style="background:var(--accent-dim);border-radius:var(--radius);"' : ''}>
+        <div>
+          <div class="provider"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${color};"></span>${m.provider}</div>
+          <div class="model">${m.name} · ${m.context} ctx</div>
+        </div>
+        <div>
+          <div class="price">in: $${m.inputPer1k.toFixed(5)}/1K · out: $${m.outputPer1k.toFixed(5)}/1K</div>
+          <div class="price ${isSelected ? 'highlight' : ''}" style="text-align:right;">${isSelected ? '→ $' + mTotal.toFixed(5) : '$' + mTotal.toFixed(5)}</div>
+        </div>
+      </div>`;
+    });
+    pricingTable.innerHTML = html;
+  }
+
+  // Provider filter
+  providerBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      providerBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeProvider = this.dataset.provider;
+      populateModels(activeProvider);
+      calculate();
+    });
+  });
+
+  // Events
+  inputTokens.addEventListener('input', calculate);
+  outputTokens.addEventListener('input', calculate);
+  modelSelect.addEventListener('change', calculate);
+
+  // Init
+  populateModels('all');
+  calculate();
+})();
+</script>
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>JSON Formatter + Validator — Free Online Tool | GadgetHumans</title>
+  <meta name="description" content="Format, validate, and minify JSON instantly. Paste any JSON, get syntax errors highlighted, copy formatted output. Free and works offline.">
+  <meta name="keywords" content="JSON formatter, JSON validator, JSON beautifier, JSON minifier, JSON prettier, JSON lint, JSON syntax checker">
+  <meta property="og:title" content="JSON Formatter + Validator — Free Online Tool">
+  <meta property="og:description" content="Format, validate, and minify JSON with syntax highlighting and error detection. Free, offline, no data sent to servers.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/json-formatter-validator.html">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/json-formatter-validator.html">
+  <link rel="stylesheet" href="../css/theme.css?v=3">
+  <script src="../js/liquid-glass.js" defer></script>
+  <style>
+    .back-link { font-size:0.82rem;color:var(--accent);text-decoration:none;display:inline-block;margin-bottom:8px; }
+    .back-link:hover { text-decoration:underline; }
+    .json-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .json-panel { display: flex; flex-direction: column; }
+    .json-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .json-panel-header label { font-size: 0.8rem; font-weight: 600; color: var(--text2); }
+    .json-panel-header .char-count { font-size: 0.72rem; color: var(--muted); font-family: var(--mono); }
+    .json-textarea {
+      flex: 1; min-height: 320px; padding: 16px; resize: vertical;
+      background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border); border-radius: var(--radius);
+      font-family: var(--mono); font-size: 0.78rem; color: var(--text);
+      outline: none; line-height: 1.6; tab-size: 2; white-space: pre; overflow: auto;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .json-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .json-textarea::placeholder { color: var(--muted); }
+    .json-textarea.error { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(255,59,48,0.15); }
+    .json-textarea.success { border-color: var(--success); box-shadow: 0 0 0 3px rgba(52,199,89,0.15); }
+
+    .action-bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 8px; }
+    .action-bar .btn { flex: 0 0 auto; }
+
+    .error-display {
+      padding: 12px 16px; border-radius: var(--radius); font-size: 0.78rem; font-family: var(--mono);
+      min-height: 20px; margin-top: 8px; display: none; line-height: 1.6;
+    }
+    .error-display.show { display: block; }
+    .error-display.error { background: rgba(255,59,48,0.1); border: 1px solid rgba(255,59,48,0.3); color: #ff6b6b; }
+    .error-display.success { background: rgba(52,199,89,0.1); border: 1px solid rgba(52,199,89,0.3); color: var(--success); }
+
+    .meta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font-size: 0.78rem; color: var(--muted); }
+    .meta-row strong { color: var(--text2); }
+
+    .indent-group { display: flex; align-items: center; gap: 8px; }
+    .indent-group label { font-size: 0.75rem; color: var(--muted); }
+    .indent-group select {
+      padding: 4px 8px; background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border); border-radius: var(--radius); color: var(--text);
+      font-family: var(--font); font-size: 0.75rem; outline: none;
+    }
+    .indent-group select:focus { border-color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .json-layout { grid-template-columns: 1fr; }
+      .json-textarea { min-height: 200px; }
+    }
+
+    /* Promo section */
+    .promo { margin-top: 32px; }
+    .promo h3 { font-size:0.9rem;font-weight:600;color:var(--text2);margin-bottom:12px; }
+    .promo-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px; }
+    .promo-card {
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      padding:14px 10px;background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter:blur(var(--glass-blur-sm));
+      border:1px solid var(--glass-border);border-radius:var(--radius-lg);
+      text-decoration:none;color:inherit;transition:all 0.2s;text-align:center;
+    }
+    .promo-card:hover { border-color:var(--glass-border-hover);transform:translateY(-3px); }
+    .promo-card .emoji { font-size:1.6rem; }
+    .promo-card .name { font-size:0.78rem;font-weight:600;color:var(--text);line-height:1.3; }
+    .promo-card .price { font-size:0.75rem;color:var(--success);font-weight:600; }
+    .promo-card-full { grid-column:1 / -1;flex-direction:row;justify-content:center;gap:8px;padding:12px 16px; }
+    .promo-card-full .price { font-size:0.7rem;padding:2px 10px;background:var(--success);color:#fff;border-radius:980px; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <header>
+    <a class="back-link" href="../index.html">← Back to Tools</a>
+    <h1>📋 JSON Formatter + Validator</h1>
+    <p>Format, validate, and minify JSON instantly with syntax error detection</p>
+  </header>
+
+  <div class="tool-card" style="padding:24px;">
+    <div class="action-bar">
+      <button class="btn btn-primary" id="formatBtn">✨ Format / Validate</button>
+      <button class="btn btn-secondary" id="minifyBtn">🗜️ Minify</button>
+      <button class="btn btn-outline" id="copyBtn">📋 Copy Output</button>
+      <button class="btn btn-outline" id="clearBtn">🗑️ Clear</button>
+      <div class="indent-group" style="margin-left:auto;">
+        <label for="indentSize">Indent:</label>
+        <select id="indentSize">
+          <option value="2">2 spaces</option>
+          <option value="4" selected>4 spaces</option>
+          <option value="8">8 spaces</option>
+          <option value="tab">Tab</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="json-layout">
+      <div class="json-panel">
+        <div class="json-panel-header">
+          <label>Input JSON</label>
+          <span class="char-count" id="inputChars">0 chars</span>
+        </div>
+        <textarea class="json-textarea" id="jsonInput" placeholder='Paste your JSON here...&#10;&#10;Example:&#10;{"name":"GadgetHumans","type":"tech","tools":["AI Cost Calculator","TTS Count","JSON Formatter"]}' spellcheck="false"></textarea>
+      </div>
+      <div class="json-panel">
+        <div class="json-panel-header">
+          <label>Formatted Output</label>
+          <span class="char-count" id="outputChars">0 chars</span>
+        </div>
+        <textarea class="json-textarea" id="jsonOutput" placeholder="Formatted JSON will appear here..." readonly spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="error-display" id="errorDisplay"></div>
+
+    <div class="meta-row" id="metaRow">
+      <span><strong>Status:</strong> <span id="statusText">Waiting for input</span></span>
+      <span><strong>Keys:</strong> <span id="keyCount">0</span></span>
+      <span><strong>Depth:</strong> <span id="depthCount">0</span></span>
+      <span><strong>Size:</strong> <span id="sizeText">0 B</span></span>
+    </div>
+  </div>
+
+  <div class="promo">
+    <h3>🔥 Gear We Recommend</h3>
+    <div class="promo-grid">
+      <a class="promo-card" href="https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🎧</span><span class="name">Sony XM5</span><span class="price">$299</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0G2SG3NFT?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🖱️</span><span class="name">MX Master 3S</span><span class="price">$79</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B09C5RG6KV?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">🔋</span><span class="name">Anker 737</span><span class="price">$65</span></a>
+      <a class="promo-card" href="https://www.amazon.com/dp/B0BKVZK4TH?tag=gadgethumans-21" target="_blank" rel="noopener"><span class="emoji">⌨️</span><span class="name">MX Keys S</span><span class="price">$84</span></a>
+      <a class="promo-card promo-card-full" href="https://payhip.com/GadgetHumans" target="_blank" rel="noopener"><span class="emoji">🤖</span><span class="name">AI Prompt Library — Free Templates</span><span class="price">FREE</span></a>
+    </div>
+  </div>
+
+  <footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/tools/">Tools</a>
+    <a href="/bluetooth-speakers/reviews/">Reviews</a>
+    <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    <a href="/bluetooth-speakers/blog/">Blog</a>
+    <a href="https://payhip.com/b/fdwTJ">Free AI Prompts</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const jsonInput = document.getElementById('jsonInput');
+  const jsonOutput = document.getElementById('jsonOutput');
+  const errorDisplay = document.getElementById('errorDisplay');
+  const formatBtn = document.getElementById('formatBtn');
+  const minifyBtn = document.getElementById('minifyBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const indentSize = document.getElementById('indentSize');
+  const inputChars = document.getElementById('inputChars');
+  const outputChars = document.getElementById('outputChars');
+  const statusText = document.getElementById('statusText');
+  const keyCount = document.getElementById('keyCount');
+  const depthCount = document.getElementById('depthCount');
+  const sizeText = document.getElementById('sizeText');
+
+  // ── Utility ──
+
+  function getIndent() {
+    const val = indentSize.value;
+    if (val === 'tab') return '\t';
+    return parseInt(val, 10);
+  }
+
+  function countKeys(obj) {
+    if (typeof obj !== 'object' || obj === null) return 0;
+    let count = 0;
+    for (const key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        count++;
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+          count += countKeys(obj[key]);
+        }
+      }
+    }
+    return count;
+  }
+
+  function maxDepth(obj) {
+    if (typeof obj !== 'object' || obj === null) return 0;
+    let depth = 0;
+    for (const key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        depth = Math.max(depth, 1 + maxDepth(obj[key]));
+      }
+    }
+    return depth;
+  }
+
+  function formatSize(str) {
+    const bytes = new Blob([str]).size;
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+  }
+
+  function setStatus(type, msg) {
+    statusText.textContent = msg;
+    statusText.style.color = type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--muted)';
+  }
+
+  // ── Core ──
+
+  function processJSON(minify) {
+    const raw = jsonInput.value;
+    inputChars.textContent = raw.length + ' chars';
+
+    errorDisplay.classList.remove('show', 'error', 'success');
+    jsonInput.classList.remove('error', 'success');
+    jsonOutput.classList.remove('error', 'success');
+
+    if (!raw.trim()) {
+      jsonOutput.value = '';
+      outputChars.textContent = '0 chars';
+      setStatus('neutral', 'Waiting for input');
+      keyCount.textContent = '0';
+      depthCount.textContent = '0';
+      sizeText.textContent = '0 B';
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(raw);
+      const indent = minify ? null : getIndent();
+      const formatted = JSON.stringify(parsed, null, indent);
+
+      jsonOutput.value = formatted;
+      outputChars.textContent = formatted.length + ' chars';
+
+      // Success feedback
+      errorDisplay.textContent = '✅ Valid JSON — formatted successfully';
+      errorDisplay.className = 'error-display show success';
+      jsonInput.classList.add('success');
+      jsonOutput.classList.add('success');
+      setStatus('success', '✅ Valid JSON');
+
+      // Meta
+      keyCount.textContent = countKeys(parsed);
+      depthCount.textContent = maxDepth(parsed);
+      sizeText.textContent = formatSize(formatted);
+
+    } catch (e) {
+      const msg = e.message || 'Invalid JSON';
+      // Try to extract line/position info
+      const posMatch = msg.match(/position\s+(\d+)/i);
+      const lineMatch = msg.match(/line\s+(\d+)/i);
+
+      let detail = '';
+      if (lineMatch) {
+        detail += ` at line ${lineMatch[1]}`;
+      }
+      if (posMatch) {
+        const pos = parseInt(posMatch[1], 10);
+        detail += ` (character ${pos})`;
+        // Show context
+        const start = Math.max(0, pos - 20);
+        const end = Math.min(raw.length, pos + 20);
+        detail += '\n\nNear: ...' + raw.slice(start, end) + '...';
+        if (pos > 0 && pos <= raw.length) {
+          detail += '\n' + ' '.repeat(Math.min(20, pos - start < 0 ? 0 : pos - start) + 4) + '⬆️';
+        }
+      }
+
+      jsonOutput.value = '';
+      outputChars.textContent = '0 chars';
+      errorDisplay.textContent = '❌ ' + msg + detail;
+      errorDisplay.className = 'error-display show error';
+      jsonInput.classList.add('error');
+      setStatus('error', '❌ Invalid JSON');
+      keyCount.textContent = '—';
+      depthCount.textContent = '—';
+      sizeText.textContent = '0 B';
+    }
+  }
+
+  // ── Events ──
+
+  formatBtn.addEventListener('click', function() { processJSON(false); });
+  minifyBtn.addEventListener('click', function() { processJSON(true); });
+
+  indentSize.addEventListener('change', function() {
+    if (jsonOutput.value.trim()) {
+      processJSON(false);
+    }
+  });
+
+  copyBtn.addEventListener('click', function() {
+    const text = jsonOutput.value;
+    if (!text.trim()) return;
+    navigator.clipboard.writeText(text).then(function() {
+      const orig = copyBtn.textContent;
+      copyBtn.textContent = '✅ Copied!';
+      setTimeout(function() { copyBtn.textContent = orig; }, 2000);
+    }).catch(function() {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+  });
+
+  clearBtn.addEventListener('click', function() {
+    jsonInput.value = '';
+    jsonOutput.value = '';
+    errorDisplay.classList.remove('show', 'error', 'success');
+    jsonInput.classList.remove('error', 'success');
+    jsonOutput.classList.remove('error', 'success');
+    inputChars.textContent = '0 chars';
+    outputChars.textContent = '0 chars';
+    setStatus('neutral', 'Waiting for input');
+    keyCount.textContent = '0';
+    depthCount.textContent = '0';
+    sizeText.textContent = '0 B';
+  });
+
+  // Auto-update char count on input
+  jsonInput.addEventListener('input', function() {
+    inputChars.textContent = jsonInput.value.length + ' chars';
+    // Clear output if input changes after initial validation
+    if (jsonOutput.value) {
+      jsonOutput.value = '';
+      outputChars.textContent = '0 chars';
+      errorDisplay.classList.remove('show', 'error', 'success');
+      jsonInput.classList.remove('error', 'success');
+      jsonOutput.classList.remove('error', 'success');
+      setStatus('neutral', 'Press "Format / Validate"');
+    }
+  });
+
+  // Ctrl+Enter shortcut
+  jsonInput.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      processJSON(false);
+    }
+  });
+
+  // Init
+  setStatus('neutral', 'Waiting for input');
+})();
+</script>
+<script src="../js/script.js"></script>
+</body>
+</html>
