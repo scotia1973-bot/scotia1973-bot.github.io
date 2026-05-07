@@ -134,6 +134,54 @@
       }
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a SHA-256 hash used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SHA-256 is a cryptographic hash function used for data integrity verification, password hashing, digital signatures, and blockchain applications. It produces a unique 256-bit (64-character) hash for any input."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reverse a SHA-256 hash back to the original text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. SHA-256 is a one-way cryptographic function. It is mathematically infeasible to reverse a hash back to the original input. This is why it is used for password storage and data verification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the hash generated on my device or sent to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The SHA-256 hash is computed entirely in your browser using JavaScript. No data is sent to any server, keeping your input completely private."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the same text always produce the same hash?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, SHA-256 is deterministic. The same input text will always produce the exact same 64-character hexadecimal hash, regardless of when or where it is computed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I hash files or just text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool accepts text input. For file hashing, you would typically use a command-line tool like `sha256sum` on Linux or macOS, or a dedicated file hashing utility."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <nav>

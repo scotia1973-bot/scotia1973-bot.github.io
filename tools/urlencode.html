@@ -176,6 +176,46 @@
       }
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is URL encoding and why do I need it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "URL encoding converts special characters (like spaces, &, ?, #) into safe percent-encoded format so they can be transmitted in URLs without breaking the web address syntax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I encode a string for use in a URL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Type or paste your text into the input box and click Encode. The tool converts the text using encodeURIComponent, making it safe to use in query parameters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I decode an encoded URL string?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste the percent-encoded string into the input box and click Decode. The tool converts it back to the original readable text using decodeURIComponent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this the same as full URL encoding with encodeURI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. encodeURIComponent encodes more characters than encodeURI, making it suitable for query string parameters. encodeURI preserves characters like /, ?, &, # that have special meaning in URLs."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <nav>

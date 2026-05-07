@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Prompt Library — 60 Templates | GadgetHumans</title>
+  <meta name="description" content="Free download of 60 battle-tested AI prompts across 6 categories. Copy-paste prompts for ChatGPT, Claude, Gemini and more. Content creation, coding, marketing, productivity, research & creative design.">
+  <meta name="keywords" content="AI prompts, prompt library, ChatGPT prompts, AI templates, content creation prompts, coding prompts, marketing prompts, productivity prompts, AI agent prompts">
+  <meta property="og:title" content="AI Agent Prompt Library — 60 Free Templates | GadgetHumans">
+  <meta property="og:description" content="60 battle-tested AI prompts across 6 categories. Copy-paste and use today. Free download.">
+  <meta property="og:image" content="https://www.gadgethumans.com/og-image.png">
+  <meta property="og:url" content="https://www.gadgethumans.com/prompts/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Agent Prompt Library — 60 Templates | GadgetHumans">
+  <meta name="twitter:description" content="Free download of 60 battle-tested AI prompts across 6 categories.">
+  <link rel="canonical" href="https://www.gadgethumans.com/prompts/">
+  <link rel="stylesheet" href="/css/theme.css?v=2">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"AI Agent Prompt Library","description":"60 battle-tested AI prompts across 6 categories","url":"https://www.gadgethumans.com/prompts/","provider":{"@type":"Organization","name":"GadgetHumans"}}
+  </script>
+  <style>
+    /* ---------- Prompt Library Specific Styles ---------- */
+    .prompt-hero {
+      text-align: center;
+      padding: 60px 20px 32px;
+    }
+    .prompt-hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .prompt-hero h1 span { color: var(--accent); }
+    .prompt-hero p {
+      font-size: 1.05rem;
+      color: var(--text2);
+      max-width: 640px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .prompt-hero .prompt-count-badge {
+      display: inline-block;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 6px 18px;
+      border-radius: 980px;
+      margin-bottom: 16px;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 36px;
+      padding: 0 4px;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 980px;
+      background: var(--card);
+      color: var(--text2);
+      font-family: var(--font);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Prompt grid */
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .prompt-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .prompt-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .prompt-card .prompt-category {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 3px 10px;
+      border-radius: 980px;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+    .prompt-card .prompt-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .prompt-card .prompt-use {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .prompt-card .prompt-text {
+      font-size: 0.85rem;
+      color: var(--text2);
+      line-height: 1.6;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      flex: 1;
+      max-height: 200px;
+      overflow-y: auto;
+      position: relative;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .prompt-card .prompt-text::-webkit-scrollbar {
+      width: 4px;
+    }
+    .prompt-card .prompt-text::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+    .prompt-card .prompt-hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      background: rgba(29, 158, 107, 0.06);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--success);
+    }
+    .prompt-card .prompt-hint strong {
+      color: var(--success);
+      font-weight: 600;
+    }
+    .prompt-card .prompt-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 980px;
+      background: var(--card);
+      color: var(--text2);
+      font-family: var(--font);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .copy-btn:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .copy-btn.copied {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    /* Premium CTA */
+    .premium-cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .premium-card {
+      background: linear-gradient(135deg, var(--card), rgba(0, 113, 227, 0.04));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow);
+    }
+    .premium-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .premium-card .premium-icon {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+    .premium-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .premium-card .price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--success);
+      margin: 10px 0;
+    }
+    .premium-card p {
+      font-size: 0.85rem;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .premium-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    .premium-card ul {
+      text-align: left;
+      list-style: none;
+      margin: 14px 0;
+    }
+    .premium-card ul li {
+      padding: 5px 0 5px 22px;
+      position: relative;
+      font-size: 0.82rem;
+      color: var(--text2);
+    }
+    .premium-card ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    /* Featured download banner */
+    .download-banner {
+      background: linear-gradient(135deg, var(--accent-dim), rgba(29, 158, 107, 0.08));
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .download-banner h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .download-banner p {
+      color: var(--text2);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-item .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-item .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* Notion export section */
+    .notion-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .notion-section .notion-text h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .notion-section .notion-text p {
+      font-size: 0.82rem;
+      color: var(--text2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .prompt-hero h1 { font-size: 1.8rem; }
+      .prompt-grid { grid-template-columns: 1fr; }
+      .premium-cta { grid-template-columns: 1fr; }
+      .stats-row { gap: 20px; }
+      .prompt-card .prompt-text { max-height: 160px; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .prompt-card .prompt-text { background: var(--bg2); }
+      .premium-card { background: linear-gradient(135deg, var(--card), rgba(41, 151, 255, 0.06)); }
+      .download-banner { background: linear-gradient(135deg, rgba(41, 151, 255, 0.08), rgba(29, 158, 107, 0.06)); }
+    }
+
+    /* Toast override position */
+    #toast { bottom: 80px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links"><a href="/">Home</a><a href="/tools/">Tools</a><a href="/guides/">Guides</a><a href="/reviews/">Reviews</a><a href="/blog/">Blog</a><a href="/pillar/ai-tools.html">AI Tools</a><a href="/pillar/prompt-engineering.html">Prompts</a><a href="/prompts/" class="active">Prompt Library</a><a href="/about/">About</a></div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="prompt-hero">
+    <div class="prompt-count-badge">📋 60 Free Prompts</div>
+    <h1>AI Agent <span>Prompt Library</span></h1>
+    <p>60 battle-tested prompts across 6 categories. Copy, paste, and get better results from ChatGPT, Claude, Gemini, and any AI assistant. Updated for 2026.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://payhip.com/b/fdwTJ" target="_blank" rel="noopener">📥 Download Free PDF →</a>
+      <a class="btn btn-outline" href="#prompts-section">Browse All Prompts ↓</a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">60</div><div class="stat-label">Prompts</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat-item"><div class="stat-num">1-Click</div><div class="stat-label">Copy &amp; Paste</div></div>
+    <div class="stat-item"><div class="stat-num">Free</div><div class="stat-label">Forever</div></div>
+  </div>
+
+  <!-- Download Banner -->
+  <div class="download-banner">
+    <h2>📥 Want This as a Printable PDF?</h2>
+    <p>Get the complete library as a beautifully formatted PDF with all 60 prompts, plus bonus tips for prompt engineering.</p>
+    <a class="btn btn-primary" href="https://payhip.com/b/fdwTJ" target="_blank" rel="noopener">Download Free PDF →</a>
+  </div>
+
+  <!-- Notion Import Section -->
+  <div class="notion-section">
+    <div class="notion-text">
+      <h3>📊 Prefer Notion?</h3>
+      <p>Import all 60 prompts as a Notion database template. Better organization, easy filtering, and faster access than PDF.</p>
+    </div>
+    <a class="btn btn-secondary btn-sm" href="https://payhip.com/b/fdwTJ" target="_blank" rel="noopener">Get Notion Template →</a>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar" id="prompts-section">
+    <button class="filter-btn active" data-filter="all">All (60)</button>
+    <button class="filter-btn" data-filter="content-creation">Content &amp; Copywriting (10)</button>
+    <button class="filter-btn" data-filter="business-marketing">Business &amp; Marketing (10)</button>
+    <button class="filter-btn" data-filter="coding-dev">Coding &amp; Development (10)</button>
+    <button class="filter-btn" data-filter="productivity">Productivity &amp; Workflow (10)</button>
+    <button class="filter-btn" data-filter="research">Research &amp; Analysis (10)</button>
+    <button class="filter-btn" data-filter="creative-design">Creative &amp; Design (10)</button>
+  </div>
+
+  <!-- Prompts Grid -->
+  <div class="prompt-grid" id="prompt-grid">
+
+    <!-- ==================== CATEGORY 1: CONTENT CREATION & COPYWRITING ==================== -->
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">The AIDA Copy Framework</div>
+      <div class="prompt-use">Use when: Writing sales copy, landing pages, or email sequences</div>
+      <div class="prompt-text">You are a direct-response copywriter. Write sales copy using the AIDA framework (Attention, Interest, Desire, Action) for [product/service]. Target audience: [describe audience]. The key benefit is [main benefit]. Address the top objection: [main objection]. Open with a bold hook that stops the scroll. Build desire with specific outcomes. End with a clear, urgent CTA.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 4-paragraph sales sequence — attention-grabbing headline, interest-building problem statement, desire-triggering benefit stack, and CTA button.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Blog Post Outline Generator</div>
+      <div class="prompt-use">Use when: Planning a blog article that needs structure</div>
+      <div class="prompt-text">Act as an SEO content strategist. Create a detailed blog post outline for the topic "[topic]". Target keyword: "[keyword]". Include: H2 and H3 headings, key points under each section, suggested word count per section, 3-5 internal linking opportunities, and a meta description under 160 characters. The outline should follow a problem-agitate-solution structure.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 7-section blog outline with headings like "Why [Problem] Is Costing You Time", "The [Strategy] Framework", and a step-by-step implementation section.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Social Media Caption Writer</div>
+      <div class="prompt-use">Use when: Crafting posts for LinkedIn, Twitter/X, or Instagram</div>
+      <div class="prompt-text">You are a social media strategist. Write 5 variations of a social media caption for [platform] about [topic]. The post should: hook in the first line, include a key insight or data point, add a personal take, end with a question to drive engagement. Keep captions under [character limit]. Include 3-5 relevant hashtags. Tone: [professional / casual / witty / educational].</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 5 caption variants for LinkedIn about "remote work productivity" — each with a hook, personal anecdote, and engagement question.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Email Sequence Architect</div>
+      <div class="prompt-use">Use when: Building a nurture or launch email sequence</div>
+      <div class="prompt-text">Create a 5-email sequence for [offer name/type]. Goal: [warm up leads / launch product / re-engage subscribers]. Audience: [describe]. Sequence structure: Email 1 — Value-first tip related to the offer; Email 2 — Story/case study; Email 3 — Deep dive into the solution; Email 4 — Social proof + testimonials; Email 5 — Urgent CTA with scarcity. Write subject lines (under 50 chars) and preview text for each.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 5 complete emails with subject lines, body copy, and CTAs for a €17 course launch sequence.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Brand Voice Guide Creator</div>
+      <div class="prompt-use">Use when: Defining or refining your brand's tone of voice</div>
+      <div class="prompt-text">Help me define a brand voice guide. My brand is [brand name] in the [industry] space. I want the tone to be [e.g., confident, warm, technical, playful]. Target audience: [describe]. Write a voice guide covering: 3-5 brand voice adjectives with do/don't examples, sentence structure preferences, vocabulary guidelines, punctuation style, and a sample rewrite of the following paragraph in the new voice: "[sample text]".</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A one-page brand voice guide with do/don't tables, a vocabulary list, and a before/after rewrite of a sample paragraph.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Headline Variant Generator</div>
+      <div class="prompt-use">Use when: A/B testing headlines for ads, emails, or blog posts</div>
+      <div class="prompt-text">Generate 20 headline variations for [topic / offer]. Use these proven frameworks: How-to (3), List-based (3), Question (3), Controversial (2), Curiosity gap (3), Benefit-driven (3), Command (2), and Testimonial-style (1). For each, note which emotional trigger it targets (fear, greed, vanity, laziness, or belonging). Target audience: [describe].</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 20 headlines using 8 different frameworks, each tagged with the emotional trigger — ready for A/B testing.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Content Repurposing Matrix</div>
+      <div class="prompt-use">Use when: Turning one piece of content into multiple formats</div>
+      <div class="prompt-text">I have a [blog post / video / podcast] about [topic]. Help me repurpose it into: 1) A LinkedIn post thread (5-7 posts), 2) A Twitter/X thread with 10 tweets, 3) A newsletter edition, 4) 3 Instagram caption ideas, 5) A short video script (60 seconds), and 6) A slide deck outline (5 slides). Keep the core message consistent but adapt the format and tone for each platform.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 6 repurposed content formats from one 1500-word blog post — ready to publish across channels.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Product Description Optimizer</div>
+      <div class="prompt-use">Use when: Writing or improving e-commerce product listings</div>
+      <div class="prompt-text">Write an optimized product description for [product name]. Features: [list key features]. Target audience: [describe]. Platform: [Amazon / Shopify / Etsy]. Include: emotional headline under 80 chars, bullet-point features with benefits (not specs), a short paragraph telling a mini-story of use, sensory language (texture, sound, feel), and a scannable "Best For" section. Add 5 SEO keywords naturally.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A full Amazon-style product listing with headline, benefit bullets, story paragraph, and keyword integration.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Storytelling Framework</div>
+      <div class="prompt-use">Use when: Crafting a narrative for a brand story or case study</div>
+      <div class="prompt-text">You are a narrative copywriter. Help me tell a story using the Hero's Journey framework for [brand/client/customer]. Elements to include: The Ordinary World (before), The Call to Adventure (the problem/opportunity), The Struggle (obstacles faced), The Transformation (how help arrived), The Return (results achieved). Keep it under 500 words. End with a universal takeaway the reader can apply.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 5-part customer success story that follows the Hero's Journey arc — relatable, emotional, and results-focused.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="content-creation">
+      <span class="prompt-category">Content &amp; Copywriting</span>
+      <div class="prompt-title">Cold Email / Outreach Templates</div>
+      <div class="prompt-use">Use when: Reaching out to prospects, partners, or influencers</div>
+      <div class="prompt-text">Write 4 cold email templates for reaching out to [target recipient type]. Goal: [meeting request / partnership / guest post / backlink / sale]. For each template, use a different opening strategy: mutual connection mention, compliment + insight, data-driven value prop, and pain-point question. Keep under 150 words. Include a clear low-friction CTA. Add a P.S. line with social proof.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 4 cold email templates with different hooks — ready to personalize and send. ~3-5% reply rate expected.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <!-- ==================== CATEGORY 2: BUSINESS & MARKETING STRATEGY ==================== -->
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">SWOT Analysis Generator</div>
+      <div class="prompt-use">Use when: Evaluating a business, product, or competitor</div>
+      <div class="prompt-text">Conduct a SWOT analysis for [business / product / idea]. Industry: [industry]. Target market: [describe]. Consider: Strengths (internal advantages, resources, expertise), Weaknesses (gaps, limitations, risks), Opportunities (trends, market gaps, tech shifts), Threats (competitors, regulations, economic factors). For each quadrant, provide 5 specific points. End with 3 strategic recommendations based on the analysis.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 4-quadrant SWOT matrix for "a small AI prompt library business" with 5 items each and 3 actionable strategies.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Customer Avatar / Persona Builder</div>
+      <div class="prompt-use">Use when: Defining your ideal customer for targeting</div>
+      <div class="prompt-text">Create a detailed customer persona for [product/service]. Name them, give them a backstory. Include: demographics (age, job title, income, location), psychographics (goals, fears, values, media consumption), pain points (top 5 frustrations related to this space), desires (what they secretly want), objections to buying, and the exact words they use to describe their problem. Write in third person.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A fully fleshed-out persona like "Remote Rachel, 34, Senior Designer" with fears, desires, and buying objections.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Marketing Channel Strategy</div>
+      <div class="prompt-use">Use when: Deciding where to focus marketing efforts</div>
+      <div class="prompt-text">Act as a growth marketing consultant. For [business type] targeting [audience], recommend the top 5 marketing channels to focus on. For each channel: expected cost per acquisition, time to first results, content format needed, skill level required, and a 30-day starter plan. Prioritize channels by ROI potential for a business with [budget / team size]. Include a recommended 80/20 split of effort.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 5 ranked channels (e.g., SEO, LinkedIn, Email) with CPA estimates and a 30-day plan for each.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Pricing Strategy Consultant</div>
+      <div class="prompt-use">Use when: Setting or evaluating pricing for a product/service</div>
+      <div class="prompt-text">You are a pricing strategist. Help me set a price for [product/service]. Current cost to deliver: [amount]. Competitor prices range: [range]. Target audience willingness to pay: [estimated]. Analyze 3 pricing models: cost-plus, value-based, and tiered. For each: suggest price points, explain the psychology behind them, and predict conversion impact. Recommend pricing anchoring tactics and a discount strategy.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 3 pricing model recommendations with price points, psychological rationale, and discount playbook.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Competitive Analysis Grid</div>
+      <div class="prompt-use">Use when: Researching competitors to find market gaps</div>
+      <div class="prompt-text">Perform a competitive analysis for [my business] in [industry]. Analyze these competitors: [list 3-5 competitors]. Compare across: pricing, features, target audience, marketing channels, content quality, SEO strength, social media presence, customer reviews sentiment, and unique selling propositions. Identify 3 gaps or opportunities where my business can differentiate. Present as a comparison grid.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A feature comparison table showing where each competitor excels, plus 3 clear differentiation opportunities.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Conversion Funnel Audit</div>
+      <div class="prompt-use">Use when: Analyzing why visitors aren't converting</div>
+      <div class="prompt-text">Act as a CRO (Conversion Rate Optimization) specialist. Audit my conversion funnel: [describe funnel steps — e.g., landing page → signup → trial → purchase]. Current conversion rates: [provide per step]. Target audience: [describe]. Identify: top 3 friction points per step, psychological barriers, trust signals missing, and specific A/B test ideas. Recommend a priority-ordered action plan with expected impact.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A full funnel audit with friction points, trust gaps, 5 A/B test ideas, and an impact-priority action matrix.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Content Calendar Planner</div>
+      <div class="prompt-use">Use when: Planning monthly content across channels</div>
+      <div class="prompt-text">Build a 4-week content calendar for [business/niche]. Channels: [blog, LinkedIn, Twitter, email, YouTube — specify]. Goals: [awareness, engagement, leads, sales]. For each week, provide: 1 blog post topic, 3 social media posts, 1 email newsletter angle, and 1 content pillar. Include content themes aligned with the buyer's journey (TOF, MOF, BOF). Add seasonal or trending topic suggestions.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 4-week editorial calendar with 4 blog topics, 12 social posts, 4 emails, and seasonal tie-ins.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Value Proposition Refiner</div>
+      <div class="prompt-use">Use when: Clarifying your core offer message</div>
+      <div class="prompt-text">Help me refine my value proposition. My business: [describe]. Current tagline: "[current]". Target audience: [describe]. The main problem we solve: [problem]. Our unique approach: [approach]. Using the "So that..." laddering technique, drill down 5 levels deep into why our solution matters. Then write 3 value proposition variations: one emotional, one logical, one social-proof-driven. Test each against the audience's top priority.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 3 sharpened value propositions (emotional, logical, social) backed by a 5-level "so that" ladder of meaning.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Ad Copy Generator (Meta &amp; Google)</div>
+      <div class="prompt-use">Use when: Writing paid ad copy for social or search</div>
+      <div class="prompt-text">You are a paid media copywriter. Write ad copy for [platform: Meta/Google/LinkedIn] promoting [offer]. Target audience: [describe]. Ad format: [single image / carousel / video / text]. Write: 3 primary text variants (under 125 chars for Meta, under 90 for Google), 5 headlines (under 40 chars), and 3 descriptions (under 30 chars). Include a hook, social proof element, and a CTA. Note which emotional trigger each variant uses.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 3 full ad sets for Meta with primary text, headlines, and descriptions — optimized for the platform's character limits.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="business-marketing">
+      <span class="prompt-category">Business &amp; Marketing Strategy</span>
+      <div class="prompt-title">Lean Business Model Canvas</div>
+      <div class="prompt-use">Use when: Validating a new business idea quickly</div>
+      <div class="prompt-text">Help me complete a Lean Business Model Canvas for [idea/business]. Fill each of the 9 blocks: 1) Problem — top 3 problems we solve, 2) Solution — our top 3 features, 3) Unique Value Proposition — one clear message, 4) Unfair Advantage — what can't be copied, 5) Customer Segments — who we serve, 6) Key Metrics — 3 numbers that measure success, 7) Channels — how we reach customers, 8) Revenue Streams — how we make money, 9) Cost Structure — fixed and variable costs.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete 9-box Lean Canvas for any business idea — ready to validate or pitch.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <!-- ==================== CATEGORY 3: CODING & DEVELOPMENT ==================== -->
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Code Generator (Feature-First)</div>
+      <div class="prompt-use">Use when: Building a specific function or component</div>
+      <div class="prompt-text">Generate [language] code for [specific feature]. Requirements: [list functional requirements]. Constraints: [performance, memory, browser support, etc.]. Include: input validation, error handling, edge cases. Use [design pattern] if applicable. Add comments explaining the logic. Write unit tests for 3 key scenarios. Follow [style guide / best practices] for the language.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete function with input validation, error handling, 3 unit tests, and inline comments explaining each step.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Code Review Assistant</div>
+      <div class="prompt-use">Use when: Reviewing pull requests or debugging</div>
+      <div class="prompt-text">Review this [language] code for issues. Focus on: correctness (bugs, logic errors), performance (time/space complexity, N+1 queries), security (injection, XSS, auth flaws), maintainability (readability, naming, DRY violations), and edge cases (null inputs, empty states, concurrency). For each issue found: rate severity (critical/major/minor), explain the problem, and suggest a fix. Here is the code: [paste code]</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A structured code review with issues categorized by severity, each with explanation and fix suggestion.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">SQL Query Builder</div>
+      <div class="prompt-use">Use when: Writing complex database queries</div>
+      <div class="prompt-text">Write a SQL query for [database type: PostgreSQL/MySQL/SQLite] that: [describe the data needed]. Tables involved: [table schemas]. Conditions: [filters, joins, aggregations]. Performance note: [expected row count, indexes available]. Include: explanation of the query plan, alternative approaches, and an indexed version for production. Handle: NULL values, duplicates, and type casting if needed.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> An optimized SQL query with execution plan notes, NULL handling, and a production-ready indexed version.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">API Endpoint Designer</div>
+      <div class="prompt-use">Use when: Designing REST or GraphQL APIs</div>
+      <div class="prompt-text">Design a REST API endpoint for [feature/entity]. Method: [GET/POST/PUT/DELETE]. Requirements: [list data fields, relationships, business logic]. Follow RESTful best practices. Provide: the route URL, request/response schemas (JSON), status codes for all outcomes (200, 201, 400, 404, 500), error response format, authentication/authorization requirements, rate limiting notes, and a curl example for testing.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete API endpoint spec with request/response schemas, all status codes, and a curl test example.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Debugging &amp; Error Resolution</div>
+      <div class="prompt-use">Use when: Stuck on an error or unexpected behavior</div>
+      <div class="prompt-text">I'm getting this error in [language/environment]: "[paste error message]". Here is the relevant code: [paste code]. What I'm trying to do: [describe goal]. What I've tried: [list debugging steps taken]. Help me: 1) Understand the root cause, 2) Fix the issue, 3) Explain why the fix works, and 4) Suggest how to prevent this in the future. Include any debugging techniques I should use.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> Root cause analysis of a Python TypeError, a working fix with explanation, and 3 prevention strategies.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Architecture Decision Record</div>
+      <div class="prompt-use">Use when: Documenting technical decisions for a project</div>
+      <div class="prompt-text">Write an Architecture Decision Record (ADR) for: [decision title]. Context: [describe the problem or motivation]. Decision: [the chosen approach]. Alternatives considered: [list 2-3 alternatives with pros/cons]. Consequences: [trade-offs, migration effort, team impact]. Status: [proposed / accepted / deprecated]. Use the standard ADR format (title, status, context, decision, rationale, consequences).</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A professional ADR in standard format — great for team documentation and engineering blogs.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Refactoring Strategist</div>
+      <div class="prompt-use">Use when: Improving legacy or messy code</div>
+      <div class="prompt-text">Help me refactor this [language] code for: readability, maintainability, and performance. Current code: [paste code]. The original requirements: [describe]. Specific concerns: [tight coupling, duplication, unclear naming, etc.]. Suggest: 1) Quick wins (renaming, extracting, inlining), 2) Structural changes (design patterns, module splitting), 3) Performance improvements. Show both the refactored code and explain each change.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A side-by-side comparison of messy vs. refactored code with explanations for each improvement.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Docker / DevOps Config Generator</div>
+      <div class="prompt-use">Use when: Setting up containers or CI/CD pipelines</div>
+      <div class="prompt-text">Generate a Docker configuration for a [language/framework] app. Requirements: [dependencies, ports, environment variables]. Include: a multi-stage Dockerfile (build + production stages), a .dockerignore, a docker-compose.yml with [database/cache service], and health check configuration. Also generate a GitHub Actions CI workflow: lint → test → build → deploy. Optimize for small image size and fast builds.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete Docker setup (multi-stage Dockerfile, compose, CI workflow) for a Node.js + PostgreSQL app.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Regex Pattern Builder</div>
+      <div class="prompt-use">Use when: Writing or debugging regular expressions</div>
+      <div class="prompt-text">Write a regex in [language/PCRE/JS/Python] that: [describe the pattern needed]. Test cases: valid matches [list], should NOT match [list]. Edge cases: empty string, Unicode, newlines. Requirements: capture groups for [specific parts], flags needed (i, g, m, s), and performance considerations (backtracking, catastrophic backtracking risk). Explain each part of the regex step by step.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A regex pattern for email validation with named capture groups, test cases, and a line-by-line explanation.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="coding-dev">
+      <span class="prompt-category">Coding &amp; Development</span>
+      <div class="prompt-title">Algorithm Explainer</div>
+      <div class="prompt-use">Use when: Learning or teaching algorithms</div>
+      <div class="prompt-text">Explain the [algorithm name] algorithm. Cover: 1) What problem it solves and when to use it, 2) Time and space complexity (best, average, worst case), 3) Step-by-step walkthrough with a concrete example using [sample data], 4) Pseudocode, 5) Implementation in [language], 6) Common variations or optimizations, 7) Real-world applications. Use plain language suitable for a junior developer to understand.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete algorithm explainer for Binary Search — complexity table, walkthrough with [1,3,5,7,9], code, and real uses.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <!-- ==================== CATEGORY 4: PRODUCTIVITY & WORKFLOW ==================== -->
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Meeting Agenda &amp; Minutes</div>
+      <div class="prompt-use">Use when: Preparing for or documenting meetings</div>
+      <div class="prompt-text">Generate a meeting agenda for a [type of meeting] about [topic]. Duration: [time]. Attendees: [roles]. Include: pre-read materials needed, timeboxed agenda items with clear outcomes, discussion prompts for each item, decision log section, and action items with owners. After the meeting, convert the raw notes below into structured minutes with decisions and action items: [paste notes].</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A timeboxed 30-min agenda with outcomes, plus a formatted minutes doc with decisions and action items.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Task Prioritization Matrix</div>
+      <div class="prompt-use">Use when: Overwhelmed with tasks — deciding what to do first</div>
+      <div class="prompt-text">Help me prioritize my tasks using the Eisenhower Matrix. Here are my current tasks: [list tasks]. For each, classify as: Urgent & Important (Do now), Important but Not Urgent (Schedule), Urgent but Not Important (Delegate), Neither (Eliminate). Then rank within each quadrant by impact. Provide a suggested schedule for the top 5 priority tasks this week. Include time estimates and energy level recommendations.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> An Eisenhower Matrix sorting 10 tasks into 4 quadrants, with a ranked action plan for the week.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">SOP / Process Documenter</div>
+      <div class="prompt-use">Use when: Creating standard operating procedures</div>
+      <div class="prompt-text">Write a Standard Operating Procedure (SOP) for: [process name]. Purpose: [why this process exists]. Scope: [who it applies to]. Prerequisites: [tools, access, knowledge needed]. Steps: Provide a numbered step-by-step guide with expected outcomes for each step. Include: decision points (if/then branches), common errors and how to avoid them, time estimate per step, and a checklist at the end. Format for easy copying into Notion or Google Docs.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete SOP for "Publishing a Blog Post" — 12 numbered steps, decision branches, and a final checklist.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Weekly Review / Retrospective</div>
+      <div class="prompt-use">Use when: Reflecting on a week to improve next week</div>
+      <div class="prompt-text">Guide me through a weekly review. Structure it into 4 parts: 1) Wins — what went well this week (list top 3), 2) Challenges — what was difficult or didn't get done (list top 3 and why), 3) Lessons — specific insights or adjustments identified, 4) Focus for next week — top 3 priorities with one specific action per priority. End with one sentence that captures the theme of next week. Use the Start/Stop/Continue framework.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A structured weekly review with Start/Stop/Continue framework — 10 minutes to clarity.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Email Inbox Zero Plan</div>
+      <div class="prompt-use">Use when: Decluttering and managing email overload</div>
+      <div class="prompt-text">Create a 3-day plan to reach and maintain Inbox Zero. Day 1 — Cleanse: unsubscribe from 20+ lists, set up filters/labels, archive everything older than 30 days. Day 2 — Process: apply the 2-minute rule to remaining emails (do, delegate, defer, delete). Day 3 — System: propose a daily triage workflow, template replies for common inquiries, and a weekly review schedule. Include Gmail/Outlook-specific power tips.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 3-day email detox plan with unsubscribe strategy, 2-minute rule workflow, and ongoing maintenance system.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Project Kickoff Brief</div>
+      <div class="prompt-use">Use when: Starting a new project with a team or solo</div>
+      <div class="prompt-text">Generate a project kickoff brief for: [project name]. Include: 1) Project overview — 2-sentence summary, 2) Goals — 3 SMART objectives, 3) Scope — what's in and what's explicitly out, 4) Key stakeholders and their roles, 5) Timeline — phases with milestones (start date to end date), 6) Success metrics — 3 KPIs, 7) Risks — top 3 risks with mitigation, 8) Communication plan — meetings, updates, tools. Format as a one-pager.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A one-page project brief covering goals, scope, timeline, risks, and communication plan — ready to share.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Automation Workflow Builder</div>
+      <div class="prompt-use">Use when: Automating repetitive tasks with Zapier/Make/n8n</div>
+      <div class="prompt-text">Design an automation workflow for: [repetitive task]. Trigger: [what starts the process]. Steps: [list manual steps currently done]. Tools available: [Zapier, Make, n8n, Gmail, Slack, Notion, Airtable, etc.]. Desired outcome: [what should happen automatically]. Provide: the recommended trigger-action sequence, data mapping between tools, error handling strategy, and a testing plan. Estimate time saved per week.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 5-step automation flow: new Gmail attachment → save to Google Drive → log in Notion → Slack notification.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Time Audit &amp; Optimization</div>
+      <div class="prompt-use">Use when: Feeling like there aren't enough hours in the day</div>
+      <div class="prompt-text">Help me audit my time. I spend roughly [X hours] per week on [categories: email, meetings, deep work, admin, commuting, etc.]. My goal is to reclaim [X hours] for [priority]. Analyze where I'm wasting time using the 80/20 principle. Suggest: 3 tasks to eliminate, 3 to automate, 3 to delegate, and 3 to batch. Recommend a daily time-blocking schedule with energy-matched tasks (high-energy = deep work, low-energy = admin).</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A time audit report with 80/20 waste analysis, elimination/automation/delegation suggestions, and a time-blocked daily schedule.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Goal Setting (OKR Framework)</div>
+      <div class="prompt-use">Use when: Setting quarterly or annual goals</div>
+      <div class="prompt-text">Help me set OKRs (Objectives and Key Results) for [period: quarter/year]. My mission: [one sentence]. Focus areas: [2-3 areas like revenue, product, personal growth]. For each objective, write: 1 inspirational Objective (qualitative, aspirational), and 3-5 Key Results (quantitative, measurable, time-bound). Ensure each KR has a baseline and target number. Include confidence levels (1-10) for each KR. End with a weekly check-in cadence plan.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 3 OKR sets (e.g., "Launch product", "Grow revenue", "Build audience") with measurable KRs and confidence scores.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="productivity">
+      <span class="prompt-category">Productivity &amp; Workflow</span>
+      <div class="prompt-title">Decision-Making Framework</div>
+      <div class="prompt-use">Use when: Making a tough decision with multiple variables</div>
+      <div class="prompt-text">Help me make a decision using a weighted decision matrix. Decision to make: [describe]. Options: [list 2-4 options]. Criteria to evaluate: [list criteria — cost, time, impact, risk, etc.]. For each criterion, assign a weight (1-5) based on importance. Score each option (1-10) per criterion. Calculate weighted totals. Include: a pros/cons list for the top 2 options, a "pre-mortem" (imagine the choice failed — why?), and a recommendation with confidence level.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A weighted decision matrix with scores, pros/cons, pre-mortem analysis, and a clear recommendation.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <!-- ==================== CATEGORY 5: RESEARCH & ANALYSIS ==================== -->
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Literature Review Assistant</div>
+      <div class="prompt-use">Use when: Summarizing academic papers or articles</div>
+      <div class="prompt-text">Summarize the key findings from this text on [topic]. Extract: 1) Main research question or thesis, 2) Methodology used, 3) Top 5 key findings with data points, 4) Limitations acknowledged, 5) Gaps or unanswered questions, 6) Implications for [my field/industry]. Identify any conflicting viewpoints. Rate the strength of evidence (strong/moderate/weak) for each claim. Keep the summary under 400 words. Source text: [paste text].</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A structured 400-word lit review summarizer with methodology, findings, conflicts, and evidence ratings.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Data Insight Extractor</div>
+      <div class="prompt-use">Use when: Analyzing a dataset or spreadsheet</div>
+      <div class="prompt-text">Analyze the following data and extract actionable insights. Data: [paste data or describe dataset]. Specifically: 1) Identify 3 unexpected patterns or trends, 2) Calculate key summary statistics (mean, median, outliers), 3) Suggest 3 hypotheses that could explain the patterns, 4) Recommend 3 data-driven actions I should take. Focus on practical business implications rather than statistical theory. Flag any data quality concerns.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A data analysis brief with 3 patterns, summary stats, hypotheses, and 3 recommended actions from a sales dataset.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Market Trend Researcher</div>
+      <div class="prompt-use">Use when: Understanding market dynamics in an industry</div>
+      <div class="prompt-text">Research current market trends in [industry/niche]. Cover: 1) Top 3 emerging trends with evidence, 2) Shifting consumer behaviors post-2024, 3) Technology changes impacting the space, 4) Regulatory or policy changes on the horizon, 5) Key players and their recent moves. For each trend: note the signal strength (strong/emerging/speculative), time horizon (now/6 months/1-2 years), and potential impact on a business like mine.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A trend report covering 3 emerging trends with evidence, signal strength, time horizon, and business impact.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Product/Market Fit Survey</div>
+      <div class="prompt-use">Use when: Validating a product idea with customer feedback</div>
+      <div class="prompt-text">Design a product/market fit survey for [product idea]. Include: 1) 5 screening questions to qualify respondents, 2) The "Sean Ellis Test" question: "How would you feel if you could no longer use [product]?" with multiple choice options, 3) 3 open-ended questions about pain points and desired outcomes, 4) 2 demographic questions, 5) Net Promoter Score (NPS) question. Add guidance on: sample size needed, distribution channels, and how to interpret results (what % = PMF).</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete 12-question PMF survey with the Sean Ellis test, NPS, and interpretation guide.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Argument Analysis &amp; Counterargument</div>
+      <div class="prompt-use">Use when: Evaluating a position or preparing a debate</div>
+      <div class="prompt-text">Analyze the following argument: "[paste argument]". Break it down into: 1) Core claim / thesis, 2) Premises supporting it, 3) Logical structure (deductive, inductive, abductive), 4) Strengths of the argument, 5) Weaknesses or logical fallacies present, 6) Counterarguments that challenge the conclusion, 7) Evidence that would strengthen or weaken each side. Present a balanced view and identify any cognitive biases at play.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A structured argument analysis with premises, fallacies, counterarguments, and cognitive biases identified.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Interview Question Generator</div>
+      <div class="prompt-use">Use when: Preparing for customer discovery interviews</div>
+      <div class="prompt-text">Generate 10 customer discovery interview questions about [topic/industry]. The goal: understand [specific area — pain points, workflow, decision process]. Use open-ended questions that start with "Tell me about a time..." or "Walk me through...". Avoid leading or biased phrasing. After each question, note: what you're trying to learn, potential follow-up probes, and red flags to watch for. Use the Mom Test framework — avoid talking about my solution.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 10 open-ended discovery questions using the Mom Test framework, each with follow-up probes and red flags.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Competitor Feature Deep-Dive</div>
+      <div class="prompt-use">Use when: Reverse-engineering a competitor's product</div>
+      <div class="prompt-text">Analyze [competitor name/product] in detail. Cover: 1) Core features and functionality, 2) User experience highlights (what's smooth, what's frustrating), 3) Pricing model and what it reveals about their strategy, 4) Onboarding flow and retention hooks, 5) Content and SEO strategy (top ranking pages, estimated traffic), 6) Tech stack clues (what you can infer), 7) Customer sentiment from reviews (top praise and top complaints). Identify 3 things they do well and 3 gaps to exploit.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A feature-by-feature competitor breakdown with UX notes, pricing strategy, and 3 exploitable gaps.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Root Cause Analysis (5 Whys)</div>
+      <div class="prompt-use">Use when: Investigating a recurring problem or incident</div>
+      <div class="prompt-text">Perform a root cause analysis using the 5 Whys technique. Problem statement: "[describe the problem]". For each "Why" level, provide: the answer, evidence supporting it, and whether this is a symptom vs. root cause. Continue until you reach a systemic root cause (process, culture, or design issue — not a person). Then: recommend 3 corrective actions — one immediate fix, one medium-term improvement, and one systemic change. Assign ownership for each.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A 5-Whys chain tracing a "missed deadlines" problem to systemic causes, with 3 corrective actions.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">First Principles Thinker</div>
+      <div class="prompt-use">Use when: Breaking down a complex problem from scratch</div>
+      <div class="prompt-text">Apply first principles thinking to: [problem or topic]. Step 1: Identify and challenge the current assumptions — list what everyone believes to be true. Step 2: Break the problem down into its fundamental elements — what are the irreducible truths? Step 3: Rebuild a solution from those fundamentals — what new approaches become possible? Step 4: Compare the first-principles approach to the conventional approach — what's different? Use the Socratic method throughout.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A first-principles breakdown of "How to learn a new skill quickly" — assumptions challenged, rebuilt solution.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="research">
+      <span class="prompt-category">Research &amp; Analysis</span>
+      <div class="prompt-title">Comparative Analysis (Pro/Con)</div>
+      <div class="prompt-use">Use when: Choosing between tools, vendors, or approaches</div>
+      <div class="prompt-text">Compare and contrast [Option A] vs [Option B] for [use case]. Evaluate across: pricing (upfront + ongoing), features (must-have vs nice-to-have), ease of setup (time and skill needed), scalability (can it grow with me), integration capabilities, support quality, learning curve, and community/ecosystem. Use a weighted scoring system. End with: a clear winner for my use case, and a conditional recommendation ("Choose B if...").</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A scored comparison of "Notion vs Obsidian for note-taking" across 8 dimensions with a clear winner.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <!-- ==================== CATEGORY 6: CREATIVE & DESIGN ==================== -->
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Creative Brief Generator</div>
+      <div class="prompt-use">Use when: Briefing a designer, copywriter, or creative team</div>
+      <div class="prompt-text">Write a creative brief for [project name]. Include: 1) Project overview — what we're creating and why, 2) Target audience — demographics, psychographics, behaviors, 3) Key message — the single most important thing to communicate, 4) Tone and brand voice — 3-5 adjectives with examples, 5) Deliverables — exact outputs needed, 6) References and inspiration — 3 examples of what we like and why, 7) Budget and timeline, 8) Success criteria — how we'll know it's good. Be specific enough to avoid multiple revision rounds.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A one-page creative brief for a "brand video" — audience, message, tone, references, and success criteria.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Midjourney / DALL-E Prompt Crafter</div>
+      <div class="prompt-use">Use when: Generating AI art with specific styling</div>
+      <div class="prompt-text">Write 5 image generation prompts for [tool: Midjourney / DALL-E / Stable Diffusion] based on this concept: "[describe scene/subject]". Style references: [e.g., cinematic, minimal, cyberpunk, watercolor, photorealism]. For each prompt: specify subject, action, environment, lighting, color palette, camera angle/lens, mood, and composition. Use weights (::2) and parameters (--ar, --v, --s) where applicable. Include negative prompts for what to avoid.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 5 Midjourney prompts like "a cyberpunk street market at night, neon reflections, cinematic lighting, 35mm lens --ar 16:9 --v 6".</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Logo Design Concept Generator</div>
+      <div class="prompt-use">Use when: Brainstorming logo directions for a brand</div>
+      <div class="prompt-text">Generate 5 logo design concepts for [brand name] in the [industry] space. Brand values: [list 3-5 values]. Target audience: [describe]. For each concept: describe the visual approach (e.g., lettermark, icon + wordmark, abstract shape), color palette with rationale, typography style, and the symbolic meaning behind the design. Indicate which concept would work best for: app icon, website header, and social media avatar. Consider different styles: minimal, vintage, futuristic.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 5 logo concepts (lettermark, icon, abstract, mascot, wordmark) with color palettes, typography, and use-case fit.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Color Palette &amp; UI Theme Designer</div>
+      <div class="prompt-use">Use when: Choosing colors for a brand, app, or website</div>
+      <div class="prompt-text">Design a color palette for [project type: brand/app/website] in [industry]. Primary value: [e.g., trust, energy, calm, luxury]. Include: 1 primary color, 2 secondary colors, 3 neutral shades (light, medium, dark), 2 accent colors (for CTAs/highlights), 1 success color, 1 error color. For each color: provide hex code, describe the psychological association, and suggest usage (backgrounds, text, buttons, borders). Include light and dark mode variations. Consider accessibility (WCAG contrast).</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A full color system (10 colors) with hex codes, psychology notes, usage guidelines, and dark mode variants.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Typography Pairing Advisor</div>
+      <div class="prompt-use">Use when: Selecting font combinations for a project</div>
+      <div class="prompt-text">Recommend typography pairings for [project type: website / brand / app / print]. The vibe should be: [e.g., professional, playful, elegant, modern]. Suggest 3 pairings: each with a display/heading font and a body font. For each pairing: provide the font names, Google Fonts availability, recommended weights (heading: semibold-bold, body: regular-medium), line height suggestions, and the mood/vibe. Explain why the pairing works (contrast, x-height match, era/style harmony).</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 3 font pairings — e.g., "Playfair Display + Inter" for elegant editorial with weight and spacing recommendations.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">UI/UX Microcopy Writer</div>
+      <div class="prompt-use">Use when: Writing button labels, error messages, and onboarding text</div>
+      <div class="prompt-text">Write microcopy for [app/website feature]. Context: [describe the screen or flow]. User state: [e.g., first visit, returning user, error state, empty state]. Write: 1) Primary button text (action-oriented, under 25 chars), 2) Secondary/ghost button text, 3) Error message (helpful, not blaming), 4) Success confirmation, 5) Empty state message (encouraging, not dead-end), 6) Tooltip for a complex feature. Keep everything plain language — no jargon, no passive voice.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> Microcopy for a file upload flow: button labels, error state ("File too large — max 10MB"), and empty state message.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Design System Component Spec</div>
+      <div class="prompt-use">Use when: Building reusable UI components</div>
+      <div class="prompt-text">Write a design spec for [component name, e.g., Button, Card, Input]. Include: 1) Purpose — when to use this component, 2) Variants — primary, secondary, outline, ghost, disabled, 3) States — default, hover, active, focus, disabled, loading, 4) Sizes — small, medium, large (height, padding, font size), 5) Spacing specs — internal padding, external margin, 6) Typography — font size, weight, line height per variant, 7) Color tokens — hex values for each variant and state, 8) Corner radius — values, 9) Shadow — box-shadow values, 10) Accessibility — focus ring, contrast ratio, aria attributes.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A complete Button component spec — 4 variants, 7 states, 3 sizes, with color tokens and accessibility notes.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Animation / Motion Concept</div>
+      <div class="prompt-use">Use when: Designing micro-interactions or motion design</div>
+      <div class="prompt-text">Describe an animation concept for [UI element / brand video / loading state]. Use [tool: CSS / Lottie / Rive]. Concept: [describe what it should do]. Include: 1) Trigger — what starts the animation (click, scroll, hover, page load), 2) Timing — duration in ms, easing curve (ease-in-out, spring, bounce), 3) Keyframes — start, mid, end states with properties (opacity, transform, scale, color), 4) Direction — is it reversible? 5) Feedback — what the user perceives. Apply Disney's 12 principles of animation (squash, stretch, anticipation, etc.).</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A button hover animation spec: 200ms spring ease, scale 1→1.05, shadow lifts, color shift from #0071e3 to #0077ed.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Mood Board Descriptor</div>
+      <div class="prompt-use">Use when: Establishing a visual direction for a project</div>
+      <div class="prompt-text">Create a detailed mood board description for [project type]. The desired feeling: [describe in 3 words]. Reference aesthetics: [e.g., brutalist, Scandinavian, retro-futurist, cottagecore]. Describe: 1) Color story — primary, secondary, accent colors with hex codes, 2) Texture and material — matte, glossy, rough, paper, glass, 3) Lighting style — dramatic, soft, natural, neon, 4) Composition preferences — symmetry, rule of thirds, negative space, 5) Image references — describe 4-6 specific images that capture the vibe, 6) Typography that fits the aesthetic. Write it so a designer could immediately start working.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> A rich mood board description for a "minimal tech blog" — colors, textures, lighting, and 6 image references.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+    <div class="prompt-card" data-category="creative-design">
+      <span class="prompt-category">Creative &amp; Design</span>
+      <div class="prompt-title">Creative Writing Idea Generator</div>
+      <div class="prompt-use">Use when: Starting a story, poem, or script</div>
+      <div class="prompt-text">Generate 5 creative writing prompts based on: [theme / genre / constraint]. For each: provide a logline (1-sentence hook), a central conflict, a unique twist or constraint, a protagonist description (name, flaw, desire), and a first paragraph (50-70 words) to establish tone and setting. Include at least one prompt that uses an unusual narrative device (second person, epistolary, non-linear). End with 3 "what if" questions to expand each idea.</div>
+      <div class="prompt-hint"><strong>💡 Example output:</strong> 5 story ideas like "A time-loop romance where only the antagonist remembers each reset" with logline, conflict, twist, and opening paragraph.</div>
+      <div class="prompt-actions">
+        <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy Prompt</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Premium CTA Section -->
+  <h2 class="section-title" style="text-align:center;">🚀 Level Up Your AI Game</h2>
+  <p class="section-subtitle" style="text-align:center;">You've got the prompts — now get the system to execute them</p>
+
+  <div class="premium-cta">
+    <div class="premium-card">
+      <div class="premium-icon">✅</div>
+      <h3>AI Implementation Checklist</h3>
+      <div class="price">€7</div>
+      <p>The exact checklist Scotty uses to deploy AI agents in his workflow. 47 action items across 8 phases — from tool selection to monitoring.</p>
+      <ul>
+        <li>8-phase implementation framework</li>
+        <li>47 actionable checklist items</li>
+        <li>Tool comparison matrix</li>
+        <li>Error-handling playbook</li>
+        <li>Printable PDF + Notion template</li>
+      </ul>
+      <a class="btn btn-primary" href="https://payhip.com/b/Vu3q0" target="_blank" rel="noopener">Get the Checklist →</a>
+    </div>
+
+    <div class="premium-card">
+      <div class="premium-icon">🚀</div>
+      <h3>30-Day AI Launch Plan</h3>
+      <div class="price">€17</div>
+      <p>The complete roadmap to launch your AI-powered product or service in 30 days. Used by 200+ founders to go from idea to revenue.</p>
+      <ul>
+        <li>Day-by-day action plan</li>
+        <li>Prompt engineering masterclass</li>
+        <li>Marketing &amp; launch templates</li>
+        <li>Revenue projection workbook</li>
+        <li>Post-launch optimization guide</li>
+      </ul>
+      <a class="btn btn-primary" href="https://payhip.com/b/9x3Ee" target="_blank" rel="noopener">Get the Launch Plan →</a>
+    </div>
+  </div>
+
+  <!-- Bottom CTA Banner -->
+  <div class="cta-section">
+    <h3>📚 Want All 60 Prompts in One Click?</h3>
+    <p>Download the free PDF with all 60 prompts plus bonus prompt engineering tips. No email required — instant access.</p>
+    <a class="btn btn-primary" href="https://payhip.com/b/fdwTJ" target="_blank" rel="noopener">📥 Download Free PDF →</a>
+    <a class="btn btn-outline" href="https://payhip.com/b/Vu3q0" target="_blank" rel="noopener">€7 Implementation Checklist →</a>
+  </div>
+
+  <div class="affiliate-disclosure" style="text-align:center;">
+    <p>Some links are affiliate links. GadgetHumans may earn a commission at no extra cost to you.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a>
+    <a href="/blog/">Blog</a>
+    <a href="/guides/">Buying Guides</a>
+    <a href="/pillar/ai-tools.html">AI Tools</a>
+    <a href="/prompts/">AI Prompt Library</a>
+    <a href="/payhip/prompt-library.html">Free AI Prompts</a>
+    <a href="/affiliate/amazon-deals.html">Amazon Deals</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — AI Tools &amp; Gear for Remote Workers</p>
+  <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases. Some links are affiliate — we may earn a commission at no extra cost to you.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="/js/script.js"></script>
+<script>
+  // Prompt Library specific JavaScript
+  (function() {
+    'use strict';
+
+    // Filter functionality
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var promptCards = document.querySelectorAll('.prompt-card');
+
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var filter = btn.getAttribute('data-filter');
+
+        // Update active button
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        // Show/hide prompts
+        promptCards.forEach(function(card) {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+          } else {
+            if (card.getAttribute('data-category') === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  })();
+
+  // Copy prompt function
+  function copyPrompt(btn) {
+    var card = btn.closest('.prompt-card');
+    var promptTextEl = card.querySelector('.prompt-text');
+    var text = promptTextEl.textContent.trim();
+
+    // Use the global copyToClipboard if available
+    if (window.copyToClipboard) {
+      window.copyToClipboard(text);
+    } else {
+      navigator.clipboard.writeText(text).then(function() {
+        var toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = 'Copied!';
+          toast.classList.add('show');
+          clearTimeout(toast._hide);
+          toast._hide = setTimeout(function() { toast.classList.remove('show'); }, 2500);
+        }
+      });
+    }
+
+    // Visual feedback on button
+    btn.classList.add('copied');
+    btn.textContent = '✓ Copied!';
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      btn.textContent = '📋 Copy Prompt';
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>
