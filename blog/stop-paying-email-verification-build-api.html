@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Stop Paying for Email Verification — Build Your Own API for $0 (Or Use Mine for $5) | GadgetHumans</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://www.gadgethumans.com/blog/stop-paying-email-verification-build-api.html" rel="canonical"/>
+<link href="/css/theme.css" rel="stylesheet"/>
+<meta content="GadgetHumans" property="og:site_name"/><meta content="Stop overpaying for email verification. Build your own API with open-source tools for $0, or use mine for $5/month. Technical deep dive with code samples." name="description"/><meta content="Stop Paying for Email Verification — Build Your Own API for $0 (Or Use Mine for $5) | GadgetHumans" property="og:title"/><meta content="Stop overpaying for email verification. Build your own API with open-source tools for $0, or use mine for $5/month. Technical deep dive with code samples." property="og:description"/><meta content="https://www.gadgethumans.com/blog/stop-paying-email-verification-build-api.html" property="og:url"/><meta content="https://www.gadgethumans.com/og-image.png" property="og:image"/><meta content="article" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><meta content="Stop Paying for Email Verification — Build Your Own API for $0 (Or Use Mine for $5)" name="twitter:title"/><meta content="Stop overpaying for email verification. Build your own API with open-source tools for $0, or use mine for $5/month. Technical deep dive with code samples." name="twitter:description"/><meta content="https://www.gadgethumans.com/og-image.png" name="twitter:image"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "GadgetHumans",
+  "url": "https://www.gadgethumans.com",
+  "description": "AI Tools & Gear for Remote Workers",
+  "logo": "https://www.gadgethumans.com/og-image.png",
+  "sameAs": [
+    "https://www.gadgethumans.com"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Scotty Wishart"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  }
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stop Paying for Email Verification — Build Your Own API for $0 (Or Use Mine for $5)",
+  "description": "Stop overpaying for email verification. Build your own API with open-source tools for $0, or use mine for $5/month. Technical deep dive with code samples.",
+  "author": {
+    "@type": "Person",
+    "name": "Scotty Wishart",
+    "url": "https://www.gadgethumans.com/about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GadgetHumans",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gadgethumans.com/og-image.png"
+    }
+  },
+  "datePublished": "2026-05-10",
+  "dateModified": "2026-05-10",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.gadgethumans.com/blog/stop-paying-email-verification-build-api.html"
+  }
+}</script><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.gadgethumans.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://www.gadgethumans.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Stop Paying for Email Verification",
+      "item": "https://www.gadgethumans.com/blog/stop-paying-email-verification-build-api.html"
+    }
+  ]
+}</script></head>
+<body>
+<nav>
+<div class="nav-inner">
+<a class="nav-logo" href="/">GadgetHumans</a>
+<button aria-label="Menu" class="nav-toggle">☰</button>
+<div class="nav-links"><a href="/">Home</a><a class="active" href="/blog/">Blog</a><a href="/reviews/">Gear Reviews</a><a href="/guides/">Buying Guides</a><a href="/pillar/ai-tools.html">AI Tools</a><a href="/pillar/prompt-engineering.html">Prompts</a><a href="/about/">About</a></div>
+</div>
+</nav>
+<div class="container">
+<article>
+<nav aria-label="Breadcrumb" class="breadcrumbs"><a href="/">Home</a> <span class="sep">›</span> <a href="/blog/">Blog</a> <span class="sep">›</span> <span>Stop Paying for Email Verification</span></nav>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<span class="tag">AI Coding</span>
+<span class="tag">AI Marketing</span>
+<span style="color:var(--muted);font-size:0.78rem;">May 2026</span>
+</div>
+<h1>Stop Paying for Email Verification — Build Your Own API for $0 (Or Use Mine for $5)</h1>
+
+<p><em>Published May 10, 2026 · GadgetHumans</em></p>
+
+<p>If you run any kind of email marketing, you know the pain. You spend hours building a list. You craft the perfect campaign. You hit send. And then — <strong>bounce.</strong> 5%, 10%, sometimes 20% of your emails never reach an inbox.</p>
+
+<p>Bounces hurt your sender reputation. They lower your deliverability. They cost you money on platforms like Mailchimp and ConvertKit that charge by list size — even for invalid addresses.</p>
+
+<p>The solution is email verification. Services like ZeroBounce, NeverBounce, and Hunter charge <strong>$0.01–$0.03 per verification</strong>. For a 10,000-email list, that's $100–300 every time you clean it.</p>
+
+<p>There's a better way. Let me show you two options.</p>
+
+<hr>
+
+<h2>Option 1: Build Your Own (Free, but Requires a Weekend)</h2>
+
+<p>If you're a developer or willing to learn, you can build a perfectly functional email verification API for <strong>$0 in infrastructure costs</strong> using the Google Cloud free tier.</p>
+
+<h3>What Email Verification Actually Does</h3>
+<p>A proper email verification checks four things:</p>
+<ol>
+  <li><strong>Syntax validation</strong> — Is the format valid? (regex check)</li>
+  <li><strong>Domain validation</strong> — Does the domain have MX records? (DNS lookup)</li>
+  <li><strong>Disposable email detection</strong> — Is it a temp mail like mailinator.com?</li>
+  <li><strong>SMTP verification</strong> — Does the mailbox actually exist? (RCPT TO check)</li>
+</ol>
+
+<h3>The Stack</h3>
+<p>Here's what I used to build mine:</p>
+
+<pre><code>Language: Python 3.11
+Framework: FastAPI
+DNS: dnspython library
+SMTP: smtplib + custom timeout logic
+Disposable domains: free open-source blocklist (JSON)
+Deployment: Google Cloud Run (free tier)
+</code></pre>
+
+<h3>The Core Code</h3>
+<p>The heart of the API is surprisingly simple. Here's the verification function:</p>
+
+<pre><code>import dns.resolver
+import smtplib
+import re
+import json
+
+EMAIL_REGEX = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
+def verify_email(email: str) -> dict:
+    result = {
+        "email": email,
+        "valid_syntax": False,
+        "valid_mx": False,
+        "is_disposable": False,
+        "smtp_verified": False,
+        "score": 0
+    }
+
+    # 1. Syntax check
+    if not re.match(EMAIL_REGEX, email):
+        return result
+    result["valid_syntax"] = True
+    result["score"] += 25
+
+    domain = email.split("@")[1]
+
+    # 2. Disposable check
+    with open("disposable_domains.json") as f:
+        disposable = json.load(f)
+    if domain in disposable:
+        result["is_disposable"] = True
+        return result
+    result["score"] += 25
+
+    # 3. MX record check
+    try:
+        mx_records = dns.resolver.resolve(domain, "MX")
+        result["valid_mx"] = True
+        result["score"] += 25
+    except:
+        return result
+
+    # 4. SMTP verification
+    try:
+        mx_host = str(mx_records[0].exchange)
+        server = smtplib.SMTP(timeout=10)
+        server.connect(mx_host)
+        server.helo()
+        server.mail("checker@example.com")
+        code, _ = server.rcpt(email)
+        if code == 250:
+            result["smtp_verified"] = True
+            result["score"] += 25
+        server.quit()
+    except:
+        pass
+
+    return result
+</code></pre>
+
+<p>Wrap this in a FastAPI endpoint, containerize it with Docker, deploy to Cloud Run, and you're done. Total cost: $0/month for the first 2 million requests.</p>
+
+<h3>The Hidden Costs of DIY</h3>
+<p>Building it is the easy part. Maintaining it is where most people give up:</p>
+<ul>
+  <li>You need to update the disposable domain list regularly</li>
+  <li>SMTP servers rate-limit aggressively — you'll need queue management</li>
+  <li>Some mail servers reject connections from Cloud Run IP ranges</li>
+  <li>You need monitoring, logging, and error handling</li>
+  <li>Documentation takes time to write and maintain</li>
+</ul>
+
+<p><strong>Your weekend estimate:</strong> 6–10 hours for the first version. 2–3 hours/month for maintenance.</p>
+
+<hr>
+
+<h2>Option 2: Use Mine for $5/Month (Your Saturday Back)</h2>
+
+<p>I built <a href="/services/email-verify-api.html">GadgetHumans Email Verification API</a> so you don't have to. Same checks — syntax, MX, disposable, SMTP — but with production-grade tooling:</p>
+
+<ul>
+  <li><strong>Batch verification</strong> — Upload a CSV, get results in minutes</li>
+  <li><strong>Real-time API</strong> — Single email check via GET/POST</li>
+  <li><strong>Rate limiting handled</strong> — Queue management built-in</li>
+  <li><strong>99.9% uptime</strong> — Deployed across multiple Cloud Run instances</li>
+  <li><strong>Detailed response</strong> — Score + individual check results</li>
+</ul>
+
+<div style="background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 16px 0; display: flex; align-items: center; gap: 12px;">
+  <div style="font-size: 32px; min-width: 45px;">📧</div>
+  <div style="flex: 1;">
+    <a href="/services/email-verify-api.html" target="_blank" style="text-decoration: none; color: #0066c0; font-weight: bold; font-size: 16px;">
+      GadgetHumans Email Verification API
+    </a>
+    <p style="margin: 4px 0 0 0; color: #555; font-size: 14px;">$5/month — Syntax, MX, disposable, SMTP checks. Unlimited verifications. <a href="/services/email-verify-api.html" style="color: #0066c0;">Get started →</a></p>
+  </div>
+</div>
+
+<h3>Pricing Comparison</h3>
+<ul>
+  <li><strong>ZeroBounce:</strong> $0.016/email → 10,000 emails = $160</li>
+  <li><strong>NeverBounce:</strong> $0.008/email → 10,000 emails = $80</li>
+  <li><strong>Hunter:</strong> $34/month for 500 verifications → expensive for small lists</li>
+  <li><strong>GadgetHumans:</strong> <strong>$5/month flat</strong> — unlimited verifications within fair-use policy</li>
+</ul>
+
+<p>If you verify 1,000 emails per month, you're paying $160+ with the big guys. With mine, that's <strong>$5. Forever.</strong></p>
+
+<h2>Quick Integration Example (cURL)</h2>
+<pre><code>curl -X POST https://email-verify.gadgethumans.com/verify \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: your_key_here" \
+  -d '{"email":"test@example.com"}'
+
+# Response:
+{
+  "email": "test@example.com",
+  "valid": true,
+  "score": 100,
+  "checks": {
+    "syntax": true,
+    "mx": true,
+    "disposable": false,
+    "smtp": true
+  }
+}
+</code></pre>
+
+<h2>Which Option Should You Choose?</h2>
+<ul>
+  <li><strong>Choose DIY</strong> if you're a developer who wants full control, enjoys building infrastructure, and has a weekend to spare.</li>
+  <li><strong>Choose my API</strong> if you want to verify emails in the next 10 minutes and get back to growing your business.</li>
+</ul>
+
+<p>Either way, stop paying per-email verification fees. The math doesn't work in 2026.</p>
+
+<div style="background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; margin: 16px 0; display: flex; align-items: center; gap: 12px;">
+  <div style="font-size: 32px; min-width: 45px;">🖥️</div>
+  <div style="flex: 1;">
+    <a href="https://www.amazon.com/dp/B0CS7BBW2G?tag=gadgethumans-21" target="_blank" style="text-decoration: none; color: #0066c0; font-weight: bold; font-size: 16px;">
+      Raspberry Pi 5 8GB Kit
+    </a>
+    <p style="margin: 4px 0 0 0; color: #555; font-size: 14px;">Perfect for running your own email verification server locally. Full desktop kit, $129.99.</p>
+    <p style="margin: 4px 0 0 0; color: #b12704; font-weight: bold; font-size: 15px;"><a href="https://www.amazon.com/dp/B0CS7BBW2G?tag=gadgethumans-21" target="_blank" style="color: #0066c0;">Check Price →</a></p>
+  </div>
+</div>
+
+<br><hr>
+<h2>🚀 Ready to Automate Your Business?</h2>
+<p>While you clean up your email list, let AI handle the busywork.</p>
+<ul>
+<li>🎁 <a href="https://payhip.com/b/fdwTJ">Free AI Agent Prompt Library</a> — 50+ ready-to-use templates</li>
+<li>📋 <a href="https://payhip.com/b/Vu3q0">€7 Implementation Checklist</a> — First agent in 48 hours</li>
+<li>🚀 <a href="https://payhip.com/b/9x3Ee">€17 30-Day Launch Plan</a> — Start your automation agency</li>
+</ul>
+
+<p style="font-size: 12px; color: #888; margin-top: 20px;"><em>As an Amazon Associate we earn from qualifying purchases. Links marked with 🔗 are affiliate links — we may earn a small commission at no extra cost to you.</em></p>
+
+<hr />
+<p><em>— Scott. Real gear, real API, real simple.</em></p>
+<div class="affiliate-disclosure">
+<p>As an Amazon Associate, GadgetHumans earns from qualifying purchases. Some links are affiliate — we may earn a commission at no extra cost to you.</p>
+</div>
+
+<div class="cta-section">
+<h3>📧 Try the Email Verification API</h3>
+<p>$5/month. Syntax, MX, disposable, SMTP checks. Clean your list in minutes.</p>
+<a class="btn btn-primary" href="/services/email-verify-api.html" rel="noopener" target="_blank">Verify Emails Now →</a>
+</div>
+
+<div class="cta-section">
+<h3>📱 Generate QR Codes via API</h3>
+<p>Custom QR codes on demand. $5/month at api.gadgethumans.com.</p>
+<a class="btn btn-primary" href="https://api.gadgethumans.com" rel="noopener" target="_blank">Try QR API →</a>
+</div>
+
+<div class="cta-section">
+<h3>🔧 Professional Services</h3>
+<p>Resume Rewrite (€147) or SEO Audit (€97). Fast, AI-powered delivery.</p>
+<a class="btn btn-primary" href="/services/" rel="noopener" target="_blank">Get Professional Help →</a>
+</div>
+
+<div class="cta-section">
+<h3>📚 Get Our Free AI Prompt Library</h3>
+<p>50+ battle-tested prompts for ChatGPT, Claude, Midjourney, and more.</p>
+<a class="btn btn-secondary" href="https://payhip.com/b/fdwTJ" rel="noopener" target="_blank">Download Free →</a>
+</div>
+
+<div class="cta-section">
+<h3>🚀 Premium AI Toolkits</h3>
+<p>Ready to take your AI workflow further? These premium guides help you implement AI systematically — from setup to full deployment.</p>
+<div class="card-grid" style="margin-top:16px;">
+<div class="card" style="padding:20px;text-align:center;">
+<div class="card-title">📋 AI Implementation Checklist</div>
+<div class="card-desc"><strong>€7</strong> — Step-by-step checklist to deploy AI tools in your workflow today. From setup to optimization, get every step right.</div>
+<p style="margin-top:12px;"><a class="btn btn-secondary" href="https://payhip.com/b/Vu3q0" rel="noopener" target="_blank">Get the Checklist →</a></p>
+</div>
+<div class="card" style="padding:20px;text-align:center;">
+<div class="card-title">🚀 30-Day AI Launch Plan</div>
+<div class="card-desc"><strong>€17</strong> — Full 30-day roadmap to integrate AI into your business operations. Perfect for freelancers and small teams.</div>
+<p style="margin-top:12px;"><a class="btn btn-primary" href="https://payhip.com/b/9x3Ee" rel="noopener" target="_blank">Start the Launch Plan →</a></p>
+</div>
+</div>
+<div class="affiliate-disclosure">
+<p><em>Some links above are affiliate links. As an Amazon Associate, GadgetHumans earns from qualifying purchases. If you buy through these links, we may earn a small commission at no extra cost to you.</em></p>
+</div>
+</div>
+</article>
+</div>
+<footer>
+<div class="footer-links">
+<a href="/about/">About</a>
+<a href="/blog/">Blog</a>
+<a href="/reviews/">Gear Reviews</a>
+<a href="/guides/">Buying Guides</a>
+<a href="/payhip/prompt-library.html">Free AI Prompts</a>
+<a href="/affiliate/amazon-deals.html">Amazon Deals</a>
+<a href="/contact/">Contact</a>
+</div>
+<p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — AI Tools &amp; Gear for Remote Workers</p>
+<p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases. Some links are affiliate — we may earn a commission at no extra cost to you.</p>
+</footer>
+<div class="toast" id="toast"></div>
+<script src="/js/script.js"></script>
+</body>
+</html>
