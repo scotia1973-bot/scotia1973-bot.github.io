@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build and Deploy a Serverless API on Cloudflare Workers (2026 Guide) - GadgetHumans</title>
+<meta name="description" content="Step-by-step guide to building serverless APIs on Cloudflare Workers. Includes real examples from QR code generation and email verification APIs.">
+<meta name="keywords" content="cloudflare workers api, serverless api tutorial, build api cloudflare workers, cloudflare workers guide, serverless api 2026">
+<link rel="canonical" href="https://www.gadgethumans.com/blog/build-serverless-api-cloudflare-workers.html">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
+  h1, h2, h3 { color: #1a1a1a; }
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+  .cta { background: #0070f3; color: white; text-align: center; padding: 30px; border-radius: 10px; margin: 30px 0; }
+  .cta a { color: white; font-weight: bold; font-size: 1.2em; text-decoration: underline; }
+</style>
+</head>
+<body>
+<h1>How to Build and Deploy a Serverless API on Cloudflare Workers (2026 Guide)</h1>
+<p>Cloudflare Workers is one of the cheapest, fastest ways to deploy an API. I built two production APIs with it — a <a href="https://api.gadgethumans.com/">QR Code Generator</a> and an <a href="https://email-verify.scotia1973.workers.dev/">Email Verification service</a> — without spending a cent on infrastructure.</p>
+
+<p>Here's exactly how I did it.</p>
+
+<h2>Why Cloudflare Workers?</h2>
+<ul>
+  <li><strong>Free tier:</strong> 100,000 requests/day for free</li>
+  <li><strong>Global:</strong> Deployed to 330+ data centers</li>
+  <li><strong>Fast:</strong> Cold starts in microseconds</li>
+  <li><strong>Simple:</strong> One JavaScript file = one API</li>
+  <li><strong>No servers:</strong> No EC2, no Kubernetes, no Docker</li>
+</ul>
+
+<h2>Step 1: Set Up Wrangler</h2>
+<pre>npm install -g wrangler
+wrangler login</pre>
+
+<p>This connects your terminal to your Cloudflare account.</p>
+
+<h2>Step 2: Create a Worker</h2>
+<pre>npx wrangler init my-api
+cd my-api</pre>
+
+<p>This creates a minimal worker with a single <code>index.js</code> file.</p>
+
+<h2>Step 3: Write Your API</h2>
+<p>Here's a minimal QR code API in under 50 lines:</p>
+<pre>export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const text = url.searchParams.get('text') || 'https://example.com';
+    
+    // Generate QR code matrix
+    const qr = generateQRCode(text);
+    
+    return new Response(qr.toSVG(), {
+      headers: { 'Content-Type': 'image/svg+xml' }
+    });
+  }
+};</pre>
+
+<h2>Step 4: Deploy</h2>
+<pre>wrangler deploy</pre>
+
+<p>Your API is live on <code>*.workers.dev</code> in under 30 seconds.</p>
+
+<h2>Step 5: Add a Custom Domain</h2>
+<pre># wrangler.toml
+routes = [
+  { pattern = "api.yourdomain.com", zone_id = "your_zone_id" }
+]</pre>
+
+<h2>Real Examples</h2>
+
+<h3>QR Code API</h3>
+<p>I built a full-featured QR code API that generates PNG, SVG, and GIF output with custom colors and error correction. It's running on Cloudflare Workers at <a href="https://api.gadgethumans.com/">api.gadgethumans.com</a> with a free tier of 100 requests/day.</p>
+
+<h3>Email Verify API</h3>
+<p>An email verification API that does format checks, DNS MX lookups, and disposable email detection. Also on Cloudflare Workers at <a href="https://email-verify.scotia1973.workers.dev/">email-verify.scotia1973.workers.dev</a> with 50 free verifications/day.</p>
+
+<h2>Pro Tips</h2>
+<ul>
+  <li><strong>Use KV for storage:</strong> Great for rate limiting, API keys, and session data</li>
+  <li><strong>Use Secrets:</strong> Store API keys and tokens via <code>wrangler secret put</code></li>
+  <li><strong>Stripe integration:</strong> Workers can handle Stripe webhooks for payment processing</li>
+  <li><strong>CORS headers:</strong> Always set <code>Access-Control-Allow-Origin: *</code> for public APIs</li>
+</ul>
+
+<h2>Cost Breakdown</h2>
+<ul>
+  <li><strong>Cloudflare Workers:</strong> $0/mo (free tier covers 100K requests/day)</li>
+  <li><strong>Custom domain:</strong> Free with Cloudflare DNS</li>
+  <li><strong>Wrangler CLI:</strong> Free</li>
+  <li><strong>Total:</strong> $0 to build and deploy</li>
+</ul>
+
+<p>If you're building an API, start with Cloudflare Workers. You can't beat free, fast, and simple.</p>
+
+<div class="cta">
+  <p>Need a ready-to-use QR Code API or Email Verification API?</p>
+  <p><a href="https://api.gadgethumans.com/">Try QR Code API →</a> | <a href="https://email-verify.scotia1973.workers.dev/">Try Email Verify →</a></p>
+  <p>Both have free tiers. No signup needed.</p>
+</div>
+
+<p><em>This blog post contains affiliate links. We may earn a commission if you upgrade to a paid plan.</em></p>
+</body>
+</html>
