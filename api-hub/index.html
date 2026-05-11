@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Developer APIs — Gadget Humans API Hub</title>
+  <meta name="description" content="8 free developer APIs: QR codes, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON prettify, color converter. $5/mo Pro. No signup required.">
+  <meta property="og:title" content="Gadget Humans API Hub — 8 Free Developer APIs">
+  <meta property="og:description" content="Free REST APIs for developers. No signup. $5/mo for production use.">
+  <meta property="og:image" content="https://www.gadgethumans.com/og-image.png">
+  <link rel="canonical" href="https://www.gadgethumans.com/api-hub/">
+  <link rel="stylesheet" href="/css/theme.css?v=3">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.1);
+      --text: #f5f5f7;
+      --text2: #aeaeb2;
+      --accent: #0A84FF;
+      --accent-hover: #409CFF;
+      --success: #34C759;
+      --font: 'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 22px; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 80px 20px 40px; }
+    .hero h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .hero .tagline { color: var(--text2); font-size: 1.2rem; max-width: 600px; margin: 0 auto 32px; }
+    .hero .stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
+    .hero .stat { text-align: center; }
+    .hero .stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .hero .stat-label { color: var(--text2); font-size: 0.85rem; }
+    .btn-primary { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, var(--accent), #5E5CE6); color: white; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.05rem; transition: transform 0.15s; }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-secondary { display: inline-block; padding: 14px 32px; background: var(--bg-card); color: var(--text); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; font-weight: 500; margin-left: 12px; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+    /* API Grid */
+    .api-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 40px 0; }
+    .api-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: all 0.2s; position: relative; }
+    .api-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(10,132,255,0.15); }
+    .api-card .emoji { font-size: 2rem; margin-bottom: 8px; }
+    .api-card h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .api-card p { color: var(--text2); font-size: 0.9rem; margin-bottom: 12px; }
+    .api-card .endpoint { font-family: 'SF Mono', monospace; font-size: 0.8rem; background: rgba(255,255,255,0.08); padding: 6px 10px; border-radius: 6px; color: var(--accent); display: inline-block; margin-bottom: 12px; }
+    .api-card .actions { display: flex; gap: 8px; margin-top: 12px; }
+    .api-card .try-btn { padding: 8px 16px; background: rgba(10,132,255,0.15); color: var(--accent); border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+    .api-card .try-btn:hover { background: rgba(10,132,255,0.25); }
+    .api-card .sub-btn { padding: 8px 16px; background: var(--success); color: #000; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .api-card .sub-btn:hover { opacity: 0.9; }
+
+    /* Pricing */
+    .pricing-section { margin: 60px 0; }
+    .pricing-section h2 { text-align: center; font-size: 2rem; margin-bottom: 32px; }
+    .pricing-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; width: 280px; text-align: center; }
+    .pricing-card.popular { border-color: var(--accent); position: relative; }
+    .pricing-card .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .pricing-card .price { font-size: 2.5rem; font-weight: 700; margin: 16px 0; }
+    .pricing-card .price small { font-size: 1rem; font-weight: 400; color: var(--text2); }
+    .pricing-card ul { list-style: none; margin: 20px 0; }
+    .pricing-card ul li { padding: 6px 0; color: var(--text2); font-size: 0.9rem; }
+    .pricing-card ul li:before { content: "✅ "; }
+    .pricing-card .btn { display: inline-block; padding: 12px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; width: 100%; }
+    .pricing-card .btn-pro { background: linear-gradient(135deg, var(--accent), #5E5CE6); color: white; }
+    .pricing-card .btn-biz { background: linear-gradient(135deg, #5E5CE6, #BF5AF2); color: white; }
+    .pricing-card .btn-free { background: rgba(255,255,255,0.08); color: var(--text); }
+    .pricing-card .btn:hover { opacity: 0.9; }
+
+    /* Quick Start */
+    .quickstart { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin: 40px 0; }
+    .quickstart h2 { margin-bottom: 16px; }
+    .quickstart pre { background: #1a1a2e; color: #e4e4e4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.9rem; margin: 12px 0; }
+    .quickstart code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
+
+    footer { text-align: center; padding: 40px 0; color: var(--text2); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>⚡ 8 Free Developer APIs</h1>
+      <p class="tagline">REST APIs for the tools you use every day. No signup, no API key required for the free tier. $5/mo for production.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-num">8</div><div class="stat-label">APIs</div></div>
+        <div class="stat"><div class="stat-num">100</div><div class="stat-label">Free Req/Day</div></div>
+        <div class="stat"><div class="stat-num">$5</div><div class="stat-label">Pro /mo</div></div>
+        <div class="stat"><div class="stat-num">10K</div><div class="stat-label">Pro Req/Day</div></div>
+      </div>
+      <a href="#pricing" class="btn-primary">See Pricing</a>
+      <a href="#quickstart" class="btn-secondary">Quick Start</a>
+    </div>
+
+    <div class="api-grid">
+      <div class="api-card">
+        <div class="emoji">📱</div>
+        <h3>QR Code API</h3>
+        <p>Generate QR codes from any text or URL. PNG and SVG output.</p>
+        <span class="endpoint">GET /qr?text=...&format=png|svg</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/qr?text=https://example.com" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/qr/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=qr&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">🔑</div>
+        <h3>Password Generator</h3>
+        <p>Generate secure passwords. Configurable length, symbols, numbers, uppercase.</p>
+        <span class="endpoint">GET /password?length=16&symbols=true</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/password?length=16" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/password/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=password&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">🎲</div>
+        <h3>UUID Generator</h3>
+        <p>Generate UUID v4 identifiers. Single or batch up to 1000 with paid plan.</p>
+        <span class="endpoint">GET /uuid?count=1</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/uuid" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/uuid/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=uuid&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">📁</div>
+        <h3>Hash Generator</h3>
+        <p>Hash text with MD5, SHA-1, SHA-256, SHA-512. Get all at once.</p>
+        <span class="endpoint">GET /hash?text=hello&algorithm=sha256</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/hash?text=hello&algorithm=sha256" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/hash/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=hash&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">🔤</div>
+        <h3>Base64 Encoder/Decoder</h3>
+        <p>Encode or decode Base64 instantly. Supports up to 50K chars.</p>
+        <span class="endpoint">GET /base64?text=hello&mode=encode|decode</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/base64?text=hello&mode=encode" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/base64/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=base64&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">📝</div>
+        <h3>Lorem Ipsum Generator</h3>
+        <p>Generate placeholder text. Paragraphs, words, or sentences.</p>
+        <span class="endpoint">GET /lorem?type=paragraphs&count=3</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/lorem?type=paragraphs&count=3" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/lorem/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=lorem&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">📋</div>
+        <h3>JSON Prettify API</h3>
+        <p>Validate, prettify, and minify JSON strings.</p>
+        <span class="endpoint">GET /json?json={"k":"v"}&mode=prettify|minify|validate</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/json?json=%7B%22name%22:%22test%22%7D&mode=prettify" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/json/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=json&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+
+      <div class="api-card">
+        <div class="emoji">🎨</div>
+        <h3>Color Converter</h3>
+        <p>Convert colors between HEX and RGB formats.</p>
+        <span class="endpoint">GET /color?value=%23ff0000&from=hex&to=rgb</span>
+        <div class="actions">
+          <a href="https://api.gadgethumans.com/color?value=%23ff0000&from=hex&to=rgb" class="try-btn" target="_blank">Try it →</a>
+          <a href="https://api.gadgethumans.com/color/" class="try-btn">Docs</a>
+          <a href="https://api.gadgethumans.com/subscribe?api=color&tier=pro" class="sub-btn">$5/mo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-section" id="pricing">
+      <h2>Simple Pricing</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>🆓 Free</h3>
+          <div class="price">$0 <small>/mo</small></div>
+          <ul>
+            <li>100 requests/day per API</li>
+            <li>All 8 APIs included</li>
+            <li>No signup required</li>
+            <li>Rate limited per IP</li>
+          </ul>
+          <span class="btn btn-free">Ready to use</span>
+        </div>
+        <div class="pricing-card popular">
+          <span class="badge">POPULAR</span>
+          <h3>🚀 Pro</h3>
+          <div class="price">$5 <small>/mo</small></div>
+          <ul>
+            <li>10,000 requests/day per API</li>
+            <li>Dedicated API key</li>
+            <li>Batch operations (up to 100)</li>
+            <li>Higher rate limits</li>
+          </ul>
+          <a href="https://api.gadgethumans.com/subscribe?api=general&tier=pro" class="btn btn-pro">Subscribe →</a>
+        </div>
+        <div class="pricing-card">
+          <h3>💼 Business</h3>
+          <div class="price">$15 <small>/mo</small></div>
+          <ul>
+            <li>100,000 requests/day per API</li>
+            <li>Dedicated API key</li>
+            <li>Priority support</li>
+            <li>No rate limits</li>
+          </ul>
+          <a href="https://api.gadgethumans.com/subscribe?api=general&tier=biz" class="btn btn-biz">Subscribe →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="quickstart" id="quickstart">
+      <h2>🚀 Quick Start</h2>
+      <p>No API key needed for the free tier. Just make a GET request:</p>
+      <pre># Generate a secure password
+curl https://api.gadgethumans.com/password?length=16
+
+# Create a QR code (saves as PNG)
+curl https://api.gadgethumans.com/qr?text=https://example.com > qr.png
+
+# Hash a string
+curl https://api.gadgethumans.com/hash?text=hello&algorithm=sha256
+
+# Generate a UUID
+curl https://api.gadgethumans.com/uuid</pre>
+      <p>For production use, <a href="https://api.gadgethumans.com/subscribe?api=general&tier=pro" style="color: #0A84FF;">subscribe to Pro ($5/mo)</a> for higher limits and a dedicated API key.</p>
+    </div>
+
+    <footer>
+      <p>Powered by <a href="https://gadgethumans.com">Gadget Humans</a> · <a href="https://gadgethumans.com/services">Services</a> · <a href="https://gadgethumans.com/blog">Blog</a> · <a href="mailto:scotia1973@gmail.com">Contact</a></p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">All APIs run on Cloudflare Workers · Uptime 99.9% · Global edge network</p>
+    </footer>
+  </div>
+</body>
+</html>
