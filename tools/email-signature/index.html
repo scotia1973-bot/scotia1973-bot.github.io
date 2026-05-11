@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <meta name="p:domain_verify" content="8f84b78dc448265e46a961b39ed56e32"/>
+  <title>Email Signature Generator with QR — GadgetHumans</title>
+  <meta name="description" content="Create a professional email signature with your photo, contact info, and a QR code. Copy HTML or download. One-time payment.">
+  <meta name="keywords" content="email signature, generator, QR code, professional, HTML signature, free online tool, gadget humans">
+  <meta property="og:title" content="Email Signature Generator with QR — GadgetHumans">
+  <meta property="og:description" content="Create a professional email signature with your photo, contact info, and a QR code. One-time payment.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/email-signature/">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/email-signature/">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <style>
+    .tool-hero { text-align: center; padding: 40px 20px 24px; }
+    .tool-hero h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); margin-bottom: 8px; }
+    .tool-hero p { font-size: 0.95rem; color: var(--text2); max-width: 560px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; margin-bottom: 16px; }
+    .back-link:hover { text-decoration: underline; }
+
+    .tool-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--radius-xl); padding: 32px; max-width: 860px; margin: 24px auto; box-shadow: var(--glass-shadow-hover); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 14px; text-align: left; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--glass-bg); color: var(--text); font-family: var(--font); font-size: 0.85rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .form-group input::placeholder { color: var(--muted); }
+    .form-group .hint { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    .photo-upload { position: relative; width: 100px; height: 100px; border-radius: 50%; border: 2px dashed var(--border); overflow: hidden; cursor: pointer; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; background: var(--bg-deep); transition: all 0.25s; }
+    .photo-upload:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .photo-upload img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-upload .placeholder { font-size: 2rem; color: var(--muted); }
+    .photo-upload input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+    /* Signature Preview */
+    .preview-section { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; background: #fff; margin: 16px 0; text-align: left; min-height: 120px; position: relative; }
+    .preview-section .label { position: absolute; top: -10px; left: 16px; background: var(--glass-bg); padding: 0 8px; font-size: 0.72rem; font-weight: 600; color: var(--muted); border-radius: 4px; }
+    .preview-section.dark-bg { background: #1a1a2e; }
+    .preview-section.dark-bg .sig-name { color: #fff !important; }
+    .preview-section.dark-bg .sig-title { color: #a78bfa !important; }
+    .preview-section.dark-bg .sig-company { color: #60a5fa !important; }
+    .preview-section.dark-bg .sig-detail { color: #9ca3af !important; }
+    .preview-section.dark-bg .sig-divider { border-color: rgba(255,255,255,0.1) !important; }
+
+    .sig-name { font-size: 1.1rem; font-weight: 700; color: #1d1d1f; }
+    .sig-title { font-size: 0.85rem; color: #007AFF; font-weight: 500; }
+    .sig-company { font-size: 0.85rem; color: #5856D6; font-weight: 500; }
+    .sig-detail { font-size: 0.78rem; color: #666; line-height: 1.6; }
+    .sig-divider { border: none; border-top: 1px solid #e5e5e5; margin: 8px 0; }
+
+    .sig-row { display: flex; gap: 16px; align-items: flex-start; }
+    .sig-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #f0f2f5; }
+    .sig-photo-placeholder { width: 72px; height: 72px; border-radius: 50%; background: #f0f2f5; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #999; flex-shrink: 0; }
+    .sig-info { flex: 1; min-width: 0; }
+    .sig-qr { width: 72px; height: 72px; flex-shrink: 0; border-radius: 8px; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .sig-qr img { width: 100%; height: 100%; object-fit: contain; }
+
+    .btn-generate { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 14px var(--accent-glow); }
+    .btn-generate:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-generate.loading { pointer-events: none; }
+    .btn-generate .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    .btn-generate.loading .spinner { display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .stripe-section { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 24px; }
+    .stripe-section .price-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 4px 14px; border-radius: 980px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; }
+    .stripe-section h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .stripe-section p { font-size: 0.85rem; color: var(--text2); max-width: 480px; margin: 0 auto 16px; }
+    .btn-stripe { display: inline-flex; align-items: center; gap: 8px; padding: 14px 36px; background: #635bff; color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; text-decoration: none; box-shadow: 0 4px 14px rgba(99, 91, 255, 0.35); }
+    .btn-stripe:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 91, 255, 0.45); }
+
+    .status-msg { text-align: center; padding: 12px; border-radius: var(--radius); font-size: 0.85rem; margin-top: 16px; display: none; }
+    .status-msg.success { display: block; background: rgba(52,199,89,0.1); border: 1px solid var(--success); color: var(--success); }
+    .status-msg.error { display: block; background: rgba(255,59,48,0.1); border: 1px solid var(--danger); color: var(--danger); }
+    .status-msg.info { display: block; background: rgba(0,122,255,0.1); border: 1px solid var(--accent); color: var(--accent); }
+
+    .action-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+    .btn-copy { display: inline-flex; align-items: center; gap: 6px; padding: 10px 24px; background: var(--success); color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .btn-copy:hover { background: #28a745; }
+    .btn-download { display: inline-flex; align-items: center; gap: 6px; padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
+    .btn-download:hover { background: var(--accent-hover); }
+
+    .theme-toggle { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .theme-toggle label { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+    .theme-toggle input[type="checkbox"] { accent-color: var(--accent); }
+
+    @media (max-width: 480px) {
+      .tool-card { padding: 20px 16px; }
+      .tool-hero h1 { font-size: 1.4rem; }
+      .sig-row { flex-wrap: wrap; }
+      .sig-photo, .sig-photo-placeholder, .sig-qr { width: 56px; height: 56px; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="tool-hero">
+    <a class="back-link" href="/tools/">← Back to Tools</a>
+    <h1>📧 Email Signature Generator with QR</h1>
+    <p>Create a professional email signature with your photo, contact info, and a QR code that links to your website. Copy the HTML or download it.</p>
+  </div>
+
+  <!-- API Banner -->
+  <div class="api-banner" style="margin: 0 auto 24px; max-width: 860px; padding: 16px 20px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: var(--radius-lg); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;">
+    <span style="font-size: 0.9rem; font-weight: 600;">⚡ Includes QR Code from</span>
+    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 5px 14px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.78rem; font-weight: 600;">📱 QR Code API</a>
+    <span style="font-size: 0.78rem; color: var(--muted);">— Free tier available</span>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="tool-card" id="toolCard">
+    <div class="two-col">
+      <!-- Form Column -->
+      <div>
+        <h2 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">👤 Your Details</h2>
+
+        <div style="text-align: center;">
+          <div class="photo-upload" id="photoUpload">
+            <div class="placeholder" id="photoPlaceholder">📷</div>
+            <img id="photoPreview" style="display:none;" alt="Your photo">
+            <input type="file" id="photoInput" accept="image/*">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sigName">Full Name *</label>
+          <input type="text" id="sigName" placeholder="John Doe" value="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="sigTitle">Job Title *</label>
+          <input type="text" id="sigTitle" placeholder="Software Engineer" value="Software Engineer">
+        </div>
+        <div class="form-group">
+          <label for="sigCompany">Company *</label>
+          <input type="text" id="sigCompany" placeholder="Acme Inc." value="Acme Inc.">
+        </div>
+        <div class="form-group">
+          <label for="sigEmail">Email *</label>
+          <input type="email" id="sigEmail" placeholder="john@example.com" value="john@example.com">
+        </div>
+        <div class="form-group">
+          <label for="sigPhone">Phone</label>
+          <input type="text" id="sigPhone" placeholder="+1 (555) 123-4567">
+        </div>
+        <div class="form-group">
+          <label for="sigWebsite">Website</label>
+          <input type="url" id="sigWebsite" placeholder="https://example.com" value="https://www.gadgethumans.com">
+        </div>
+        <div class="form-group">
+          <label for="sigLinkedIn">LinkedIn</label>
+          <input type="url" id="sigLinkedIn" placeholder="https://linkedin.com/in/yourprofile">
+        </div>
+
+        <div class="theme-toggle">
+          <label for="darkPreview">Dark mode preview</label>
+          <input type="checkbox" id="darkPreview">
+        </div>
+      </div>
+
+      <!-- Preview Column -->
+      <div>
+        <h2 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">👁️ Preview</h2>
+
+        <div class="preview-section" id="previewSection">
+          <div class="label">Signature Preview</div>
+          <div id="sigPreview">
+            <div class="sig-row">
+              <div class="sig-photo-placeholder" id="previewPhotoPlaceholder">👤</div>
+              <img class="sig-photo" id="previewPhoto" style="display:none;" alt="">
+              <div class="sig-info">
+                <div class="sig-name" id="previewName">John Doe</div>
+                <div class="sig-title" id="previewTitle">Software Engineer</div>
+                <div class="sig-company" id="previewCompany">Acme Inc.</div>
+                <hr class="sig-divider">
+                <div class="sig-detail" id="previewEmail">✉️ john@example.com</div>
+                <div class="sig-detail" id="previewPhone" style="display:none;"></div>
+                <div class="sig-detail" id="previewWebsite" style="display:none;"></div>
+                <div class="sig-detail" id="previewLinkedIn" style="display:none;"></div>
+              </div>
+              <div class="sig-qr" id="qrContainer">
+                <img id="qrImage" src="" alt="QR Code" style="display:none;">
+                <span id="qrPlaceholder" style="font-size:0.55rem;color:#999;text-align:center;display:flex;align-items:center;justify-content:center;height:100%;">QR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paid / Generate Section -->
+        <div id="paidContent" style="text-align: center; margin-top: 16px;">
+          <div id="prePayment">
+            <p style="font-size: 0.85rem; color: var(--text2); margin-bottom: 16px;">
+              Generate your signature with a QR code. One-time payment.
+            </p>
+            <div class="stripe-section">
+              <div class="price-badge">One-Time Payment</div>
+              <h3>Create Your Email Signature</h3>
+              <p>Includes professional HTML signature with photo, contact info, and QR code from the GadgetHumans QR Code API.</p>
+              <a href="https://buy.stripe.com/YOUR_SIGNATURE_LINK" target="_blank" rel="noopener" class="btn-stripe" id="stripePayBtn">
+                <span>💳</span> Pay $3.00 — Generate Signature
+              </a>
+              <p style="font-size: 0.72rem; color: var(--muted); margin-top: 10px;">Multi-currency: €3.00 EUR / £2.50 GBP • Secure checkout via Stripe</p>
+            </div>
+          </div>
+          <div id="postPayment" style="display: none;">
+            <button class="btn-generate" id="generateBtn">
+              <span class="spinner"></span>
+              <span class="btn-text">⚡ Generate Signature</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="status-msg" id="statusMsg"></div>
+
+        <div class="action-btns" id="actionBtns" style="display:none;">
+          <button class="btn-copy" id="copyBtn">📋 Copy HTML</button>
+          <button class="btn-download" id="downloadBtn">⬇️ Download .html</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pro Tip -->
+  <div class="card" style="max-width: 860px; margin: 24px auto; padding: 20px 24px;">
+    <div style="display: flex; align-items: flex-start; gap: 12px;">
+      <div style="font-size: 1.5rem; line-height: 1;">💡</div>
+      <div style="flex: 1;">
+        <p style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 700; color: var(--text);">Pro Tip — Look Professional From Day One</p>
+        <p style="margin: 0; font-size: 0.8rem; color: var(--text2); line-height: 1.5;">
+          A great email signature is just the start. Streamline your workflow with the
+          <a href="https://www.amazon.com/dp/B0C1L2R97K?tag=gadgethumans-21" target="_blank" rel="nofollow sponsored" style="color: var(--accent); text-decoration: underline; font-weight: 600;">📬 Belkin BoostCharge USB-C Hub</a>
+          — keep your desk clean and stay productive. A favorite among remote pros on Amazon.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="card" style="max-width: 860px; margin: 24px auto; padding: 28px 24px;">
+    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">🔧 How It Works</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">📝</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">1. Fill in Details</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">Name, title, company, contact info</p>
+      </div>
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">💳</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">2. Pay Once</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">$3 one-time via Stripe</p>
+      </div>
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">📋</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">3. Copy or Download</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">HTML ready for Gmail, Outlook, Apple Mail</p>
+      </div>
+    </div>
+    <p style="font-size: 0.82rem; color: var(--text2); margin-top: 16px; text-align: center;">
+      The QR code in your signature is generated live via the <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="color: var(--accent);">GadgetHumans QR Code API</a>
+      — recipients can scan it to visit your website instantly.
+    </p>
+  </div>
+
+  <!-- Premium CTA -->
+  <div class="card" style="max-width: 620px; margin: 40px auto 24px; text-align: center;">
+    <div style="position: relative; z-index: 1;">
+      <h3 style="margin: 0 0 12px; font-size: 1.15rem; font-weight: 700;">🚀 Need a QR Code API for your app?</h3>
+      <p style="margin: 0 0 18px; font-size: 0.85rem; color: var(--text2); line-height: 1.5;">
+        Generate QR codes programmatically with the GadgetHumans API. Free tier and Pro plans available.
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: linear-gradient(135deg, #007AFF, #5856D6); color: #fff; border: none; border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);">📱 QR Code API — Free Tier Available</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://payhip.com/b/fdwTJ">✨ Free</a><a href="https://payhip.com/b/Vu3q0">📋 Pro €7</a><a href="https://payhip.com/b/9x3Ee">🚀 Launch €17</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+    <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/script.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // Form fields
+  const sigName = document.getElementById('sigName');
+  const sigTitle = document.getElementById('sigTitle');
+  const sigCompany = document.getElementById('sigCompany');
+  const sigEmail = document.getElementById('sigEmail');
+  const sigPhone = document.getElementById('sigPhone');
+  const sigWebsite = document.getElementById('sigWebsite');
+  const sigLinkedIn = document.getElementById('sigLinkedIn');
+
+  // Preview elements
+  const previewName = document.getElementById('previewName');
+  const previewTitle = document.getElementById('previewTitle');
+  const previewCompany = document.getElementById('previewCompany');
+  const previewEmail = document.getElementById('previewEmail');
+  const previewPhone = document.getElementById('previewPhone');
+  const previewWebsite = document.getElementById('previewWebsite');
+  const previewLinkedIn = document.getElementById('previewLinkedIn');
+  const previewSection = document.getElementById('previewSection');
+  const darkPreview = document.getElementById('darkPreview');
+
+  // Photo
+  const photoInput = document.getElementById('photoInput');
+  const photoUpload = document.getElementById('photoUpload');
+  const photoPreview = document.getElementById('photoPreview');
+  const photoPlaceholder = document.getElementById('photoPlaceholder');
+  const previewPhoto = document.getElementById('previewPhoto');
+  const previewPhotoPlaceholder = document.getElementById('previewPhotoPlaceholder');
+
+  // QR
+  const qrImage = document.getElementById('qrImage');
+  const qrPlaceholder = document.getElementById('qrPlaceholder');
+
+  // Buttons
+  const generateBtn = document.getElementById('generateBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const actionBtns = document.getElementById('actionBtns');
+  const statusMsg = document.getElementById('statusMsg');
+  const prePayment = document.getElementById('prePayment');
+  const postPayment = document.getElementById('postPayment');
+
+  let photoDataUrl = null;
+  let generatedHtml = null;
+
+  // Check payment redirect
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaid = urlParams.get('paid') === 'true';
+  if (isPaid) {
+    prePayment.style.display = 'none';
+    postPayment.style.display = 'block';
+    showStatus('Payment confirmed! Fill in your details and generate your signature.', 'info');
+    if (window.history.replaceState) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
+
+  // Photo upload
+  photoInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      photoDataUrl = e.target.result;
+      photoPreview.src = photoDataUrl;
+      photoPreview.style.display = 'block';
+      photoPlaceholder.style.display = 'none';
+
+      previewPhoto.src = photoDataUrl;
+      previewPhoto.style.display = 'block';
+      previewPhotoPlaceholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Live preview update
+  function updatePreview() {
+    previewName.textContent = sigName.value || 'Your Name';
+    previewTitle.textContent = sigTitle.value || 'Your Title';
+    previewCompany.textContent = sigCompany.value || 'Your Company';
+    previewEmail.textContent = '✉️ ' + (sigEmail.value || 'email@example.com');
+
+    if (sigPhone.value.trim()) {
+      previewPhone.textContent = '📞 ' + sigPhone.value;
+      previewPhone.style.display = 'block';
+    } else {
+      previewPhone.style.display = 'none';
+    }
+
+    if (sigWebsite.value.trim()) {
+      previewWebsite.innerHTML = '🌐 <a href="' + sigWebsite.value + '" target="_blank" style="color:#007AFF;text-decoration:none;">' + sigWebsite.value.replace(/^https?:\/\//, '') + '</a>';
+      previewWebsite.style.display = 'block';
+      // Update QR code
+      updateQR(sigWebsite.value);
+    } else {
+      previewWebsite.style.display = 'none';
+      qrImage.style.display = 'none';
+      qrPlaceholder.style.display = 'flex';
+    }
+
+    if (sigLinkedIn.value.trim()) {
+      previewLinkedIn.innerHTML = '🔗 <a href="' + sigLinkedIn.value + '" target="_blank" style="color:#007AFF;text-decoration:none;">LinkedIn</a>';
+      previewLinkedIn.style.display = 'block';
+    } else {
+      previewLinkedIn.style.display = 'none';
+    }
+  }
+
+  // Dark mode toggle
+  darkPreview.addEventListener('change', function() {
+    previewSection.classList.toggle('dark-bg', this.checked);
+  });
+
+  // Input event listeners
+  [sigName, sigTitle, sigCompany, sigEmail, sigPhone, sigWebsite, sigLinkedIn].forEach(el => {
+    el.addEventListener('input', updatePreview);
+  });
+
+  // Update QR code via API
+  async function updateQR(url) {
+    try {
+      const res = await fetch('https://api.gadgethumans.com/generate?data=' + encodeURIComponent(url) + '&size=200&format=png');
+      if (!res.ok) throw new Error('QR API error: ' + res.status);
+      const blob = await res.blob();
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        qrImage.src = e.target.result;
+        qrImage.style.display = 'block';
+        qrPlaceholder.style.display = 'none';
+      };
+      reader.readAsDataURL(blob);
+    } catch (err) {
+      // If API fails, show inline QR fallback using a data URL placeholder
+      qrPlaceholder.textContent = 'QR';
+      qrPlaceholder.style.display = 'flex';
+      qrImage.style.display = 'none';
+    }
+  }
+
+  // Generate full HTML signature
+  generateBtn.addEventListener('click', async function() {
+    if (!sigName.value.trim() || !sigTitle.value.trim() || !sigCompany.value.trim() || !sigEmail.value.trim()) {
+      showStatus('Please fill in Name, Title, Company, and Email (required fields).', 'error');
+      return;
+    }
+
+    generateBtn.classList.add('loading');
+    showStatus('Generating your email signature...', 'info');
+
+    try {
+      // Get QR code data URL first
+      let qrDataUrl = null;
+      if (sigWebsite.value.trim()) {
+        try {
+          const res = await fetch('https://api.gadgethumans.com/generate?data=' + encodeURIComponent(sigWebsite.value) + '&size=300&format=png');
+          if (res.ok) {
+            const blob = await res.blob();
+            qrDataUrl = await new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onload = (e) => resolve(e.target.result);
+              reader.readAsDataURL(blob);
+            });
+          }
+        } catch(e) { /* fallback below */ }
+      }
+
+      // Build HTML signature
+      const photoHtml = photoDataUrl
+        ? '<img src="' + photoDataUrl + '" alt="' + escapeHtml(sigName.value) + '" style="width:72px;height:72px;border-radius:50%;object-fit:cover;float:left;margin-right:16px;" />'
+        : '';
+
+      const qrHtml = (sigWebsite.value.trim() && qrDataUrl)
+        ? '<td style="padding-left:16px;"><a href="' + escapeHtml(sigWebsite.value) + '" target="_blank"><img src="' + qrDataUrl + '" alt="QR" style="width:72px;height:72px;border-radius:8px;" /></a></td>'
+        : '';
+
+      const phoneHtml = sigPhone.value.trim() ? '<div style="font-size:13px;color:#666666;line-height:1.5;">📞 ' + escapeHtml(sigPhone.value) + '</div>' : '';
+      const webHtml = sigWebsite.value.trim() ? '<div style="font-size:13px;color:#666666;line-height:1.5;">🌐 <a href="' + escapeHtml(sigWebsite.value) + '" target="_blank" style="color:#007AFF;text-decoration:none;">' + escapeHtml(sigWebsite.value.replace(/^https?:\/\//, '')) + '</a></div>' : '';
+      const linkedinHtml = sigLinkedIn.value.trim() ? '<div style="font-size:13px;color:#666666;line-height:1.5;">🔗 <a href="' + escapeHtml(sigLinkedIn.value) + '" target="_blank" style="color:#007AFF;text-decoration:none;">LinkedIn</a></div>' : '';
+
+      generatedHtml = '<table cellpadding="0" cellspacing="0" border="0" style="font-family:\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-size:14px;color:#1d1d1f;">\n' +
+        '  <tr>\n' +
+        '    <td style="vertical-align:top;padding-right:16px;">' + photoHtml.slice(0, -6) + ' style="width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;" /></td>\n' +
+        '    <td style="vertical-align:top;">\n' +
+        '      <div style="font-size:18px;font-weight:700;color:#1d1d1f;line-height:1.2;">' + escapeHtml(sigName.value) + '</div>\n' +
+        '      <div style="font-size:14px;color:#007AFF;font-weight:500;margin-top:2px;">' + escapeHtml(sigTitle.value) + '</div>\n' +
+        '      <div style="font-size:14px;color:#5856D6;font-weight:500;">' + escapeHtml(sigCompany.value) + '</div>\n' +
+        '      <hr style="border:none;border-top:1px solid #e5e5e5;margin:8px 0;">\n' +
+        '      <div style="font-size:13px;color:#666666;line-height:1.5;">✉️ ' + escapeHtml(sigEmail.value) + '</div>\n' +
+             phoneHtml + '\n' +
+             webHtml + '\n' +
+             linkedinHtml + '\n' +
+        '    </td>\n' +
+        (qrHtml ? '    ' + qrHtml + '\n' : '') +
+        '  </tr>\n' +
+        '</table>';
+
+      actionBtns.style.display = 'flex';
+      showStatus('✅ Signature generated! Copy the HTML or download the file.', 'success');
+    } catch (err) {
+      console.error('Generation error:', err);
+      showStatus('Error generating signature: ' + err.message, 'error');
+    } finally {
+      generateBtn.classList.remove('loading');
+    }
+  });
+
+  // Copy HTML to clipboard
+  copyBtn.addEventListener('click', function() {
+    if (!generatedHtml) return;
+    navigator.clipboard.writeText(generatedHtml).then(() => {
+      showStatus('✅ HTML signature copied to clipboard! Paste it into your email settings.', 'success');
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = generatedHtml;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showStatus('✅ HTML signature copied to clipboard!', 'success');
+    });
+  });
+
+  // Download HTML file
+  downloadBtn.addEventListener('click', function() {
+    if (!generatedHtml) return;
+    const fullHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Email Signature</title></head><body>\n' + generatedHtml + '\n</body></html>';
+    const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'email-signature-' + sigName.value.toLowerCase().replace(/\s+/g, '-') + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function showStatus(message, type) {
+    statusMsg.className = 'status-msg ' + type;
+    statusMsg.textContent = message;
+    statusMsg.style.display = 'block';
+    if (type === 'success' || type === 'info') {
+      setTimeout(() => { statusMsg.style.display = 'none'; }, 10000);
+    }
+  }
+
+  // Initial preview
+  updatePreview();
+  if (sigWebsite.value.trim()) {
+    updateQR(sigWebsite.value);
+  }
+})();
+</script>
+</body>
+</html>

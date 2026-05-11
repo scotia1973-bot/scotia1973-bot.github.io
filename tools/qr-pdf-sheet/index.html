@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <meta name="p:domain_verify" content="8f84b78dc448265e46a961b39ed56e32"/>
+  <title>QR Code PDF Sheet Generator — GadgetHumans</title>
+  <meta name="description" content="Generate a printable PDF sheet of QR codes from a list of URLs. Uses the GadgetHumans QR Code API. One-time payment, instant download.">
+  <meta name="keywords" content="QR code, PDF generator, QR sheet, free online tool, gadget humans">
+  <meta property="og:title" content="QR Code PDF Sheet Generator — GadgetHumans">
+  <meta property="og:description" content="Generate a printable PDF sheet of QR codes from a list of URLs. One-time payment, instant download.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/qr-pdf-sheet/">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/qr-pdf-sheet/">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <style>
+    .tool-hero { text-align: center; padding: 40px 20px 24px; }
+    .tool-hero h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); margin-bottom: 8px; }
+    .tool-hero p { font-size: 0.95rem; color: var(--text2); max-width: 560px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; margin-bottom: 16px; }
+    .back-link:hover { text-decoration: underline; }
+
+    .tool-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--radius-xl); padding: 32px; max-width: 720px; margin: 24px auto; box-shadow: var(--glass-shadow-hover); }
+    .tool-card h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+
+    .form-group { margin-bottom: 18px; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+    .form-group textarea { width: 100%; min-height: 200px; padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); color: var(--text); font-family: var(--mono); font-size: 0.85rem; line-height: 1.6; resize: vertical; outline: none; transition: border-color 0.2s; }
+    .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group .hint { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+    .options-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .options-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .options-group label { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+    .options-group select, .options-group input[type="number"] { padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--glass-bg); color: var(--text); font-family: var(--font); font-size: 0.8rem; outline: none; }
+    .options-group select:focus, .options-group input[type="number"]:focus { border-color: var(--accent); }
+
+    .preview-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0; max-height: 280px; overflow-y: auto; padding: 8px; border: 1px dashed var(--border); border-radius: var(--radius); min-height: 80px; }
+    .preview-row .qr-preview { width: 80px; height: 80px; border-radius: 8px; background: #fff; padding: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #999; }
+    .preview-row .qr-preview img { width: 100%; height: 100%; object-fit: contain; }
+    .preview-row .empty-preview { width: 100%; text-align: center; color: var(--muted); font-size: 0.8rem; padding: 24px 0; }
+
+    .btn-generate { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 14px var(--accent-glow); }
+    .btn-generate:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-generate.loading { pointer-events: none; }
+    .btn-generate .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    .btn-generate.loading .spinner { display: inline-block; }
+    .btn-generate.loading .btn-text { }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .stripe-section { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 24px; }
+    .stripe-section .price-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 4px 14px; border-radius: 980px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; }
+    .stripe-section h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .stripe-section p { font-size: 0.85rem; color: var(--text2); max-width: 480px; margin: 0 auto 16px; }
+    .btn-stripe { display: inline-flex; align-items: center; gap: 8px; padding: 14px 36px; background: #635bff; color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; text-decoration: none; box-shadow: 0 4px 14px rgba(99, 91, 255, 0.35); }
+    .btn-stripe:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 91, 255, 0.45); }
+
+    .status-msg { text-align: center; padding: 12px; border-radius: var(--radius); font-size: 0.85rem; margin-top: 16px; display: none; }
+    .status-msg.success { display: block; background: rgba(52,199,89,0.1); border: 1px solid var(--success); color: var(--success); }
+    .status-msg.error { display: block; background: rgba(255,59,48,0.1); border: 1px solid var(--danger); color: var(--danger); }
+    .status-msg.info { display: block; background: rgba(0,122,255,0.1); border: 1px solid var(--accent); color: var(--accent); }
+
+    .url-count { font-size: 0.8rem; color: var(--muted); text-align: right; margin-top: -12px; margin-bottom: 12px; }
+
+    .locked-overlay { position: relative; }
+    .locked-overlay::before { content: ''; position: absolute; inset: 0; background: var(--glass-bg); backdrop-filter: blur(4px); border-radius: var(--radius-xl); z-index: 5; }
+    .locked-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center; }
+    .locked-badge .lock-icon { font-size: 2rem; margin-bottom: 8px; }
+    .locked-badge p { font-size: 0.85rem; color: var(--text2); margin-bottom: 12px; }
+
+    @media (max-width: 480px) {
+      .tool-card { padding: 20px 16px; }
+      .tool-hero h1 { font-size: 1.4rem; }
+      .options-row { flex-direction: column; align-items: stretch; }
+      .options-group { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="tool-hero">
+    <a class="back-link" href="/tools/">← Back to Tools</a>
+    <h1>📇 QR Code PDF Sheet Generator</h1>
+    <p>Paste multiple URLs and generate a printable PDF sheet of QR codes — one code per URL. Perfect for inventory, menus, or event signage.</p>
+  </div>
+
+  <!-- API Banner -->
+  <div class="api-banner" style="margin: 0 auto 24px; max-width: 720px; padding: 16px 20px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: var(--radius-lg); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;">
+    <span style="font-size: 0.9rem; font-weight: 600;">⚡ Powered by</span>
+    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 5px 14px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.78rem; font-weight: 600;">📱 QR Code API</a>
+    <span style="font-size: 0.78rem; color: var(--muted);">— Free tier available</span>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="tool-card" id="toolCard">
+    <h2>📋 Enter URLs</h2>
+
+    <div class="form-group">
+      <label for="urlInput">URLs (one per line)</label>
+      <textarea id="urlInput" placeholder="https://example.com&#10;https://gadgethumans.com/tools/&#10;https://www.amazon.com/dp/B09XS7JWHH?tag=gadgethumans-20&#10;https://github.com/scotia1973" spellcheck="false"></textarea>
+      <div class="url-count" id="urlCount">0 URLs entered</div>
+      <div class="hint">Enter one URL per line. Up to 50 URLs supported per sheet.</div>
+    </div>
+
+    <div class="options-row">
+      <div class="options-group">
+        <label for="qrSize">QR Size:</label>
+        <select id="qrSize">
+          <option value="200">Small (200px)</option>
+          <option value="300" selected>Medium (300px)</option>
+          <option value="400">Large (400px)</option>
+        </select>
+      </div>
+      <div class="options-group">
+        <label for="colsPerRow">Columns:</label>
+        <select id="colsPerRow">
+          <option value="2">2 columns</option>
+          <option value="3" selected>3 columns</option>
+          <option value="4">4 columns</option>
+        </select>
+      </div>
+      <div class="options-group">
+        <label for="includeLabels">Labels:</label>
+        <select id="includeLabels">
+          <option value="yes" selected>Show labels</option>
+          <option value="no">No labels</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Preview -->
+    <div class="preview-row" id="previewRow">
+      <div class="empty-preview">🔍 Enter URLs above to see a preview</div>
+    </div>
+
+    <!-- Paid / Generate Section -->
+    <div id="paidContent" style="text-align: center; margin-top: 8px;">
+      <div id="prePayment">
+        <p style="font-size: 0.85rem; color: var(--text2); margin-bottom: 16px;">
+          This tool requires a one-time payment to generate and download the PDF.
+        </p>
+        <div class="stripe-section">
+          <div class="price-badge">One-Time Payment</div>
+          <h3>Generate Your QR Code PDF Sheet</h3>
+          <p>Get a ready-to-print PDF with QR codes for every URL. Includes labels and numbered rows.</p>
+          <a href="https://buy.stripe.com/YOUR_QR_PDF_LINK" target="_blank" rel="noopener" class="btn-stripe" id="stripePayBtn">
+            <span>💳</span> Pay $3.00 — Generate Sheet
+          </a>
+          <p style="font-size: 0.72rem; color: var(--muted); margin-top: 10px;">Multi-currency: €3.00 EUR / £2.50 GBP • Secure checkout via Stripe</p>
+        </div>
+      </div>
+      <div id="postPayment" style="display: none;">
+        <button class="btn-generate" id="generateBtn">
+          <span class="spinner"></span>
+          <span class="btn-text">⚡ Generate PDF Sheet</span>
+        </button>
+        <p style="font-size: 0.75rem; color: var(--muted); margin-top: 10px;">Generates up to 50 QR codes and packages them into a printable PDF</p>
+      </div>
+    </div>
+
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+  <!-- Pro Tip -->
+  <div class="card" style="max-width: 720px; margin: 24px auto; padding: 20px 24px;">
+    <div style="display: flex; align-items: flex-start; gap: 12px;">
+      <div style="font-size: 1.5rem; line-height: 1;">💡</div>
+      <div style="flex: 1;">
+        <p style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 700; color: var(--text);">Pro Tip — Print Like a Pro</p>
+        <p style="margin: 0; font-size: 0.8rem; color: var(--text2); line-height: 1.5;">
+          Use a high-quality label maker for professional results. The
+          <a href="https://www.amazon.com/dp/B0C12QJH6Q?tag=gadgethumans-21" target="_blank" rel="nofollow sponsored" style="color: var(--accent); text-decoration: underline; font-weight: 600;">🖨️ Brother P-Touch Label Maker</a>
+          prints QR codes directly onto adhesive labels — a favorite among pros on Amazon.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="card" style="max-width: 720px; margin: 24px auto; padding: 28px 24px;">
+    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">🔧 How It Works</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">📝</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">1. Paste URLs</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">One URL per line, up to 50</p>
+      </div>
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">💳</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">2. Pay Once</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">$3 one-time via Stripe</p>
+      </div>
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">⬇️</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">3. Download PDF</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">Printable sheet with all QR codes</p>
+      </div>
+    </div>
+    <p style="font-size: 0.82rem; color: var(--text2); margin-top: 16px; text-align: center;">
+      Each QR code is generated using the <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="color: var(--accent);">GadgetHumans QR Code API</a> 
+      and laid out in a grid on a single printable PDF page.
+    </p>
+  </div>
+
+  <!-- Premium CTA -->
+  <div class="card" style="max-width: 620px; margin: 40px auto 24px; text-align: center;">
+    <div style="position: relative; z-index: 1;">
+      <h3 style="margin: 0 0 12px; font-size: 1.15rem; font-weight: 700;">🚀 Need the QR Code API for your project?</h3>
+      <p style="margin: 0 0 18px; font-size: 0.85rem; color: var(--text2); line-height: 1.5;">
+        Integrate QR code generation directly into your apps. Plans start at $5/mo.
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: linear-gradient(135deg, #007AFF, #5856D6); color: #fff; border: none; border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);">📱 QR Code API — Free Tier Available</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://payhip.com/b/fdwTJ">✨ Free</a><a href="https://payhip.com/b/Vu3q0">📋 Pro €7</a><a href="https://payhip.com/b/9x3Ee">🚀 Launch €17</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+    <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/script.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const urlInput = document.getElementById('urlInput');
+  const urlCountEl = document.getElementById('urlCount');
+  const previewRow = document.getElementById('previewRow');
+  const generateBtn = document.getElementById('generateBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  const qrSize = document.getElementById('qrSize');
+  const colsPerRow = document.getElementById('colsPerRow');
+  const includeLabels = document.getElementById('includeLabels');
+  const prePayment = document.getElementById('prePayment');
+  const postPayment = document.getElementById('postPayment');
+
+  // Check if user came from Stripe redirect with ?paid=true
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaid = urlParams.get('paid') === 'true';
+
+  if (isPaid) {
+    prePayment.style.display = 'none';
+    postPayment.style.display = 'block';
+    showStatus('Payment confirmed! You can now generate your PDF sheet.', 'info');
+    // Clean URL
+    if (window.history.replaceState) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
+
+  // Count URLs in real-time and show preview
+  function updatePreview() {
+    const text = urlInput.value.trim();
+    const urls = text ? text.split('\n').filter(u => u.trim()) : [];
+    urlCountEl.textContent = urls.length + ' URLs entered';
+
+    if (urls.length === 0) {
+      previewRow.innerHTML = '<div class="empty-preview">🔍 Enter URLs above to see a preview</div>';
+      return;
+    }
+
+    // Show placeholder preview boxes (limit to first 9)
+    const display = urls.slice(0, 9);
+    previewRow.innerHTML = display.map((url, i) => {
+      const short = url.length > 30 ? url.substring(0, 27) + '...' : url;
+      return '<div class="qr-preview" title="' + url.replace(/"/g, '&quot;') + '">#' + (i + 1) + '<br><span style="font-size:0.55rem;color:#666;">' + short + '</span></div>';
+    }).join('');
+
+    if (urls.length > 9) {
+      previewRow.innerHTML += '<div class="empty-preview" style="padding:8px 0;">+ ' + (urls.length - 9) + ' more...</div>';
+    }
+  }
+
+  urlInput.addEventListener('input', updatePreview);
+  updatePreview();
+
+  // Generate PDF function (called after payment)
+  generateBtn.addEventListener('click', async function() {
+    const text = urlInput.value.trim();
+    const urls = text ? text.split('\n').filter(u => u.trim()) : [];
+
+    if (urls.length === 0) {
+      showStatus('Please enter at least one URL.', 'error');
+      return;
+    }
+
+    if (urls.length > 50) {
+      showStatus('Maximum 50 URLs per sheet. Please remove some.', 'error');
+      return;
+    }
+
+    // Validate URLs
+    const invalid = urls.filter(u => {
+      try { new URL(u.startsWith('http') ? u : 'https://' + u); return false; }
+      catch(e) { return true; }
+    });
+    if (invalid.length > 0) {
+      showStatus('Invalid URL(s): ' + invalid.slice(0, 3).join(', ') + (invalid.length > 3 ? '...' : ''), 'error');
+      return;
+    }
+
+    generateBtn.classList.add('loading');
+    showStatus('Generating QR codes...', 'info');
+
+    try {
+      const size = parseInt(qrSize.value);
+      const cols = parseInt(colsPerRow.value);
+      const showLabelsVal = includeLabels.value === 'yes';
+
+      // Fetch QR codes from the API
+      const qrPromises = urls.map(url => {
+        const cleanUrl = url.startsWith('http') ? url : 'https://' + url;
+        // Using the GadgetHumans QR Code API
+        return fetch('https://api.gadgethumans.com/generate?data=' + encodeURIComponent(cleanUrl) + '&size=' + size + '&format=png')
+          .then(res => {
+            if (!res.ok) throw new Error('QR API error: ' + res.status);
+            return res.blob();
+          })
+          .then(blob => {
+            return new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(blob);
+            });
+          });
+      });
+
+      const qrDataUrls = await Promise.all(qrPromises);
+      showStatus('Generating PDF layout...', 'info');
+
+      // Generate PDF using jsPDF (loaded from CDN)
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation: urls.length > 6 ? 'portrait' : 'landscape',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 15;
+      const cellW = (pageWidth - margin * 2) / cols;
+      const labelH = showLabelsVal ? 10 : 0;
+      const qrCellSize = Math.min(cellW - 10, pageHeight / Math.ceil(urls.length / cols) - 20);
+      const actualQrSize = Math.min(qrCellSize, 80); // cap at 80mm
+
+      let x = margin;
+      let y = margin;
+      let colCount = 0;
+
+      qrDataUrls.forEach((dataUrl, i) => {
+        if (colCount >= cols) {
+          colCount = 0;
+          x = margin;
+          y += actualQrSize + labelH + 10;
+        }
+
+        // Check if we need a new page
+        if (y + actualQrSize + labelH + margin > pageHeight) {
+          doc.addPage();
+          y = margin;
+          x = margin;
+          colCount = 0;
+        }
+
+        // Draw cell border (light)
+        doc.setDrawColor(220, 220, 220);
+        doc.setLineWidth(0.3);
+        doc.rect(x, y, cellW - 4, actualQrSize + labelH + 4);
+
+        // Add QR image
+        doc.addImage(dataUrl, 'PNG', x + 2, y + 2, actualQrSize, actualQrSize);
+
+        // Add label
+        if (showLabelsVal) {
+          doc.setFontSize(8);
+          doc.setTextColor(100, 100, 100);
+          const label = urls[i].length > 50 ? urls[i].substring(0, 47) + '...' : urls[i];
+          doc.text(label, x + 2, y + actualQrSize + 8);
+          // Add index number
+          doc.setFontSize(6);
+          doc.setTextColor(180, 180, 180);
+          doc.text('#' + (i + 1), x + cellW - 12, y + actualQrSize + 8);
+        }
+
+        colCount++;
+        x += cellW;
+      });
+
+      // Save PDF
+      doc.save('qr-codes-' + Date.now() + '.pdf');
+      showStatus('✅ PDF generated and downloaded successfully!', 'success');
+    } catch (err) {
+      console.error('PDF generation error:', err);
+      showStatus('Error generating PDF: ' + err.message + '. Try again.', 'error');
+    } finally {
+      generateBtn.classList.remove('loading');
+    }
+  });
+
+  function showStatus(message, type) {
+    statusMsg.className = 'status-msg ' + type;
+    statusMsg.textContent = message;
+    statusMsg.style.display = 'block';
+    if (type === 'success' || type === 'info') {
+      setTimeout(() => { statusMsg.style.display = 'none'; }, 8000);
+    }
+  }
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <meta name="p:domain_verify" content="8f84b78dc448265e46a961b39ed56e32"/>
+  <title>CSV Email Verifier — GadgetHumans</title>
+  <meta name="description" content="Upload a CSV of email addresses and verify them in bulk. Uses the GadgetHumans Email Verify API. One-time payment, instant download of verified CSV.">
+  <meta name="keywords" content="email verifier, CSV, bulk email validation, free online tool, gadget humans">
+  <meta property="og:title" content="CSV Email Verifier — Bulk Email Validation">
+  <meta property="og:description" content="Upload a CSV of email addresses, verify them in bulk, and download a verified CSV. Powered by GadgetHumans Email Verify API.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/csv-email-verify/">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/csv-email-verify/">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <style>
+    .tool-hero { text-align: center; padding: 40px 20px 24px; }
+    .tool-hero h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); margin-bottom: 8px; }
+    .tool-hero p { font-size: 0.95rem; color: var(--text2); max-width: 560px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; margin-bottom: 16px; }
+    .back-link:hover { text-decoration: underline; }
+
+    .tool-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--radius-xl); padding: 32px; max-width: 720px; margin: 24px auto; box-shadow: var(--glass-shadow-hover); }
+    .tool-card h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+
+    .form-group { margin-bottom: 18px; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 40px 20px;
+      text-align: center; cursor: pointer; transition: all 0.25s ease; position: relative;
+    }
+    .upload-zone:hover, .upload-zone.dragover { border-color: var(--accent); background: var(--accent-dim); }
+    .upload-zone .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .upload-zone p { font-size: 0.9rem; color: var(--text2); margin: 0 0 4px; }
+    .upload-zone .sub { font-size: 0.75rem; color: var(--muted); }
+    .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-zone.has-file { border-color: var(--success); background: rgba(52,199,89,0.04); }
+    .upload-zone.has-file .icon { color: var(--success); }
+
+    .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: var(--radius); border: 1px solid var(--border); }
+    .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .table-wrap th { background: var(--bg-deep); padding: 8px 12px; text-align: left; font-weight: 600; color: var(--text2); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .table-wrap td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); white-space: nowrap; }
+    .table-wrap td .email-preview { max-width: 240px; overflow: hidden; text-overflow: ellipsis; display: block; }
+
+    .stats-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 16px 0; }
+    .stat-pill { padding: 8px 20px; border-radius: 980px; font-size: 0.8rem; font-weight: 600; background: var(--glass-bg); border: 1px solid var(--border); color: var(--text2); }
+    .stat-pill.valid { border-color: var(--success); color: var(--success); }
+    .stat-pill.invalid { border-color: var(--danger); color: var(--danger); }
+    .stat-pill.unknown { border-color: var(--warning); color: var(--warning); }
+
+    .btn-generate { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 14px var(--accent-glow); }
+    .btn-generate:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-generate.loading { pointer-events: none; }
+    .btn-generate .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    .btn-generate.loading .spinner { display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .stripe-section { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 24px; }
+    .stripe-section .price-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 4px 14px; border-radius: 980px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; }
+    .stripe-section h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .stripe-section p { font-size: 0.85rem; color: var(--text2); max-width: 480px; margin: 0 auto 16px; }
+    .btn-stripe { display: inline-flex; align-items: center; gap: 8px; padding: 14px 36px; background: #635bff; color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; text-decoration: none; box-shadow: 0 4px 14px rgba(99, 91, 255, 0.35); }
+    .btn-stripe:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 91, 255, 0.45); }
+
+    .status-msg { text-align: center; padding: 12px; border-radius: var(--radius); font-size: 0.85rem; margin-top: 16px; display: none; }
+    .status-msg.success { display: block; background: rgba(52,199,89,0.1); border: 1px solid var(--success); color: var(--success); }
+    .status-msg.error { display: block; background: rgba(255,59,48,0.1); border: 1px solid var(--danger); color: var(--danger); }
+    .status-msg.info { display: block; background: rgba(0,122,255,0.1); border: 1px solid var(--accent); color: var(--accent); }
+
+    .progress-bar { width: 100%; height: 6px; background: var(--bg-deep); border-radius: 3px; margin: 12px 0; overflow: hidden; display: none; }
+    .progress-bar.active { display: block; }
+    .progress-bar .fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s ease; width: 0%; }
+
+    .results-table { display: none; margin-top: 16px; }
+    .results-table.active { display: block; }
+    .results-table .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: var(--success); color: #fff; border: none; border-radius: 980px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; text-decoration: none; margin-top: 12px; }
+    .results-table .download-btn:hover { background: #28a745; }
+
+    .preview-empty { text-align: center; padding: 32px 0; color: var(--muted); font-size: 0.85rem; }
+
+    @media (max-width: 480px) {
+      .tool-card { padding: 20px 16px; }
+      .tool-hero h1 { font-size: 1.4rem; }
+      .upload-zone { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="tool-hero">
+    <a class="back-link" href="/tools/">← Back to Tools</a>
+    <h1>✉️ CSV Email Verifier</h1>
+    <p>Upload a CSV file with email addresses, verify them in bulk, and download a clean CSV with validity status for each email.</p>
+  </div>
+
+  <!-- API Banner -->
+  <div class="api-banner" style="margin: 0 auto 24px; max-width: 720px; padding: 16px 20px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: var(--radius-lg); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;">
+    <span style="font-size: 0.9rem; font-weight: 600;">⚡ Powered by</span>
+    <a href="https://email-verify.scotia1973.workers.dev/" target="_blank" rel="noopener" style="padding: 5px 14px; background: #a78bfa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.78rem; font-weight: 600;">✉️ Email Verify API</a>
+    <span style="font-size: 0.78rem; color: var(--muted);">— Free tier available</span>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="tool-card" id="toolCard">
+    <h2>📂 Upload Your CSV</h2>
+
+    <div class="form-group">
+      <label for="csvFile">Select CSV file with email addresses</label>
+      <div class="upload-zone" id="uploadZone">
+        <div class="icon" id="uploadIcon">📄</div>
+        <p id="uploadText">Drop your CSV file here or click to browse</p>
+        <p class="sub">CSV must have an "email" column • Max 500 emails</p>
+        <input type="file" id="csvFile" accept=".csv">
+      </div>
+    </div>
+
+    <!-- Preview -->
+    <div class="table-wrap" id="previewWrap">
+      <table id="previewTable">
+        <thead id="previewHead"></thead>
+        <tbody id="previewBody"></tbody>
+      </table>
+    </div>
+
+    <div id="noFileMessage" class="preview-empty">Upload a CSV file to preview the first 5 rows</div>
+
+    <!-- Results area -->
+    <div class="results-table" id="resultsArea">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text);">📊 Verification Results</h3>
+        <button class="download-btn" id="downloadBtn">⬇️ Download Verified CSV</button>
+      </div>
+      <div class="stats-row" id="statsRow"></div>
+      <div class="table-wrap" style="max-height: 300px; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr><th>Email</th><th>Status</th><th>Details</th></tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Paid / Verify Section -->
+    <div id="paidContent" style="text-align: center; margin-top: 16px;">
+      <div id="prePayment">
+        <div class="progress-bar" id="progressBar"><div class="fill" id="progressFill"></div></div>
+        <p style="font-size: 0.85rem; color: var(--text2); margin-bottom: 16px;">
+          This tool requires a one-time payment to verify emails using the API.
+        </p>
+        <div class="stripe-section">
+          <div class="price-badge">One-Time Payment</div>
+          <h3>Verify Your Email List</h3>
+          <p>Checks each email against the GadgetHumans Email Verify API. Results include valid/invalid status for every address.</p>
+          <a href="https://buy.stripe.com/YOUR_CSV_VERIFY_LINK" target="_blank" rel="noopener" class="btn-stripe" id="stripePayBtn">
+            <span>💳</span> Pay $5.00 — Verify Emails
+          </a>
+          <p style="font-size: 0.72rem; color: var(--muted); margin-top: 10px;">Multi-currency: €5.00 EUR / £4.00 GBP • Secure checkout via Stripe</p>
+        </div>
+      </div>
+      <div id="postPayment" style="display: none;">
+        <button class="btn-generate" id="verifyBtn">
+          <span class="spinner"></span>
+          <span class="btn-text">✅ Verify All Emails</span>
+        </button>
+        <p style="font-size: 0.75rem; color: var(--muted); margin-top: 10px;">Verifies each email via the Email Verify API and returns a downloadable CSV</p>
+      </div>
+    </div>
+
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+  <!-- Pro Tip -->
+  <div class="card" style="max-width: 720px; margin: 24px auto; padding: 20px 24px;">
+    <div style="display: flex; align-items: flex-start; gap: 12px;">
+      <div style="font-size: 1.5rem; line-height: 1;">💡</div>
+      <div style="flex: 1;">
+        <p style="margin: 0 0 6px; font-size: 0.85rem; font-weight: 700; color: var(--text);">Pro Tip — Keep Your List Clean</p>
+        <p style="margin: 0; font-size: 0.8rem; color: var(--text2); line-height: 1.5;">
+          Pair this tool with the
+          <a href="https://www.amazon.com/dp/B0BWX3N59G?tag=gadgethumans-21" target="_blank" rel="nofollow sponsored" style="color: var(--accent); text-decoration: underline; font-weight: 600;">📧 NeverBounce Email Verification</a>
+          service for enterprise-grade validation — a favorite among email marketers on Amazon.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="card" style="max-width: 720px; margin: 24px auto; padding: 28px 24px;">
+    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--text);">🔧 How It Works</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">📁</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">1. Upload CSV</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">CSV with an "email" column</p>
+      </div>
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">💳</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">2. Pay Once</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">$5 one-time via Stripe</p>
+      </div>
+      <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: var(--radius);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">⬇️</div>
+        <p style="font-size: 0.78rem; color: var(--text2); font-weight: 600;">3. Download Results</p>
+        <p style="font-size: 0.72rem; color: var(--muted);">Verified CSV with valid/invalid status</p>
+      </div>
+    </div>
+    <p style="font-size: 0.82rem; color: var(--text2); margin-top: 16px; text-align: center;">
+      Each email is checked using the <a href="https://email-verify.scotia1973.workers.dev/" target="_blank" rel="noopener" style="color: var(--accent);">GadgetHumans Email Verify API</a>
+      which performs MX lookup, SMTP verification, and disposable email detection.
+    </p>
+  </div>
+
+  <!-- Premium CTA -->
+  <div class="card" style="max-width: 620px; margin: 40px auto 24px; text-align: center;">
+    <div style="position: relative; z-index: 1;">
+      <h3 style="margin: 0 0 12px; font-size: 1.15rem; font-weight: 700;">🚀 Need the Email Verify API for your app?</h3>
+      <p style="margin: 0 0 18px; font-size: 0.85rem; color: var(--text2); line-height: 1.5;">
+        Integrate email verification into your signup flows, contact forms, or CRM. Plans start at $5/mo.
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://email-verify.scotia1973.workers.dev/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: linear-gradient(135deg, #a78bfa, #7c3aed); color: #fff; border: none; border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 14px rgba(167, 139, 250, 0.35);">✉️ Email Verify API — Free Tier Available</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://payhip.com/b/fdwTJ">✨ Free</a><a href="https://payhip.com/b/Vu3q0">📋 Pro €7</a><a href="https://payhip.com/b/9x3Ee">🚀 Launch €17</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+    <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/js/script.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const csvFile = document.getElementById('csvFile');
+  const uploadZone = document.getElementById('uploadZone');
+  const uploadIcon = document.getElementById('uploadIcon');
+  const uploadText = document.getElementById('uploadText');
+  const previewHead = document.getElementById('previewHead');
+  const previewBody = document.getElementById('previewBody');
+  const noFileMessage = document.getElementById('noFileMessage');
+  const verifyBtn = document.getElementById('verifyBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.getElementById('progressFill');
+  const resultsArea = document.getElementById('resultsArea');
+  const resultsBody = document.getElementById('resultsBody');
+  const statsRow = document.getElementById('statsRow');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const prePayment = document.getElementById('prePayment');
+  const postPayment = document.getElementById('postPayment');
+
+  let parsedData = null; // { headers: string[], rows: string[][], emails: string[] }
+  let verifiedResults = null; // { email, status, details }[]
+
+  // Check for payment redirect
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPaid = urlParams.get('paid') === 'true';
+
+  if (isPaid) {
+    prePayment.style.display = 'none';
+    postPayment.style.display = 'block';
+    showStatus('Payment confirmed! Upload a CSV to start verifying.', 'info');
+    if (window.history.replaceState) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
+
+  // File upload handling
+  csvFile.addEventListener('change', handleFile);
+
+  uploadZone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    this.classList.add('dragover');
+  });
+
+  uploadZone.addEventListener('dragleave', function() {
+    this.classList.remove('dragover');
+  });
+
+  uploadZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    this.classList.remove('dragover');
+    if (e.dataTransfer.files.length > 0) {
+      csvFile.files = e.dataTransfer.files;
+      handleFile();
+    }
+  });
+
+  function handleFile() {
+    const file = csvFile.files[0];
+    if (!file) return;
+
+    if (!file.name.endsWith('.csv')) {
+      showStatus('Please upload a valid CSV file.', 'error');
+      return;
+    }
+
+    uploadZone.classList.add('has-file');
+    uploadIcon.textContent = '✅';
+    uploadText.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      parseCSV(text);
+    };
+    reader.readAsText(file);
+  }
+
+  function parseCSV(text) {
+    const lines = text.split('\n').filter(line => line.trim());
+    if (lines.length < 2) {
+      showStatus('CSV must have at least a header row and one data row.', 'error');
+      return;
+    }
+
+    // Parse header
+    const headers = parseCSVLine(lines[0]);
+    const emailIdx = headers.findIndex(h => h.toLowerCase().trim() === 'email');
+
+    if (emailIdx === -1) {
+      showStatus('CSV must contain an "email" column. Found columns: ' + headers.join(', '), 'error');
+      return;
+    }
+
+    // Parse data rows
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+      const row = parseCSVLine(lines[i]);
+      if (row.length >= headers.length && row[emailIdx] && row[emailIdx].trim()) {
+        rows.push(row);
+      }
+    }
+
+    const emails = rows.map(r => r[emailIdx].trim().toLowerCase());
+
+    if (emails.length > 500) {
+      showStatus('Maximum 500 emails allowed. Found ' + emails.length + '.', 'error');
+      return;
+    }
+
+    parsedData = { headers, rows, emails, emailIdx };
+
+    // Show preview (first 5 rows)
+    showPreview(headers, rows.slice(0, 5), emailIdx);
+    noFileMessage.style.display = 'none';
+
+    if (emails.length === 0) {
+      showStatus('No valid email addresses found in the CSV.', 'error');
+      return;
+    }
+
+    showStatus('✅ ' + emails.length + ' email(s) loaded. ' + (isPaid ? 'Ready to verify!' : 'Complete payment to verify.'), 'info');
+  }
+
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (ch === ',' && !inQuotes) {
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += ch;
+      }
+    }
+    result.push(current.trim());
+    return result;
+  }
+
+  function showPreview(headers, rows, emailIdx) {
+    previewHead.innerHTML = '<tr>' + headers.map(h => '<th>' + h + '</th>').join('') + '<th>Status</th></tr>';
+    previewBody.innerHTML = rows.map(row => {
+      const email = row[emailIdx] || '';
+      const isValid = email.includes('@') && email.includes('.');
+      const status = isValid ? '✅' : '❌';
+      return '<tr>' + row.map(c => '<td><span class="email-preview">' + c + '</span></td>').join('') + '<td>' + status + '</td></tr>';
+    }).join('');
+  }
+
+  // Verification (after payment)
+  verifyBtn.addEventListener('click', async function() {
+    if (!parsedData || !parsedData.emails || parsedData.emails.length === 0) {
+      showStatus('No emails to verify. Upload a CSV file first.', 'error');
+      return;
+    }
+
+    verifyBtn.classList.add('loading');
+    progressBar.classList.add('active');
+    progressFill.style.width = '0%';
+    resultsArea.classList.remove('active');
+    showStatus('Verifying emails...', 'info');
+
+    verifiedResults = [];
+
+    try {
+      const emails = parsedData.emails;
+      const batchSize = 10;
+
+      for (let i = 0; i < emails.length; i += batchSize) {
+        const batch = emails.slice(i, i + batchSize);
+        const batchPromises = batch.map(email => verifyEmail(email));
+        const batchResults = await Promise.all(batchPromises);
+        verifiedResults = verifiedResults.concat(batchResults);
+
+        const pct = Math.min(100, Math.round((i + batch.length) / emails.length * 100));
+        progressFill.style.width = pct + '%';
+      }
+
+      progressFill.style.width = '100%';
+      showResults();
+      showStatus('✅ All ' + emails.length + ' emails verified! Download your CSV below.', 'success');
+    } catch (err) {
+      console.error('Verification error:', err);
+      showStatus('Error: ' + err.message + '. Please try again.', 'error');
+    } finally {
+      verifyBtn.classList.remove('loading');
+      setTimeout(() => { progressBar.classList.remove('active'); }, 2000);
+    }
+  });
+
+  async function verifyEmail(email) {
+    try {
+      const res = await fetch('https://email-verify.scotia1973.workers.dev/verify?email=' + encodeURIComponent(email));
+      if (!res.ok) throw new Error('API error: ' + res.status);
+      const data = await res.json();
+      return {
+        email: email,
+        status: data.valid === true ? '✅ Valid' : (data.valid === false ? '❌ Invalid' : '⚠️ Unknown'),
+        details: data.reason || data.details || (data.valid ? 'Deliverable' : 'Undeliverable')
+      };
+    } catch (err) {
+      return { email, status: '⚠️ Error', details: err.message };
+    }
+  }
+
+  function showResults() {
+    resultsArea.classList.add('active');
+    const valid = verifiedResults.filter(r => r.status === '✅ Valid').length;
+    const invalid = verifiedResults.filter(r => r.status === '❌ Invalid').length;
+    const unknown = verifiedResults.filter(r => r.status !== '✅ Valid' && r.status !== '❌ Invalid').length;
+
+    statsRow.innerHTML =
+      '<span class="stat-pill valid">✅ Valid: ' + valid + '</span>' +
+      '<span class="stat-pill invalid">❌ Invalid: ' + invalid + '</span>' +
+      (unknown > 0 ? '<span class="stat-pill unknown">⚠️ Unknown: ' + unknown + '</span>' : '') +
+      '<span class="stat-pill">Total: ' + verifiedResults.length + '</span>';
+
+    resultsBody.innerHTML = verifiedResults.map(r =>
+      '<tr><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;">' + r.email + '</td><td>' + r.status + '</td><td>' + r.details + '</td></tr>'
+    ).join('');
+  }
+
+  // Download verified CSV
+  downloadBtn.addEventListener('click', function() {
+    if (!verifiedResults || verifiedResults.length === 0) return;
+
+    // Build CSV with original columns + status columns
+    const headers = [...parsedData.headers, 'verification_status', 'verification_details'];
+    const emailIdx = parsedData.emailIdx;
+    const resultMap = {};
+    verifiedResults.forEach(r => { resultMap[r.email] = r; });
+
+    const lines = [];
+    lines.push(headers.map(h => '"' + h.replace(/"/g, '""') + '"').join(','));
+
+    parsedData.rows.forEach(row => {
+      const email = row[emailIdx].trim().toLowerCase();
+      const result = resultMap[email];
+      const newRow = [...row];
+      if (result) {
+        newRow.push(result.status.replace(/[✅❌⚠️]\s*/, ''));
+        newRow.push(result.details);
+      } else {
+        newRow.push('unknown', 'Not verified');
+      }
+      lines.push(newRow.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(','));
+    });
+
+    const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'verified-emails-' + Date.now() + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  function showStatus(message, type) {
+    statusMsg.className = 'status-msg ' + type;
+    statusMsg.textContent = message;
+    statusMsg.style.display = 'block';
+    if (type === 'success' || type === 'info') {
+      setTimeout(() => { statusMsg.style.display = 'none'; }, 8000);
+    }
+  }
+})();
+</script>
+</body>
+</html>
