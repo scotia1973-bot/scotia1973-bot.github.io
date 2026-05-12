@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Humans — API Toolbox | 8 Developer Tools in One Chrome Extension</title>
+  <meta name="description" content="8 essential developer tools in one beautiful Chrome extension. QR codes, passwords, UUIDs, hashes, base64, lorem ipsum, JSON formatter, color converter. Free + $5/mo Pro.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.gadgethumans.com/extensions/api-toolbox/">
+  <meta property="og:title" content="Gadget Humans — API Toolbox | 8 Dev Tools in One Extension">
+  <meta property="og:description" content="8 essential developer tools in one beautiful extension. QR codes, passwords, UUIDs, hashes, base64, lorem ipsum, JSON, color converter.">
+  <meta property="og:image" content="https://www.gadgethumans.com/extensions/api-toolbox/og-image.png">
+  <meta property="og:url" content="https://www.gadgethumans.com/extensions/api-toolbox/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gadget Humans — API Toolbox">
+  <meta name="twitter:description" content="8 essential developer tools in one beautiful Chrome extension. Free + $5/mo Pro.">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <style>
+    /* ── Extension Page Specific Styles ── */
+    .ext-hero {
+      position: relative;
+      text-align: center;
+      padding: 72px 20px 48px;
+      overflow: hidden;
+    }
+    .ext-hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .ext-hero h1 span {
+      background: linear-gradient(135deg, var(--accent), #5856D6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ext-hero p {
+      font-size: 1.1rem;
+      color: var(--text2);
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .ext-hero .badge-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .ext-hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      border-radius: 980px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .ext-hero .badge.green {
+      background: rgba(52,199,89,0.1);
+      border-color: rgba(52,199,89,0.25);
+      color: var(--success);
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #007AFF, #5856D6);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 980px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,122,255,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(0,122,255,0.45);
+    }
+    .download-btn svg { width: 20px; height: 20px; }
+
+    /* Feature Grid */
+    .features-section { padding: 56px 0; }
+    .features-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-glow);
+    }
+    .feature-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+
+    /* How it Works */
+    .how-section {
+      padding: 56px 0;
+    }
+    .how-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .step {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+    }
+    .step .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .step h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .step p { font-size: 0.82rem; color: var(--text2); line-height: 1.4; }
+
+    /* Screenshot Gallery */
+    .screenshots-section { padding: 56px 0; }
+    .screenshots-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .screenshot-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .screenshot-card .ss-placeholder {
+      width: 100%;
+      aspect-ratio: 16/10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-deep);
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .screenshot-card .ss-label {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .screenshot-card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Pricing */
+    .pricing-section { padding: 56px 0; }
+    .pricing-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent-glow);
+      background: linear-gradient(135deg, var(--glass-bg), var(--accent-dim));
+      position: relative;
+    }
+    .pricing-card.featured::before {
+      content: 'Popular';
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      padding: 4px 14px;
+      background: linear-gradient(135deg, var(--accent), #5856D6);
+      color: #fff;
+      border-radius: 980px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .pricing-card .price { font-size: 2.8rem; font-weight: 800; margin: 12px 0; }
+    .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .pricing-card .subtitle { color: var(--muted); font-size: 0.85rem; margin-bottom: 20px; }
+    .pricing-card ul { list-style: none; padding: 0; text-align: left; margin: 20px 0; }
+    .pricing-card ul li { padding: 6px 0; font-size: 0.88rem; color: var(--text2); }
+    .pricing-card ul li::before { content: '✓ '; color: var(--success); font-weight: 700; }
+    .pricing-card .btn-pricing {
+      display: block;
+      padding: 14px;
+      border-radius: 980px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 16px;
+      transition: transform 0.2s;
+    }
+    .pricing-card .btn-pricing:hover { transform: translateY(-2px); }
+    .btn-free { background: var(--glass-bg); color: var(--text); border: 1px solid var(--glass-border); }
+    .btn-pro { background: linear-gradient(135deg, #007AFF, #5856D6); color: #fff; box-shadow: 0 4px 16px rgba(0,122,255,0.3); }
+
+    /* FAQ */
+    .faq-section { padding: 56px 0; max-width: 700px; margin: 0 auto; }
+    .faq-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--glass-border);
+      padding: 18px 0;
+    }
+    .faq-question {
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+    .faq-item.open .faq-question::after {
+      content: '−';
+    }
+    .faq-answer {
+      padding-top: 12px;
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* Footer */
+    .ext-footer {
+      text-align: center;
+      padding: 40px 22px;
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+    .ext-footer a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+    }
+    .ext-footer a:hover { color: var(--accent); }
+    .ext-footer .links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .ext-hero h1 { font-size: 1.8rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .screenshot-grid { grid-template-columns: 1fr; }
+      .hero-glass-module { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">GadgetHumans</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <div class="nav-links">
+        <a href="../../">Home</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../guides/">Guides</a>
+        <a href="../../blog/">Blog</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="ext-hero">
+      <div class="hero-bg">
+        <div class="hero-orb" style="width:400px;height:400px;background:var(--accent-glow);top:-10%;left:-10%;"></div>
+        <div class="hero-orb" style="width:300px;height:300px;background:rgba(88,86,214,0.2);top:10%;right:-5%;"></div>
+      </div>
+      <div class="hero-content" style="position:relative;z-index:1;">
+        <div class="badge-row">
+          <span class="badge">🛠️ 8 Developer Tools</span>
+          <span class="badge green">✅ Free Tier Available</span>
+          <span class="badge">🔒 Zero Data Collection</span>
+        </div>
+        <h1>Your <span>Developer Toolbox</span><br>in One Extension</h1>
+        <p>QR codes, passwords, UUIDs, hashes, base64, lorem ipsum, JSON formatting, and color conversion — all in one beautiful, privacy-first Chrome extension. Powered by api.gadgethumans.com.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a class="download-btn" href="https://chromewebstore.google.com/detail/gadget-humans-api-toolbox/PLACEHOLDER_ID" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            Add to Chrome — Free
+          </a>
+          <a class="btn btn-secondary" href="#pricing">See Pricing →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-section" id="features">
+      <h2>All 8 Tools, One Extension</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="icon">📱</span>
+          <h3>QR Code Generator</h3>
+          <p>Generate customizable QR codes from any text or URL. Set size, color, ECC level, and margin. PNG output.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🔐</span>
+          <h3>Password Generator</h3>
+          <p>Generate strong, secure passwords with configurable length, numbers, symbols, and case options.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🆔</span>
+          <h3>UUID Generator</h3>
+          <p>Generate UUID v4 in standard, compact, or uppercase format. Generate up to 50 at once.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">#️⃣</span>
+          <h3>Hash Generator</h3>
+          <p>Hash text with 7 algorithms: SHA-256, SHA-384, SHA-512, MD5, SHA-1, SHA3-256, SHA3-512. Hex or base64 output.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🔤</span>
+          <h3>Base64 Encode/Decode</h3>
+          <p>Quickly encode to Base64 or decode back to plain text. One-click swap between modes.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">📝</span>
+          <h3>Lorem Ipsum Generator</h3>
+          <p>Generate placeholder text as paragraphs, sentences, words, or bytes. Great for designs and layouts.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">{ }</span>
+          <h3>JSON Formatter</h3>
+          <p>Prettify, validate, and minify JSON. Perfect for API debugging and config file editing.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🎨</span>
+          <h3>Color Converter</h3>
+          <p>Convert between HEX, RGB, HSL, HSV, CMYK, and named colors. Live color preview.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-section">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h4>Install</h4>
+          <p>Add the extension from the Chrome Web Store in one click.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h4>Open</h4>
+          <p>Click the toolbar icon or use the side panel (Ctrl+B).</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h4>Pick a Tool</h4>
+          <p>Choose from 8 tools in the tab bar — QR, Password, UUID, Hash, Base64, Lorem, JSON, or Color.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h4>Configure</h4>
+          <p>Set your options and click Generate. Results appear instantly.</p>
+        </div>
+        <div class="step">
+          <div class="num">5</div>
+          <h4>Copy & Go</h4>
+          <p>One-click copy to clipboard. Bookmark results for later.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screenshot Gallery -->
+    <div class="screenshots-section">
+      <h2>What It Looks Like</h2>
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <div class="ss-placeholder" style="font-size:0.8rem;padding:40px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:10px;">📱</div>
+            <div><strong>Main Popup</strong></div>
+            <div>All 8 tools with QR Code active — dark mode</div>
+          </div>
+          <div class="ss-label">Main Popup — 8 tools in a beautiful tabbed interface</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="ss-placeholder" style="font-size:0.8rem;padding:40px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:10px;">🔐</div>
+            <div><strong>Password Generator</strong></div>
+            <div>Generated passwords with toggle options</div>
+          </div>
+          <div class="ss-label">Password Generator with configurable options</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="ss-placeholder" style="font-size:0.8rem;padding:40px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:10px;">{ }</div>
+            <div><strong>JSON Formatter</strong></div>
+            <div>Formatted JSON with syntax highlighting</div>
+          </div>
+          <div class="ss-label">JSON Prettify / Validate / Minify</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="ss-placeholder" style="font-size:0.8rem;padding:40px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:10px;">🎨</div>
+            <div><strong>Color Converter</strong></div>
+            <div>HEX, RGB, HSL, HSV, CMYK — live preview</div>
+          </div>
+          <div class="ss-label">Color Converter with live preview swatch</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <p style="color:var(--muted);font-size:0.85rem;">📸 Screenshots will be generated from the screenshot mockup HTML files in the extension's store-assets folder.</p>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section" id="pricing">
+      <h2>Simple Pricing</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Free</h3>
+          <div class="price">$0 <span>forever</span></div>
+          <div class="subtitle">Perfect for everyday dev work</div>
+          <ul>
+            <li>All 8 developer tools</li>
+            <li>100 API calls per tool per day</li>
+            <li>Dark & light mode</li>
+            <li>Side panel support</li>
+            <li>Clipboard integration</li>
+            <li>Bookmark & history</li>
+          </ul>
+          <a class="btn-pricing btn-free" href="https://chromewebstore.google.com/detail/gadget-humans-api-toolbox/PLACEHOLDER_ID" target="_blank">Get Started Free</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Pro</h3>
+          <div class="price">$5 <span>/ mo</span></div>
+          <div class="subtitle">For power users & heavy workflows</div>
+          <ul>
+            <li>Unlimited API calls</li>
+            <li>Priority API routing</li>
+            <li>Export results as files (JSON, CSV, PNG)</li>
+            <li>Custom themes & presets</li>
+            <li>API key for direct access</li>
+            <li>Everything in Free</li>
+          </ul>
+          <a class="btn-pricing btn-pro" href="#">Coming Soon — Join Waitlist</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">Is this extension free?</div>
+        <div class="faq-answer">Yes! The free tier includes all 8 tools with up to 100 API calls per tool per day. No signup required. No credit card. Just install and use.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Do I need an API key or account?</div>
+        <div class="faq-answer">Nope. The extension works out of the box — no signup, no API key, no account creation. Just click and use any of the 8 tools.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What data do you collect?</div>
+        <div class="faq-answer">Absolutely nothing. No browsing history, no personal info, no tracking, no analytics. Your theme preference and bookmarked results are stored locally on your device and never transmitted. <a href="privacy.html">Read our full privacy policy</a>.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">How do I use the side panel?</div>
+        <div class="faq-answer">Right-click the extension icon and select "Open side panel", or pin the extension and press Ctrl+B (Cmd+B on Mac) to toggle the side panel. This gives you a larger workspace for the tools.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What happens when I hit the rate limit?</div>
+        <div class="faq-answer">The free tier allows 100 API calls per tool per day. The footer shows your usage clearly. If you hit the limit, you can wait until the next day or upgrade to Pro ($5/mo) for unlimited calls.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Can I use this offline?</div>
+        <div class="faq-answer">The extension requires an internet connection to make API calls to api.gadgethumans.com. However, your saved/bookmarked results are stored locally and viewable offline.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What permissions does it need and why?</div>
+        <div class="faq-answer"><strong>storage</strong> — saves your theme preference and bookmarks locally. <strong>clipboardWrite</strong> — lets you copy results with one click. <strong>sidePanel</strong> — enables the Chrome side panel view. <strong>api.gadgethumans.com</strong> — required to make API calls for the tools.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="ext-footer">
+    <div class="links">
+      <a href="../../">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://github.com/scotia1973-bot/api-toolbox-extension" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://api.gadgethumans.com" target="_blank" rel="noopener">API</a>
+    </div>
+    <p style="color:var(--muted);font-size:0.78rem;">&copy; 2026 GadgetHumans. Built with ❤️ for the developer community.</p>
+  </footer>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gadget Humans — API Toolbox",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Chrome OS, macOS, Windows, Linux",
+    "offers": [
+      {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      {"@type": "Offer", "price": "5", "priceCurrency": "USD", "priceFrequency": "Monthly"}
+    ],
+    "description": "8 developer tools in one Chrome extension: QR codes, passwords, UUIDs, hashes, base64, lorem ipsum, JSON formatter, color converter.",
+    "author": {"@type": "Organization", "name": "GadgetHumans"}
+  }
+  </script>
+</body>
+</html>

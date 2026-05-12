@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparent Coupon — Honest Deals | Ethical Coupon Finder Chrome Extension</title>
+  <meta name="description" content="Privacy-first, ethical coupon finder Chrome extension. Auto-apply discounts, track price history, no affiliate hijacking. Built on transparency after the Honey scandal. Free forever.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.gadgethumans.com/extensions/transparent-coupon/">
+  <meta property="og:title" content="Transparent Coupon — Honest Deals | Ethical Coupon Extension">
+  <meta property="og:description" content="Privacy-first, ethical coupon finder. Auto-apply discounts, track prices, no link hijacking. Free forever.">
+  <meta property="og:image" content="https://www.gadgethumans.com/extensions/transparent-coupon/og-image.png">
+  <meta property="og:url" content="https://www.gadgethumans.com/extensions/transparent-coupon/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Transparent Coupon — Honest Deals">
+  <meta name="twitter:description" content="Privacy-first, ethical coupon finder. No affiliate hijacking. Free forever.">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <style>
+    .ext-hero {
+      position: relative;
+      text-align: center;
+      padding: 72px 20px 48px;
+      overflow: hidden;
+    }
+    .ext-hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .ext-hero h1 span.green {
+      background: linear-gradient(135deg, #34C759, #30B753);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ext-hero h1 span.white { color: var(--text); }
+    .ext-hero p {
+      font-size: 1.1rem;
+      color: var(--text2);
+      max-width: 620px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .ext-hero .badge-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .ext-hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      border-radius: 980px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .ext-hero .badge.green {
+      background: rgba(52,199,89,0.1);
+      border-color: rgba(52,199,89,0.25);
+      color: var(--success);
+    }
+    .ext-hero .badge.red {
+      background: rgba(255,59,48,0.1);
+      border-color: rgba(255,59,48,0.2);
+      color: var(--danger);
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #34C759, #28A745);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 980px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(52,199,89,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(52,199,89,0.45);
+    }
+    .download-btn svg { width: 20px; height: 20px; }
+
+    /* Problem / Solution */
+    .problem-section { padding: 48px 0; }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .problem-card, .solution-card {
+      padding: 32px 28px;
+      border-radius: var(--radius-xl);
+    }
+    .problem-card {
+      background: rgba(255,59,48,0.05);
+      border: 1px solid rgba(255,59,48,0.2);
+    }
+    .problem-card h3 { color: var(--danger); font-size: 1.2rem; margin-bottom: 12px; }
+    .solution-card {
+      background: rgba(52,199,89,0.05);
+      border: 1px solid rgba(52,199,89,0.2);
+    }
+    .solution-card h3 { color: var(--success); font-size: 1.2rem; margin-bottom: 12px; }
+    .problem-card ul, .solution-card ul { list-style: none; padding: 0; }
+    .problem-card li, .solution-card li {
+      padding: 8px 0;
+      font-size: 0.9rem;
+      color: var(--text2);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .problem-card li:last-child, .solution-card li:last-child { border-bottom: none; }
+    .problem-card li::before { content: '❌ '; }
+    .solution-card li::before { content: '✅ '; }
+
+    /* Features */
+    .features-section { padding: 56px 0; }
+    .features-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .feature-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(52,199,89,0.3);
+    }
+    .feature-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+
+    /* How it Works */
+    .how-section { padding: 56px 0; }
+    .how-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .step {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+    }
+    .step .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--success);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .step h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .step p { font-size: 0.82rem; color: var(--text2); line-height: 1.4; }
+
+    /* Transparency Model */
+    .transparency-section { padding: 56px 0; }
+    .transparency-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .transparency-box {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      text-align: left;
+    }
+    .transparency-box h3 { color: var(--success); margin-bottom: 12px; }
+    .transparency-box p { font-size: 0.92rem; color: var(--text2); line-height: 1.7; margin-bottom: 12px; }
+    .transparency-box ul { list-style: none; padding: 0; }
+    .transparency-box li { padding: 8px 0; font-size: 0.9rem; color: var(--text2); border-bottom: 1px solid var(--glass-border); }
+    .transparency-box li:last-child { border-bottom: none; }
+    .transparency-box li::before { content: '❌ '; }
+    .transparency-box li.yes::before { content: '✅ '; }
+
+    /* Screenshots */
+    .screenshots-section { padding: 56px 0; }
+    .screenshots-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .screenshot-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur-sm));
+      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .screenshot-card .ss-placeholder {
+      width: 100%;
+      aspect-ratio: 16/10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-deep);
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding: 20px;
+      text-align: center;
+    }
+    .screenshot-card .ss-label {
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Pricing */
+    .pricing-section { padding: 56px 0; }
+    .pricing-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .pricing-card {
+      max-width: 420px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(52,199,89,0.08), rgba(52,199,89,0.02));
+      border: 1px solid rgba(52,199,89,0.25);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .pricing-card .price { font-size: 3.2rem; font-weight: 800; color: var(--success); margin: 12px 0; }
+    .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .pricing-card .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .pricing-card ul { list-style: none; padding: 0; text-align: left; margin: 20px 0; }
+    .pricing-card ul li { padding: 8px 0; font-size: 0.9rem; color: var(--text2); border-bottom: 1px solid var(--glass-border); }
+    .pricing-card ul li:last-child { border-bottom: none; }
+    .pricing-card ul li::before { content: '✓ '; color: var(--success); font-weight: 700; }
+
+    /* FAQ */
+    .faq-section { padding: 56px 0; max-width: 700px; margin: 0 auto; }
+    .faq-section h2 {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--glass-border);
+      padding: 18px 0;
+    }
+    .faq-question {
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+    .faq-question::after { content: '+'; font-size: 1.2rem; color: var(--muted); }
+    .faq-item.open .faq-question::after { content: '−'; }
+    .faq-answer {
+      padding-top: 12px;
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    .ext-footer {
+      text-align: center;
+      padding: 40px 22px;
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+    .ext-footer a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+    }
+    .ext-footer a:hover { color: var(--accent); }
+    .ext-footer .links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .ext-hero h1 { font-size: 1.8rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .screenshot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="../../" class="nav-logo">GadgetHumans</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <div class="nav-links">
+        <a href="../../">Home</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../guides/">Guides</a>
+        <a href="../../blog/">Blog</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="ext-hero">
+      <div class="hero-bg">
+        <div class="hero-orb" style="width:400px;height:400px;background:rgba(52,199,89,0.2);top:-10%;left:-10%;"></div>
+        <div class="hero-orb" style="width:300px;height:300px;background:rgba(52,199,89,0.15);top:10%;right:-5%;"></div>
+      </div>
+      <div class="hero-content" style="position:relative;z-index:1;">
+        <div class="badge-row">
+          <span class="badge green">💚 100% Transparent</span>
+          <span class="badge">🔒 Privacy First</span>
+          <span class="badge green">🎉 Free Forever</span>
+          <span class="badge red">❌ No Affiliate Hijacking</span>
+        </div>
+        <h1>Honest Deals, <span class="green">Zero Tricks</span></h1>
+        <p><strong>Transparent Coupon</strong> is the ethical coupon finder built after the Honey scandal. Auto-apply discounts, track price history, and see exactly how we make money — no dark patterns, no affiliate hijacking, no hidden agendas.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a class="download-btn" href="https://chromewebstore.google.com/detail/transparent-coupon-honest/PLACEHOLDER_ID" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            Add to Chrome — Free Forever
+          </a>
+          <a class="btn btn-secondary" href="#transparency">How We're Different →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Problem / Solution Comparison -->
+    <div class="problem-section">
+      <h2 style="text-align:center;font-family:var(--font-display);font-size:1.8rem;font-weight:700;margin-bottom:36px;">The Old Way vs. The Right Way</h2>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>💔 Honey (and others)</h3>
+          <ul>
+            <li>Hijacks and replaces affiliate links</li>
+            <li>Hides the best coupon codes from users</li>
+            <li>Steals commissions from creators</li>
+            <li>Closed-source, no public audit</li>
+            <li>Opaque business model</li>
+            <li>Collects browsing data</li>
+          </ul>
+        </div>
+        <div class="solution-card">
+          <h3>💚 Transparent Coupon</h3>
+          <ul>
+            <li>Never modifies existing affiliate links</li>
+            <li>Shows all available coupons, best first</li>
+            <li>Content creators keep their commissions</li>
+            <li>100% open source on GitHub</li>
+            <li>Full transparency dashboard with earnings</li>
+            <li>Collects only store domain — no browsing history</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-section" id="features">
+      <h2>Everything You Need to Save</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="icon">🔍</span>
+          <h3>Auto-Detect Stores</h3>
+          <p>Knows 1,000+ e-commerce sites. When you visit a supported store, coupons appear automatically.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">💰</span>
+          <h3>Find Best Coupons</h3>
+          <p>Scans multiple sources and shows the best deals first — no hidden codes, no tricks.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">⚡</span>
+          <h3>Auto-Apply</h3>
+          <p>Apply the best coupon with one click. No more copy-paste guessing at checkout.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">📉</span>
+          <h3>Price History</h3>
+          <p>See how product prices have changed over time. Know if you're getting a real deal.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">🔔</span>
+          <h3>Price Drop Alerts</h3>
+          <p>Set alerts for products you're watching. Get notified when prices drop.</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon">📊</span>
+          <h3>Transparency Dashboard</h3>
+          <p>See exactly how much you've saved and what we've earned in commissions. No secrets.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-section">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h4>Install</h4>
+          <p>Add Transparent Coupon from the Chrome Web Store. Free, no account needed.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h4>Shop as Usual</h4>
+          <p>Visit any supported store — Amazon, Walmart, Target, Nike, and 1,000+ more.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h4>Find Deals</h4>
+          <p>Click the extension icon to see all available coupons, sorted from best to worst.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h4>Save Money</h4>
+          <p>Apply coupons with one click. Set price alerts. Watch your savings grow.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transparency Model -->
+    <div class="transparency-section" id="transparency">
+      <h2>How We Make Money (No Secrets)</h2>
+      <div class="transparency-box">
+        <h3>💚 The Transparent Coupon Model</h3>
+        <p>When you click a deal or product link through our extension and make a purchase, the store pays us a small commission (typically 1-10% of the sale). <strong>This does not increase the price you pay.</strong></p>
+        <h4>What We Do:</h4>
+        <ul>
+          <li class="yes">Add our own affiliate tag to shopping links</li>
+          <li class="yes">Show our earnings in the Transparency Dashboard</li>
+          <li class="yes">Open source all our code for public auditing</li>
+        </ul>
+        <h4 style="margin-top:16px;">What We NEVER Do:</h4>
+        <ul>
+          <li>Hijack or replace existing affiliate links on any page</li>
+          <li>Sell your browsing data to anyone</li>
+          <li>Show paid placements without disclosure</li>
+          <li>Use dark patterns or deceptive UI</li>
+          <li>Hide better deals from you</li>
+        </ul>
+        <p style="margin-top:16px;">This isn't just marketing — it's engineered into our extension. Our code is <a href="https://github.com/scotia1973-bot/transparent-coupon-extension" target="_blank" rel="noopener" style="color:var(--accent);">open source on GitHub</a>. Anyone can verify exactly what we do.</p>
+      </div>
+    </div>
+
+    <!-- Screenshots -->
+    <div class="screenshots-section">
+      <h2>See It in Action</h2>
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <div class="ss-placeholder">
+            <div style="font-size:2rem;margin-bottom:10px;">🛍️</div>
+            <div><strong>Coupon Popup on Store</strong></div>
+            <div>Available coupons with Apply buttons, transparency footer</div>
+          </div>
+          <div class="ss-label">Coupon popup on a product page — best deals shown first</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="ss-placeholder">
+            <div style="font-size:2rem;margin-bottom:10px;">📉</div>
+            <div><strong>Price History</strong></div>
+            <div>Price trend chart, low/high prices, alert button</div>
+          </div>
+          <div class="ss-label">Price history tracking with drop alert setup</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="ss-placeholder">
+            <div style="font-size:2rem;margin-bottom:10px;">📊</div>
+            <div><strong>Transparency Dashboard</strong></div>
+            <div>Stats cards showing savings, commissions, stores, coupons</div>
+          </div>
+          <div class="ss-label">Transparency Dashboard — see every dollar</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="ss-placeholder">
+            <div style="font-size:2rem;margin-bottom:10px;">🏪</div>
+            <div><strong>Browsing State</strong></div>
+            <div>Store chips for Amazon, Walmart, Target, Best Buy, etc.</div>
+          </div>
+          <div class="ss-label">Browsing state — tap a store to start saving</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <p style="color:var(--muted);font-size:0.85rem;">📸 Screenshots will be generated from the HTML mockup files in the extension's store-assets folder.</p>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section">
+      <h2>Free Forever. No Tricks.</h2>
+      <div class="pricing-card">
+        <div style="font-size:2.5rem;margin-bottom:8px;">💚</div>
+        <h3>Transparent Coupon</h3>
+        <div class="price">$0 <span>forever</span></div>
+        <div class="subtitle">No premium tiers. No subscription. No paid features. Ever.</div>
+        <ul>
+          <li>Auto-find coupons on 1,000+ stores</li>
+          <li>One-click apply at checkout</li>
+          <li>Price history & drop alerts</li>
+          <li>Full transparency dashboard</li>
+          <li>Dark mode</li>
+          <li>Open source code</li>
+          <li>No data collection</li>
+        </ul>
+        <a class="download-btn" href="https://chromewebstore.google.com/detail/transparent-coupon-honest/PLACEHOLDER_ID" target="_blank" rel="noopener" style="margin-top:16px;display:inline-flex;">
+          Add to Chrome — Free
+        </a>
+        <p style="color:var(--muted);font-size:0.78rem;margin-top:16px;">We earn from affiliate commissions. You never pay extra.</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section" id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">Is this really free forever?</div>
+        <div class="faq-answer">Yes, 100% free forever. We make money through affiliate commissions when you shop through deal links — you never pay a cent. There are no premium tiers, no subscriptions, and no paid features.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Wait... what's the catch with "affiliate commissions"?</div>
+        <div class="faq-answer">No catch. When you click a product or deal link in our extension and buy something, the store pays us a small commission (typically 1-10%). This does NOT increase the price you pay — you'd pay the same amount whether you used our link or went directly to the store. It's the same model as Wirecutter, RTINGS, and most honest review sites.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do you hijack affiliate links like Honey did?</div>
+        <div class="faq-answer"><strong>Absolutely not.</strong> We never modify or replace existing affiliate links on any page. Content creators who reviewed products keep their commissions. We only add our own affiliate tag to links you click through our extension. This is a core architectural decision — not a promise, but engineered fact. Our open source code proves it.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What data do you collect?</div>
+        <div class="faq-answer">The bare minimum: the store domain you're on (e.g., "amazon.com") to fetch available coupons. That's it. No browsing history, no personal info, no search queries, no tracking. Everything else (settings, alerts, savings stats) stays on your device in chrome.storage.local. <a href="privacy.html">Full privacy policy</a>.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Which stores are supported?</div>
+        <div class="faq-answer">1,000+ stores including Amazon, Walmart, Target, Best Buy, Nike, Adidas, Sephora, Ulta, Etsy, Home Depot, Lowe's, Macy's, Nordstrom, eBay, Chewy, and many more. We're constantly adding new stores.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How is this different from Honey?</div>
+        <div class="faq-answer">Honey was exposed for hijacking affiliate links and hiding the best coupons. Transparent Coupon was built specifically to fix both problems. We never touch existing affiliate links, we show the best deals first, and our Transparency Dashboard shows you exactly what we earn. Our full source code is on GitHub for anyone to audit.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What permissions does the extension need?</div>
+        <div class="faq-answer"><strong>storage</strong> — saves your settings and alerts locally. <strong>tabs</strong> — detects which store you're on. <strong>clipboardWrite</strong> — copies coupon codes. <strong>alarms</strong> — checks for new coupons periodically. <strong>&lt;all_urls&gt;</strong> — lets the extension detect stores and show coupon popups. <strong>api.gadgethumans.com / api.coupon-partner.com</strong> — fetches coupon data.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="ext-footer">
+    <div class="links">
+      <a href="../../">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://github.com/scotia1973-bot/transparent-coupon-extension" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p style="color:var(--muted);font-size:0.78rem;">&copy; 2026 GadgetHumans. Built with 💚 for honest shopping.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Transparent Coupon — Honest Deals",
+    "applicationCategory": "ShoppingApplication",
+    "operatingSystem": "Chrome OS, macOS, Windows, Linux",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "Privacy-first, ethical coupon finder for Chrome. Auto-apply discounts, track prices, no affiliate hijacking. Free forever.",
+    "author": {"@type": "Organization", "name": "GadgetHumans"}
+  }
+  </script>
+</body>
+</html>
