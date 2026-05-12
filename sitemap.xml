@@ -2496,4 +2496,9 @@
   <url><loc>https://www.gadgethumans.com/espresso-machines/blog/testing-methodology.html</loc><lastmod>2026-05-11</lastmod><priority>0.6</priority></url>
   <url><loc>https://www.gadgethumans.com/espresso-machines/blog/small-spaces.html</loc><lastmod>2026-05-11</lastmod><priority>0.6</priority></url>
   <url><loc>https://www.gadgethumans.com/espresso-machines/blog/quality-guide.html</loc><lastmod>2026-05-11</lastmod><priority>0.6</priority></url>
+  <!-- API Hub Wave 2 -->
+  <url><loc>https://www.gadgethumans.com/blog/built-8-free-developer-apis-one-night.html</loc><lastmod>2026-05-12</lastmod><priority>0.9</priority></url>
+  <url><loc>https://api.gadgethumans.com/email-verify</loc><lastmod>2026-05-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://api.gadgethumans.com/ip</loc><lastmod>2026-05-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://api.gadgethumans.com/timestamp</loc><lastmod>2026-05-12</lastmod><priority>0.8</priority></url>
 </urlset>
