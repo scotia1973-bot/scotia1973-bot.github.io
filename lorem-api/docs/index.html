@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lorem Ipsum Generator API Documentation - Placeholder Text API | GadgetHumans</title>
+<meta name="description" content="Complete API documentation for the free Lorem Ipsum generator API. Generate placeholder text in paragraphs, sentences, or words. Perfect for wireframes, mockups, and UI development. No API key required.">
+<meta name="keywords" content="lorem ipsum api, lorem ipsum generator api, placeholder text api, dummy text api, lorem ipsum endpoint, free lorem ipsum api">
+<link rel="canonical" href="https://www.gadgethumans.com/lorem-api/docs/">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 2em; border-bottom: 2px solid #0070f3; padding-bottom: 10px; }
+  h2 { color: #0070f3; margin-top: 40px; }
+  h3 { margin-top: 30px; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; }
+  .endpoint { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .endpoint .method { display: inline-block; background: #22c55e; color: white; padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px; }
+  .endpoint .url { font-family: monospace; font-size: 1.1em; }
+  table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+  th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+  th { background: #f8fafc; }
+  .cta { background: linear-gradient(135deg, #0070f3, #0060d3); color: white; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+  .cta a { color: white; font-weight: bold; text-decoration: underline; font-size: 1.2em; }
+</style>
+</head>
+<body>
+
+<h1>📝 Lorem Ipsum Generator API Documentation</h1>
+<p><strong>Base URL:</strong> <code>https://api.gadgethumans.com/</code></p>
+<p>Generate Lorem Ipsum placeholder text for wireframes, mockups, and UI development. Choose between paragraphs, sentences, or words. No API key required for the free tier.</p>
+
+<div class="endpoint">
+  <span class="method">GET</span>
+  <span class="url">https://api.gadgethumans.com/lorem</span>
+</div>
+
+<h2>Query Parameters</h2>
+<table>
+  <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>type</code></td><td>string</td><td><code>paragraphs</code></td><td>Output type: <code>paragraphs</code>, <code>sentences</code>, or <code>words</code></td></tr>
+  <tr><td><code>count</code></td><td>number</td><td><code>3</code></td><td>Number of units to generate (1-100)</td></tr>
+</table>
+
+<h2>Examples</h2>
+
+<h3>Generate 3 Paragraphs (Default)</h3>
+<pre>curl "https://api.gadgethumans.com/lorem"</pre>
+
+<h3>Generate 5 Sentences</h3>
+<pre>curl "https://api.gadgethumans.com/lorem?type=sentences&count=5"</pre>
+
+<h3>Generate 10 Words</h3>
+<pre>curl "https://api.gadgethumans.com/lorem?type=words&count=10"
+# Lorem ipsum dolor sit amet consectetur adipiscing elit</pre>
+
+<h3>Single Paragraph for a Card Component</h3>
+<pre>curl "https://api.gadgethumans.com/lorem?type=paragraphs&count=1"</pre>
+
+<h3>JavaScript (Fetch)</h3>
+<pre>const response = await fetch('https://api.gadgethumans.com/lorem?type=sentences&count=3');
+const text = await response.text();
+console.log(text);
+// Lorem ipsum dolor sit amet... [3 sentences]</pre>
+
+<h3>Python</h3>
+<pre>import requests
+resp = requests.get('https://api.gadgethumans.com/lorem', params={
+    'type': 'paragraphs',
+    'count': 5
+})
+placeholder_text = resp.text
+print(placeholder_text)</pre>
+
+<h2>Use Cases</h2>
+<ul>
+  <li><strong>UI/UX Design:</strong> Fill wireframes and mockups with realistic text blocks</li>
+  <li><strong>Frontend Development:</strong> Preview layouts before content is ready</li>
+  <li><strong>Print &amp; Publishing:</strong> Test document layouts and typography</li>
+  <li><strong>Database Seeding:</strong> Generate placeholder content for test databases</li>
+</ul>
+
+<h2>Rate Limits</h2>
+<table>
+  <tr><th>Tier</th><th>Daily Limit</th><th>Auth</th><th>Price</th></tr>
+  <tr><td>Free</td><td>100 requests/day</td><td>None</td><td>$0</td></tr>
+  <tr><td>Pro</td><td>10,000 requests/day</td><td>API Key</td><td>$5/mo</td></tr>
+  <tr><td>Business</td><td>100,000 requests/day</td><td>API Key</td><td>$15/mo</td></tr>
+</table>
+
+<h2>Error Codes</h2>
+<table>
+  <tr><th>Status</th><th>Code</th><th>Meaning</th></tr>
+  <tr><td>400</td><td><code>invalid_type</code></td><td>Type must be paragraphs, sentences, or words</td></tr>
+  <tr><td>400</td><td><code>invalid_count</code></td><td>Count must be between 1 and 100</td></tr>
+  <tr><td>429</td><td><code>rate_limited</code></td><td>Free tier exceeded (100 req/day)</td></tr>
+  <tr><td>402</td><td><code>upgrade_required</code></td><td>Payment required for higher limits</td></tr>
+</table>
+
+<h2>Headers</h2>
+<p>All responses include:</p>
+<ul>
+  <li><code>X-RateLimit-Limit</code> — Daily request limit</li>
+  <li><code>X-RateLimit-Remaining</code> — Remaining requests today</li>
+  <li><code>X-RateLimit-Reset</code> — Unix timestamp when limit resets</li>
+</ul>
+
+<h2>Authentication (Pro/Business)</h2>
+<p>Subscribe via <a href="https://api.gadgethumans.com/subscribe">the pricing page</a> to get an API key. Then include it in requests:</p>
+<pre>curl "https://api.gadgethumans.com/lorem?type=paragraphs&count=5&api_key=YOUR_KEY"</pre>
+
+<h2>SDKs &amp; Libraries</h2>
+<ul>
+  <li><a href="https://github.com/scotia1973-bot/lorem-api">GitHub Repository</a> — Open source worker code</li>
+</ul>
+
+<div class="cta">
+  <p>Start generating placeholder text instantly — no signup needed!</p>
+  <p><a href="https://api.gadgethumans.com/lorem">Try the Lorem Ipsum API →</a></p>
+  <p><a href="https://api.gadgethumans.com/subscribe">Upgrade for higher limits ($5/mo)</a></p>
+</div>
+
+<p><em>Built on Cloudflare Workers. Zero infrastructure cost. Fast globally.</em></p>
+
+</body>
+</html>

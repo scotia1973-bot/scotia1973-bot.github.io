@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Prettify/Validate API Documentation - JSON Formatter & Validator | GadgetHumans</title>
+<meta name="description" content="Complete API documentation for the free JSON prettify/validate/minify API. Format, validate, and minify JSON strings with a simple HTTP GET request. No API key required.">
+<meta name="keywords" content="json prettify api, json validate api, json formatter api, json minify api, json api documentation, json endpoint, free json api, json validator">
+<link rel="canonical" href="https://www.gadgethumans.com/json-api/docs/">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 2em; border-bottom: 2px solid #0070f3; padding-bottom: 10px; }
+  h2 { color: #0070f3; margin-top: 40px; }
+  h3 { margin-top: 30px; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; }
+  .endpoint { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .endpoint .method { display: inline-block; background: #22c55e; color: white; padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px; }
+  .endpoint .url { font-family: monospace; font-size: 1.1em; }
+  table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+  th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+  th { background: #f8fafc; }
+  .cta { background: linear-gradient(135deg, #0070f3, #0060d3); color: white; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+  .cta a { color: white; font-weight: bold; text-decoration: underline; font-size: 1.2em; }
+</style>
+</head>
+<body>
+
+<h1>📋 JSON Prettify/Validate API Documentation</h1>
+<p><strong>Base URL:</strong> <code>https://api.gadgethumans.com/</code></p>
+<p>Prettify, validate, or minify JSON strings with a simple HTTP GET request. Essential utility for debugging, formatting API responses, and ensuring JSON validity. No API key required for the free tier.</p>
+
+<div class="endpoint">
+  <span class="method">GET</span>
+  <span class="url">https://api.gadgethumans.com/json</span>
+</div>
+
+<h2>Query Parameters</h2>
+<table>
+  <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>json</code></td><td>string</td><td><em>required</em></td><td>The JSON string to process (URL-encoded)</td></tr>
+  <tr><td><code>mode</code></td><td>string</td><td><code>prettify</code></td><td>Operation mode: <code>prettify</code>, <code>validate</code>, or <code>minify</code></td></tr>
+</table>
+
+<h2>Examples</h2>
+
+<h3>Prettify JSON</h3>
+<pre>curl "https://api.gadgethumans.com/json?json=%7B%22name%22%3A%22John%22%2C%22age%22%3A30%7D"
+# {
+#   "name": "John",
+#   "age": 30
+# }</pre>
+
+<h3>Validate JSON</h3>
+<pre>curl "https://api.gadgethumans.com/json?json=%7B%22valid%22%3Atrue%7D&mode=validate"
+# {"valid":true,"message":"Valid JSON"}
+
+curl "https://api.gadgethumans.com/json?json=not+json&mode=validate"
+# {"valid":false,"error":"Unexpected token 'o', \"not json\" is not valid JSON"}</pre>
+
+<h3>Minify JSON</h3>
+<pre>curl "https://api.gadgethumans.com/json?json=%7B%22name%22%3A%20%22John%22%2C%20%22age%22%3A%2030%7D&mode=minify"
+# {"name":"John","age":30}</pre>
+
+<h3>JavaScript (Fetch)</h3>
+<pre>const jsonString = JSON.stringify({ name: "John", age: 30 });
+
+// Prettify
+const pretty = await fetch('https://api.gadgethumans.com/json?json=' + encodeURIComponent(jsonString))
+  .then(r => r.text());
+console.log(pretty);
+
+// Validate
+const validation = await fetch('https://api.gadgethumans.com/json?json=' + encodeURIComponent(jsonString) + '&mode=validate')
+  .then(r => r.json());
+console.log(validation.valid); // true</pre>
+
+<h3>Python</h3>
+<pre>import requests, json
+
+data = {"name": "John", "age": 30}
+
+# Prettify
+resp = requests.get('https://api.gadgethumans.com/json', params={
+    'json': json.dumps(data),
+    'mode': 'prettify'
+})
+print(resp.text)
+
+# Validate
+resp = requests.get('https://api.gadgethumans.com/json', params={
+    'json': json.dumps(data),
+    'mode': 'validate'
+})
+result = resp.json()
+print(f"Valid: {result['valid']}")</pre>
+
+<h2>Modes Explained</h2>
+<table>
+  <tr><th>Mode</th><th>Response</th><th>Description</th></tr>
+  <tr><td><code>prettify</code></td><td>Formatted JSON string</td><td>Indents and formats JSON with proper spacing and line breaks</td></tr>
+  <tr><td><code>validate</code></td><td>JSON object</td><td>Returns <code>{"valid": true/false}</code> with error details if invalid</td></tr>
+  <tr><td><code>minify</code></td><td>Compacted JSON string</td><td>Removes all whitespace for smallest possible size</td></tr>
+</table>
+
+<h2>Rate Limits</h2>
+<table>
+  <tr><th>Tier</th><th>Daily Limit</th><th>Auth</th><th>Price</th></tr>
+  <tr><td>Free</td><td>100 requests/day</td><td>None</td><td>$0</td></tr>
+  <tr><td>Pro</td><td>10,000 requests/day</td><td>API Key</td><td>$5/mo</td></tr>
+  <tr><td>Business</td><td>100,000 requests/day</td><td>API Key</td><td>$15/mo</td></tr>
+</table>
+
+<h2>Error Codes</h2>
+<table>
+  <tr><th>Status</th><th>Code</th><th>Meaning</th></tr>
+  <tr><td>400</td><td><code>missing_json</code></td><td>No <code>json</code> parameter provided</td></tr>
+  <tr><td>400</td><td><code>invalid_mode</code></td><td>Mode must be prettify, validate, or minify</td></tr>
+  <tr><td>400</td><td><code>invalid_json</code></td><td>The input is not valid JSON (prettify/minify modes)</td></tr>
+  <tr><td>429</td><td><code>rate_limited</code></td><td>Free tier exceeded (100 req/day)</td></tr>
+  <tr><td>402</td><td><code>upgrade_required</code></td><td>Payment required for higher limits</td></tr>
+</table>
+
+<h2>Headers</h2>
+<p>All responses include:</p>
+<ul>
+  <li><code>X-RateLimit-Limit</code> — Daily request limit</li>
+  <li><code>X-RateLimit-Remaining</code> — Remaining requests today</li>
+  <li><code>X-RateLimit-Reset</code> — Unix timestamp when limit resets</li>
+</ul>
+
+<h2>Authentication (Pro/Business)</h2>
+<p>Subscribe via <a href="https://api.gadgethumans.com/subscribe">the pricing page</a> to get an API key. Then include it in requests:</p>
+<pre>curl "https://api.gadgethumans.com/json?json=%7B%22key%22%3A%22value%22%7D&api_key=YOUR_KEY"</pre>
+
+<h2>SDKs &amp; Libraries</h2>
+<ul>
+  <li><a href="https://github.com/scotia1973-bot/json-api">GitHub Repository</a> — Open source worker code</li>
+</ul>
+
+<div class="cta">
+  <p>Start formatting JSON instantly — no signup needed!</p>
+  <p><a href="https://api.gadgethumans.com/json">Try the JSON API →</a></p>
+  <p><a href="https://api.gadgethumans.com/subscribe">Upgrade for higher limits ($5/mo)</a></p>
+</div>
+
+<p><em>Built on Cloudflare Workers. Zero infrastructure cost. Fast globally.</em></p>
+
+</body>
+</html>

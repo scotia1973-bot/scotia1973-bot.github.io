@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UUID Generator API Documentation - Generate UUID v4 Identifiers | GadgetHumans</title>
+<meta name="description" content="Complete API documentation for the free UUID generator API. Generate UUID v4 identifiers in standard, JSON, or array format. Bulk generate up to 100 UUIDs per request. No API key required.">
+<meta name="keywords" content="uuid generator api, uuid api, guid generator api, uuid v4 api, generate uuid endpoint, uuid documentation, free uuid api">
+<link rel="canonical" href="https://www.gadgethumans.com/uuid-api/docs/">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 2em; border-bottom: 2px solid #0070f3; padding-bottom: 10px; }
+  h2 { color: #0070f3; margin-top: 40px; }
+  h3 { margin-top: 30px; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; }
+  .endpoint { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .endpoint .method { display: inline-block; background: #22c55e; color: white; padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px; }
+  .endpoint .url { font-family: monospace; font-size: 1.1em; }
+  table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+  th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+  th { background: #f8fafc; }
+  .cta { background: linear-gradient(135deg, #0070f3, #0060d3); color: white; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+  .cta a { color: white; font-weight: bold; text-decoration: underline; font-size: 1.2em; }
+</style>
+</head>
+<body>
+
+<h1>🆔 UUID Generator API Documentation</h1>
+<p><strong>Base URL:</strong> <code>https://api.gadgethumans.com/</code></p>
+<p>Generate UUID v4 (random) identifiers for database keys, API IDs, session tokens, and more. Supports standard, JSON, and array output formats. No API key required for the free tier.</p>
+
+<div class="endpoint">
+  <span class="method">GET</span>
+  <span class="url">https://api.gadgethumans.com/uuid</span>
+</div>
+
+<h2>Query Parameters</h2>
+<table>
+  <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>count</code></td><td>number</td><td><code>1</code></td><td>Number of UUIDs to generate (1-100)</td></tr>
+  <tr><td><code>format</code></td><td>string</td><td><code>standard</code></td><td>Output format: <code>standard</code>, <code>json</code>, or <code>array</code></td></tr>
+</table>
+
+<h2>Output Formats</h2>
+<table>
+  <tr><th>Format</th><th>Description</th><th>Example Response</th></tr>
+  <tr><td><code>standard</code></td><td>Raw string (or line-separated for multiple)</td><td><code>550e8400-e29b-41d4-a716-446655440000</code></td></tr>
+  <tr><td><code>json</code></td><td>JSON object with UUIDs array</td><td><code>{"uuids":["...","..."]}</code></td></tr>
+  <tr><td><code>array</code></td><td>Plain JSON array of UUID strings</td><td><code>["...","..."]</code></td></tr>
+</table>
+
+<h2>Examples</h2>
+
+<h3>Generate a Single UUID</h3>
+<pre>curl "https://api.gadgethumans.com/uuid"
+# 550e8400-e29b-41d4-a716-446655440000</pre>
+
+<h3>Generate 5 UUIDs as JSON</h3>
+<pre>curl "https://api.gadgethumans.com/uuid?count=5&format=json"
+# {"uuids":["550e8400-e29b-41d4-a716-446655440000","...","...","...","..."]}</pre>
+
+<h3>Generate UUIDs as Plain Array</h3>
+<pre>curl "https://api.gadgethumans.com/uuid?count=3&format=array"
+# ["550e8400-e29b-41d4-a716-446655440000","...","..."]</pre>
+
+<h3>JavaScript (Fetch)</h3>
+<pre>const response = await fetch('https://api.gadgethumans.com/uuid?count=5&format=json');
+const data = await response.json();
+console.log(data.uuids); // ["uuid1", "uuid2", ...]</pre>
+
+<h3>Python</h3>
+<pre>import requests
+resp = requests.get('https://api.gadgethumans.com/uuid', params={
+    'count': 10,
+    'format': 'json'
+})
+data = resp.json()
+for uuid in data['uuids']:
+    print(uuid)</pre>
+
+<h2>Use Cases</h2>
+<ul>
+  <li><strong>Database Primary Keys:</strong> Generate unique IDs for your database records</li>
+  <li><strong>API ID Generation:</strong> Create identifiers for resources in your API</li>
+  <li><strong>Session Tokens:</strong> Use UUIDs as session identifiers</li>
+  <li><strong>Testing &amp; Mock Data:</strong> Generate UUIDs for test fixtures and seed data</li>
+</ul>
+
+<h2>Rate Limits</h2>
+<table>
+  <tr><th>Tier</th><th>Daily Limit</th><th>Auth</th><th>Price</th></tr>
+  <tr><td>Free</td><td>100 requests/day</td><td>None</td><td>$0</td></tr>
+  <tr><td>Pro</td><td>10,000 requests/day</td><td>API Key</td><td>$5/mo</td></tr>
+  <tr><td>Business</td><td>100,000 requests/day</td><td>API Key</td><td>$15/mo</td></tr>
+</table>
+
+<h2>Error Codes</h2>
+<table>
+  <tr><th>Status</th><th>Code</th><th>Meaning</th></tr>
+  <tr><td>400</td><td><code>invalid_count</code></td><td>Count must be between 1 and 100</td></tr>
+  <tr><td>400</td><td><code>invalid_format</code></td><td>Format must be standard, json, or array</td></tr>
+  <tr><td>429</td><td><code>rate_limited</code></td><td>Free tier exceeded (100 req/day)</td></tr>
+  <tr><td>402</td><td><code>upgrade_required</code></td><td>Payment required for higher limits</td></tr>
+</table>
+
+<h2>Headers</h2>
+<p>All responses include:</p>
+<ul>
+  <li><code>X-RateLimit-Limit</code> — Daily request limit</li>
+  <li><code>X-RateLimit-Remaining</code> — Remaining requests today</li>
+  <li><code>X-RateLimit-Reset</code> — Unix timestamp when limit resets</li>
+</ul>
+
+<h2>Authentication (Pro/Business)</h2>
+<p>Subscribe via <a href="https://api.gadgethumans.com/subscribe">the pricing page</a> to get an API key. Then include it in requests:</p>
+<pre>curl "https://api.gadgethumans.com/uuid?count=5&api_key=YOUR_KEY"</pre>
+
+<h2>SDKs &amp; Libraries</h2>
+<ul>
+  <li><a href="https://github.com/scotia1973-bot/uuid-api">GitHub Repository</a> — Open source worker code</li>
+</ul>
+
+<div class="cta">
+  <p>Start generating UUIDs instantly — no signup needed!</p>
+  <p><a href="https://api.gadgethumans.com/uuid">Try the UUID Generator API →</a></p>
+  <p><a href="https://api.gadgethumans.com/subscribe">Upgrade for higher limits ($5/mo)</a></p>
+</div>
+
+<p><em>Built on Cloudflare Workers. Zero infrastructure cost. Fast globally.</em></p>
+
+</body>
+</html>

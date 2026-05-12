@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hash Generator API Documentation - MD5, SHA1, SHA256, SHA512 | GadgetHumans</title>
+<meta name="description" content="Complete API documentation for the free hash generator API. Generate cryptographic hashes using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Supports hex and base64 output. No API key required.">
+<meta name="keywords" content="hash generator api, md5 api, sha256 api, sha512 api, hash api documentation, cryptographic hash api, hash endpoint, free hash api">
+<link rel="canonical" href="https://www.gadgethumans.com/hash-api/docs/">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 2em; border-bottom: 2px solid #0070f3; padding-bottom: 10px; }
+  h2 { color: #0070f3; margin-top: 40px; }
+  h3 { margin-top: 30px; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; }
+  .endpoint { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; }
+  .endpoint .method { display: inline-block; background: #22c55e; color: white; padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8em; margin-right: 10px; }
+  .endpoint .url { font-family: monospace; font-size: 1.1em; }
+  table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+  th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+  th { background: #f8fafc; }
+  .cta { background: linear-gradient(135deg, #0070f3, #0060d3); color: white; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+  .cta a { color: white; font-weight: bold; text-decoration: underline; font-size: 1.2em; }
+</style>
+</head>
+<body>
+
+<h1>🔐 Hash Generator API Documentation</h1>
+<p><strong>Base URL:</strong> <code>https://api.gadgethumans.com/</code></p>
+<p>Generate cryptographic hashes for any text using MD5, SHA-1, SHA-256, or SHA-512 algorithms. Supports hex and base64 encoding. No API key required for the free tier.</p>
+
+<div class="endpoint">
+  <span class="method">GET</span>
+  <span class="url">https://api.gadgethumans.com/hash</span>
+</div>
+
+<h2>Query Parameters</h2>
+<table>
+  <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>text</code></td><td>string</td><td><em>required</em></td><td>The text to hash</td></tr>
+  <tr><td><code>algorithm</code></td><td>string</td><td><code>sha256</code></td><td>Hash algorithm: <code>md5</code>, <code>sha1</code>, <code>sha256</code>, or <code>sha512</code></td></tr>
+  <tr><td><code>encoding</code></td><td>string</td><td><code>hex</code></td><td>Output encoding: <code>hex</code> or <code>base64</code></td></tr>
+</table>
+
+<h2>Examples</h2>
+
+<h3>SHA-256 Hash (Default)</h3>
+<pre>curl "https://api.gadgethumans.com/hash?text=hello+world"
+# 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</pre>
+
+<h3>MD5 Hash</h3>
+<pre>curl "https://api.gadgethumans.com/hash?text=hello+world&algorithm=md5"
+# 5eb63bbbe01eeed093cb22bb8f5acdc3</pre>
+
+<h3>SHA-512 Hash</h3>
+<pre>curl "https://api.gadgethumans.com/hash?text=hello+world&algorithm=sha512"
+# 309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f</pre>
+
+<h3>Base64 Encoding</h3>
+<pre>curl "https://api.gadgethumans.com/hash?text=hello+world&algorithm=sha256&encoding=base64"
+# LPIk2l+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=</pre>
+
+<h3>JavaScript (Fetch)</h3>
+<pre>const response = await fetch('https://api.gadgethumans.com/hash?text=hello&algorithm=sha256');
+const hash = await response.text();
+console.log(hash);
+// 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</pre>
+
+<h3>Python</h3>
+<pre>import requests
+resp = requests.get('https://api.gadgethumans.com/hash', params={
+    'text': 'hello world',
+    'algorithm': 'sha256',
+    'encoding': 'hex'
+})
+hash_value = resp.text
+print(hash_value)</pre>
+
+<h2>Supported Algorithms</h2>
+<table>
+  <tr><th>Algorithm</th><th>Hash Length</th><th>Use Case</th></tr>
+  <tr><td><code>md5</code></td><td>128 bits (32 hex chars)</td><td>Checksums, legacy systems (not cryptographically secure)</td></tr>
+  <tr><td><code>sha1</code></td><td>160 bits (40 hex chars)</td><td>Git commits, legacy verification (deprecated for security)</td></tr>
+  <tr><td><code>sha256</code></td><td>256 bits (64 hex chars)</td><td>General purpose, certificates, blockchain (recommended)</td></tr>
+  <tr><td><code>sha512</code></td><td>512 bits (128 hex chars)</td><td>High-security applications, password hashing</td></tr>
+</table>
+
+<h2>Rate Limits</h2>
+<table>
+  <tr><th>Tier</th><th>Daily Limit</th><th>Auth</th><th>Price</th></tr>
+  <tr><td>Free</td><td>100 requests/day</td><td>None</td><td>$0</td></tr>
+  <tr><td>Pro</td><td>10,000 requests/day</td><td>API Key</td><td>$5/mo</td></tr>
+  <tr><td>Business</td><td>100,000 requests/day</td><td>API Key</td><td>$15/mo</td></tr>
+</table>
+
+<h2>Error Codes</h2>
+<table>
+  <tr><th>Status</th><th>Code</th><th>Meaning</th></tr>
+  <tr><td>400</td><td><code>missing_text</code></td><td>No <code>text</code> parameter provided</td></tr>
+  <tr><td>400</td><td><code>invalid_algorithm</code></td><td>Algorithm must be md5, sha1, sha256, or sha512</td></tr>
+  <tr><td>400</td><td><code>invalid_encoding</code></td><td>Encoding must be hex or base64</td></tr>
+  <tr><td>429</td><td><code>rate_limited</code></td><td>Free tier exceeded (100 req/day)</td></tr>
+  <tr><td>402</td><td><code>upgrade_required</code></td><td>Payment required for higher limits</td></tr>
+</table>
+
+<h2>Headers</h2>
+<p>All responses include:</p>
+<ul>
+  <li><code>X-RateLimit-Limit</code> — Daily request limit</li>
+  <li><code>X-RateLimit-Remaining</code> — Remaining requests today</li>
+  <li><code>X-RateLimit-Reset</code> — Unix timestamp when limit resets</li>
+</ul>
+
+<h2>Authentication (Pro/Business)</h2>
+<p>Subscribe via <a href="https://api.gadgethumans.com/subscribe">the pricing page</a> to get an API key. Then include it in requests:</p>
+<pre>curl "https://api.gadgethumans.com/hash?text=hello&algorithm=sha256&api_key=YOUR_KEY"</pre>
+
+<h2>SDKs &amp; Libraries</h2>
+<ul>
+  <li><a href="https://github.com/scotia1973-bot/hash-api">GitHub Repository</a> — Open source worker code</li>
+</ul>
+
+<div class="cta">
+  <p>Start hashing text instantly — no signup needed!</p>
+  <p><a href="https://api.gadgethumans.com/hash">Try the Hash Generator API →</a></p>
+  <p><a href="https://api.gadgethumans.com/subscribe">Upgrade for higher limits ($5/mo)</a></p>
+</div>
+
+<p><em>Built on Cloudflare Workers. Zero infrastructure cost. Fast globally.</em></p>
+
+</body>
+</html>
