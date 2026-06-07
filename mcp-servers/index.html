@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Servers — GadgetHumans API Hub & Vertical Servers</title>
+  <meta name="description" content="4 open-source MCP servers by GadgetHumans: API Hub (200 tools), Compliance (8 tools), HR (8 tools), Legal (8 tools). Install with uvx or pip. Claude Desktop and Cursor IDE ready.">
+  <meta property="og:title" content="GadgetHumans MCP Servers — 4 Servers, 224+ Tools">
+  <meta property="og:description" content="Open-source MCP servers for AI agents. API Hub (200 tools), Compliance, HR, Legal. Install with uvx or pip. Claude Desktop and Cursor IDE compatible.">
+  <meta property="og:image" content="https://www.gadgethumans.com/og-image.png">
+  <meta property="og:url" content="https://www.gadgethumans.com/mcp-servers/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GadgetHumans MCP Servers">
+  <meta name="twitter:description" content="4 MCP servers with 224+ tools. Free, open-source, pip-installable.">
+  <link rel="canonical" href="https://www.gadgethumans.com/mcp-servers/">
+  <link rel="stylesheet" href="/css/theme.css?v=3">
+  <style>
+    :root {
+      --bg: #07070a;
+      --bg-card: rgba(255,255,255,0.04);
+      --bg-card-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --border-accent: rgba(10,132,255,0.3);
+      --text: #f5f5f7;
+      --text2: #aeaeb2;
+      --text3: #636366;
+      --accent: #0A84FF;
+      --accent-hover: #409CFF;
+      --success: #34C759;
+      --warning: #FF9500;
+      --orange: #FF9F0A;
+      --purple: #BF5AF2;
+      --green: #30D158;
+      --pink: #FF375F;
+      --font: 'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;
+      --mono: 'SF Mono','Fira Code','Cascadia Code',monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 22px; }
+
+    /* ── Nav ── */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; max-width: 1144px; margin: 0 auto; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .nav-links a { color: var(--text2); text-decoration: none; margin-left: 24px; font-size: 0.9rem; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero { text-align: center; padding: 60px 20px 30px; }
+    .hero h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; background: linear-gradient(135deg,#0A84FF,#BF5AF2,#30D158); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero .tagline { color: var(--text2); font-size: 1.15rem; max-width: 650px; margin: 0 auto 24px; }
+    .hero-stats { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .hero-stat-label { color: var(--text3); font-size: 0.85rem; }
+
+    /* ── Server Cards ── */
+    .server-grid { display: flex; flex-direction: column; gap: 28px; margin: 40px 0; }
+    .server-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.25s; }
+    .server-card:hover { border-color: var(--border-accent); transform: translateY(-3px); box-shadow: 0 12px 48px rgba(10,132,255,0.08); }
+    .server-header { padding: 28px 32px 0; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+    .server-info h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+    .server-info h2 .badge { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-left: 10px; vertical-align: middle; }
+    .badge-200 { background: rgba(10,132,255,0.15); color: var(--accent); }
+    .badge-8 { background: rgba(48,209,88,0.15); color: var(--success); }
+    .server-info .desc { color: var(--text2); font-size: 0.92rem; margin-top: 4px; max-width: 500px; }
+    .server-info p { color: var(--text2); font-size: 0.9rem; margin-top: 4px; }
+    .server-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .btn-sm { padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px; }
+    .btn-pip { background: rgba(10,132,255,0.12); color: var(--accent); border: 1px solid rgba(10,132,255,0.2); }
+    .btn-pip:hover { background: rgba(10,132,255,0.2); }
+    .btn-gh { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border); }
+    .btn-gh:hover { background: rgba(255,255,255,0.1); }
+    .btn-smithery { background: rgba(191,90,242,0.12); color: var(--purple); border: 1px solid rgba(191,90,242,0.2); }
+    .btn-smithery:hover { background: rgba(191,90,242,0.2); }
+
+    /* ── Tabs inside card ── */
+    .server-tabs { display: flex; gap: 0; margin: 20px 32px 0; border-bottom: 1px solid var(--border); }
+    .server-tab { padding: 10px 18px; font-size: 0.82rem; font-weight: 500; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; background: none; border-top: none; border-left: none; border-right: none; }
+    .server-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .server-tab:hover { color: var(--text2); }
+    .server-body { padding: 0 32px 28px; }
+    .server-panel { display: none; padding: 16px 0; }
+    .server-panel.active { display: block; }
+
+    .server-panel h3 { font-size: 0.9rem; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; margin-top: 16px; }
+    .server-panel h3:first-child { margin-top: 0; }
+    .server-panel pre { background: #111118; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px 18px; overflow-x: auto; font-size: 0.82rem; font-family: var(--mono); color: #e4e4e7; margin-bottom: 12px; line-height: 1.5; }
+    .server-panel code { font-family: var(--mono); }
+    .server-panel .cmd { color: var(--accent); }
+    .server-panel .comment { color: var(--text3); }
+
+    /* Tool list */
+    .tool-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; margin-top: 12px; }
+    .tool-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 8px 12px; font-size: 0.8rem; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+    .tool-item .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .dot-blue { background: var(--accent); }
+    .dot-green { background: var(--success); }
+    .dot-purple { background: var(--purple); }
+    .dot-orange { background: var(--orange); }
+
+    /* ── How To Use ── */
+    .howto { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin: 40px 0; }
+    .howto h2 { font-size: 1.5rem; margin-bottom: 20px; }
+    .howto h3 { font-size: 1.05rem; margin: 24px 0 12px; color: var(--accent); }
+    .howto h3:first-of-type { margin-top: 0; }
+    .howto p { color: var(--text2); font-size: 0.92rem; margin-bottom: 12px; }
+    .howto pre { background: #111118; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px 18px; overflow-x: auto; font-size: 0.82rem; font-family: var(--mono); color: #e4e4e7; margin-bottom: 16px; line-height: 1.5; }
+    .howto code { font-family: var(--mono); background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; }
+
+    /* ── Footer ── */
+    footer { text-align: center; padding: 48px 0 32px; color: var(--text3); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .server-header { flex-direction: column; }
+      .server-actions { width: 100%; flex-wrap: wrap; }
+      .server-tabs { overflow-x: auto; }
+      .tool-list { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">GadgetHumans</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/api-hub/">APIs</a>
+    <a href="/mcp-servers/" class="active">MCP Servers</a>
+    <a href="/tools/">Tools</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<div class="hero">
+  <h1>🧩 MCP Servers by GadgetHumans</h1>
+  <p class="tagline">Open-source Model Context Protocol servers giving AI agents access to 224+ tools across API utilities, compliance, HR, and legal — all pip-installable and ready for Claude Desktop, Cursor, Windsurf, and Cline.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">MCP Servers</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">224+</div><div class="hero-stat-label">Total Tools</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">11</div><div class="hero-stat-label">API Endpoints</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Free &amp; Open Source</div></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SERVER 1 – API HUB                                              -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="server-grid">
+
+<div class="server-card" id="api-hub">
+  <div class="server-header">
+    <div class="server-info">
+      <h2>GadgetHumans API Hub <span class="badge badge-200">200 tools</span></h2>
+      <p class="desc">The flagship MCP server — 200+ tools covering QR codes, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON prettify, color conversion, email verification, IP geolocation, timestamp conversion, image generation, weather, news, and more.</p>
+    </div>
+    <div class="server-actions">
+      <a href="https://github.com/scotia1973-bot/api-hub" class="btn-sm btn-gh" target="_blank">GitHub</a>
+      <a href="https://smithery.ai/server/gadgethumans-api-hub-mcp" class="btn-sm btn-smithery" target="_blank">Smithery</a>
+    </div>
+  </div>
+
+  <div class="server-tabs">
+    <button class="server-tab active" onclick="switchTab('api-hub', 'install')">Install</button>
+    <button class="server-tab" onclick="switchTab('api-hub', 'claude')">Claude Desktop</button>
+    <button class="server-tab" onclick="switchTab('api-hub', 'cursor')">Cursor IDE</button>
+    <button class="server-tab" onclick="switchTab('api-hub', 'tools')">Tool List</button>
+  </div>
+
+  <div class="server-body">
+    <div class="server-panel active" id="api-hub-install">
+      <h3>One-click install</h3>
+      <pre><span class="comment"># Using uvx (recommended — no install needed)</span>
+<span class="cmd">uvx</span> gadgethumans-api-hub-mcp
+
+<span class="comment"># Using pip</span>
+<span class="cmd">pip install</span> gadgethumans-api-hub-mcp
+<span class="cmd">python3 -m</span> gadgethumans_api_hub_mcp</pre>
+    </div>
+    <div class="server-panel" id="api-hub-claude">
+      <h3>Claude Desktop config (claude_desktop_config.json)</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-api-hub": {
+      "command": "uvx",
+      "args": ["gadgethumans-api-hub-mcp"]
+    }
+  }
+}</pre>
+      <p style="color:var(--text3);font-size:0.82rem;">Or using pip: <code style="background:rgba(255,255,255,0.04);padding:2px 6px;border-radius:4px;">"command": "python3", "args": ["-m", "gadgethumans_api_hub_mcp"]</code></p>
+    </div>
+    <div class="server-panel" id="api-hub-cursor">
+      <h3>Cursor IDE config (.cursor/mcp.json)</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-api-hub": {
+      "command": "uvx",
+      "args": ["gadgethumans-api-hub-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="api-hub-tools">
+      <h3>200+ tools including:</h3>
+      <div class="tool-list">
+        <div class="tool-item"><span class="dot dot-blue"></span>generate_qr_code</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>generate_password</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>generate_uuid</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>hash_text</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>encode_base64</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>generate_lorem_ipsum</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>process_json</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>convert_color</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>verify_email</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>geolocate_ip</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>convert_timestamp</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>rest_api_get</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>rest_api_post</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>weather_current</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>weather_forecast</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>news_headlines</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>image_generate</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>math_calculate</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>date_calculate</div>
+        <div class="tool-item"><span class="dot dot-blue"></span>currency_convert</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SERVER 2 – COMPLIANCE                                            -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="server-card" id="compliance">
+  <div class="server-header">
+    <div class="server-info">
+      <h2>GadgetHumans Compliance <span class="badge badge-8">8 tools</span></h2>
+      <p class="desc">MCP server for Compliance &amp; Governance — SOC 2 readiness, GDPR data subject requests, HIPAA compliance analysis, audit trails, vendor compliance, data retention policy assessment, and compliance report generation.</p>
+    </div>
+    <div class="server-actions">
+      <a href="https://github.com/scotia1973-bot/gadgethumans-compliance-mcp" class="btn-sm btn-gh" target="_blank">GitHub</a>
+      <a href="https://smithery.ai/server/gadgethumans-compliance-mcp" class="btn-sm btn-smithery" target="_blank">Smithery</a>
+    </div>
+  </div>
+
+  <div class="server-tabs">
+    <button class="server-tab active" onclick="switchTab('compliance', 'install')">Install</button>
+    <button class="server-tab" onclick="switchTab('compliance', 'claude')">Claude Desktop</button>
+    <button class="server-tab" onclick="switchTab('compliance', 'cursor')">Cursor IDE</button>
+    <button class="server-tab" onclick="switchTab('compliance', 'tools')">Tool List</button>
+  </div>
+
+  <div class="server-body">
+    <div class="server-panel active" id="compliance-install">
+      <h3>One-click install</h3>
+      <pre><span class="comment"># Using uvx (recommended)</span>
+<span class="cmd">uvx</span> gadgethumans-compliance-mcp
+
+<span class="comment"># Using pip</span>
+<span class="cmd">pip install</span> gadgethumans-compliance-mcp</pre>
+    </div>
+    <div class="server-panel" id="compliance-claude">
+      <h3>Claude Desktop config</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-compliance": {
+      "command": "uvx",
+      "args": ["gadgethumans-compliance-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="compliance-cursor">
+      <h3>Cursor IDE config (.cursor/mcp.json)</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-compliance": {
+      "command": "uvx",
+      "args": ["gadgethumans-compliance-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="compliance-tools">
+      <h3>8 Compliance tools</h3>
+      <div class="tool-list">
+        <div class="tool-item"><span class="dot dot-green"></span>check_soc2_readiness</div>
+        <div class="tool-item"><span class="dot dot-green"></span>generate_gdpr_request</div>
+        <div class="tool-item"><span class="dot dot-green"></span>analyze_hipaa_compliance</div>
+        <div class="tool-item"><span class="dot dot-green"></span>list_compliance_frameworks</div>
+        <div class="tool-item"><span class="dot dot-green"></span>audit_trail_query</div>
+        <div class="tool-item"><span class="dot dot-green"></span>generate_compliance_report</div>
+        <div class="tool-item"><span class="dot dot-green"></span>check_vendor_compliance</div>
+        <div class="tool-item"><span class="dot dot-green"></span>assess_data_retention_policy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SERVER 3 – HR                                                   -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="server-card" id="hr">
+  <div class="server-header">
+    <div class="server-info">
+      <h2>GadgetHumans HR <span class="badge badge-8">8 tools</span></h2>
+      <p class="desc">MCP server for HR &amp; Workforce Management — payroll calculation, offer letter generation, time-off tracking, employee onboarding, benefits calculation, performance evaluations, termination documents, and workforce reporting.</p>
+    </div>
+    <div class="server-actions">
+      <a href="https://github.com/scotia1973-bot/gadgethumans-hr-mcp" class="btn-sm btn-gh" target="_blank">GitHub</a>
+      <a href="https://smithery.ai/server/gadgethumans-hr-mcp" class="btn-sm btn-smithery" target="_blank">Smithery</a>
+    </div>
+  </div>
+
+  <div class="server-tabs">
+    <button class="server-tab active" onclick="switchTab('hr', 'install')">Install</button>
+    <button class="server-tab" onclick="switchTab('hr', 'claude')">Claude Desktop</button>
+    <button class="server-tab" onclick="switchTab('hr', 'cursor')">Cursor IDE</button>
+    <button class="server-tab" onclick="switchTab('hr', 'tools')">Tool List</button>
+  </div>
+
+  <div class="server-body">
+    <div class="server-panel active" id="hr-install">
+      <h3>One-click install</h3>
+      <pre><span class="comment"># Using uvx (recommended)</span>
+<span class="cmd">uvx</span> gadgethumans-hr-mcp
+
+<span class="comment"># Using pip</span>
+<span class="cmd">pip install</span> gadgethumans-hr-mcp</pre>
+    </div>
+    <div class="server-panel" id="hr-claude">
+      <h3>Claude Desktop config</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-hr": {
+      "command": "uvx",
+      "args": ["gadgethumans-hr-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="hr-cursor">
+      <h3>Cursor IDE config (.cursor/mcp.json)</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-hr": {
+      "command": "uvx",
+      "args": ["gadgethumans-hr-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="hr-tools">
+      <h3>8 HR tools</h3>
+      <div class="tool-list">
+        <div class="tool-item"><span class="dot dot-orange"></span>calculate_payroll</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>generate_offer_letter</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>track_time_off</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>onboard_employee</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>calculate_benefits</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>evaluate_performance</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>generate_termination_document</div>
+        <div class="tool-item"><span class="dot dot-orange"></span>run_workforce_report</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SERVER 4 – LEGAL                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="server-card" id="legal">
+  <div class="server-header">
+    <div class="server-info">
+      <h2>GadgetHumans Legal <span class="badge badge-8">8 tools</span></h2>
+      <p class="desc">MCP server for Legal &amp; Contract Management — contract analysis, clause extraction, regulatory compliance checks, NDA generation, terms of service review, legal precedent search, disclaimer drafting, and liability risk assessment.</p>
+    </div>
+    <div class="server-actions">
+      <a href="https://github.com/scotia1973-bot/gadgethumans-legal-mcp" class="btn-sm btn-gh" target="_blank">GitHub</a>
+      <a href="https://smithery.ai/server/gadgethumans-legal-mcp" class="btn-sm btn-smithery" target="_blank">Smithery</a>
+    </div>
+  </div>
+
+  <div class="server-tabs">
+    <button class="server-tab active" onclick="switchTab('legal', 'install')">Install</button>
+    <button class="server-tab" onclick="switchTab('legal', 'claude')">Claude Desktop</button>
+    <button class="server-tab" onclick="switchTab('legal', 'cursor')">Cursor IDE</button>
+    <button class="server-tab" onclick="switchTab('legal', 'tools')">Tool List</button>
+  </div>
+
+  <div class="server-body">
+    <div class="server-panel active" id="legal-install">
+      <h3>One-click install</h3>
+      <pre><span class="comment"># Using uvx (recommended)</span>
+<span class="cmd">uvx</span> gadgethumans-legal-mcp
+
+<span class="comment"># Using pip</span>
+<span class="cmd">pip install</span> gadgethumans-legal-mcp</pre>
+    </div>
+    <div class="server-panel" id="legal-claude">
+      <h3>Claude Desktop config</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-legal": {
+      "command": "uvx",
+      "args": ["gadgethumans-legal-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="legal-cursor">
+      <h3>Cursor IDE config (.cursor/mcp.json)</h3>
+      <pre>{
+  "mcpServers": {
+    "gadgethumans-legal": {
+      "command": "uvx",
+      "args": ["gadgethumans-legal-mcp"]
+    }
+  }
+}</pre>
+    </div>
+    <div class="server-panel" id="legal-tools">
+      <h3>8 Legal tools</h3>
+      <div class="tool-list">
+        <div class="tool-item"><span class="dot dot-purple"></span>analyze_contract</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>extract_clauses</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>check_regulatory_compliance</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>generate_nda</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>review_terms_of_service</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>find_legal_precedents</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>draft_disclaimer</div>
+        <div class="tool-item"><span class="dot dot-purple"></span>assess_liability_risk</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end server-grid -->
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  HOW TO USE                                                       -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div class="howto">
+  <h2>🚀 How to Use MCP Servers</h2>
+
+  <h3>Prerequisites</h3>
+  <p>Install <a href="https://docs.astral.sh/uv/" style="color:var(--accent);">uv</a> (the Python package manager) for the easiest experience:</p>
+  <pre>curl -LsSf https://astral.sh/uv/install.sh | sh</pre>
+
+  <h3>Claude Desktop</h3>
+  <p>Open Claude Desktop → Settings → Developer → Edit Config, then paste the JSON config from the server card above into <code>claude_desktop_config.json</code>.</p>
+
+  <h3>Cursor IDE</h3>
+  <p>Create a <code>.cursor/mcp.json</code> file in your project root with the JSON from the Cursor tab above, or go to Cursor Settings → MCP → Add New.</p>
+
+  <h3>Windsurf / Cline</h3>
+  <p>Same config format as Cursor. Add the MCP server entry to your IDE's MCP settings with <code>uvx gadgethumans-api-hub-mcp</code> as the command.</p>
+
+  <h3>Smithery.ai</h3>
+  <p>Visit each server's Smithery page (linked from the server card) for one-click deployment to your agent.</p>
+
+  <h3>From Python</h3>
+  <p>Use the MCP client library to connect programmatically:</p>
+  <pre>from mcp import ClientSession, StdioServerParameters
+import asyncio
+
+async def main():
+    params = StdioServerParameters(
+        command="uvx",
+        args=["gadgethumans-api-hub-mcp"]
+    )
+    async with ClientSession(params) as session:
+        tools = await session.list_tools()
+        print(f"{len(tools.tools)} tools available")
+        result = await session.call_tool("generate_password", {"length": 16})
+        print(result.content[0].text)
+
+asyncio.run(main())</pre>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+  <p>GadgetHumans — <a href="/">Home</a> · <a href="/api-hub/">API Hub</a> · <a href="/mcp-servers/">MCP Servers</a> · <a href="/tools/">Free Tools</a> · <a href="/blog/">Blog</a></p>
+  <p style="margin-top:8px;">All MCP servers are open-source (MIT) and hosted on <a href="https://github.com/scotia1973-bot">GitHub</a>.</p>
+</footer>
+
+<script>
+function switchTab(serverId, tabName) {
+  const card = document.getElementById(serverId);
+  const tabs = card.querySelectorAll('.server-tab');
+  const panels = card.querySelectorAll('.server-panel');
+
+  tabs.forEach(t => t.classList.remove('active'));
+  panels.forEach(p => p.classList.remove('active'));
+
+  const targetTab = Array.from(tabs).find(t => t.textContent.toLowerCase().trim() === 
+    ({'install':'install','claude':'claude desktop','cursor':'cursor ide','tools':'tool list'}[tabName] || tabName));
+  if (targetTab) targetTab.classList.add('active');
+
+  const targetPanel = document.getElementById(serverId + '-' + tabName);
+  if (targetPanel) targetPanel.classList.add('active');
+}
+</script>
+
+</body>
+</html>
