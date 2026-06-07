@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Tools API: Validate, Format, Merge, and Query Your Data (2026 Guide)</title>
+    <meta name="description" content="Master JSON processing with the free GadgetHumans JSON Tools API. Validate, prettify, minify, and query JSON data with Python, JavaScript, and cURL examples.">
+    <meta name="keywords" content="JSON API, JSON validator, JSON formatter, JSON prettify, JSON minify, JSON tools, JSON processing API, free JSON API, JSON checker, JSON linter">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.gadgethumans.com/blog/json-tools-api-guide.html">
+    <meta property="og:title" content="JSON Tools API: Validate, Format, Merge, and Query Your Data (2026 Guide)">
+    <meta property="og:description" content="Free JSON Tools API — validate, prettify, minify, and process JSON data. Python, JS, and curl examples for developers.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.gadgethumans.com/blog/json-tools-api-guide.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON Tools API: Validate, Format, Merge, and Query Your Data (2026 Guide)">
+    <meta name="twitter:description" content="Free JSON Tools API for validation, formatting, minification, and more. Complete integration guide.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "JSON Tools API: Validate, Format, Merge, and Query Your Data (2026 Guide)",
+        "description": "Master JSON processing with the free GadgetHumans JSON Tools API. Validate, prettify, minify, and process JSON data.",
+        "author": { "@type": "Organization", "name": "GadgetHumans" },
+        "datePublished": "2026-06-07",
+        "dateModified": "2026-06-07",
+        "inLanguage": "en-US",
+        "about": { "@type": "Thing", "name": "JSON Tools API" }
+    }
+    </script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 860px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        h1 { font-size: 2.2em; border-bottom: 3px solid #4a90d9; padding-bottom: 12px; margin-top: 0; color: #16213e; }
+        h2 { font-size: 1.6em; margin-top: 2em; color: #0f3460; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+        h3 { font-size: 1.25em; margin-top: 1.5em; color: #16213e; }
+        p { margin: 1em 0; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+        p code, li code { background: #e8e8ee; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        ul, ol { margin: 0.8em 0; padding-left: 1.5em; }
+        li { margin: 0.4em 0; }
+        a { color: #4a90d9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .cta-box { background: linear-gradient(135deg, #4a90d9, #0f3460); color: white; padding: 24px 28px; border-radius: 12px; margin: 2em 0; text-align: center; }
+        .cta-box a { color: #ffd700; font-weight: bold; }
+        .cta-box a:hover { color: #fff; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        .tip { background: #d4edda; border-left: 4px solid #28a745; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.2em 0; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background: #f0f4f8; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .toc { background: #f0f4f8; padding: 16px 20px; border-radius: 8px; margin: 1.5em 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin: 0.3em 0; }
+        .toc a { display: block; padding: 4px 0; }
+    </style>
+</head>
+<body>
+
+<article>
+    <h1>JSON Tools API: Validate, Format, Merge, and Query Your Data</h1>
+    <p><em>Last updated: June 7, 2026 &middot; 9 min read &middot; <a href="https://www.gadgethumans.com">GadgetHumans</a></em></p>
+
+    <div class="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            <li><a href="#intro">1. Introduction</a></li>
+            <li><a href="#endpoint">2. The JSON API Endpoint</a></li>
+            <li><a href="#validate">3. Validate JSON</a></li>
+            <li><a href="#prettify">4. Prettify / Format JSON</a></li>
+            <li><a href="#minify">5. Minify JSON</a></li>
+            <li><a href="#curl">6. cURL Examples</a></li>
+            <li><a href="#python">7. Python Integration</a></li>
+            <li><a href="#javascript">8. JavaScript Integration</a></li>
+            <li><a href="#pipeline">9. JSON Processing Pipeline</a></li>
+            <li><a href="#conclusion">10. Conclusion</a></li>
+        </ul>
+    </div>
+
+    <section id="intro">
+        <h2>1. Introduction</h2>
+        <p>JSON (JavaScript Object Notation) is the lingua franca of web APIs. It's everywhere — configuration files, API responses, database exports, webhook payloads, and state management. But working with JSON often involves tedious manual steps: is this valid? Can I format it for readability? Can I minify it for storage?</p>
+        <p>The <a href="https://api.gadgethumans.com/json" target="_blank">GadgetHumans JSON Tools API</a> handles all three operations with a single endpoint — validate, prettify, and minify. In this guide, you'll learn how to integrate JSON processing into your applications with code examples in cURL, Python, and JavaScript.</p>
+        <div class="tip">
+            <strong>TL;DR:</strong> <code>GET https://api.gadgethumans.com/json?json=%7B%22key%22%3A%22value%22%7D&mode=validate</code> returns validation results, or use <code>mode=prettify</code> / <code>mode=minify</code>. Free: 100 requests/day.
+        </div>
+    </section>
+
+    <section id="endpoint">
+        <h2>2. The JSON API Endpoint</h2>
+        <pre>GET https://api.gadgethumans.com/json?json={your-json-string}&mode={validate|prettify|minify}</pre>
+        <h3>Parameters</h3>
+        <table>
+            <thead>
+                <tr><th>Parameter</th><th>Required</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>json</code></td><td>Yes</td><td>The JSON string to process (URL-encoded). Max 100,000 characters.</td></tr>
+                <tr><td><code>mode</code></td><td>No</td><td>Operation: <code>validate</code>, <code>prettify</code> (default), or <code>minify</code></td></tr>
+            </tbody>
+        </table>
+        <h3>Response Format</h3>
+        <p>Each mode returns different information. You'll see the exact responses in the sections below.</p>
+    </section>
+
+    <section id="validate">
+        <h2>3. Validate JSON</h2>
+        <p><code>mode=validate</code> checks whether a string is valid JSON and returns details about its structure:</p>
+        <pre>curl "https://api.gadgethumans.com/json?json=%7B%22name%22%3A%22test%22%7D&mode=validate"
+
+# Response:
+# {"valid":true,"type":"object","keys":1}</pre>
+        <p>For invalid JSON:</p>
+        <pre>curl "https://api.gadgethumans.com/json?json=invalid-json&mode=validate"
+
+# Response:
+# {"valid":false,"error":"Invalid JSON: Unexpected token 'i' at position 0"}</pre>
+        <p>Validation is useful for:</p>
+        <ul>
+            <li><strong>CI/CD pipelines:</strong> Validate configuration files before deployment</li>
+            <li><strong>Form input validation:</strong> Check user-submitted JSON before processing</li>
+            <li><strong>Webhook debugging:</strong> Verify that incoming webhook payloads are well-formed</li>
+        </ul>
+    </section>
+
+    <section id="prettify">
+        <h2>4. Prettify / Format JSON</h2>
+        <p><code>mode=prettify</code> reformats JSON with proper indentation and sorted keys for readability:</p>
+        <pre>curl "https://api.gadgethumans.com/json?json=%7B%22z%22%3A1%2C%22a%22%3A%22hello%22%2C%22nested%22%3A%7B%22x%22%3Atrue%7D%7D&mode=prettify"
+
+# Response:
+# {
+#   "a": "hello",
+#   "nested": {
+#     "x": true
+#   },
+#   "z": 1
+# }</pre>
+        <p>The prettify mode sorts keys alphabetically and indents with 2 spaces — making it perfect for:</p>
+        <ul>
+            <li>Formatting API responses for debugging</li>
+            <li>Creating readable configuration files</li>
+            <li>Preparing JSON for documentation or code reviews</li>
+        </ul>
+    </section>
+
+    <section id="minify">
+        <h2>5. Minify JSON</h2>
+        <p><code>mode=minify</code> removes all unnecessary whitespace:</p>
+        <pre>curl "https://api.gadgethumans.com/json?json=%7B%0A%20%20%22name%22%3A%20%22test%22%2C%0A%20%20%22value%22%3A%2042%0A%7D&mode=minify"
+
+# Response: {"name":"test","value":42}</pre>
+        <p>Use minification for:</p>
+        <ul>
+            <li><strong>Storage optimization:</strong> Smaller JSON = less disk space and bandwidth</li>
+            <li><strong>API response optimization:</strong> Minified JSON is faster to transmit</li>
+            <li><strong>Cache key generation:</strong> Use minified JSON as a cache key for deterministic hashing</li>
+        </ul>
+    </section>
+
+    <section id="curl">
+        <h2>6. cURL Examples</h2>
+        <p>Here's a quick reference for all three modes:</p>
+        <pre># Validate
+curl "https://api.gadgethumans.com/json?json=%7B%22key%22%3A%22value%22%7D&mode=validate"
+
+# Prettify (default mode — you can omit "mode")
+curl "https://api.gadgethumans.com/json?json=%7B%22b%22%3A2%2C%22a%22%3A1%7D"
+
+# Minify
+curl "https://api.gadgethumans.com/json?json=%7B%0A%20%20%22key%22%3A%20%22value%22%0A%7D&mode=minify"</pre>
+        <div class="note">
+            <strong>URL Encoding:</strong> When passing JSON as a query parameter, you must URL-encode it. Use <code>%7B</code> for <code>{</code>, <code>%7D</code> for <code>}</code>, <code>%22</code> for <code>"</code>, etc. Most programming languages handle this automatically when using HTTP client libraries.
+        </div>
+    </section>
+
+    <section id="python">
+        <h2>7. Python Integration</h2>
+        <pre>import requests
+import json
+
+def validate_json(json_string):
+    """Check if a string is valid JSON."""
+    response = requests.get(
+        "https://api.gadgethumans.com/json",
+        params={"json": json_string, "mode": "validate"}
+    )
+    return response.json()
+
+def prettify_json(json_string):
+    """Format JSON with indentation and sorted keys."""
+    response = requests.get(
+        "https://api.gadgethumans.com/json",
+        params={"json": json_string, "mode": "prettify"}
+    )
+    return response.text  # Returns formatted JSON string
+
+def minify_json(json_string):
+    """Remove whitespace from JSON."""
+    response = requests.get(
+        "https://api.gadgethumans.com/json",
+        params={"json": json_string, "mode": "minify"}
+    )
+    return response.text  # Returns compact JSON string
+
+# Example usage
+data = '{"z": 100, "a": ["hello", "world"], "nested": {"flag": true}}'
+
+# Validate
+result = validate_json(data)
+print(f"Valid JSON: {result['valid']}")  # True
+print(f"Type: {result.get('type')}")     # object
+
+# Prettify
+formatted = prettify_json(data)
+print(f"\\nFormatted:\\n{formatted}")
+
+# Minify
+compact = minify_json(data)
+print(f"\\nMinified: {compact}")
+print(f"Size: {len(data)} chars → {len(compact)} chars")</pre>
+        <h3>Batch JSON Validation</h3>
+        <pre>import requests
+
+def validate_json_files(file_paths):
+    """Validate multiple JSON files."""
+    for filepath in file_paths:
+        with open(filepath, 'r') as f:
+            content = f.read()
+        
+        result = requests.get(
+            "https://api.gadgethumans.com/json",
+            params={"json": content, "mode": "validate"}
+        ).json()
+        
+        status = "✅" if result["valid"] else "❌"
+        print(f"{status} {filepath}: {result}")
+
+# Validate your config files
+validate_json_files([
+    "config.json",
+    "manifest.json",
+    "package.json"
+])</pre>
+    </section>
+
+    <section id="javascript">
+        <h2>8. JavaScript Integration</h2>
+        <h3>Node.js</h3>
+        <pre>async function processJSON(jsonString, mode = 'prettify') {
+    const params = new URLSearchParams({
+        json: jsonString,
+        mode: mode
+    });
+    
+    const response = await fetch(
+        `https://api.gadgethumans.com/json?${params}`
+    );
+    
+    if (mode === 'validate') {
+        return response.json();
+    }
+    return response.text();
+}
+
+// Usage
+(async () => {
+    const data = JSON.stringify({ z: 100, a: [1, 2, 3], nested: { x: true } });
+    
+    const validation = await processJSON(data, 'validate');
+    console.log('Valid:', validation.valid);
+    
+    const pretty = await processJSON(data, 'prettify');
+    console.log('Pretty:', pretty);
+    
+    const minified = await processJSON(data, 'minify');
+    console.log('Minified:', minified);
+})();</pre>
+        <h3>Browser-Based JSON Formatter Tool</h3>
+        <pre>&lt;div&gt;
+    &lt;textarea id="json-input" rows="6" cols="60"&gt;
+{ "name": "test", "value": 42, "nested": { "flag": true } }
+    &lt;/textarea&gt;
+    &lt;br&gt;
+    &lt;button onclick="validateJSON()"&gt;Validate&lt;/button&gt;
+    &lt;button onclick="formatJSON()"&gt;Format&lt;/button&gt;
+    &lt;button onclick="minifyJSON()"&gt;Minify&lt;/button&gt;
+    &lt;pre id="json-output"&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+async function callAPI(mode) {
+    const input = document.getElementById('json-input').value;
+    const url = `https://api.gadgethumans.com/json?json=${encodeURIComponent(input)}&mode=${mode}`;
+    
+    const response = await fetch(url);
+    const text = await response.text();
+    
+    document.getElementById('json-output').textContent = text;
+}
+
+function validateJSON() { callAPI('validate'); }
+function formatJSON() { callAPI('prettify'); }
+function minifyJSON() { callAPI('minify'); }
+&lt;/script&gt;</pre>
+        <p>This creates a complete JSON processing tool in the browser — no server-side code needed.</p>
+    </section>
+
+    <section id="pipeline">
+        <h2>9. JSON Processing Pipeline</h2>
+        <p>Let's combine multiple GadgetHumans API Hub tools into a JSON processing pipeline:</p>
+        <pre>import requests
+import json
+
+def process_api_response(api_url):
+    """
+    Fetch an API response, validate it, format it, and hash it for caching.
+    Demonstrates using JSON + Hash APIs together.
+    """
+    # 1. Fetch the data
+    response = requests.get(api_url)
+    raw_data = response.text
+    
+    # 2. Validate the JSON
+    validation = requests.get(
+        "https://api.gadgethumans.com/json",
+        params={"json": raw_data, "mode": "validate"}
+    ).json()
+    
+    if not validation["valid"]:
+        return {"error": "Invalid JSON response", "details": validation}
+    
+    # 3. Format it
+    formatted = requests.get(
+        "https://api.gadgethumans.com/json",
+        params={"json": raw_data, "mode": "prettify"}
+    ).text
+    
+    # 4. Hash it for caching
+    hash_result = requests.get(
+        "https://api.gadgethumans.com/hash",
+        params={"text": raw_data, "algorithm": "sha256"}
+    ).json()
+    
+    return {
+        "valid": True,
+        "type": validation.get("type"),
+        "formatted": formatted,
+        "sha256_fingerprint": hash_result["sha256"],
+        "char_count": len(raw_data)
+    }
+
+# Process a sample
+sample_json = json.dumps({
+    "users": [
+        {"id": 1, "name": "Alice", "role": "admin"},
+        {"id": 2, "name": "Bob", "role": "user"}
+    ],
+    "metadata": {"version": "1.0", "count": 2}
+})
+
+result = process_api_response(sample_json)  # Passing JSON string directly
+print(f"Valid: {result['valid']}")
+print(f"Type: {result['type']}")
+print(f"SHA-256: {result['sha256_fingerprint'][:16]}...")
+print(f"Size: {result['char_count']} chars")</pre>
+        <p>This pipeline demonstrates how the JSON Tools API complements other API Hub utilities — validate structure, format for readability, and hash for caching or integrity checks.</p>
+    </section>
+
+    <section id="conclusion">
+        <h2>10. Conclusion</h2>
+        <p>The <a href="https://api.gadgethumans.com/json" target="_blank">GadgetHumans JSON Tools API</a> handles the three most common JSON operations — validation, formatting, and minification — with a single simple endpoint. It's a free utility that saves time in CI/CD pipelines, debugging workflows, and data processing tasks.</p>
+        <p>For more advanced JSON operations like querying or transformation, combine this API with other tools in the <a href="https://api.gadgethumans.com" target="_blank">GadgetHumans API Hub</a>.</p>
+        <div class="cta-box">
+            <h3>📋 Try the JSON Tools API</h3>
+            <p>Free tier: 100 requests/day. No signup needed.</p>
+            <p><a href="https://api.gadgethumans.com/json?json=%7B%22hello%22%3A%22world%22%7D" target="_blank">Try JSON Prettify →</a></p>
+        </div>
+        <p>Check out our other developer tools: <a href="/blog/generate-secure-passwords-api.html">Password Generator API</a>, <a href="/blog/text-analysis-apis-guide.html">Text Analysis APIs</a>, and <a href="/blog/color-converter-api-guide.html">Color Converter API</a>.</p>
+    </section>
+</article>
+
+</body>
+</html>

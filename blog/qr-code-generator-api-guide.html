@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator API: Build QR Generation in 5 Minutes (2026 Guide)</title>
+    <meta name="description" content="Complete guide to using the GadgetHumans QR Code Generator API. Generate custom QR codes with Python, JavaScript, cURL, and more. Free tier available.">
+    <meta name="keywords" content="QR code generator API, QR API, generate QR code, QR code Python, QR code JavaScript, free QR code API, custom QR codes, branded QR codes">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.gadgethumans.com/blog/qr-code-generator-api-guide.html">
+    <meta property="og:title" content="QR Code Generator API: Build QR Generation in 5 Minutes (2026 Guide)">
+    <meta property="og:description" content="Generate custom QR codes with the free GadgetHumans QR Code API. Python, JS, curl — all with working examples.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.gadgethumans.com/blog/qr-code-generator-api-guide.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Generator API: Build QR Generation in 5 Minutes (2026 Guide)">
+    <meta name="twitter:description" content="Generate custom QR codes with the free GadgetHumans QR Code API. Working examples in Python, JS, and curl.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "QR Code Generator API: Build QR Generation in 5 Minutes (2026 Guide)",
+        "description": "Complete guide to using the GadgetHumans QR Code Generator API. Generate custom QR codes programmatically.",
+        "author": { "@type": "Organization", "name": "GadgetHumans" },
+        "datePublished": "2026-06-07",
+        "dateModified": "2026-06-07",
+        "inLanguage": "en-US",
+        "about": { "@type": "Thing", "name": "QR Code API" }
+    }
+    </script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 860px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        h1 { font-size: 2.2em; border-bottom: 3px solid #4a90d9; padding-bottom: 12px; margin-top: 0; color: #16213e; }
+        h2 { font-size: 1.6em; margin-top: 2em; color: #0f3460; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+        h3 { font-size: 1.25em; margin-top: 1.5em; color: #16213e; }
+        p { margin: 1em 0; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+        p code, li code { background: #e8e8ee; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        ul, ol { margin: 0.8em 0; padding-left: 1.5em; }
+        li { margin: 0.4em 0; }
+        a { color: #4a90d9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .cta-box { background: linear-gradient(135deg, #4a90d9, #0f3460); color: white; padding: 24px 28px; border-radius: 12px; margin: 2em 0; text-align: center; }
+        .cta-box a { color: #ffd700; font-weight: bold; }
+        .cta-box a:hover { color: #fff; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        .tip { background: #d4edda; border-left: 4px solid #28a745; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.2em 0; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background: #f0f4f8; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .toc { background: #f0f4f8; padding: 16px 20px; border-radius: 8px; margin: 1.5em 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin: 0.3em 0; }
+        .toc a { display: block; padding: 4px 0; }
+        img { max-width: 100%; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<article>
+    <h1>QR Code Generator API: Build QR Generation in 5 Minutes</h1>
+    <p><em>Last updated: June 7, 2026 &middot; 10 min read &middot; <a href="https://www.gadgethumans.com">GadgetHumans</a></em></p>
+
+    <div class="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            <li><a href="#intro">1. Introduction</a></li>
+            <li><a href="#endpoint">2. API Endpoint &amp; Parameters</a></li>
+            <li><a href="#curl">3. cURL Quick Start</a></li>
+            <li><a href="#python">4. Python Integration</a></li>
+            <li><a href="#javascript">5. JavaScript &amp; Browser Integration</a></li>
+            <li><a href="#customization">6. Customization Options</a></li>
+            <li><a href="#bulk">7. Bulk QR Code Generation</a></li>
+            <li><a href="#use-cases">8. Real-World Use Cases</a></li>
+            <li><a href="#conclusion">9. Conclusion</a></li>
+        </ul>
+    </div>
+
+    <section id="intro">
+        <h2>1. Introduction</h2>
+        <p>QR codes are everywhere in 2026 — restaurant menus, product packaging, event tickets, contactless payments, and marketing campaigns. They've become the standard bridge between physical objects and digital content. But what if you need to generate QR codes programmatically — at scale, with custom colors, embedded in your application?</p>
+        <p>That's where the <a href="https://api.gadgethumans.com/qr" target="_blank">GadgetHumans QR Code API</a> comes in. In this guide, you'll learn how to integrate QR code generation into any application in under 5 minutes. We'll cover cURL, Python, JavaScript, browser integration, bulk generation, and customization.</p>
+        <div class="tip">
+            <strong>TL;DR:</strong> Make a GET request to <code>https://api.gadgethumans.com/qr?data=your-url&format=png&size=300</code> and get back a QR code image. Free tier: 100 requests/day. No API key needed.
+        </div>
+    </section>
+
+    <section id="endpoint">
+        <h2>2. API Endpoint &amp; Parameters</h2>
+        <p>The QR code API accepts GET requests with URL query parameters:</p>
+        <pre>GET https://api.gadgethumans.com/qr?data={text}&format={png|svg|jpg}&size={pixels}</pre>
+        <table>
+            <thead>
+                <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>data</code></td><td>string</td><td>—</td><td>The content to encode (URL, text, phone number, etc.)</td></tr>
+                <tr><td><code>format</code></td><td>string</td><td>png</td><td>Output image format: <code>png</code>, <code>svg</code>, or <code>jpg</code></td></tr>
+                <tr><td><code>size</code></td><td>integer</td><td>300</td><td>Image dimensions (100–2000px)</td></tr>
+                <tr><td><code>foreground</code></td><td>string</td><td>#000000</td><td>Hex color for QR modules (e.g., <code>#ff6600</code>)</td></tr>
+                <tr><td><code>background</code></td><td>string</td><td>#FFFFFF</td><td>Hex color for background</td></tr>
+                <tr><td><code>ecc</code></td><td>string</td><td>M</td><td>Error correction: <code>L</code>/<code>M</code>/<code>Q</code>/<code>H</code></td></tr>
+                <tr><td><code>margin</code></td><td>integer</td><td>4</td><td>Quiet zone margin (0–20 modules)</td></tr>
+            </tbody>
+        </table>
+        <p>The API returns <strong>raw image data</strong> (not JSON), so you can pipe it directly to a file or display it in a browser.</p>
+    </section>
+
+    <section id="curl">
+        <h2>3. cURL Quick Start</h2>
+        <p>The fastest way to test the API:</p>
+        <pre>curl -o my-qr.png "https://api.gadgethumans.com/qr?data=https://www.gadgethumans.com&format=png&size=500"</pre>
+        <p>This saves a 500×500 PNG QR code to <code>my-qr.png</code>. Scan it with your phone — it links to GadgetHumans.</p>
+        <h3>Custom Colors</h3>
+        <pre>curl -o branded-qr.png \
+  "https://api.gadgethumans.com/qr?data=https://api.gadgethumans.com&foreground=%23007AFF&background=%23F0F2F5&size=600"</pre>
+        <h3>SVG Output (Scalable Vector)</h3>
+        <pre>curl -o qr-code.svg \
+  "https://api.gadgethumans.com/qr?data=https://api.gadgethumans.com&format=svg"</pre>
+        <p>SVG is ideal for web and print — it looks crisp at any zoom level or physical size.</p>
+        <h3>Generate a QR Code for WiFi Credentials</h3>
+        <pre>curl -o wifi-qr.png \
+  "https://api.gadgethumans.com/qr?data=WIFI:T:WPA;S:MyNetwork;P:MyPassword123;;&format=png"</pre>
+        <p>Many smartphones can scan this QR code to connect to WiFi automatically — no typing required.</p>
+    </section>
+
+    <section id="python">
+        <h2>4. Python Integration</h2>
+        <p>Python is perfect for batch processing and automated workflows:</p>
+        <pre>import requests
+
+def generate_qr(data, filename="qrcode.png", size=300, format="png"):
+    url = "https://api.gadgethumans.com/qr"
+    params = {"data": data, "format": format, "size": size}
+    
+    response = requests.get(url, params=params, stream=True)
+    
+    if response.status_code == 200:
+        with open(filename, "wb") as f:
+            f.write(response.content)
+        print(f"✅ QR code saved: {filename}")
+        return filename
+    else:
+        raise Exception(f"Error {response.status_code}: {response.text}")
+
+# Generate a QR code for your website
+generate_qr("https://www.gadgethumans.com", "site-qr.png", 500)</pre>
+        <h3>Custom Branded QR Code</h3>
+        <pre>def generate_branded_qr(data, foreground="#0f3460", background="#f8f9fa"):
+    url = "https://api.gadgethumans.com/qr"
+    params = {
+        "data": data,
+        "format": "png",
+        "size": 600,
+        "foreground": foreground,
+        "background": background,
+        "ecc": "H"  # High error correction for logo overlay
+    }
+    
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        with open("branded-qr.png", "wb") as f:
+            f.write(response.content)
+        return True
+    return False
+
+generate_branded_qr("https://www.gadgethumans.com/services")</pre>
+    </section>
+
+    <section id="javascript">
+        <h2>5. JavaScript &amp; Browser Integration</h2>
+        <h3>Node.js with Axios</h3>
+        <pre>const axios = require('axios');
+const fs = require('fs');
+
+async function generateQR(data, filename = 'qrcode.png', size = 300) {
+    const params = { data, format: 'png', size: size.toString() };
+    
+    const response = await axios.get('https://api.gadgethumans.com/qr', {
+        params,
+        responseType: 'stream'
+    });
+    
+    const writer = fs.createWriteStream(filename);
+    response.data.pipe(writer);
+    
+    return new Promise((resolve, reject) => {
+        writer.on('finish', () => resolve(filename));
+        writer.on('error', reject);
+    });
+}
+
+// Usage
+generateQR('https://api.gadgethumans.com', 'api-hub-qr.png', 500)
+    .then(f => console.log(`✅ Saved: ${f}`))
+    .catch(e => console.error(e));</pre>
+        <h3>Browser-Side QR Generator</h3>
+        <pre>async function displayQR(data, containerId) {
+    const params = new URLSearchParams({
+        data: data,
+        format: 'png',
+        size: 400
+    });
+    
+    const url = `https://api.gadgethumans.com/qr?${params}`;
+    
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = `QR code for ${data}`;
+    img.style.maxWidth = '100%';
+    
+    document.getElementById(containerId).appendChild(img);
+}
+
+// On page load, generate a QR code
+displayQR('https://www.gadgethumans.com', 'qr-container');</pre>
+        <p>This browser approach requires zero server-side code — perfect for SaaS dashboards, admin panels, or client-facing tools.</p>
+    </section>
+
+    <section id="customization">
+        <h2>6. Customization Options</h2>
+        <h3>Color Matching Your Brand</h3>
+        <p>Use the <code>foreground</code> and <code>background</code> parameters to match your brand colors. Ensure sufficient contrast — a dark foreground on a light background is most reliable for scanners.</p>
+        <h3>Error Correction Levels</h3>
+        <table>
+            <thead>
+                <tr><th>Level</th><th>Recovery</th><th>Best For</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>L</code></td><td>7%</td><td>Maximum data density, no logo overlay</td></tr>
+                <tr><td><code>M</code></td><td>15%</td><td>General use (default)</td></tr>
+                <tr><td><code>Q</code></td><td>25%</td><td>Small logo overlays, moderate damage tolerance</td></tr>
+                <tr><td><code>H</code></td><td>30%</td><td>Large logo overlays, maximum damage tolerance</td></tr>
+            </tbody>
+        </table>
+        <p>For branded QR codes with a logo in the center, always use <code>ecc=H</code> (30% error correction).</p>
+        <h3>Size Guidelines</h3>
+        <ul>
+            <li><strong>Digital display:</strong> 200–300px</li>
+            <li><strong>Print materials:</strong> 500–1000px</li>
+            <li><strong>Billboards/banners:</strong> 1000–2000px (use SVG format)</li>
+        </ul>
+    </section>
+
+    <section id="bulk">
+        <h2>7. Bulk QR Code Generation</h2>
+        <p>Need to generate hundreds of QR codes? Here's how to batch-process URLs efficiently:</p>
+        <pre>import requests
+from concurrent.futures import ThreadPoolExecutor
+import csv
+
+def generate_from_csv(csv_file, output_dir="qr_codes"):
+    import os
+    os.makedirs(output_dir, exist_ok=True)
+    
+    urls = []
+    with open(csv_file, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row:
+                urls.append(row[0])
+    
+    def process_url(url):
+        safe_name = url.replace("https://", "").replace("/", "_").replace(".", "-")[:50]
+        filename = f"{output_dir}/{safe_name}.png"
+        
+        response = requests.get(
+            "https://api.gadgethumans.com/qr",
+            params={"data": url, "format": "png", "size": 400}
+        )
+        if response.status_code == 200:
+            with open(filename, "wb") as f:
+                f.write(response.content)
+            return filename
+        return None
+    
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        results = list(executor.map(process_url, urls))
+    
+    print(f"Generated {len([r for r in results if r])} QR codes")
+
+# Usage: generate_from_csv("product-urls.csv")</pre>
+    </section>
+
+    <section id="use-cases">
+        <h2>8. Real-World Use Cases</h2>
+        <ul>
+            <li><strong>Digital Menus:</strong> Generate QR codes for restaurant tables that link to the day's menu</li>
+            <li><strong>Event Ticketing:</strong> Create unique QR codes for each ticket sold — scan for entry validation</li>
+            <li><strong>Product Packaging:</strong> Include QR codes on packages linking to product manuals, videos, or warranty registration</li>
+            <li><strong>Marketing Campaigns:</strong> Generate trackable QR codes for each campaign variant</li>
+            <li><strong>Inventory Management:</strong> QR codes on warehouse shelves linking to inventory management system</li>
+            <li><strong>WiFi Access:</strong> Generate WIFI:// QR codes for guest networks — no more typing passwords</li>
+        </ul>
+        <p>For more ideas and advanced patterns, check out our <a href="/blog/qr-code-programming-guide.html">complete QR code programming guide</a> and our comparison of <a href="/blog/best-qr-code-api-for-developers.html">QR code APIs</a>.</p>
+    </section>
+
+    <section id="conclusion">
+        <h2>9. Conclusion</h2>
+        <p>The <a href="https://api.gadgethumans.com/qr" target="_blank">GadgetHumans QR Code API</a> makes QR code generation trivial — one HTTP request, and you get a customizable, production-ready QR code image. With support for PNG, SVG, JPG, custom colors, error correction, and bulk generation, it handles everything from simple demos to enterprise-scale deployments.</p>
+        <div class="cta-box">
+            <h3>🚀 Generate Your First QR Code Now</h3>
+            <p>Free tier: 100 requests/day. No signup. No API key.</p>
+            <p><a href="https://api.gadgethumans.com/qr?data=https://api.gadgethumans.com&format=png&size=500" target="_blank">Try the API →</a></p>
+        </div>
+        <p>Also explore our <a href="/blog/generate-secure-passwords-api.html">Password Generator API</a> and <a href="/blog/json-tools-api-guide.html">JSON Tools API</a> for more developer utilities.</p>
+    </section>
+</article>
+
+</body>
+</html>

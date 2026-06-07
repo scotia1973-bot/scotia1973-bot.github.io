@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Converter API: From HEX to RGB and Back (2026 Guide)</title>
+    <meta name="description" content="Free Color Converter API — convert between HEX and RGB instantly. Complete guide with Python, JavaScript, and cURL examples for design and development workflows.">
+    <meta name="keywords" content="color converter API, HEX to RGB, RGB to HEX, color conversion API, CSS color converter, hex to rgb javascript, free color API, design tools API">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.gadgethumans.com/blog/color-converter-api-guide.html">
+    <meta property="og:title" content="Color Converter API: From HEX to RGB and Back (2026 Guide)">
+    <meta property="og:description" content="Free Color Converter API — convert HEX to RGB and back. Complete guide with code examples in Python, JavaScript, and cURL.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.gadgethumans.com/blog/color-converter-api-guide.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Color Converter API: From HEX to RGB and Back (2026 Guide)">
+    <meta name="twitter:description" content="Free Color Converter API — convert HEX to RGB and back. Complete guide with code examples.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Color Converter API: From HEX to RGB and Back (2026 Guide)",
+        "description": "Free Color Converter API for converting between HEX and RGB color formats. Includes Python, JavaScript, and cURL examples.",
+        "author": { "@type": "Organization", "name": "GadgetHumans" },
+        "datePublished": "2026-06-07",
+        "dateModified": "2026-06-07",
+        "inLanguage": "en-US",
+        "about": { "@type": "Thing", "name": "Color Converter API" }
+    }
+    </script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 860px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        h1 { font-size: 2.2em; border-bottom: 3px solid #4a90d9; padding-bottom: 12px; margin-top: 0; color: #16213e; }
+        h2 { font-size: 1.6em; margin-top: 2em; color: #0f3460; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+        h3 { font-size: 1.25em; margin-top: 1.5em; color: #16213e; }
+        p { margin: 1em 0; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+        p code, li code { background: #e8e8ee; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        ul, ol { margin: 0.8em 0; padding-left: 1.5em; }
+        li { margin: 0.4em 0; }
+        a { color: #4a90d9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .cta-box { background: linear-gradient(135deg, #4a90d9, #0f3460); color: white; padding: 24px 28px; border-radius: 12px; margin: 2em 0; text-align: center; }
+        .cta-box a { color: #ffd700; font-weight: bold; }
+        .cta-box a:hover { color: #fff; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        .tip { background: #d4edda; border-left: 4px solid #28a745; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.2em 0; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background: #f0f4f8; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .toc { background: #f0f4f8; padding: 16px 20px; border-radius: 8px; margin: 1.5em 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin: 0.3em 0; }
+        .toc a { display: block; padding: 4px 0; }
+        .swatch { display: inline-block; width: 24px; height: 24px; border-radius: 4px; border: 1px solid #ccc; vertical-align: middle; margin-right: 4px; }
+    </style>
+</head>
+<body>
+
+<article>
+    <h1>Color Converter API: From HEX to RGB and Back</h1>
+    <p><em>Last updated: June 7, 2026 &middot; 8 min read &middot; <a href="https://www.gadgethumans.com">GadgetHumans</a></em></p>
+
+    <div class="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            <li><a href="#intro">1. Introduction</a></li>
+            <li><a href="#formats">2. Understanding HEX and RGB</a></li>
+            <li><a href="#endpoint">3. The Color Converter API</a></li>
+            <li><a href="#curl">4. cURL Examples</a></li>
+            <li><a href="#python">5. Python Integration</a></li>
+            <li><a href="#javascript">6. JavaScript Integration</a></li>
+            <li><a href="#workflows">7. Practical Workflows</a></li>
+            <li><a href="#conclusion">8. Conclusion</a></li>
+        </ul>
+    </div>
+
+    <section id="intro">
+        <h2>1. Introduction</h2>
+        <p>Color conversion is one of those tasks every developer and designer encounters daily. You're working on a CSS stylesheet and have a HEX color from the design mockup, but need RGB values for an SVG filter. Or you're building a design tool that lets users pick colors in any format. Or you're scraping a website and need to normalize colors from different formats into a single representation.</p>
+        <p>The <a href="https://api.gadgethumans.com/color" target="_blank">GadgetHumans Color Converter API</a> handles all of these scenarios with a single HTTP request. In this guide, you'll learn how to convert colors programmatically between HEX and RGB formats, with real code examples you can use today.</p>
+        <div class="tip">
+            <strong>TL;DR:</strong> <code>GET https://api.gadgethumans.com/color?value=%23FF0000&from=hex&to=rgb</code> returns <code>{"output":{"value":"rgb(255, 0, 0)"},"components":{"r":255,"g":0,"b":0}}</code>. Free tier: 100 requests/day.
+        </div>
+    </section>
+
+    <section id="formats">
+        <h2>2. Understanding HEX and RGB</h2>
+        <h3>HEX (Hexadecimal)</h3>
+        <p>The HEX color format represents colors as a six-digit (or three-digit shorthand) hexadecimal number prefixed with <code>#</code>. Each pair of digits represents one channel: red, green, and blue. For example, <code>#FF0000</code> is pure red, <code>#00FF00</code> is pure green, and <code>#0000FF</code> is pure blue.</p>
+        <p>HEX can also be written in 3-digit shorthand: <code>#F00</code> is equivalent to <code>#FF0000</code>. The API supports both 3-digit and 6-digit hex formats.</p>
+        <h3>RGB (Red, Green, Blue)</h3>
+        <p>The RGB format uses decimal values (0–255) to specify each channel. Pure red in RGB is <code>rgb(255, 0, 0)</code>, white is <code>rgb(255, 255, 255)</code>, and black is <code>rgb(0, 0, 0)</code>.</p>
+        <h3>Conversion Reference</h3>
+        <table>
+            <thead>
+                <tr><th>Color</th><th>HEX</th><th>RGB</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="swatch" style="background:#FF0000"></span> Red</td><td><code>#FF0000</code></td><td><code>rgb(255, 0, 0)</code></td></tr>
+                <tr><td><span class="swatch" style="background:#00FF00"></span> Green</td><td><code>#00FF00</code></td><td><code>rgb(0, 255, 0)</code></td></tr>
+                <tr><td><span class="swatch" style="background:#0000FF"></span> Blue</td><td><code>#0000FF</code></td><td><code>rgb(0, 0, 255)</code></td></tr>
+                <tr><td><span class="swatch" style="background:#FFFFFF"></span> White</td><td><code>#FFFFFF</code></td><td><code>rgb(255, 255, 255)</code></td></tr>
+                <tr><td><span class="swatch" style="background:#000000"></span> Black</td><td><code>#000000</code></td><td><code>rgb(0, 0, 0)</code></td></tr>
+                <tr><td><span class="swatch" style="background:#FF6600"></span> Orange</td><td><code>#FF6600</code></td><td><code>rgb(255, 102, 0)</code></td></tr>
+                <tr><td><span class="swatch" style="background:#9933FF"></span> Purple</td><td><code>#9933FF</code></td><td><code>rgb(153, 51, 255)</code></td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="endpoint">
+        <h2>3. The Color Converter API</h2>
+        <pre>GET https://api.gadgethumans.com/color?value={color}&from={hex|rgb}&to={hex|rgb}</pre>
+        <h3>Parameters</h3>
+        <table>
+            <thead>
+                <tr><th>Parameter</th><th>Required</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>value</code></td><td>Yes</td><td>The color value to convert. HEX: <code>FF0000</code> or <code>#FF0000</code>. RGB: <code>rgb(255,0,0)</code> or <code>255,0,0</code>.</td></tr>
+                <tr><td><code>from</code></td><td>No (default: hex)</td><td>Source format: <code>hex</code> or <code>rgb</code></td></tr>
+                <tr><td><code>to</code></td><td>No (default: rgb)</td><td>Target format: <code>hex</code> or <code>rgb</code></td></tr>
+            </tbody>
+        </table>
+        <h3>Example Response</h3>
+        <pre>{
+  "input": {
+    "format": "hex",
+    "value": "#ff0000"
+  },
+  "output": {
+    "format": "rgb",
+    "value": "rgb(255, 0, 0)"
+  },
+  "components": {
+    "r": 255,
+    "g": 0,
+    "b": 0
+  }
+}</pre>
+        <p>The response includes both the formatted output string AND individual RGB components — useful for programmatic manipulation.</p>
+    </section>
+
+    <section id="curl">
+        <h2>4. cURL Examples</h2>
+        <h3>HEX to RGB</h3>
+        <pre>curl "https://api.gadgethumans.com/color?value=%234a90d9&from=hex&to=rgb"
+# → {"input":{"format":"hex","value":"#4a90d9"},"output":{"format":"rgb","value":"rgb(74, 144, 217)"},"components":{"r":74,"g":144,"b":217}}</pre>
+        <h3>RGB to HEX</h3>
+        <pre>curl "https://api.gadgethumans.com/color?value=255,102,0&from=rgb&to=hex"
+# → {"input":{"format":"rgb","value":"rgb(255, 102, 0)"},"output":{"format":"hex","value":"#ff6600"},"components":{"r":255,"g":102,"b":0}}</pre>
+        <h3>3-Digit HEX Shorthand</h3>
+        <pre>curl "https://api.gadgethumans.com/color?value=%23F60&from=hex&to=rgb"
+# → {"input":{"format":"hex","value":"#f60"},"output":{"format":"rgb","value":"rgb(255, 102, 0)"},"components":{"r":255,"g":102,"b":0}}</pre>
+        <p>The API automatically expands 3-digit hex codes to their 6-digit equivalents.</p>
+    </section>
+
+    <section id="python">
+        <h2>5. Python Integration</h2>
+        <pre>import requests
+
+def convert_color(value, from_format="hex", to_format="rgb"):
+    """
+    Convert a color between HEX and RGB formats.
+    
+    Args:
+        value: Color value (e.g., "#FF0000" or "rgb(255,0,0)")
+        from_format: "hex" or "rgb"
+        to_format: "hex" or "rgb"
+    
+    Returns:
+        Dict with input, output, and components
+    """
+    response = requests.get(
+        "https://api.gadgethumans.com/color",
+        params={"value": value, "from": from_format, "to": to_format}
+    )
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"API error {response.status_code}: {response.text}")
+
+# Convert GadgetHumans brand blue to RGB
+result = convert_color("#4a90d9", "hex", "rgb")
+print(f"HEX #4a90d9 → {result['output']['value']}")
+print(f"Components: R={result['components']['r']}, "
+      f"G={result['components']['g']}, B={result['components']['b']}")
+
+# Convert RGB back to HEX
+result2 = convert_color("rgb(255, 102, 0)", "rgb", "hex")
+print(f"RGB(255,102,0) → {result2['output']['value']}")</pre>
+        <h3>Batch Color Conversion</h3>
+        <pre>import requests
+import csv
+
+# Convert a palette from HEX to RGB
+palette = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7"]
+
+for hex_color in palette:
+    result = requests.get(
+        "https://api.gadgethumans.com/color",
+        params={"value": hex_color, "from": "hex", "to": "rgb"}
+    ).json()
+    
+    rgb = result["output"]["value"]
+    c = result["components"]
+    print(f"{hex_color:8s} → {rgb:20s}  "
+          f"R={c['r']:3d} G={c['g']:3d} B={c['b']:3d}")</pre>
+    </section>
+
+    <section id="javascript">
+        <h2>6. JavaScript Integration</h2>
+        <h3>Node.js</h3>
+        <pre>async function convertColor(value, fromFormat = 'hex', toFormat = 'rgb') {
+    const params = new URLSearchParams({
+        value: value,
+        from: fromFormat,
+        to: toFormat
+    });
+    
+    const response = await fetch(
+        `https://api.gadgethumans.com/color?${params}`
+    );
+    
+    if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+    }
+    
+    return response.json();
+}
+
+// Usage
+(async () => {
+    // HEX to RGB
+    const r1 = await convertColor('#007AFF', 'hex', 'rgb');
+    console.log('#007AFF →', r1.output.value);
+    
+    // RGB to HEX
+    const r2 = await convertColor('rgb(255, 59, 48)', 'rgb', 'hex');
+    console.log('RGB(255,59,48) →', r2.output.value);
+})();</pre>
+        <h3>Browser-Side Color Converter Widget</h3>
+        <pre>&lt;div&gt;
+    &lt;label&gt;HEX Color:&lt;/label&gt;
+    &lt;input type="text" id="hex-input" value="#4a90d9"&gt;
+    &lt;button onclick="hexToRgb()"&gt;Convert to RGB&lt;/button&gt;
+    &lt;p&gt;RGB: &lt;span id="rgb-output"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+async function hexToRgb() {
+    const hex = document.getElementById('hex-input').value;
+    const url = `https://api.gadgethumans.com/color?value=${encodeURIComponent(hex)}&from=hex&to=rgb`;
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    document.getElementById('rgb-output').textContent = data.output.value;
+}
+&lt;/script&gt;</pre>
+    </section>
+
+    <section id="workflows">
+        <h2>7. Practical Workflows</h2>
+        <h3>Design System Color Normalization</h3>
+        <p>When maintaining a design system, you often need colors in multiple formats. Here's how to normalize your entire color palette:</p>
+        <pre>import requests
+
+design_colors = {
+    "primary": "#007AFF",
+    "secondary": "#5856D6",
+    "success": "#34C759",
+    "warning": "#FF9500",
+    "danger": "#FF3B30",
+    "info": "#5AC8FA"
+}
+
+print("Design System Colors:")
+print("-" * 60)
+for name, hex_color in design_colors.items():
+    result = requests.get(
+        "https://api.gadgethumans.com/color",
+        params={"value": hex_color, "from": "hex", "to": "rgb"}
+    ).json()
+    c = result["components"]
+    print(f"{name:10s}  HEX: {hex_color:8s}  "
+          f"RGB: {result['output']['value']:18s}  "
+          f"CSS var: --{name}: {hex_color}")</pre>
+        <h3>Lighten/Darken Colors</h3>
+        <p>While the API doesn't do lightening/darkening directly, you can combine color conversion with programmatic manipulation:</p>
+        <pre>import requests
+
+def lighten_color(hex_color, factor=0.3):
+    """Lighten a hex color by factor (0-1)."""
+    # First convert HEX to RGB
+    result = requests.get(
+        "https://api.gadgethumans.com/color",
+        params={"value": hex_color, "from": "hex", "to": "rgb"}
+    ).json()
+    
+    c = result["components"]
+    
+    # Lighten each channel
+    r = min(255, int(c["r"] + (255 - c["r"]) * factor))
+    g = min(255, int(c["g"] + (255 - c["g"]) * factor))
+    b = min(255, int(c["b"] + (255 - c["b"]) * factor))
+    
+    # Convert back to HEX
+    lighter_rgb = f"rgb({r},{g},{b})"
+    result2 = requests.get(
+        "https://api.gadgethumans.com/color",
+        params={"value": lighter_rgb, "from": "rgb", "to": "hex"}
+    ).json()
+    
+    return result2["output"]["value"]
+
+# Lighten the primary color by 40%
+primary_light = lighten_color("#007AFF", 0.4)
+print(f"Primary: #007AFF → Lightened: {primary_light}")</pre>
+        <h3>CSS Variable Generation</h3>
+        <p>Use the API to generate CSS variables in both HEX and RGB for better color manipulation:</p>
+        <pre>const colors = ['#007AFF', '#5856D6', '#34C759', '#FF9500', '#FF3B30'];
+
+async function generateCSSVariables(hexColors) {
+    for (const hex of hexColors) {
+        const r = await fetch(
+            `https://api.gadgethumans.com/color?value=${encodeURIComponent(hex)}&from=hex&to=rgb`
+        ).then(res => res.json());
+        
+        const { r: red, g: green, b: blue } = r.components;
+        
+        console.log(`--color-hex: ${hex};`);
+        console.log(`--color-rgb: ${red}, ${green}, ${blue};`);
+        console.log(`--color: rgb(var(--color-rgb));`);
+        console.log(`--color-light: rgba(var(--color-rgb), 0.1);`);
+        console.log('---');
+    }
+}
+
+generateCSSVariables(colors);</pre>
+    </section>
+
+    <section id="conclusion">
+        <h2>8. Conclusion</h2>
+        <p>The <a href="https://api.gadgethumans.com/color" target="_blank">GadgetHumans Color Converter API</a> is a simple, reliable tool for converting colors between HEX and RGB formats. Whether you're building a design tool, normalizing a color palette, or just need a quick conversion in your terminal, it's a free utility that does exactly what it says — no signup, no bloat.</p>
+        <div class="cta-box">
+            <h3>🎨 Try the Color Converter API</h3>
+            <p>Free tier: 100 requests/day. No signup needed.</p>
+            <p><a href="https://api.gadgethumans.com/color?value=%234a90d9&from=hex&to=rgb" target="_blank">Convert a Color Now →</a></p>
+        </div>
+        <p>Check out our other developer tools: <a href="/blog/json-tools-api-guide.html">JSON Tools API</a>, <a href="/blog/generate-secure-passwords-api.html">Password Generator API</a>, and <a href="/blog/free-email-verification-api.html">Email Verification API</a>.</p>
+    </section>
+</article>
+
+</body>
+</html>

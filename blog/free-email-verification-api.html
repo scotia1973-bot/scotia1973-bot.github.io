@@ -1,85 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Email Verification API: Validate Emails in Real-Time (No API Key) - GadgetHumans</title>
-<meta name="description" content="A free email verification API that checks format, DNS MX records, and detects disposable email addresses. 50 verifications/day free. No signup required.">
-<meta name="keywords" content="free email verification api, email validation api, email checker api, verify email address api, disposable email detection, dns mx lookup api">
-<link rel="canonical" href="https://www.gadgethumans.com/blog/free-email-verification-api.html">
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
-  h1, h2, h3 { color: #1a1a1a; }
-  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
-  pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
-  .cta { background: #0070f3; color: white; text-align: center; padding: 30px; border-radius: 10px; margin: 30px 0; }
-  .cta a { color: white; font-weight: bold; font-size: 1.2em; text-decoration: underline; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Email Verification API: Stop Bounced Emails Before They Happen (2026 Guide)</title>
+    <meta name="description" content="Stop bounced emails with the free GadgetHumans Email Verification API. Learn to validate emails in real-time with Python, JavaScript, and cURL. Includes MX lookup, disposable detection, and scoring.">
+    <meta name="keywords" content="free email verification API, email validation API, verify email address, bounce prevention, email checker, disposable email detection, MX lookup, email API">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.gadgethumans.com/blog/free-email-verification-api.html">
+    <meta property="og:title" content="Free Email Verification API: Stop Bounced Emails Before They Happen (2026 Guide)">
+    <meta property="og:description" content="Free email verification API with MX DNS lookup, disposable domain detection, and scoring. Python, JS, and curl examples. Stop bounces today.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.gadgethumans.com/blog/free-email-verification-api.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Email Verification API: Stop Bounced Emails Before They Happen (2026 Guide)">
+    <meta name="twitter:description" content="Free email verification API with MX DNS lookup, disposable detection, and scoring.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Free Email Verification API: Stop Bounced Emails Before They Happen (2026 Guide)",
+        "description": "Stop bounced emails with the free GadgetHumans Email Verification API. Real-time validation with MX lookup, disposable detection, and scoring.",
+        "author": { "@type": "Organization", "name": "GadgetHumans" },
+        "datePublished": "2026-06-07",
+        "dateModified": "2026-06-07",
+        "inLanguage": "en-US",
+        "about": { "@type": "Thing", "name": "Email Verification API" }
+    }
+    </script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 860px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        h1 { font-size: 2.2em; border-bottom: 3px solid #4a90d9; padding-bottom: 12px; margin-top: 0; color: #16213e; }
+        h2 { font-size: 1.6em; margin-top: 2em; color: #0f3460; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+        h3 { font-size: 1.25em; margin-top: 1.5em; color: #16213e; }
+        p { margin: 1em 0; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+        p code, li code { background: #e8e8ee; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        ul, ol { margin: 0.8em 0; padding-left: 1.5em; }
+        li { margin: 0.4em 0; }
+        a { color: #4a90d9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .cta-box { background: linear-gradient(135deg, #4a90d9, #0f3460); color: white; padding: 24px 28px; border-radius: 12px; margin: 2em 0; text-align: center; }
+        .cta-box a { color: #ffd700; font-weight: bold; }
+        .cta-box a:hover { color: #fff; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        .tip { background: #d4edda; border-left: 4px solid #28a745; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        .warn { background: #f8d7da; border-left: 4px solid #dc3545; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.2em 0; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background: #f0f4f8; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .toc { background: #f0f4f8; padding: 16px 20px; border-radius: 8px; margin: 1.5em 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin: 0.3em 0; }
+        .toc a { display: block; padding: 4px 0; }
+        img { max-width: 100%; border-radius: 8px; }
+    </style>
 </head>
 <body>
-<h1>Free Email Verification API: Validate Emails in Real-Time (No API Key)</h1>
-<p>Every form on the internet collects email addresses. But how many of those emails are real?</p>
 
-<p>If you're building a signup form, newsletter, or any application that collects emails, you need to validate them. Bounce rates hurt your sender reputation. Disposable emails waste your resources.</p>
+<article>
+    <h1>Free Email Verification API: Stop Bounced Emails Before They Happen</h1>
+    <p><em>Last updated: June 7, 2026 &middot; 9 min read &middot; <a href="https://www.gadgethumans.com">GadgetHumans</a></em></p>
 
-<p>That's why I built <a href="https://email-verify.scotia1973.workers.dev/">a free email verification API</a> — it validates emails in real-time without requiring an API key.</p>
+    <div class="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            <li><a href="#intro">1. Introduction</a></li>
+            <li><a href="#cost">2. The True Cost of Bounced Emails</a></li>
+            <li><a href="#endpoint">3. The GadgetHumans Email Verify API</a></li>
+            <li><a href="#curl">4. cURL Quick Start</a></li>
+            <li><a href="#python">5. Python Integration</a></li>
+            <li><a href="#javascript">6. JavaScript Integration</a></li>
+            <li><a href="#signup">7. Integrating with Signup Forms</a></li>
+            <li><a href="#best-practices">8. Best Practices</a></li>
+            <li><a href="#conclusion">9. Conclusion</a></li>
+        </ul>
+    </div>
 
-<h2>Quick Start</h2>
-<pre>curl -X POST https://email-verify.scotia1973.workers.dev/verify \
-  -H "Content-Type: application/json" \
-  -d '{"email":"user@example.com"}'</pre>
+    <section id="intro">
+        <h2>1. Introduction</h2>
+        <p>Every email that bounces costs you money. Whether you're paying for an email marketing platform (SendGrid, Mailchimp, AWS SES) or losing credibility with customers who never receive their confirmation emails, invalid email addresses are an expensive problem.</p>
+        <p>The <a href="https://api.gadgethumans.com/email-verify" target="_blank">GadgetHumans Email Verification API</a> helps you catch invalid, disposable, and unreachable email addresses <em>before</em> they enter your system. In this guide, you'll learn how to integrate real-time email verification into your applications with code examples in Python, JavaScript, and cURL.</p>
+        <div class="tip">
+            <strong>TL;DR:</strong> <code>GET https://api.gadgethumans.com/email-verify?email=user@example.com</code> returns format validation, MX DNS check, and disposable domain detection. Score ≥ 65 = valid. Free: 100/day.
+        </div>
+    </section>
 
-<p>Response:</p>
-<pre>{
+    <section id="cost">
+        <h2>2. The True Cost of Bounced Emails</h2>
+        <p>Bounced emails aren't just annoying — they have real financial and operational costs:</p>
+        <ul>
+            <li><strong>Email service costs:</strong> SendGrid charges $19.95/month for 50K emails. Each bounced email wastes your send allocation.</li>
+            <li><strong>Sender reputation damage:</strong> High bounce rates (&gt;2-3%) cause email providers to flag your domain as spam.</li>
+            <li><strong>Lost customers:</strong> If a new user typoes their email during signup, they'll never receive the confirmation link. They're gone forever.</li>
+            <li><strong>Data quality:</strong> Invalid emails clutter your CRM, skew analytics, and waste your sales team's time.</li>
+        </ul>
+        <p>The math is simple: checking an email address costs a fraction of a cent. Letting a bad email through costs dollars. We've covered this in more depth in our <a href="/blog/email-verification-api-for-signup-forms.html">tutorial on adding email verification to signup forms</a> and our <a href="/blog/email-verification-api-pricing-comparison.html">pricing comparison of 9 email verification services</a>.</p>
+    </section>
+
+    <section id="endpoint">
+        <h2>3. The GadgetHumans Email Verify API</h2>
+        <p>The API performs three checks on every email address and returns a composite score:</p>
+        <pre>GET https://api.gadgethumans.com/email-verify?email=user@example.com</pre>
+        <h3>Example Response</h3>
+        <pre>{
   "email": "user@example.com",
-  "valid_format": true,
-  "has_mx": true,
+  "valid": true,
+  "format_valid": true,
+  "mx_valid": true,
   "is_disposable": false,
-  "is_role_based": false,
-  "score": 95,
-  "reason": "valid"
+  "score": 100
 }</pre>
+        <h3>Response Fields</h3>
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>email</code></td><td>string</td><td>The email address that was checked</td></tr>
+                <tr><td><code>valid</code></td><td>boolean</td><td>Overall validity (score ≥ 65)</td></tr>
+                <tr><td><code>format_valid</code></td><td>boolean</td><td>Passes RFC 5322 regex validation</td></tr>
+                <tr><td><code>mx_valid</code></td><td>boolean</td><td>Domain has valid MX DNS records (can receive email)</td></tr>
+                <tr><td><code>is_disposable</code></td><td>boolean</td><td>Detected as a disposable/temporary email domain</td></tr>
+                <tr><td><code>score</code></td><td>integer</td><td>0–100 confidence score (65+ = valid)</td></tr>
+            </tbody>
+        </table>
+        <div class="note">
+            <strong>How Scoring Works:</strong> Format validity = 30 points. MX validity = 50 points. Not disposable = 20 points. Score ≥ 65 → <code>valid: true</code>. You can adjust your own threshold for stricter or more lenient validation.
+        </div>
+    </section>
 
-<h2>Features</h2>
-<ul>
-  <li><strong>Format validation:</strong> Checks RFC-compliant email format</li>
-  <li><strong>DNS MX lookup:</strong> Verifies the domain can receive mail</li>
-  <li><strong>Disposable detection:</strong> Blocks 200+ temporary email domains</li>
-  <li><strong>Role-based detection:</strong> Alerts on admin@, info@, support@</li>
-  <li><strong>Scoring:</strong> 0-100 confidence score per email</li>
-  <li><strong>Free tier:</strong> 50 verifications/day, no API key needed</li>
-</ul>
+    <section id="curl">
+        <h2>4. cURL Quick Start</h2>
+        <pre>curl "https://api.gadgethumans.com/email-verify?email=user@example.com"</pre>
+        <p>Response for a valid email:</p>
+        <pre>{"email":"user@example.com","valid":true,"format_valid":true,"mx_valid":true,"is_disposable":false,"score":100}</pre>
+        <p>Response for an invalid email:</p>
+        <pre>curl "https://api.gadgethumans.com/email-verify?email=notanemail"
+# → {"email":"notanemail","valid":false,"format_valid":false,"mx_valid":false,"is_disposable":false,"score":0}</pre>
+        <p>Response for a disposable email:</p>
+        <pre>curl "https://api.gadgethumans.com/email-verify?email=user@mailinator.com"
+# → {"email":"user@mailinator.com","valid":false,"format_valid":true,"mx_valid":true,"is_disposable":true,"score":70}</pre>
+        <p>Note that disposable emails may still have valid MX records and format — the API flags them as disposable so you can make your own decision.</p>
+    </section>
 
-<h2>Why Validate Emails?</h2>
-<ul>
-  <li><strong>Reduce bounce rates:</strong> Invalid emails hurt your sender reputation</li>
-  <li><strong>Save money:</strong> Don't pay for email delivery to invalid addresses</li>
-  <li><strong>Block spam:</strong> Disposable emails are often used for abuse</li>
-  <li><strong>Improve data quality:</strong> Clean email lists = better conversion rates</li>
-</ul>
+    <section id="python">
+        <h2>5. Python Integration</h2>
+        <pre>import requests
 
-<h2>Use Cases</h2>
-<ul>
-  <li><strong>SaaS signup forms:</strong> Validate emails at registration</li>
-  <li><strong>Email marketing:</strong> Clean your lists before sending campaigns</li>
-  <li><strong>Lead generation:</strong> Ensure lead quality at point of capture</li>
-  <li><strong>API integrations:</strong> Add email validation to any pipeline</li>
-</ul>
+def verify_email(email):
+    """
+    Verify an email address using the GadgetHumans API.
+    Returns a dict with validation results.
+    """
+    response = requests.get(
+        "https://api.gadgethumans.com/email-verify",
+        params={"email": email}
+    )
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"API error {response.status_code}: {response.text}")
 
-<h2>Pricing</h2>
-<ul>
-  <li><strong>Free:</strong> 50 verifications/day — no signup needed</li>
-  <li><strong>Pro ($5/mo):</strong> 1,000 verifications/day with API key</li>
-  <li><strong>Business ($15/mo):</strong> 10,000 verifications/day with priority support</li>
-</ul>
+# Test some addresses
+emails = [
+    "valid@example.com",
+    "not-an-email",
+    "test@mailinator.com",
+    "user@gmail.com"
+]
 
-<p>Built on Cloudflare Workers with Node.js DNS lookups. No external dependencies — everything runs serverless.</p>
+for email in emails:
+    result = verify_email(email)
+    status = "✅" if result["valid"] else "❌"
+    print(f"{status} {email}: score={result['score']}, "
+          f"mx={result['mx_valid']}, disposable={result['is_disposable']}")</pre>
+        <h3>Bulk Email List Cleaning</h3>
+        <pre>import csv
+import requests
 
-<div class="cta">
-  <p><a href="https://email-verify.scotia1973.workers.dev/">Try the Email Verify API now →</a></p>
-  <p>No signup. No API key. Just works.</p>
-</div>
+def clean_email_list(input_csv, output_csv, threshold=65):
+    """Clean a CSV of email addresses, keeping only valid ones."""
+    valid_emails = []
+    
+    with open(input_csv, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            email = row[0].strip()
+            if not email:
+                continue
+            
+            result = requests.get(
+                "https://api.gadgethumans.com/email-verify",
+                params={"email": email}
+            ).json()
+            
+            if result["score"] >= threshold:
+                valid_emails.append((email, result["score"]))
+                print(f"✅ KEPT: {email} (score: {result['score']})")
+            else:
+                print(f"❌ SKIP: {email} (score: {result['score']})")
+    
+    with open(output_csv, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(["email", "score"])
+        writer.writerows(valid_emails)
+    
+    print(f"\nKept {len(valid_emails)} valid emails out of {sum(1 for _ in open(input_csv))}")
 
-<p><em>This blog post contains affiliate links. We may earn a commission if you upgrade to a paid plan.</em></p>
+# Usage: clean_email_list("leads.csv", "clean-leads.csv")</pre>
+    </section>
+
+    <section id="javascript">
+        <h2>6. JavaScript Integration</h2>
+        <h3>Node.js</h3>
+        <pre>const axios = require('axios');
+
+async function verifyEmail(email) {
+    const response = await axios.get(
+        'https://api.gadgethumans.com/email-verify',
+        { params: { email } }
+    );
+    return response.data;
+}
+
+// Usage
+verifyEmail('user@example.com')
+    .then(data => {
+        console.log(`Email: ${data.email}`);
+        console.log(`Valid: ${data.valid}`);
+        console.log(`Score: ${data.score}`);
+        console.log(`Disposable: ${data.is_disposable}`);
+    })
+    .catch(err => console.error(err));</pre>
+        <h3>Browser-Side (Client-Side Check)</h3>
+        <pre>async function checkEmail(email) {
+    const url = `https://api.gadgethumans.com/email-verify?email=${encodeURIComponent(email)}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        const statusEl = document.getElementById('email-status');
+        if (data.valid) {
+            statusEl.textContent = '✅ Valid email address';
+            statusEl.style.color = 'green';
+        } else {
+            let reason = 'Invalid email address';
+            if (data.is_disposable) reason = 'Disposable email not allowed';
+            else if (!data.format_valid) reason = 'Invalid email format';
+            else if (!data.mx_valid) reason = 'Domain cannot receive email';
+            
+            statusEl.textContent = `❌ ${reason}`;
+            statusEl.style.color = 'red';
+        }
+    } catch (error) {
+        console.error('Email verification failed:', error);
+    }
+}
+
+// Real-time validation on input change
+document.getElementById('email-input')
+    .addEventListener('blur', (e) => checkEmail(e.target.value));</pre>
+    </section>
+
+    <section id="signup">
+        <h2>7. Integrating with Signup Forms</h2>
+        <p>Here's a complete example of adding email verification to a signup flow:</p>
+        <pre>&lt;form id="signup-form"&gt;
+    &lt;input type="text" id="name" placeholder="Full Name" required&gt;
+    &lt;input type="email" id="email" placeholder="Email Address" required&gt;
+    &lt;div id="email-status"&gt;&lt;/div&gt;
+    &lt;button type="submit"&gt;Sign Up&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById('signup-form')
+    .addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        
+        // Verify email before submission
+        const response = await fetch(
+            `https://api.gadgethumans.com/email-verify?email=${encodeURIComponent(email)}`
+        );
+        const result = await response.json();
+        
+        if (!result.valid) {
+            document.getElementById('email-status').textContent = 
+                '❌ Please provide a valid email address';
+            return;
+        }
+        
+        // Email is valid — proceed with signup
+        // ... your signup logic here ...
+    });
+&lt;/script&gt;</pre>
+        <p>For a more detailed walkthrough, check out our <a href="/blog/email-verification-api-for-signup-forms.html">complete tutorial on adding email verification to signup forms</a>.</p>
+    </section>
+
+    <section id="best-practices">
+        <h2>8. Best Practices</h2>
+        <ul>
+            <li><strong>Check on the backend too:</strong> Client-side checks are convenient, but always verify on the server side. Anyone can bypass client-side JavaScript.</li>
+            <li><strong>Respect rate limits:</strong> Free tier is 100 requests/day. For production volumes, subscribe to <a href="https://api.gadgethumans.com/subscribe?api=general&tier=pro" target="_blank">Pro ($5/mo)</a> for 10,000/day.</li>
+            <li><strong>Cache results:</strong> If the same email address is submitted multiple times, cache the verification result for 24 hours.</li>
+            <li><strong>Don't reject disposable emails outright:</strong> Some legitimate users need temporary emails. Consider a warning instead of a hard block.</li>
+            <li><strong>Handle timeouts gracefully:</strong> MX lookups can occasionally time out. Implement retries with exponential backoff.</li>
+        </ul>
+        <div class="warn">
+            <strong>⚠️ Important:</strong> No email verification API can guarantee 100% accuracy. The API checks format validity, MX records, and disposable domains — but it cannot verify that a specific mailbox exists without actually sending an email. Use verification as a strong signal, not an absolute guarantee.
+        </div>
+    </section>
+
+    <section id="conclusion">
+        <h2>9. Conclusion</h2>
+        <p>Bounced emails waste money, damage sender reputation, and lose customers. The <a href="https://api.gadgethumans.com/email-verify" target="_blank">GadgetHumans Email Verification API</a> gives you a simple, free way to validate email addresses in real-time — before they enter your system.</p>
+        <p>With just one HTTP request, you get format validation, MX DNS verification, disposable email detection, and a confidence score. It's the cheapest insurance against email bounces.</p>
+        <div class="cta-box">
+            <h3>📧 Start Validating Emails for Free</h3>
+            <p>100 requests/day free. No signup needed.</p>
+            <p><a href="https://api.gadgethumans.com/email-verify?email=test@example.com" target="_blank">Try the API Now →</a></p>
+            <p style="font-size:0.9em;margin-top:8px;"><a href="https://api.gadgethumans.com/subscribe?api=general&tier=pro" target="_blank">Pro ($5/mo — 10K/day)</a></p>
+        </div>
+        <p>Also check out our <a href="/blog/generate-secure-passwords-api.html">Password Generator API</a> and <a href="/blog/json-tools-api-guide.html">JSON Tools API</a>.</p>
+    </section>
+</article>
+
 </body>
 </html>

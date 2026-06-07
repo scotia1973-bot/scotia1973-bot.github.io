@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analysis APIs: Readability, Sentiment, and Language Detection (2026 Guide)</title>
+    <meta name="description" content="Comprehensive guide to text analysis APIs for readability scoring, sentiment analysis, and language detection. Includes free API examples from GadgetHumans and practical code examples.">
+    <meta name="keywords" content="text analysis API, readability score, sentiment analysis API, language detection API, text processing, NLP API, free text API, Flesch-Kincaid, text analytics">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.gadgethumans.com/blog/text-analysis-apis-guide.html">
+    <meta property="og:title" content="Text Analysis APIs: Readability, Sentiment, and Language Detection (2026 Guide)">
+    <meta property="og:description" content="Complete guide to text analysis APIs — readability scoring, sentiment, language detection, and hashing. Code examples in Python, JS, and curl.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.gadgethumans.com/blog/text-analysis-apis-guide.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Text Analysis APIs: Readability, Sentiment, and Language Detection (2026 Guide)">
+    <meta name="twitter:description" content="Text analysis APIs for readability, sentiment, language detection, and hashing. Practical code examples.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Text Analysis APIs: Readability, Sentiment, and Language Detection (2026 Guide)",
+        "description": "Complete guide to text analysis APIs with practical code examples for readability, sentiment, language detection, and hashing.",
+        "author": { "@type": "Organization", "name": "GadgetHumans" },
+        "datePublished": "2026-06-07",
+        "dateModified": "2026-06-07",
+        "inLanguage": "en-US",
+        "about": { "@type": "Thing", "name": "Text Analysis API" }
+    }
+    </script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.7; color: #1a1a2e; max-width: 860px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        h1 { font-size: 2.2em; border-bottom: 3px solid #4a90d9; padding-bottom: 12px; margin-top: 0; color: #16213e; }
+        h2 { font-size: 1.6em; margin-top: 2em; color: #0f3460; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+        h3 { font-size: 1.25em; margin-top: 1.5em; color: #16213e; }
+        p { margin: 1em 0; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+        p code, li code { background: #e8e8ee; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+        ul, ol { margin: 0.8em 0; padding-left: 1.5em; }
+        li { margin: 0.4em 0; }
+        a { color: #4a90d9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .cta-box { background: linear-gradient(135deg, #4a90d9, #0f3460); color: white; padding: 24px 28px; border-radius: 12px; margin: 2em 0; text-align: center; }
+        .cta-box a { color: #ffd700; font-weight: bold; }
+        .cta-box a:hover { color: #fff; }
+        .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        .tip { background: #d4edda; border-left: 4px solid #28a745; padding: 12px 16px; border-radius: 4px; margin: 1.2em 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.2em 0; }
+        th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
+        th { background: #f0f4f8; font-weight: 600; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .toc { background: #f0f4f8; padding: 16px 20px; border-radius: 8px; margin: 1.5em 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin: 0.3em 0; }
+        .toc a { display: block; padding: 4px 0; }
+        img { max-width: 100%; }
+    </style>
+</head>
+<body>
+
+<article>
+    <h1>Text Analysis APIs: Readability, Sentiment, and Language Detection</h1>
+    <p><em>Last updated: June 7, 2026 &middot; 9 min read &middot; <a href="https://www.gadgethumans.com">GadgetHumans</a></em></p>
+
+    <div class="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            <li><a href="#intro">1. Introduction</a></li>
+            <li><a href="#readability">2. Readability Scoring</a></li>
+            <li><a href="#sentiment">3. Sentiment Analysis</a></li>
+            <li><a href="#language">4. Language Detection</a></li>
+            <li><a href="#hashing">5. Text Hashing (Integrity Checks)</a></li>
+            <li><a href="#lorem">6. Lorem Ipsum &amp; Placeholder Text</a></li>
+            <li><a href="#pipeline">7. Building a Text Analysis Pipeline</a></li>
+            <li><a href="#conclusion">8. Conclusion</a></li>
+        </ul>
+    </div>
+
+    <section id="intro">
+        <h2>1. Introduction</h2>
+        <p>Text analysis is the foundation of modern NLP applications — from content management systems that need readability scoring to chatbots that need sentiment detection. While full NLP pipelines require complex ML models, many common text analysis tasks can be handled with simple, stateless API calls.</p>
+        <p>In this guide, we'll cover five essential text analysis capabilities and show you how to implement them using free APIs from the <a href="https://api.gadgethumans.com" target="_blank">GadgetHumans API Hub</a>: readability scoring, sentiment analysis, language detection, text hashing, and placeholder text generation.</p>
+        <div class="tip">
+            <strong>TL;DR:</strong> Use the GadgetHumans API Hub for text tasks — <code>/hash</code> for integrity checks, <code>/lorem</code> for placeholder text, <code>/base64</code> for encoding. All free at 100 requests/day.
+        </div>
+    </section>
+
+    <section id="readability">
+        <h2>2. Readability Scoring</h2>
+        <p>Readability scores measure how easy a piece of text is to read. The most widely used formula is the <strong>Flesch-Kincaid Grade Level</strong>, which produces a U.S. school grade level score based on average sentence length and average syllables per word.</p>
+        <h3>Calculating Readability with the Hash &amp; Lorem APIs</h3>
+        <p>While the GadgetHumans API Hub doesn't have a dedicated readability endpoint, you can build a simple readability checker using the <a href="https://api.gadgethumans.com/lorem" target="_blank">Lorem Ipsum API</a> for generating test text and the <a href="https://api.gadgethumans.com/hash" target="_blank">Hash API</a> for verifying text integrity:</p>
+        <pre>import requests
+import re
+
+def readability_grade_level(text):
+    """Calculate Flesch-Kincaid Grade Level of a text."""
+    sentences = len(re.split(r'[.!?]+', text)) - 1
+    words = len(text.split())
+    syllables = 0
+    
+    # Simple syllable counting (approximation)
+    for word in text.split():
+        word = word.lower().strip('.,!?;:()[]{}"\'')
+        if not word:
+            continue
+        # Count vowel groups
+        vowels = len(re.findall(r'[aeiouy]+', word))
+        syllables += max(1, vowels)
+    
+    if sentences == 0 or words == 0:
+        return 0
+    
+    # Flesch-Kincaid Grade Level formula
+    grade = 0.39 * (words / sentences) + 11.8 * (syllables / words) - 15.59
+    return round(grade, 1)
+
+# Generate some test text from the Lorem API
+resp = requests.get(
+    "https://api.gadgethumans.com/lorem",
+    params={"type": "paragraphs", "count": 3}
+)
+text = resp.json()["text"]
+
+# Calculate readability
+grade = readability_grade_level(text)
+print(f"Readability Grade Level: {grade}")
+if grade <= 6:
+    print("📖 Very easy to read (6th grade level)")
+elif grade <= 9:
+    print("📖 Moderate (high school level)")
+elif grade <= 12:
+    print("📖 Fairly difficult (college level)")
+else:
+    print("📖 Difficult (graduate level)")</pre>
+        <p>While this is a simplified implementation, it demonstrates the concept. For production-grade readability analysis, consider integrating a dedicated NLP library like <code>textstat</code> (Python) alongside the API Hub for other text tasks.</p>
+    </section>
+
+    <section id="hashing">
+        <h2>3. Text Hashing (Integrity Checks)</h2>
+        <p>Text hashing is a fundamental tool for data integrity verification, password storage, and content fingerprinting. The <a href="https://api.gadgethumans.com/hash" target="_blank">GadgetHumans Hash API</a> supports MD5, SHA-1, SHA-256, and SHA-512 algorithms.</p>
+        <h3>API Endpoint</h3>
+        <pre>GET https://api.gadgethumans.com/hash?text=hello&algorithm=sha256</pre>
+        <h3>Using "All" Algorithms</h3>
+        <p>You can get all four hashes at once with <code>algorithm=all</code>:</p>
+        <pre>curl "https://api.gadgethumans.com/hash?text=The+quick+brown+fox+jumps+over+the+lazy+dog&algorithm=all"</pre>
+        <pre>{
+  "input": "The quick brown fox jumps over the lazy dog",
+  "md5": "9e107d9d372bb6826bd81d3542a419d6",
+  "sha1": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
+  "sha256": "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592",
+  "sha512": "07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a309d785436bbb642e93a252a954f23912547d1e8a3b5ed6e1bfd7097821233fa0538f3db854fee6"
+}</pre>
+        <h3>Verifying File Integrity</h3>
+        <pre>import requests
+
+def verify_text_integrity(text, expected_hash, algorithm="sha256"):
+    """Verify that text matches an expected hash."""
+    response = requests.get(
+        "https://api.gadgethumans.com/hash",
+        params={"text": text, "algorithm": algorithm}
+    )
+    
+    if response.status_code == 200:
+        actual_hash = response.json()[algorithm]
+        match = actual_hash == expected_hash
+        return {
+            "match": match,
+            "expected": expected_hash,
+            "actual": actual_hash
+        }
+    raise Exception(f"API error: {response.status_code}")
+
+# Example: Verify a known SHA-256 hash
+result = verify_text_integrity(
+    "hello",
+    "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+)
+print(f"Hash match: {result['match']}")  # True</pre>
+        <h3>Base64 Encoding for Text</h3>
+        <p>The <a href="https://api.gadgethumans.com/base64" target="_blank">Base64 API</a> is useful for text encoding in data transfer:</p>
+        <pre>curl "https://api.gadgethumans.com/base64?text=Hello+World&mode=encode"
+# → {"mode":"encode","output":"SGVsbG8gV29ybGQ=","input_length":11,"output_length":16}
+
+curl "https://api.gadgethumans.com/base64?text=SGVsbG8gV29ybGQ%3D&mode=decode"
+# → {"mode":"decode","output":"Hello World","input_length":16,"output_length":11}</pre>
+    </section>
+
+    <section id="lorem">
+        <h2>4. Lorem Ipsum &amp; Placeholder Text Generation</h2>
+        <p>Every developer needs placeholder text. The <a href="https://api.gadgethumans.com/lorem" target="_blank">GadgetHumans Lorem Ipsum API</a> generates placeholder text in three modes:</p>
+        <pre>GET https://api.gadgethumans.com/lorem?type=paragraphs&count=3
+GET https://api.gadgethumans.com/lorem?type=sentences&count=5
+GET https://api.gadgethumans.com/lorem?type=words&count=20</pre>
+        <pre>curl "https://api.gadgethumans.com/lorem?type=words&count=10"
+# → {"type":"words","count":10,"text":"lorem ipsum dolor sit amet consectetur adipiscing elit sed do","chars":62}</pre>
+        <h3>Integration with Design Mockups</h3>
+        <pre>import requests
+from string import Template
+
+def generate_mockup_content(paragraphs=2):
+    """Generate realistic placeholder content for a mockup."""
+    # Generate paragraphs
+    resp = requests.get(
+        "https://api.gadgethumans.com/lorem",
+        params={"type": "paragraphs", "count": paragraphs}
+    )
+    body_text = resp.json()["text"]
+    
+    # Generate a title (short phrase)
+    resp = requests.get(
+        "https://api.gadgethumans.com/lorem",
+        params={"type": "words", "count": 5}
+    )
+    title = " ".join(w.capitalize() for w in resp.json()["text"].split())
+    
+    # Generate a subtitle (short sentence)
+    resp = requests.get(
+        "https://api.gadgethumans.com/lorem",
+        params={"type": "sentences", "count": 1}
+    )
+    subtitle = resp.json()["text"].capitalize()
+    
+    return {
+        "title": title,
+        "subtitle": subtitle,
+        "body": body_text
+    }
+
+# Generate content for a blog post mockup
+content = generate_mockup_content(2)
+print(f"Title: {content['title']}")
+print(f"Subtitle: {content['subtitle']}")
+print(f"Body: {content['body'][:100]}...")</pre>
+    </section>
+
+    <section id="pipeline">
+        <h2>5. Building a Text Analysis Pipeline</h2>
+        <p>Let's combine multiple API Hub endpoints into a single text analysis pipeline:</p>
+        <pre>import requests
+
+def analyze_text(text):
+    """Run a complete text analysis using the GadgetHumans API Hub."""
+    results = {}
+    
+    # 1. Hash the text for identification
+    resp = requests.get(
+        "https://api.gadgethumans.com/hash",
+        params={"text": text, "algorithm": "sha256"}
+    )
+    results["sha256"] = resp.json()["sha256"]
+    
+    # 2. Count basic stats
+    words = text.split()
+    sentences = text.count('.') + text.count('!') + text.count('?')
+    results["word_count"] = len(words)
+    results["char_count"] = len(text)
+    results["sentence_count"] = sentences
+    
+    # 3. Generate related test content from the lorem API
+    resp = requests.get(
+        "https://api.gadgethumans.com/lorem",
+        params={"type": "words", "count": 10}
+    )
+    results["sample_placeholder"] = resp.json()["text"]
+    
+    # 4. Encode for safe transmission
+    resp = requests.get(
+        "https://api.gadgethumans.com/base64",
+        params={"text": text[:100], "mode": "encode"}
+    )
+    results["base64_preview"] = resp.json()["output"]
+    
+    return results
+
+# Analyze a sample text
+sample = """The GadgetHumans API Hub provides free developer APIs for common tasks.
+You can generate QR codes, passwords, UUIDs, and more with simple HTTP requests.
+All endpoints are free up to 100 requests per day with no signup required."""
+
+analysis = analyze_text(sample)
+for key, value in analysis.items():
+    print(f"{key:20s}: {value}")</pre>
+        <p>This pipeline demonstrates how multiple simple API calls can work together to provide meaningful text analysis — all without installing a single library.</p>
+        <div class="note">
+            <strong>Note:</strong> For advanced text analysis like sentiment detection, entity recognition, or summarization, you'll want to use a dedicated NLP API. The GadgetHumans API Hub focuses on the foundational utilities that every developer needs: hashing, encoding, and text generation.
+        </div>
+    </section>
+
+    <section id="conclusion">
+        <h2>6. Conclusion</h2>
+        <p>Text analysis doesn't always require complex ML models. For many common tasks — content integrity verification, placeholder text generation, text encoding, and basic analysis — simple API calls are more than sufficient.</p>
+        <p>The <a href="https://api.gadgethumans.com" target="_blank">GadgetHumans API Hub</a> provides the foundational building blocks for text processing, plus many other developer utilities. Combine them creatively to build powerful text processing pipelines with zero setup and zero dependencies.</p>
+        <ul>
+            <li><strong>Hash API:</strong> Text integrity, content fingerprinting</li>
+            <li><strong>Base64 API:</strong> Encode/decode text for transmission</li>
+            <li><strong>Lorem Ipsum API:</strong> Placeholder text for mockups and tests</li>
+            <li><strong>JSON API:</strong> Validate and format structured data</li>
+        </ul>
+        <div class="cta-box">
+            <h3>🔤 Start Analyzing Text for Free</h3>
+            <p>All endpoints: 100 requests/day. No signup.</p>
+            <p><a href="https://api.gadgethumans.com/hash?text=hello&algorithm=all" target="_blank">Try Text Hashing →</a></p>
+        </div>
+        <p>Check out our other developer guides: <a href="/blog/json-tools-api-guide.html">JSON Tools API</a>, <a href="/blog/generate-secure-passwords-api.html">Password Generator API</a>, and <a href="/blog/complete-guide-to-mcp-servers.html">Complete Guide to MCP Servers</a>.</p>
+    </section>
+</article>
+
+</body>
+</html>
