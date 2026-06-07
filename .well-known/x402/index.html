@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x402 Payment Protocol — GadgetHumans</title>
+  <meta name="description" content="GadgetHumans supports the x402 protocol for agent-to-API payments. AI agents can pay for API access via Lightning Network.">
+  <link rel="canonical" href="https://www.gadgethumans.com/.well-known/x402/">
+  <style>
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; max-width:700px; margin:40px auto; padding:20px; line-height:1.6; color:#1a1a2e; }
+    h1 { font-size:2rem; border-bottom:2px solid #0A84FF; padding-bottom:8px; }
+    code { background:#f0f0f5; padding:2px 8px; border-radius:4px; font-size:0.9rem; }
+    pre { background:#1a1a2e; color:#e0e0ff; padding:16px; border-radius:8px; overflow-x:auto; }
+    .wallet-box { background:linear-gradient(135deg,#0A84FF,#5E5CE6); color:#fff; padding:16px 20px; border-radius:12px; margin:16px 0; }
+    .wallet-box code { background:rgba(255,255,255,0.15); color:#fff; }
+    a { color:#0A84FF; }
+  </style>
+</head>
+<body>
+  <a href="/" style="color:#0A84FF;text-decoration:none;font-weight:600;">← GadgetHumans</a>
+  <h1>🤖 x402 Agent Payment Protocol</h1>
+  <p>GadgetHumans supports <strong>x402</strong> — an HTTP 402 Payment Required protocol that lets AI agents pay for API access automatically via the Lightning Network.</p>
+
+  <h2>💰 Lightning Wallet</h2>
+  <div class="wallet-box">
+    <strong>Default wallet:</strong> <code>bc1qxyz402gadgethumans</code><br>
+    <small>Agent payments are processed via Lightning invoices. 100 sats per 1,000 API requests.</small>
+  </div>
+
+  <h2>🔌 How Agents Use It</h2>
+  <p>When an API endpoint returns HTTP 402, the agent reads the <code>X-402-Payment-Required</code> header, pays the Lightning invoice, and retries with the proof of payment.</p>
+
+  <h3>Example Response</h3>
+  <pre>HTTP/1.1 402 Payment Required
+Content-Type: application/json
+X-402-Payment-Required: lntb1u1p...invoice...
+
+{
+  "error": "payment_required",
+  "message": "Free tier exceeded. Send 100 sats to continue.",
+  "payment_url": "lightning:lntb1u1p...invoice..."
+}</pre>
+
+  <h2>📋 Available Endpoints</h2>
+  <ul>
+    <li><code>GET /api/color/convert</code> — Color conversion</li>
+    <li><code>GET /api/timestamp/convert</code> — Timestamp conversion</li>
+    <li><code>GET /api/base64/encode</code> — Base64 encode/decode</li>
+    <li><code>GET /api/hash</code> — Cryptographic hashing</li>
+    <li><code>GET /api/uuid</code> — UUID generation</li>
+    <li><code>GET /api/password</code> — Password generation</li>
+    <li><code>GET /api/qrcode</code> — QR code generation</li>
+    <li><code>GET /api/json/process</code> — JSON processing</li>
+    <li><code>GET /api/email/verify</code> — Email verification</li>
+    <li><code>GET /api/ip/geolocate</code> — IP geolocation</li>
+    <li><code>GET /api/lorem</code> — Lorem ipsum generation</li>
+  </ul>
+
+  <h2>📄 Specification</h2>
+  <p>x402 follows the <a href="https://github.com/x402-protocol/x402-spec" target="_blank" rel="noopener">x402 specification</a>. GadgetHumans implements <strong>x402-draft-01</strong>.</p>
+
+  <p><a href="/api-hub/" style="display:inline-block;padding:10px 24px;background:#0A84FF;color:#fff;border-radius:980px;text-decoration:none;font-weight:600;margin-top:8px;">🚀 Visit API Hub →</a></p>
+</body>
+</html>

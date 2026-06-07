@@ -251,6 +251,16 @@ curl https://api.gadgethumans.com/uuid</pre>
       <p>For production use, <a href="https://api.gadgethumans.com/subscribe?api=general&tier=pro" style="color: #0A84FF;">subscribe to Pro ($5/mo)</a> for higher limits and a dedicated API key.</p>
     </div>
 
+    <!-- 🤖 x402 Agent Payments -->
+    <div class="quickstart" id="x402" style="margin-top:40px;background:linear-gradient(135deg,rgba(10,132,255,0.05),rgba(94,92,230,0.05));border:1px solid rgba(10,132,255,0.2);padding:24px 32px;border-radius:16px;">
+      <h2>🤖 x402 — Agent Payments</h2>
+      <p>AI agents can pay for API access automatically via the <strong>x402</strong> protocol (HTTP 402 Payment Required). When you exceed the free tier, the API returns a Lightning invoice — agents pay and retry.</p>
+      <p style="margin-top:12px;">
+        <strong>Lightning wallet:</strong> <code style="background:rgba(255,255,255,0.1);padding:4px 10px;border-radius:6px;font-size:0.9rem;">bc1qxyz402gadgethumans</code><br>
+        <small style="color:var(--text2);">100 sats per 1,000 requests · <a href="/.well-known/x402/" style="color:#0A84FF;">Full spec →</a></small>
+      </p>
+    </div>
+
     <footer>
       <p>Powered by <a href="https://gadgethumans.com">Gadget Humans</a> · <a href="https://gadgethumans.com/services">Services</a> · <a href="https://gadgethumans.com/blog">Blog</a> · <a href="mailto:scotia1973@gmail.com">Contact</a></p>
       <p style="margin-top: 8px; font-size: 0.8rem;">All APIs run on Cloudflare Workers · Uptime 99.9% · Global edge network</p>
