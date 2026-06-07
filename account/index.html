@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account — GadgetHumans API Dashboard</title>
+<meta name="description" content="Check your API usage, quota, and subscription details for the GadgetHumans API Hub.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="/css/theme.css?v=3">
+<style>
+.account-hero {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
+  padding: 40px 24px;
+  text-align: center;
+  border-radius: 16px;
+  margin: 24px 0;
+}
+.account-hero h1 { font-size: 1.8rem; margin-bottom: 8px; }
+.account-hero p { color: #94a3b8; font-size: 0.95rem; margin: 0; }
+.dashboard-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur-md));
+  -webkit-backdrop-filter: blur(var(--glass-blur-md));
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  margin: 16px 0;
+}
+.dashboard-card h3 { margin: 0 0 12px; }
+.quota-display {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.quota-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #34c759;
+}
+.quota-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.quota-bar {
+  flex: 1;
+  min-width: 200px;
+  height: 12px;
+  background: var(--glass-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.quota-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #34c759, #30d158);
+  border-radius: 6px;
+  transition: width 0.5s;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--glass-border);
+  font-size: 0.9rem;
+}
+.detail-row:last-child { border-bottom: none; }
+.detail-row .label { color: var(--muted); }
+.detail-row .value { font-weight: 600; }
+.form-group { margin: 16px 0; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; }
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+.form-group input:focus { outline: none; border-color: #007AFF; }
+.check-btn {
+  padding: 12px 28px;
+  border-radius: 980px;
+  background: #007AFF;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.check-btn:hover { opacity: 0.85; }
+.check-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.result-area {
+  margin: 16px 0;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  display: none;
+  border: 1px solid var(--glass-border);
+}
+.result-area.show { display: block; }
+.error-msg { color: #ff3b30; font-size: 0.9rem; display: none; }
+.error-msg.show { display: block; }
+.dashboard-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.dashboard-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+.dashboard-links a:hover { border-color: #007AFF; }
+.dashboard-links a .icon { font-size: 1.4rem; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links"><a href="/">Home</a><a href="/api-hub/">APIs</a><a href="/deepseek-api/">DeepSeek API</a><a href="/pricing/">Pricing</a><a href="/account/" class="active">Account</a></div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="account-hero">
+    <h1>🔑 My API Dashboard</h1>
+    <p>Check your remaining quota, subscription details, and API usage.</p>
+  </div>
+
+  <div class="dashboard-card">
+    <h3>📊 Check Your Quota</h3>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:16px;">Enter your API key to see your remaining daily limit and usage.</p>
+    
+    <div class="form-group">
+      <label for="apiKey">Your API Key</label>
+      <input type="text" id="apiKey" placeholder="gh_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" style="font-family:monospace;font-size:0.85rem;">
+    </div>
+    
+    <button class="check-btn" id="checkBtn" onclick="checkQuota()">Check My Quota →</button>
+    <div class="error-msg" id="errorMsg"></div>
+
+    <div class="result-area" id="resultArea">
+      <div id="quotaResult"></div>
+    </div>
+  </div>
+
+  <div id="quotaDisplay" style="display:none;">
+    <div class="dashboard-card">
+      <h3>📈 Daily Usage</h3>
+      <div class="quota-display">
+        <div>
+          <div class="quota-number" id="remainingDisplay">—</div>
+          <div class="quota-label">requests remaining today</div>
+        </div>
+        <div class="quota-bar">
+          <div class="quota-bar-fill" id="quotaBarFill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <h3>📋 Subscription Details</h3>
+      <div class="detail-row"><span class="label">Plan</span><span class="value" id="planDisplay">—</span></div>
+      <div class="detail-row"><span class="label">Tier</span><span class="value" id="tierDisplay">—</span></div>
+      <div class="detail-row"><span class="label">Daily Limit</span><span class="value" id="dailyLimitDisplay">—</span></div>
+      <div class="detail-row"><span class="label">Used Today</span><span class="value" id="usedTodayDisplay">—</span></div>
+      <div class="detail-row"><span class="label">Expires</span><span class="value" id="expiresDisplay">—</span></div>
+    </div>
+  </div>
+
+  <div class="dashboard-links">
+    <a href="https://api.gadgethumans.com/subscribe?tier=pro&api=chat">
+      <span class="icon">🚀</span>
+      <span>Upgrade to Pro</span>
+    </a>
+    <a href="https://api.gadgethumans.com/subscribe?tier=biz&api=chat">
+      <span class="icon">💼</span>
+      <span>Upgrade to Business</span>
+    </a>
+    <a href="/deepseek-api/">
+      <span class="icon">🤖</span>
+      <span>DeepSeek API Docs</span>
+    </a>
+    <a href="mailto:scotia1973@gmail.com">
+      <span class="icon">✉️</span>
+      <span>Contact Support</span>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/api-hub/">APIs</a>
+    <a href="/deepseek-api/">DeepSeek API</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/account/">Account</a>
+    <a href="/privacy/">Privacy</a>
+  </div>
+  <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — AI Tools &amp; Gear for Remote Workers</p>
+</footer>
+
+<script>
+async function checkQuota() {
+  const key = document.getElementById('apiKey').value.trim();
+  const errorEl = document.getElementById('errorMsg');
+  const resultArea = document.getElementById('resultArea');
+  const quotaDisplay = document.getElementById('quotaDisplay');
+  
+  errorEl.classList.remove('show');
+  errorEl.textContent = '';
+  resultArea.classList.remove('show');
+  quotaDisplay.style.display = 'none';
+  
+  if (!key) {
+    errorEl.textContent = 'Please enter your API key.';
+    errorEl.classList.add('show');
+    return;
+  }
+  
+  if (!key.startsWith('gh_')) {
+    errorEl.textContent = 'Invalid API key format. Keys start with "gh_".';
+    errorEl.classList.add('show');
+    return;
+  }
+  
+  const btn = document.getElementById('checkBtn');
+  btn.disabled = true;
+  btn.textContent = 'Checking...';
+  
+  try {
+    const resp = await fetch('https://api.gadgethumans.com/quota', {
+      headers: { 'x-api-key': key }
+    });
+    const data = await resp.json();
+    
+    if (!resp.ok) {
+      errorEl.textContent = data.error || 'Failed to check quota.';
+      errorEl.classList.add('show');
+      btn.disabled = false;
+      btn.textContent = 'Check My Quota →';
+      return;
+    }
+    
+    // Show results
+    document.getElementById('planDisplay').textContent = data.plan || '—';
+    document.getElementById('tierDisplay').textContent = data.tier || '—';
+    document.getElementById('dailyLimitDisplay').textContent = data.daily_limit ? data.daily_limit.toLocaleString() : '—';
+    document.getElementById('usedTodayDisplay').textContent = data.used_today ? data.used_today.toLocaleString() : '0';
+    document.getElementById('remainingDisplay').textContent = data.remaining ? data.remaining.toLocaleString() : '0';
+    
+    if (data.expires_at) {
+      const d = new Date(data.expires_at);
+      document.getElementById('expiresDisplay').textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    } else {
+      document.getElementById('expiresDisplay').textContent = 'Active';
+    }
+    
+    // Quota bar
+    const pct = data.daily_limit ? Math.min(100, Math.round((data.used_today / data.daily_limit) * 100)) : 0;
+    document.getElementById('quotaBarFill').style.width = pct + '%';
+    
+    quotaDisplay.style.display = 'block';
+    
+    resultArea.classList.add('show');
+    document.getElementById('quotaResult').textContent = JSON.stringify(data, null, 2);
+    
+  } catch (err) {
+    errorEl.textContent = 'Network error. Please try again.';
+    errorEl.classList.add('show');
+  }
+  
+  btn.disabled = false;
+  btn.textContent = 'Check My Quota →';
+}
+</script>
+</body>
+</html>
