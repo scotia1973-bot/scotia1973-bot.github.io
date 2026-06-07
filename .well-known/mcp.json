@@ -1,0 +1,97 @@
+{
+  "name": "GadgetHumans API Hub MCP",
+  "version": "2.0.0",
+  "description": "MCP server providing 200+ utility API tools via Model Context Protocol. QR codes, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON processing, color conversion, email verification, IP geolocation, timestamp conversion.",
+  "author": "GadgetHumans Team",
+  "license": "MIT",
+  "homepage": "https://gadgethumans.com",
+  "package": {
+    "name": "gadgethumans-api-hub-mcp",
+    "url": "https://pypi.org/project/gadgethumans-api-hub-mcp/",
+    "install": "pip install gadgethumans-api-hub-mcp",
+    "repo": "https://github.com/scottwishart/gadgethumans-api-hub-mcp"
+  },
+  "endpoints": {
+    "streamable_http": {
+      "url": "https://api.gadgethumans.com/mcp",
+      "protocol": "streamable-http",
+      "version": "1.0",
+      "transport": "http",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "text/event-stream"
+      }
+    },
+    "rest_api": {
+      "base_url": "https://api.gadgethumans.com",
+      "format": "json"
+    }
+  },
+  "capabilities": {
+    "tools": {
+      "enabled": true,
+      "count": 12,
+      "list": [
+        "generate_qr_code",
+        "generate_password",
+        "generate_uuid",
+        "hash_text",
+        "encode_base64",
+        "generate_lorem_ipsum",
+        "process_json",
+        "convert_color",
+        "verify_email",
+        "geolocate_ip",
+        "convert_timestamp",
+        "health"
+      ]
+    },
+    "resources": {
+      "enabled": true,
+      "types": ["tool-documentation", "api-specs"]
+    },
+    "prompts": {
+      "enabled": true,
+      "templates": ["tool-usage", "code-examples"]
+    }
+  },
+  "authentication": {
+    "type": "none",
+    "rate_limiting": {
+      "free_tier": "100 requests/day per tool",
+      "pro_tier": "$5/month — unlimited"
+    }
+  },
+  "categories": [
+    "developer-tools",
+    "security",
+    "data-transformation",
+    "image-generation",
+    "content-generation",
+    "networking",
+    "design",
+    "email"
+  ],
+  "tags": [
+    "MCP",
+    "MCP Server",
+    "AI Tools API",
+    "MCP tools directory",
+    "free API tools for AI",
+    "MCP server with 200+ tools",
+    "QR code",
+    "password generator",
+    "UUID",
+    "hashing",
+    "Base64",
+    "Lorem Ipsum",
+    "JSON formatter",
+    "color converter",
+    "email verification",
+    "IP geolocation",
+    "timestamp converter",
+    "developer utilities",
+    "serverless API",
+    "HTTP API"
+  ]
+}

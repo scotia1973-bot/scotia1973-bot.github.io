@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Geolocation API — Free IP Location Service via REST or MCP</title>
+<meta name="description" content="Free IP geolocation API. Get city, country, ISP, timezone, coordinates for any IP address. REST API or MCP tool. No auth required. Auto-detects caller IP.">
+<meta name="keywords" content="IP geolocation API, free IP API, IP location API, geoip API, MCP server, AI tools API">
+<link rel="canonical" href="https://gadgethumans.com/blog/ip-geolocation-api-guide">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans IP Geolocator API","description":"Free IP geolocation API. City, country, ISP, timezone, coordinates. REST: GET /ip. MCP: geolocate_ip.","url":"https://api.gadgethumans.com/ip","documentation":"https://gadgethumans.com/api-hub/ip-geolocator","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans IP Geolocator","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free IP geolocation API and MCP tool.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>IP Geolocation API — Free IP Location Service via REST or MCP</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p>IP geolocation is essential for analytics, geo-targeting, fraud detection, and content localization. The GadgetHumans <strong>IP Geolocation API</strong> provides detailed location data for any IPv4 address — with zero authentication required.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/ip</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Description</th></tr>
+<tr><td>ip_address</td><td>No</td><td>IP to look up. Defaults to caller's IP.</td></tr></table>
+<h2>Examples</h2>
+<h3>Geolocate a Specific IP</h3>
+<pre><code>curl "https://api.gadgethumans.com/ip?ip_address=8.8.8.8"
+# Returns: {"ip": "8.8.8.8", "city": "Mountain View", "country": "United States", "isp": "Google LLC", "timezone": "America/Los_Angeles", "lat": 37.4056, "lon": -122.0775}</code></pre>
+<h3>Auto-Detect Caller's IP</h3>
+<pre><code>curl https://api.gadgethumans.com/ip</code></pre>
+<h2>MCP Tool: geolocate_ip</h2>
+<p>AI agents using the <strong>MCP server</strong> can call <code>geolocate_ip</code>. Available via Streamable HTTP endpoint or <code>pip install gadgethumans-api-hub-mcp</code>.</p>
+<h2>Response Data</h2>
+<ul><li><strong>ip:</strong> The IP address queried</li><li><strong>city:</strong> City name</li><li><strong>country:</strong> Country name</li><li><strong>isp:</strong> Internet Service Provider</li><li><strong>timezone:</strong> IANA timezone</li><li><strong>lat/lon:</strong> Coordinates</li></ul>
+<h2>Use Cases</h2>
+<ul><li>Analytics and user segmentation</li><li>Geo-targeted content delivery</li><li>Fraud detection and security</li><li>AI agent context awareness</li></ul>
+<p><strong>IP geolocation API</strong> | <strong>free IP API</strong> | <strong>geoip API</strong> | <strong>MCP server</strong></p>
+</article>
+</body>
+</html>

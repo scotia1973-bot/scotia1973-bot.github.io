@@ -1,0 +1,77 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "GadgetHumans API Hub",
+  "name_for_model": "gadgethumans_api_hub",
+  "description_for_human": "200+ free utility API tools — QR codes, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON formatting, color conversion, email verification, IP geolocation, and timestamp conversion. No signup needed.",
+  "description_for_model": "GadgetHumans API Hub provides 200+ utility API tools for AI agents. Use this plugin to generate QR codes, create secure passwords, generate UUIDs, hash text with MD5/SHA1/SHA256/SHA512, encode/decode Base64, generate lorem ipsum placeholder text, prettify/validate/minify JSON, convert colors between hex and RGB, verify email addresses, geolocate IP addresses, and convert timestamps. All endpoints are free (100 req/day) with Pro at $5/mo. Uses simple GET requests with query parameters. Returns JSON responses.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://gadgethumans.com/openapi.json",
+    "has_user_authentication": false
+  },
+  "contact_email": "hello@gadgethumans.com",
+  "legal_info_url": "https://gadgethumans.com/privacy",
+  "logo_url": "https://gadgethumans.com/logo.png",
+  "brand": {
+    "name": "GadgetHumans",
+    "tagline": "200+ Free API Tools for AI Agents",
+    "website": "https://gadgethumans.com",
+    "brand_color": "#4F46E5"
+  },
+  "capabilities": {
+    "tools": [
+      {
+        "name": "generate_qr_code",
+        "description": "Generate QR codes from text/URL. Supports PNG, SVG, GIF. Configurable size, color, error correction."
+      },
+      {
+        "name": "generate_password", 
+        "description": "Generate secure random passwords with configurable length and character sets."
+      },
+      {
+        "name": "generate_uuid",
+        "description": "Generate UUID v4 identifiers. Supports batch (1-100) and multiple formats."
+      },
+      {
+        "name": "hash_text",
+        "description": "Generate cryptographic hashes: MD5, SHA-1, SHA-256, SHA-512."
+      },
+      {
+        "name": "encode_base64",
+        "description": "Encode text to Base64 or decode Base64 back to text."
+      },
+      {
+        "name": "generate_lorem_ipsum",
+        "description": "Generate Lorem Ipsum placeholder text for mockups."
+      },
+      {
+        "name": "process_json",
+        "description": "Prettify, validate, or minify JSON strings."
+      },
+      {
+        "name": "convert_color",
+        "description": "Convert colors between hex (#FF0000) and RGB formats."
+      },
+      {
+        "name": "verify_email",
+        "description": "Verify email address validity and deliverability."
+      },
+      {
+        "name": "geolocate_ip",
+        "description": "Get geolocation data for any IP address."
+      },
+      {
+        "name": "convert_timestamp",
+        "description": "Convert between Unix timestamps and date strings."
+      }
+    ],
+    "categories": ["developer-tools", "security", "data-transformation", "image-generation", "content-generation", "design", "email", "network"],
+    "pricing": {
+      "free": "100 requests/day per endpoint",
+      "pro": "$5/month unlimited"
+    }
+  }
+}

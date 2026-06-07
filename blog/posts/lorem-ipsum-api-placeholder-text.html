@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lorem Ipsum API — Free Placeholder Text Generator via REST or MCP</title>
+<meta name="description" content="Free Lorem Ipsum API. Generate placeholder text by paragraphs, sentences, or words. REST API or MCP tool. No auth required. 300 configurations. Free tier.">
+<meta name="keywords" content="lorem ipsum API, placeholder text API, lorem ipsum generator, MCP server, AI tools API, free API tools">
+<link rel="canonical" href="https://gadgethumans.com/blog/lorem-ipsum-api-placeholder-text">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans Lorem Ipsum API","description":"Free Lorem Ipsum placeholder text generator via REST API or MCP. 300 configurations. No auth.","url":"https://api.gadgethumans.com/lorem","documentation":"https://gadgethumans.com/api-hub/lorem-ipsum","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans Lorem Ipsum Generator","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free Lorem Ipsum API and MCP tool.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Lorem Ipsum API — Free Placeholder Text Generator</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p>Placeholder text is essential for mockups, wireframes, and UI prototypes. The GadgetHumans <strong>Lorem Ipsum API</strong> generates classic Lorem Ipsum dummy text via a simple GET request — with 300 unique configurations across three output types.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/lorem</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Default</th><th>Options</th><th>Range</th></tr>
+<tr><td>type</td><td>paragraphs</td><td>paragraphs, sentences, words</td><td>—</td></tr>
+<tr><td>count</td><td>3</td><td>—</td><td>1-100</td></tr></table>
+<h2>Examples</h2>
+<h3>5 Sentences</h3>
+<pre><code>curl "https://api.gadgethumans.com/lorem?type=sentences&count=5"
+# Returns 5 Lorem Ipsum sentences</code></pre>
+<h3>2 Paragraphs</h3>
+<pre><code>curl "https://api.gadgethumans.com/lorem?type=paragraphs&count=2"</code></pre>
+<h3>10 Words</h3>
+<pre><code>curl "https://api.gadgethumans.com/lorem?type=words&count=10"</code></pre>
+<h2>300 Configurations</h2>
+<p>3 types × 100 count levels = 300 unique configurations. Generate anything from a single word to 100 full paragraphs.</p>
+<h2>MCP Tool: generate_lorem_ipsum</h2>
+<p>AI agents using the <strong>MCP server</strong> can call <code>generate_lorem_ipsum</code> for placeholder text generation in autonomous workflows.</p>
+<h2>Use Cases</h2>
+<ul><li>UI/UX prototyping</li><li>Content mockups for clients</li><li>Design wireframe filling</li><li>AI agent content generation tests</li></ul>
+<p><strong>lorem ipsum API</strong> | <strong>placeholder text API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

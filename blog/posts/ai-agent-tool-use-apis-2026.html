@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent Tool Use APIs 2026 — How Autonomous Agents Discover and Call 200+ Free Tools</title>
+<meta name="description" content="Complete guide to AI agent tool use APIs in 2026. How agents discover and use 200+ free tools via MCP protocol and REST APIs. QR codes, passwords, UUIDs, hashing, and more.">
+<meta name="keywords" content="AI agent tool use, AI tools API, MCP server, MCP tools directory, free API tools for AI, agent API, autonomous agent tools">
+<link rel="canonical" href="https://gadgethumans.com/blog/ai-agent-tool-use-apis-2026">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebAPI","name":"GadgetHumans API Hub for AI Agents","description":"200+ free API tools designed for AI agent tool use. MCP protocol, REST API, no auth. The largest tool collection for autonomous agents.","url":"https://api.gadgethumans.com","documentation":"https://gadgethumans.com/api-hub","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans API Hub","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"200+ API tools for AI agent tool use. MCP protocol support. No authentication.","url":"https://gadgethumans.com","downloadUrl":"https://pypi.org/project/gadgethumans-api-hub-mcp/","installCommand":"pip install gadgethumans-api-hub-mcp","license":"MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>AI Agent Tool Use APIs 2026 — How Autonomous Agents Discover and Call 200+ Free Tools</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>The Rise of Agentic AI</h2>
+<p>2026 is the year of autonomous AI agents. From Claude Desktop to custom agent frameworks, AI systems increasingly need reliable <strong>AI agent tool use APIs</strong> to perform actions in the world. The GadgetHumans API Hub is purpose-built for this use case — it's the largest collection of <strong>free API tools for AI</strong> agents, accessible via MCP protocol with zero authentication.</p>
+<h2>How AI Agents Discover Tools</h2>
+<h3>Method 1: MCP Protocol Discovery</h3>
+<p>The Model Context Protocol (<strong>MCP server</strong>) allows agents to dynamically discover available tools. Agents call <code>tools/list</code> to get all 12 available MCP tools, then call <code>tools/call</code> with specific arguments.</p>
+<pre><code>POST https://api.gadgethumans.com/mcp
+{"jsonrpc": "2.0", "method": "tools/list", "id": 1}
+# Response lists all 12 tools with descriptions and parameter schemas</code></pre>
+<h3>Method 2: LLM Discovery via llms.txt</h3>
+<p>When crawling web content, LLMs and AI agents discover tools through <code>/llms.txt</code> and <code>/llms-full.txt</code>. These files list every tool, endpoint, parameter, and example in a format optimized for LLM consumption.</p>
+<h3>Method 3: OpenAPI Spec Parsing</h3>
+<p>Many agent frameworks parse OpenAPI specs to understand API capabilities. The full OpenAPI 3.1 spec is at <code>/openapi.json</code>.</p>
+<h3>Method 4: Agent Card (A2A)</h3>
+<p>Google's Agent-to-Agent (A2A) protocol uses <code>/.well-known/agent-card.json</code> for capability discovery. The GadgetHumans agent card describes all 11 skills with full parameter schemas.</p>
+<h2>Complete Tool Set for AI Agents</h2>
+<table>
+<tr><th>Category</th><th>Tool</th><th>Agent Use Case</th></tr>
+<tr><td>Image</td><td>QR Code Generator</td><td>Share URLs, contacts, auth tokens</td></tr>
+<tr><td>Security</td><td>Password Generator</td><td>Generate credentials for managed accounts</td></tr>
+<tr><td>Data</td><td>UUID Generator</td><td>Create unique IDs for records</td></tr>
+<tr><td>Security</td><td>Hash Text</td><td>Verify data integrity</td></tr>
+<tr><td>Transform</td><td>Base64 Encode/Decode</td><td>Process encoded data</td></tr>
+<tr><td>Content</td><td>Lorem Ipsum</td><td>Generate placeholder content</td></tr>
+<tr><td>Debug</td><td>JSON Processor</td><td>Validate and format API responses</td></tr>
+<tr><td>Design</td><td>Color Converter</td><td>CSS color conversion</td></tr>
+<tr><td>Quality</td><td>Email Verifier</td><td>Validate user emails</td></tr>
+<tr><td>Network</td><td>IP Geolocator</td><td>Determine user location</td></tr>
+<tr><td>Time</td><td>Timestamp Converter</td><td>Parse date/time formats</td></tr>
+</table>
+<h2>Best Practices for AI Agent Tool Integration</h2>
+<ol>
+<li><strong>Use MCP protocol</strong> for dynamic discovery — don't hardcode endpoints</li>
+<li><strong>Check health endpoint</strong> (<code>GET /health</code>) before tool calls</li>
+<li><strong>Handle rate limits</strong> — 100 req/day free, upgrade to Pro for production</li>
+<li><strong>Cache tool schemas</strong> — tools/list response changes infrequently</li>
+</ol>
+<h2>Why No-Auth APIs Matter for Agents</h2>
+<p>Authentication creates friction for autonomous agents. API keys expire, OAuth tokens need refreshing, and rate limits are per-key. GadgetHumans requires zero authentication, making it ideal for agentic workflows where the agent manages its own tool calls without human credential management.</p>
+<p><strong>AI agent tool use</strong> | <strong>AI tools API</strong> | <strong>MCP server</strong> | <strong>MCP tools directory</strong> | <strong>free API tools for AI</strong></p>
+</article>
+</body>
+</html>

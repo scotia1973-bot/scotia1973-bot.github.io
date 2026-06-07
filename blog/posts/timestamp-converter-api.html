@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timestamp Converter API — Free Unix/ISO 8601/RFC 2822 Date Conversion via REST or MCP</title>
+<meta name="description" content="Free timestamp converter API. Convert between Unix epoch and human-readable dates. ISO 8601, RFC 2822, Unix formats. REST API or MCP tool. No auth.">
+<meta name="keywords" content="timestamp converter API, Unix timestamp API, date converter API, MCP server, AI tools API, free API tools">
+<link rel="canonical" href="https://gadgethumans.com/blog/timestamp-converter-api">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans Timestamp Converter API","description":"Free timestamp converter. Unix, ISO 8601, RFC 2822. REST: GET /timestamp. MCP: convert_timestamp.","url":"https://api.gadgethumans.com/timestamp","documentation":"https://gadgethumans.com/api-hub/timestamp-converter","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans Timestamp Converter","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free timestamp conversion API and MCP tool.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Timestamp Converter API — Free Date Conversion</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Why a Timestamp Converter API?</h2>
+<p>Working with dates and timestamps across different systems is a common pain point. The GadgetHumans <strong>Timestamp Converter API</strong> handles conversions between Unix epoch timestamps and human-readable date formats (ISO 8601, RFC 2822) with a single GET request.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/timestamp</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Default</th><th>Options</th></tr>
+<tr><td>value</td><td>Yes</td><td>—</td><td>Unix timestamp or date string</td></tr>
+<tr><td>format</td><td>No</td><td>iso</td><td>iso, unix, rfc2822</td></tr></table>
+<h2>Examples</h2>
+<h3>Date to Unix Timestamp</h3>
+<pre><code>curl "https://api.gadgethumans.com/timestamp?value=2025-05-29&format=unix"
+# Returns: {"original": "2025-05-29", "converted": 1748476800, "format": "unix"}</code></pre>
+<h3>Unix Timestamp to ISO 8601</h3>
+<pre><code>curl "https://api.gadgethumans.com/timestamp?value=1717000000&format=iso"</code></pre>
+<h3>Date to RFC 2822</h3>
+<pre><code>curl "https://api.gadgethumans.com/timestamp?value=May+29+2025&format=rfc2822"</code></pre>
+<h2>MCP Tool: convert_timestamp</h2>
+<p>AI agents can use the <code>convert_timestamp</code> MCP tool via the <strong>MCP server</strong>. Install via pip or call the Streamable HTTP endpoint.</p>
+<h2>Supported Input Formats</h2>
+<ul><li>Unix timestamps (seconds since epoch, e.g., 1717000000)</li><li>ISO 8601 date strings (e.g., "2025-05-29", "2025-05-29T12:00:00Z")</li><li>Common date strings (e.g., "May 29, 2025")</li></ul>
+<h2>Use Cases</h2>
+<ul><li>Database timestamp normalization</li><li>API response date parsing</li><li>Log file timestamp conversion</li><li>AI agent time-aware operations</li></ul>
+<p><strong>timestamp converter API</strong> | <strong>Unix timestamp API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

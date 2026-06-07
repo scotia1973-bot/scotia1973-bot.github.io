@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code API Integration Guide — Free QR Generation for AI Agents and Developers</title>
+<meta name="description" content="Complete QR Code API integration guide. Generate QR codes via REST API or MCP. Free tier: 100 req/day. PNG, SVG, GIF. Custom colors, sizes, error correction. No API key needed.">
+<meta name="keywords" content="QR code API, free QR code generator API, MCP server, AI tools API, QR code generator, QR API integration">
+<link rel="canonical" href="https://gadgethumans.com/blog/qr-code-api-integration-guide">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebAPI","name":"GadgetHumans QR Code API","description":"Generate QR codes via REST API. Supports PNG, SVG, GIF. Custom colors, size (100-1000px), error correction (L/M/Q/H), margin (0-20). Free tier: 100 req/day.","url":"https://api.gadgethumans.com/qr","documentation":"https://gadgethumans.com/api-hub/qr-code","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans QR Code Generator API","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free QR code generation API. MCP tool: generate_qr_code. REST endpoint: GET /qr. No auth required.","url":"https://gadgethumans.com","downloadUrl":"https://pypi.org/project/gadgethumans-api-hub-mcp/","license":"MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>QR Code API Integration Guide — Free QR Generation</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p>QR codes are everywhere — from restaurant menus to two-factor authentication. The GadgetHumans <strong>QR Code API</strong> makes it trivial to generate QR codes programmatically. Available as both a REST endpoint and an <strong>MCP server</strong> tool (<code>generate_qr_code</code>), it's one of the most versatile tools in our <strong>AI tools API</strong> collection.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/qr</code></pre>
+<h3>Parameters</h3>
+<table>
+<tr><th>Parameter</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr>
+<tr><td>text</td><td>string</td><td>Yes</td><td>—</td><td>URL or text to encode</td></tr>
+<tr><td>format</td><td>string</td><td>No</td><td>png</td><td>png, svg, or gif</td></tr>
+<tr><td>size</td><td>int</td><td>No</td><td>300</td><td>100-1000 pixels</td></tr>
+<tr><td>color</td><td>string</td><td>No</td><td>000000</td><td>Foreground hex (no #)</td></tr>
+<tr><td>bgcolor</td><td>string</td><td>No</td><td>FFFFFF</td><td>Background hex (no #)</td></tr>
+<tr><td>ecc</td><td>string</td><td>No</td><td>M</td><td>L (7%), M (15%), Q (25%), H (30%)</td></tr>
+<tr><td>margin</td><td>int</td><td>No</td><td>4</td><td>0-20 modules</td></tr>
+</table>
+<h2>Code Examples</h2>
+<h3>Generate a QR Code (cURL)</h3>
+<pre><code>curl -o qr.png "https://api.gadgethumans.com/qr?text=https://gadgethumans.com&format=png&size=500&color=4F46E5&bgcolor=FFFFFF&ecc=H&margin=4"</code></pre>
+<h3>Generate QR Code via MCP (Python)</h3>
+<pre><code>from gadgethumans_api_hub_mcp import mcp
+# Or call via MCP protocol
+import requests, json
+response = requests.post("https://api.gadgethumans.com/mcp", json={
+    "jsonrpc": "2.0",
+    "method": "tools/call",
+    "params": {
+        "name": "generate_qr_code",
+        "arguments": {
+            "text": "https://example.com",
+            "format": "svg",
+            "size": 500,
+            "color": "FF0000",
+            "ecc": "H"
+        }
+    },
+    "id": 1
+})
+print(response.json())</code></pre>
+<h3>JavaScript Integration</h3>
+<pre><code>async function generateQR(text, format = 'png') {
+  const url = `https://api.gadgethumans.com/qr?text=${encodeURIComponent(text)}&format=${format}`;
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);
+}</code></pre>
+<h2>Use Cases for AI Agents</h2>
+<ul><li><strong>URL shortening + QR generation</strong> for agent-created content</li><li><strong>WiFi credential QR codes</strong> for device onboarding</li><li><strong>vCard contact QR codes</strong> for agent-managed contacts</li><li><strong>Authentication tokens</strong> encoded as QR for device pairing</li></ul>
+<h2>Pricing</h2>
+<p><strong>Free tier:</strong> 100 requests/day. <strong>Pro tier:</strong> $5/mo unlimited. No API key needed for either tier — just call the endpoint.</p>
+<p><strong>QR code API</strong> | <strong>free QR code generator API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

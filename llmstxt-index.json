@@ -1,0 +1,82 @@
+{
+  "$schema": "https://llmstxt.com/schema/llmstxt-index.json",
+  "version": "1.0",
+  "site_name": "GadgetHumans API Hub",
+  "site_url": "https://gadgethumans.com",
+  "description": "The largest collection of free utility API tools for AI agents — 200+ tool configurations across 11 REST endpoints and 12 MCP tools. QR codes, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON processing, color conversion, email verification, IP geolocation, timestamp conversion.",
+  "llms_files": [
+    {
+      "url": "https://gadgethumans.com/llms.txt",
+      "title": "GadgetHumans API Hub - Overview",
+      "description": "Quick-start index with all 11 core API endpoints, MCP server info, and agent integration links.",
+      "category": "overview",
+      "priority": 1,
+      "last_updated": "2026-06-07"
+    },
+    {
+      "url": "https://gadgethumans.com/llms-full.txt",
+      "title": "GadgetHumans API Hub - Complete Reference",
+      "description": "Full detailed documentation of all 200+ tool configurations including parameters, types, defaults, examples, and MCP tool mappings.",
+      "category": "full-reference",
+      "priority": 1,
+      "last_updated": "2026-06-07"
+    },
+    {
+      "url": "https://gadgethumans.com/api-hub.llms.txt",
+      "title": "GadgetHumans API Hub - MCP Tool Discovery",
+      "description": "MCP-specific tool index with all 12 MCP tools, Streamable HTTP endpoint details, and REST API equivalents.",
+      "category": "mcp",
+      "priority": 1,
+      "last_updated": "2026-06-07"
+    }
+  ],
+  "categories": [
+    {
+      "id": "image-generation",
+      "name": "Image Generation APIs",
+      "tools": ["qr-code-generator"]
+    },
+    {
+      "id": "security",
+      "name": "Security APIs",
+      "tools": ["password-generator", "hash-text"]
+    },
+    {
+      "id": "data-generation",
+      "name": "Data Generation APIs",
+      "tools": ["uuid-generator", "lorem-ipsum-generator"]
+    },
+    {
+      "id": "data-transformation",
+      "name": "Data Transformation APIs",
+      "tools": ["base64-encode-decode", "json-processor", "color-converter", "timestamp-converter"]
+    },
+    {
+      "id": "email",
+      "name": "Email APIs",
+      "tools": ["email-verifier"]
+    },
+    {
+      "id": "network",
+      "name": "Network APIs",
+      "tools": ["ip-geolocator"]
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring APIs",
+      "tools": ["health-check"]
+    }
+  ],
+  "meta": {
+    "total_tools": 11,
+    "total_mcp_tools": 12,
+    "total_configurations": "200+",
+    "pricing_model": "Free (100 req/day) + Pro ($5/mo unlimited)",
+    "auth_required": false,
+    "mcp_available": true,
+    "openapi_available": true,
+    "a2a_compatible": true,
+    "chatgpt_plugin_available": true,
+    "last_verified": "2026-06-07"
+  }
+}

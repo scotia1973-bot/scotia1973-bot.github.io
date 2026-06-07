@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Verification API — Free Email Validation Service via REST or MCP</title>
+<meta name="description" content="Free email verification API. Check syntax, domain validity, MX records, and disposable email detection. REST API or MCP tool. No auth required. 100 free req/day.">
+<meta name="keywords" content="email verification API, email validator API, free email verification, MCP server, AI tools API, email validation">
+<link rel="canonical" href="https://gadgethumans.com/blog/email-verification-api-free">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans Email Verifier API","description":"Free email verification API. Syntax, domain, MX, disposable detection. REST: GET /email-verify. MCP: verify_email.","url":"https://api.gadgethumans.com/email-verify","documentation":"https://gadgethumans.com/api-hub/email-verifier","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans Email Verifier","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free email verification API and MCP tool.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Email Verification API — Free Email Validation Service</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Why Email Verification Matters</h2>
+<p>Invalid email addresses cause deliverability issues, waste resources, and harm sender reputation. The GadgetHumans <strong>Email Verification API</strong> provides comprehensive validation — checking syntax, domain validity, MX record existence, and disposable email provider detection.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/email-verify</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Description</th></tr>
+<tr><td>email</td><td>Yes</td><td>Email address to verify</td></tr></table>
+<h2>Example</h2>
+<pre><code>curl "https://api.gadgethumans.com/email-verify?email=test@example.com"
+# Returns: {"email": "test@example.com", "valid": true, "disposable": false, "domain": "example.com", "syntax_valid": true}</code></pre>
+<h2>MCP Tool: verify_email</h2>
+<p>AI agents can use the <code>verify_email</code> MCP tool via the <strong>MCP server</strong> at <code>https://api.gadgethumans.com/mcp</code> or by installing the PyPI package.</p>
+<h2>What Gets Checked</h2>
+<ul><li><strong>Syntax:</strong> RFC 5322 email format validation</li><li><strong>Domain:</strong> DNS lookup confirms domain exists</li><li><strong>MX Records:</strong> Mail exchange records present</li><li><strong>Disposable:</strong> Detects temporary/throwaway email providers</li></ul>
+<h2>Use Cases</h2>
+<ul><li>User registration validation</li><li>Contact list cleaning</li><li>AI agent form processing</li><li>Lead qualification</li></ul>
+<p><strong>email verification API</strong> | <strong>free email validation</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

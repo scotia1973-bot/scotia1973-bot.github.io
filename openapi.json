@@ -1,0 +1,610 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GadgetHumans API Hub",
+    "version": "2.0.0",
+    "description": "200+ free utility API tools for AI agents and developers. Generate QR codes, passwords, UUIDs, hashes, Base64, lorem ipsum, process JSON, convert colors, verify emails, geolocate IPs, and convert timestamps. No API key required for basic usage (100 req/day). Pro: $5/mo unlimited.\n\nMCP server available: `pip install gadgethumans-api-hub-mcp`\nStreamable HTTP MCP: POST https://api.gadgethumans.com/mcp\nChatGPT plugin: /.well-known/ai-plugin.json\nGoogle A2A: /.well-known/agent-card.json",
+    "termsOfService": "https://gadgethumans.com/terms",
+    "contact": {
+      "name": "GadgetHumans Team",
+      "email": "hello@gadgethumans.com",
+      "url": "https://gadgethumans.com"
+    },
+    "x-openai-plugin": {
+      "plugin_url": "https://gadgethumans.com/.well-known/ai-plugin.json"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.gadgethumans.com",
+      "description": "Production API server — free tier (100 req/day), no auth required"
+    }
+  ],
+  "x-mcp": {
+    "server_name": "gadgethumans-api-hub-mcp",
+    "package_url": "https://pypi.org/project/gadgethumans-api-hub-mcp/",
+    "install": "pip install gadgethumans-api-hub-mcp",
+    "endpoint": "https://api.gadgethumans.com/mcp",
+    "protocol": "streamable-http",
+    "tools_count": 12
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "healthCheck",
+        "summary": "API Health Check",
+        "description": "Check the health and availability of all 11 API Hub endpoints. Returns per-endpoint status and overall system health.",
+        "x-mcp-tool": "health",
+        "tags": ["Monitoring"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "All endpoints healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "overall": {"type": "string", "enum": ["healthy", "degraded", "down"]},
+                    "endpoints": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "status": {"type": "string", "enum": ["UP", "DOWN"]},
+                          "status_code": {"type": "integer"}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qr": {
+      "get": {
+        "operationId": "generateQrCode",
+        "summary": "Generate QR Code",
+        "description": "Generate a QR code image from any text or URL. Supports PNG, SVG, and GIF output formats. Configurable size, colors, error correction level, and margin.",
+        "x-mcp-tool": "generate_qr_code",
+        "tags": ["Image Generation", "QR Code"],
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string", "description": "The text or URL to encode in the QR code"},
+            "example": "https://gadgethumans.com"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["png", "svg", "gif"], "default": "png"},
+            "description": "Output image format"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer", "minimum": 100, "maximum": 1000, "default": 300},
+            "description": "Image size in pixels"
+          },
+          {
+            "name": "color",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "default": "000000", "description": "Foreground hex color (without #)"},
+            "example": "FF0000"
+          },
+          {
+            "name": "bgcolor",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "default": "FFFFFF", "description": "Background hex color (without #)"},
+            "example": "000000"
+          },
+          {
+            "name": "ecc",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["L", "M", "Q", "H"], "default": "M"},
+            "description": "Error correction level: L (7%), M (15%), Q (25%), H (30%)"
+          },
+          {
+            "name": "margin",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer", "minimum": 0, "maximum": 20, "default": 4},
+            "description": "Margin in modules"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "QR code image (binary) or Base64-encoded data",
+            "content": {
+              "image/png": {"schema": {"type": "string", "format": "binary"}},
+              "image/svg+xml": {"schema": {"type": "string", "format": "binary"}},
+              "image/gif": {"schema": {"type": "string", "format": "binary"}}
+            }
+          },
+          "400": {"description": "Invalid parameters"},
+          "429": {"description": "Rate limit exceeded (100 req/day free)"}
+        }
+      }
+    },
+    "/password": {
+      "get": {
+        "operationId": "generatePassword",
+        "summary": "Generate Secure Passwords",
+        "description": "Generate one or more cryptographically secure random passwords. Fully configurable character sets including numbers, symbols, uppercase, and lowercase letters.",
+        "x-mcp-tool": "generate_password",
+        "tags": ["Security", "Password"],
+        "parameters": [
+          {
+            "name": "length",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer", "minimum": 4, "maximum": 256, "default": 16},
+            "description": "Length of each password"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer", "minimum": 1, "maximum": 50, "default": 1},
+            "description": "Number of passwords to generate"
+          },
+          {
+            "name": "numbers",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "boolean", "default": true},
+            "description": "Include digits 0-9"
+          },
+          {
+            "name": "symbols",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "boolean", "default": true},
+            "description": "Include special characters like !@#$%^&*"
+          },
+          {
+            "name": "uppercase",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "boolean", "default": true},
+            "description": "Include A-Z"
+          },
+          {
+            "name": "lowercase",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "boolean", "default": true},
+            "description": "Include a-z"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Generated passwords",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "passwords": {"type": "array", "items": {"type": "string"}},
+                    "count": {"type": "integer"},
+                    "length": {"type": "integer"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uuid": {
+      "get": {
+        "operationId": "generateUuid",
+        "summary": "Generate UUID v4 Identifiers",
+        "description": "Generate one or more UUID v4 (random) identifiers. Supports batch generation and multiple output formats.",
+        "x-mcp-tool": "generate_uuid",
+        "tags": ["Data Generation", "UUID"],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer", "minimum": 1, "maximum": 100, "default": 1},
+            "description": "Number of UUIDs to generate"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["standard", "json", "array"], "default": "standard"},
+            "description": "Output format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Generated UUIDs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {"type": "string", "description": "Single UUID (standard format)"},
+                    {"type": "array", "items": {"type": "string"}, "description": "Multiple UUIDs (array format)"},
+                    {
+                      "type": "object",
+                      "properties": {"uuids": {"type": "array", "items": {"type": "string"}}},
+                      "description": "UUIDs in JSON object"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hash": {
+      "get": {
+        "operationId": "hashText",
+        "summary": "Generate Cryptographic Hash",
+        "description": "Generate a cryptographic hash of input text. Supports MD5, SHA-1, SHA-256, and SHA-512 algorithms with hex or base64 output encoding.",
+        "x-mcp-tool": "hash_text",
+        "tags": ["Security", "Hashing"],
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The text to hash"
+          },
+          {
+            "name": "algorithm",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["md5", "sha1", "sha256", "sha512"], "default": "sha256"},
+            "description": "Hashing algorithm"
+          },
+          {
+            "name": "encoding",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["hex", "base64"], "default": "hex"},
+            "description": "Output encoding"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hash result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "algorithm": {"type": "string"},
+                    "hash": {"type": "string"},
+                    "encoding": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/base64": {
+      "get": {
+        "operationId": "encodeBase64",
+        "summary": "Base64 Encode or Decode",
+        "description": "Encode text to Base64 or decode Base64 back to plain text. Essential for data transport in JSON, URLs, and email.",
+        "x-mcp-tool": "encode_base64",
+        "tags": ["Data Transformation", "Base64"],
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The string to encode or decode"
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["encode", "decode"], "default": "encode"},
+            "description": "Operation: encode or decode"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Base64 result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "original": {"type": "string"},
+                    "result": {"type": "string"},
+                    "mode": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lorem": {
+      "get": {
+        "operationId": "generateLoremIpsum",
+        "summary": "Generate Lorem Ipsum Placeholder Text",
+        "description": "Generate Lorem Ipsum placeholder text for mockups, wireframes, and design drafts. Configurable by paragraphs, sentences, or words.",
+        "x-mcp-tool": "generate_lorem_ipsum",
+        "tags": ["Content Generation", "Lorem Ipsum"],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["paragraphs", "sentences", "words"], "default": "paragraphs"},
+            "description": "Unit of output"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "integer", "minimum": 1, "maximum": 100, "default": 3},
+            "description": "Number of units to generate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lorem Ipsum text (plain text or JSON)",
+            "content": {
+              "text/plain": {"schema": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "/json": {
+      "get": {
+        "operationId": "processJson",
+        "summary": "Process JSON String",
+        "description": "Prettify (format with indentation), validate (check syntax), or minify (compact) a JSON string. Essential for API debugging and config file management.",
+        "x-mcp-tool": "process_json",
+        "tags": ["Development Tools", "JSON"],
+        "parameters": [
+          {
+            "name": "json_string",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "The JSON string to process"
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["prettify", "validate", "minify"], "default": "prettify"},
+            "description": "Operation to perform"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Processed JSON result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "original": {"type": "string"},
+                    "result": {"type": "string"},
+                    "mode": {"type": "string"},
+                    "valid": {"type": "boolean"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color": {
+      "get": {
+        "operationId": "convertColor",
+        "summary": "Convert Color Formats",
+        "description": "Convert colors between hex (#FF0000) and RGB (rgb(255, 0, 0)) formats. Ideal for CSS, design systems, and UI development.",
+        "x-mcp-tool": "convert_color",
+        "tags": ["Design", "Color"],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "Color value (e.g., 'FF0000', '#FF0000', 'rgb(255,0,0)')"
+          },
+          {
+            "name": "from_format",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["hex", "rgb"], "default": "hex"},
+            "description": "Source format"
+          },
+          {
+            "name": "to_format",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["hex", "rgb"], "default": "rgb"},
+            "description": "Target format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Converted color",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "original": {"type": "string"},
+                    "result": {"type": "string"},
+                    "from": {"type": "string"},
+                    "to": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email-verify": {
+      "get": {
+        "operationId": "verifyEmail",
+        "summary": "Verify Email Address",
+        "description": "Verify whether an email address is valid and deliverable. Checks syntax, domain validity, MX records, and disposable email provider detection.",
+        "x-mcp-tool": "verify_email",
+        "tags": ["Email", "Data Quality"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string", "format": "email"},
+            "description": "The email address to verify"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email verification result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {"type": "string"},
+                    "valid": {"type": "boolean"},
+                    "disposable": {"type": "boolean"},
+                    "domain": {"type": "string"},
+                    "syntax_valid": {"type": "boolean"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ip": {
+      "get": {
+        "operationId": "geolocateIp",
+        "summary": "Geolocate IP Address",
+        "description": "Get geolocation data for an IP address — city, country, ISP, timezone, latitude/longitude. Returns data for the caller's own IP if no address is provided.",
+        "x-mcp-tool": "geolocate_ip",
+        "tags": ["Network", "Geolocation"],
+        "parameters": [
+          {
+            "name": "ip_address",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "format": "ipv4", "description": "IP address to look up (e.g., '8.8.8.8'). Defaults to caller's IP."},
+            "example": "8.8.8.8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "IP geolocation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ip": {"type": "string"},
+                    "city": {"type": "string"},
+                    "country": {"type": "string"},
+                    "isp": {"type": "string"},
+                    "timezone": {"type": "string"},
+                    "lat": {"type": "number"},
+                    "lon": {"type": "number"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/timestamp": {
+      "get": {
+        "operationId": "convertTimestamp",
+        "summary": "Convert Timestamp",
+        "description": "Convert between Unix epoch timestamps and human-readable date formats (ISO 8601, RFC 2822, Unix).",
+        "x-mcp-tool": "convert_timestamp",
+        "tags": ["Date/Time", "Conversion"],
+        "parameters": [
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"},
+            "description": "Timestamp or date string to convert"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {"type": "string", "enum": ["iso", "unix", "rfc2822"], "default": "iso"},
+            "description": "Target output format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Converted timestamp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "original": {"type": "string"},
+                    "converted": {"type": "string"},
+                    "format": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {"name": "QR Code", "description": "QR code generation APIs"},
+    {"name": "Security", "description": "Password and hashing security APIs"},
+    {"name": "Data Generation", "description": "UUID and content generation APIs"},
+    {"name": "Data Transformation", "description": "Base64, JSON, color, and timestamp conversion APIs"},
+    {"name": "Email", "description": "Email verification APIs"},
+    {"name": "Network", "description": "IP geolocation APIs"},
+    {"name": "Monitoring", "description": "Health check and monitoring APIs"},
+    {"name": "Design", "description": "Color and image-related APIs"},
+    {"name": "Development Tools", "description": "JSON processing and developer utility APIs"}
+  ],
+  "externalDocs": {
+    "description": "MCP Server Documentation",
+    "url": "https://gadgethumans.com/mcp-server"
+  },
+  "x-llms": {
+    "llms_txt": "https://gadgethumans.com/llms.txt",
+    "llms_full_txt": "https://gadgethumans.com/llms-full.txt",
+    "api_hub_llms_txt": "https://gadgethumans.com/api-hub.llms.txt"
+  }
+}

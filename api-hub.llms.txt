@@ -1,0 +1,156 @@
+# GadgetHumans API Hub — MCP Tool Discovery Index
+> URL: https://gadgethumans.com/api-hub.llms.txt
+> Purpose: Model Context Protocol (MCP) tool discovery for AI agents
+> MCP Server: gadgethumans-api-hub-mcp (pip install)
+> Total MCP Tools: 12
+> Underlying REST Endpoints: 11
+
+## MCP SERVER CONNECTION
+
+### Streamable HTTP Endpoint
+```
+POST https://api.gadgethumans.com/mcp
+Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "tools/list", "id": 1}
+```
+
+### PyPI Package
+```
+pip install gadgethumans-api-hub-mcp
+```
+
+### Claude Desktop Config
+```json
+{
+  "mcpServers": {
+    "gadgethumans": {
+      "command": "uvx",
+      "args": ["gadgethumans-api-hub-mcp"]
+    }
+  }
+}
+```
+
+## COMPLETE MCP TOOL LISTING (12 tools)
+
+### Tool 1: generate_qr_code
+- **Name:** generate_qr_code
+- **Description:** Generate a QR code image and return it as Base64-encoded data
+- **Parameters:**
+  - `text` (string, required): Text or URL to encode
+  - `format` (string, optional, default: "png"): Image format — "png", "svg", or "gif"
+  - `size` (integer, optional, default: 300): Image size in pixels (100-1000)
+  - `color` (string, optional, default: "000000"): Foreground hex color (without #)
+  - `bgcolor` (string, optional, default: "FFFFFF"): Background hex color (without #)
+  - `ecc` (string, optional, default: "M"): Error correction — "L", "M", "Q", or "H"
+  - `margin` (integer, optional, default: 4): Margin in modules (0-20)
+
+### Tool 2: generate_password
+- **Name:** generate_password
+- **Description:** Generate one or more secure random passwords
+- **Parameters:**
+  - `length` (integer, optional, default: 16): Password length (4-256)
+  - `count` (integer, optional, default: 1): Number of passwords (1-50)
+  - `numbers` (boolean, optional, default: true): Include digits 0-9
+  - `symbols` (boolean, optional, default: true): Include !@#$%^&*
+  - `uppercase` (boolean, optional, default: true): Include A-Z
+  - `lowercase` (boolean, optional, default: true): Include a-z
+
+### Tool 3: generate_uuid
+- **Name:** generate_uuid
+- **Description:** Generate one or more UUID v4 (random) identifiers
+- **Parameters:**
+  - `count` (integer, optional, default: 1): Number of UUIDs (1-100)
+  - `format` (string, optional, default: "standard"): Output — "standard", "json", or "array"
+
+### Tool 4: hash_text
+- **Name:** hash_text
+- **Description:** Generate a cryptographic hash of input text
+- **Parameters:**
+  - `text` (string, required): The text to hash
+  - `algorithm` (string, optional, default: "sha256"): Algorithm — "md5", "sha1", "sha256", "sha512"
+  - `encoding` (string, optional, default: "hex"): Output — "hex" or "base64"
+
+### Tool 5: encode_base64
+- **Name:** encode_base64
+- **Description:** Encode or decode text using Base64
+- **Parameters:**
+  - `text` (string, required): The string to encode or decode
+  - `mode` (string, optional, default: "encode"): Operation — "encode" or "decode"
+
+### Tool 6: generate_lorem_ipsum
+- **Name:** generate_lorem_ipsum
+- **Description:** Generate Lorem Ipsum placeholder text
+- **Parameters:**
+  - `type` (string, optional, default: "paragraphs"): Unit — "paragraphs", "sentences", or "words"
+  - `count` (integer, optional, default: 3): Number of units (1-100)
+
+### Tool 7: process_json
+- **Name:** process_json
+- **Description:** Prettify, validate, or minify a JSON string
+- **Parameters:**
+  - `json_string` (string, required): The JSON string to process
+  - `mode` (string, optional, default: "prettify"): Operation — "prettify", "validate", or "minify"
+
+### Tool 8: convert_color
+- **Name:** convert_color
+- **Description:** Convert a color value between hex and RGB formats
+- **Parameters:**
+  - `value` (string, required): Color value (e.g., "FF0000", "#FF0000", "rgb(255,0,0)")
+  - `from_format` (string, optional, default: "hex"): Source — "hex" or "rgb"
+  - `to_format` (string, optional, default: "rgb"): Target — "hex" or "rgb"
+
+### Tool 9: verify_email
+- **Name:** verify_email
+- **Description:** Verify whether an email address is valid and deliverable
+- **Parameters:**
+  - `email` (string, required): Email address to verify
+
+### Tool 10: geolocate_ip
+- **Name:** geolocate_ip
+- **Description:** Get geolocation data for an IP address
+- **Parameters:**
+  - `ip_address` (string, optional): IP address to look up (defaults to caller's IP)
+
+### Tool 11: convert_timestamp
+- **Name:** convert_timestamp
+- **Description:** Convert a timestamp between Unix epoch and human-readable date formats
+- **Parameters:**
+  - `value` (string, required): Timestamp or date string
+  - `format` (string, optional, default: "iso"): Output — "iso", "unix", or "rfc2822"
+
+### Tool 12: health
+- **Name:** health
+- **Description:** Check the health and availability of all 11 API Hub endpoints
+- **Parameters:** None
+
+## MCP CAPABILITIES
+- **Protocol:** JSON-RPC 2.0 over Streamable HTTP
+- **Transport:** HTTP POST with server-sent events (SSE)
+- **MCP Features:** tools/list, tools/call, resources/list, resources/read, prompts/list, prompts/get
+
+## REST API EQUIVALENTS
+Each MCP tool maps to a REST API endpoint:
+| MCP Tool | REST Endpoint |
+|----------|--------------|
+| generate_qr_code | GET /qr |
+| generate_password | GET /password |
+| generate_uuid | GET /uuid |
+| hash_text | GET /hash |
+| encode_base64 | GET /base64 |
+| generate_lorem_ipsum | GET /lorem |
+| process_json | GET /json |
+| convert_color | GET /color |
+| verify_email | GET /email-verify |
+| geolocate_ip | GET /ip |
+| convert_timestamp | GET /timestamp |
+| health | GET /health |
+
+## DISCOVERY CHAIN
+1. This file → https://gadgethumans.com/api-hub.llms.txt
+2. Full spec → https://gadgethumans.com/llms-full.txt
+3. OpenAPI → https://gadgethumans.com/openapi.json
+4. Agent Card → https://gadgethumans.com/.well-known/agent-card.json
+5. MCP Config → https://gadgethumans.com/.well-known/mcp.json
+6. ChatGPT Plugin → https://gadgethumans.com/.well-known/ai-plugin.json

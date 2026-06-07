@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Converter API — Free Hex to RGB Color Conversion via REST or MCP</title>
+<meta name="description" content="Free color converter API. Convert between hex (#FF0000) and RGB (rgb(255,0,0)). REST API or MCP tool. 33M+ configurations. No auth. Free tier: 100 req/day.">
+<meta name="keywords" content="color converter API, hex to RGB API, color conversion API, MCP server, AI tools API, CSS color API">
+<link rel="canonical" href="https://gadgethumans.com/blog/color-converter-api-hex-rgb">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans Color Converter API","description":"Free hex to RGB color conversion API. 33M+ configurations. REST: GET /color. MCP: convert_color.","url":"https://api.gadgethumans.com/color","documentation":"https://gadgethumans.com/api-hub/color-converter","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans Color Converter","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free color converter API and MCP tool.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Color Converter API — Free Hex to RGB Color Conversion</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p>Color conversion is a common need in CSS, UI design, and data visualization. The GadgetHumans <strong>Color Converter API</strong> provides instant conversion between hex (#FF0000) and RGB (rgb(255, 0, 0)) formats with 33 million+ possible configurations.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/color</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Default</th><th>Description</th></tr>
+<tr><td>value</td><td>Yes</td><td>—</td><td>Color value: "FF0000", "#FF0000", or "rgb(255,0,0)"</td></tr>
+<tr><td>from_format</td><td>No</td><td>hex</td><td>Source format: hex or rgb</td></tr>
+<tr><td>to_format</td><td>No</td><td>rgb</td><td>Target format: hex or rgb</td></tr></table>
+<h2>Examples</h2>
+<h3>Hex to RGB</h3>
+<pre><code>curl "https://api.gadgethumans.com/color?value=4287f5&from=hex&to=rgb"
+# Returns: {"original": "#4287f5", "result": "rgb(66, 135, 245)", "from": "hex", "to": "rgb"}</code></pre>
+<h3>RGB to Hex</h3>
+<pre><code>curl "https://api.gadgethumans.com/color?value=rgb(255,0,0)&from=rgb&to=hex"
+# Returns: {"original": "rgb(255,0,0)", "result": "#FF0000", "from": "rgb", "to": "hex"}</code></pre>
+<h3>With Hash Prefix</h3>
+<pre><code>curl "https://api.gadgethumans.com/color?value=%23FF0000&from=hex&to=rgb"</code></pre>
+<h2>33 Million+ Configurations</h2>
+<p>16,777,216 hex colors × 2 conversion directions = 33,554,432 unique configurations. Every color in the 24-bit spectrum is supported.</p>
+<h2>MCP Tool: convert_color</h2>
+<p>AI agents can use the <code>convert_color</code> MCP tool for color conversion in design workflows. Available via the <strong>MCP server</strong> at <code>https://api.gadgethumans.com/mcp</code>.</p>
+<h2>Use Cases</h2>
+<ul><li>CSS color manipulation</li><li>Design system tooling</li><li>Data visualization color processing</li><li>AI agent UI generation</li></ul>
+<p><strong>color converter API</strong> | <strong>hex to RGB API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

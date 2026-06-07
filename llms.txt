@@ -1,0 +1,106 @@
+# GadgetHumans API Hub — LLM Discovery Index
+> URL: https://gadgethumans.com
+> Last updated: 2026-06-07
+> Total tools: 200+ (11 core REST APIs + MCP tools)
+> Best for: AI agents, LLMs, developers building autonomous workflows
+
+## About
+GadgetHumans API Hub provides 200+ free utility API tools for AI agents and developers. No signup required for basic usage. Each endpoint is a standalone microservice accessible via simple HTTP GET/POST requests.
+
+## Core API Endpoints (11 REST APIs)
+
+### 1. QR Code Generator
+- **Endpoint:** `GET /qr?text={text}&format={png|svg|gif}&size={100-1000}&color={hex}&bgcolor={hex}&ecc={L|M|Q|H}&margin={0-20}`
+- **Description:** Generate QR codes from any text or URL. Supports PNG, SVG, GIF output. Configurable error correction, color, size, and margin.
+- **Base URL:** https://api.gadgethumans.com/qr
+- **Category:** Image Generation
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 2. Password Generator
+- **Endpoint:** `GET /password?length={4-256}&count={1-50}&numbers={bool}&symbols={bool}&uppercase={bool}&lowercase={bool}`
+- **Description:** Generate one or more cryptographically secure random passwords. Fully configurable character sets.
+- **Base URL:** https://api.gadgethumans.com/password
+- **Category:** Security / Auth
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 3. UUID Generator
+- **Endpoint:** `GET /uuid?count={1-100}&format={standard|json|array}`
+- **Description:** Generate UUID v4 (random) identifiers. Supports batch generation and multiple output formats.
+- **Base URL:** https://api.gadgethumans.com/uuid
+- **Category:** Data Generation
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 4. Hash Text
+- **Endpoint:** `GET /hash?text={text}&algorithm={md5|sha1|sha256|sha512}&encoding={hex|base64}`
+- **Description:** Generate cryptographic hashes of input text. Supports MD5, SHA-1, SHA-256, SHA-512 with hex or base64 output.
+- **Base URL:** https://api.gadgethumans.com/hash
+- **Category:** Security / Auth
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 5. Base64 Encode/Decode
+- **Endpoint:** `GET /base64?text={text}&mode={encode|decode}`
+- **Description:** Encode text to Base64 or decode Base64 back to plain text. Essential for data transport in JSON, URLs, and email.
+- **Base URL:** https://api.gadgethumans.com/base64
+- **Category:** Data Transformation
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 6. Lorem Ipsum Generator
+- **Endpoint:** `GET /lorem?type={paragraphs|sentences|words}&count={1-100}`
+- **Description:** Generate Lorem Ipsum placeholder text for mockups, wireframes, and design drafts.
+- **Base URL:** https://api.gadgethumans.com/lorem
+- **Category:** Content Generation
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 7. JSON Processor
+- **Endpoint:** `GET /json?json={json_string}&mode={prettify|validate|minify}`
+- **Description:** Prettify, validate, or minify JSON strings. Debugging, formatting API responses, configuration files.
+- **Base URL:** https://api.gadgethumans.com/json
+- **Category:** Development Tools
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 8. Color Converter
+- **Endpoint:** `GET /color?value={color_value}&from={hex|rgb}&to={hex|rgb}`
+- **Description:** Convert colors between hex (#FF0000) and RGB (rgb(255,0,0)) formats. Design systems, CSS, UI development.
+- **Base URL:** https://api.gadgethumans.com/color
+- **Category:** Design / CSS
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 9. Email Verifier
+- **Endpoint:** `GET /email-verify?email={email_address}`
+- **Description:** Verify if an email address is valid and deliverable. Checks syntax, domain validity, and disposable email providers.
+- **Base URL:** https://api.gadgethumans.com/email-verify
+- **Category:** Email / Data Quality
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 10. IP Geolocator
+- **Endpoint:** `GET /ip?ip={ip_address}`
+- **Description:** Get geolocation data for an IP address — location, ISP, timezone. For analytics, geo-targeting, fraud detection.
+- **Base URL:** https://api.gadgethumans.com/ip
+- **Category:** Network / Geolocation
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+### 11. Timestamp Converter
+- **Endpoint:** `GET /timestamp?value={timestamp}&format={iso|unix|rfc2822}`
+- **Description:** Convert between Unix epoch timestamps and human-readable date formats. Supports ISO 8601, RFC 2822, Unix.
+- **Base URL:** https://api.gadgethumans.com/timestamp
+- **Category:** Date / Time
+- **Pricing:** Free (100/day), Pro ($5/mo)
+
+## MCP Server (Model Context Protocol)
+- **Package:** `gadgethumans-api-hub-mcp` on PyPI
+- **Tools available via MCP:** 12 tools wrapping all 11 REST APIs
+- **MCP Endpoint (Streamable HTTP):** https://api.gadgethumans.com/mcp
+- **Installation:** `pip install gadgethumans-api-hub-mcp`
+
+## Agent Integration
+- **OpenAI GPTs (ChatGPT Plugin):** `/.well-known/ai-plugin.json`
+- **Google A2A (Agent-to-Agent):** `/.well-known/agent-card.json`
+- **OpenAPI 3.1 Spec:** `/openapi.json`
+- **MCP Spec:** `/.well-known/mcp.json`
+- **Crawl Budget:** `/robots.txt` (optimized for GPTBot, Claude-Web, Google-Extended, CCBot, PerplexityBot)
+
+## Link Discovery
+- Documentation: https://gadgethumans.com/api-hub
+- Full tool index: https://gadgethumans.com/tools/sitemap.xml
+- Blog: https://gadgethumans.com/blog/
+- PyPI: https://pypi.org/project/gadgethumans-api-hub-mcp/

@@ -1,0 +1,275 @@
+{
+  "$schema": "https://google.a2a/schemas/agent-card.json",
+  "version": "1.0",
+  "metadata": {
+    "name": "GadgetHumans API Hub Agent",
+    "description": "A multi-tool agent providing 200+ utility API capabilities including QR code generation, password generation, UUID generation, cryptographic hashing, Base64 encoding, lorem ipsum generation, JSON processing, color conversion, email verification, IP geolocation, and timestamp conversion. Accessible via REST API and MCP (Model Context Protocol).",
+    "url": "https://gadgethumans.com",
+    "icon_url": "https://gadgethumans.com/favicon.ico",
+    "version": "2.0.0",
+    "last_updated": "2026-06-07T00:00:00Z",
+    "author": "GadgetHumans Team",
+    "license": "MIT",
+    "tags": [
+      "MCP", "MCP Server", "AI Tools API", "MCP tools directory",
+      "free API tools", "MCP server with tools", "QR code API",
+      "password generator API", "UUID API", "hash API", "base64 API",
+      "lorem ipsum API", "JSON formatter API", "color converter API",
+      "email verifier API", "IP geolocation API", "timestamp API",
+      "developer tools", "utility API", "serverless API",
+      "AI agent tools", "LLM tools", "model context protocol",
+      "REST API", "OpenAPI", "web API", "agent API"
+    ]
+  },
+  "capabilities": {
+    "skills": [
+      {
+        "id": "qr-code-generator",
+        "name": "QR Code Generator",
+        "description": "Generate QR codes from any text or URL with configurable format (PNG/SVG/GIF), size (100-1000px), colors, error correction (L/M/Q/H), and margin.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/qr",
+          "method": "GET",
+          "parameters": {
+            "text": {"type": "string", "required": true, "description": "Text or URL to encode"},
+            "format": {"type": "string", "enum": ["png", "svg", "gif"], "default": "png"},
+            "size": {"type": "integer", "minimum": 100, "maximum": 1000, "default": 300},
+            "color": {"type": "string", "default": "000000"},
+            "bgcolor": {"type": "string", "default": "FFFFFF"},
+            "ecc": {"type": "string", "enum": ["L", "M", "Q", "H"], "default": "M"},
+            "margin": {"type": "integer", "minimum": 0, "maximum": 20, "default": 4}
+          }
+        },
+        "mcp_tool": "generate_qr_code",
+        "category": "image-generation",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["qr", "barcode", "image", "url-encoding"]
+      },
+      {
+        "id": "password-generator",
+        "name": "Password Generator",
+        "description": "Generate cryptographically secure random passwords with configurable length (4-256), character sets, and batch count (1-50).",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/password",
+          "method": "GET",
+          "parameters": {
+            "length": {"type": "integer", "minimum": 4, "maximum": 256, "default": 16},
+            "count": {"type": "integer", "minimum": 1, "maximum": 50, "default": 1},
+            "numbers": {"type": "boolean", "default": true},
+            "symbols": {"type": "boolean", "default": true},
+            "uppercase": {"type": "boolean", "default": true},
+            "lowercase": {"type": "boolean", "default": true}
+          }
+        },
+        "mcp_tool": "generate_password",
+        "category": "security",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["password", "security", "crypto", "auth"]
+      },
+      {
+        "id": "uuid-generator",
+        "name": "UUID Generator",
+        "description": "Generate UUID v4 (random) identifiers. Supports batch generation (1-100) and multiple output formats (standard/json/array).",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/uuid",
+          "method": "GET",
+          "parameters": {
+            "count": {"type": "integer", "minimum": 1, "maximum": 100, "default": 1},
+            "format": {"type": "string", "enum": ["standard", "json", "array"], "default": "standard"}
+          }
+        },
+        "mcp_tool": "generate_uuid",
+        "category": "data-generation",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["uuid", "identifier", "unique-id", "v4"]
+      },
+      {
+        "id": "hash-text",
+        "name": "Hash Text",
+        "description": "Generate cryptographic hashes with MD5, SHA-1, SHA-256, or SHA-512 algorithms. Output in hex or base64 encoding.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/hash",
+          "method": "GET",
+          "parameters": {
+            "text": {"type": "string", "required": true},
+            "algorithm": {"type": "string", "enum": ["md5", "sha1", "sha256", "sha512"], "default": "sha256"},
+            "encoding": {"type": "string", "enum": ["hex", "base64"], "default": "hex"}
+          }
+        },
+        "mcp_tool": "hash_text",
+        "category": "security",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["hash", "crypto", "sha256", "md5", "sha512"]
+      },
+      {
+        "id": "base64-encode-decode",
+        "name": "Base64 Encode/Decode",
+        "description": "Encode text to Base64 or decode Base64 back to plain text. Essential for data transport in JSON, URLs, and email.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/base64",
+          "method": "GET",
+          "parameters": {
+            "text": {"type": "string", "required": true},
+            "mode": {"type": "string", "enum": ["encode", "decode"], "default": "encode"}
+          }
+        },
+        "mcp_tool": "encode_base64",
+        "category": "data-transformation",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["base64", "encode", "decode", "data"]
+      },
+      {
+        "id": "lorem-ipsum-generator",
+        "name": "Lorem Ipsum Generator",
+        "description": "Generate Lorem Ipsum placeholder text for mockups, wireframes, and design drafts. Configurable by paragraphs, sentences, or words.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/lorem",
+          "method": "GET",
+          "parameters": {
+            "type": {"type": "string", "enum": ["paragraphs", "sentences", "words"], "default": "paragraphs"},
+            "count": {"type": "integer", "minimum": 1, "maximum": 100, "default": 3}
+          }
+        },
+        "mcp_tool": "generate_lorem_ipsum",
+        "category": "content-generation",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["lorem", "ipsum", "placeholder", "text"]
+      },
+      {
+        "id": "json-processor",
+        "name": "JSON Processor",
+        "description": "Prettify (format with indentation), validate (check syntax), or minify (compact) JSON strings. Essential for API debugging.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/json",
+          "method": "GET",
+          "parameters": {
+            "json_string": {"type": "string", "required": true},
+            "mode": {"type": "string", "enum": ["prettify", "validate", "minify"], "default": "prettify"}
+          }
+        },
+        "mcp_tool": "process_json",
+        "category": "development-tools",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["json", "formatter", "validator", "minifier"]
+      },
+      {
+        "id": "color-converter",
+        "name": "Color Converter",
+        "description": "Convert colors between hex (#FF0000) and RGB (rgb(255,0,0)) formats for CSS, design systems, and UI development.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/color",
+          "method": "GET",
+          "parameters": {
+            "value": {"type": "string", "required": true},
+            "from_format": {"type": "string", "enum": ["hex", "rgb"], "default": "hex"},
+            "to_format": {"type": "string", "enum": ["hex", "rgb"], "default": "rgb"}
+          }
+        },
+        "mcp_tool": "convert_color",
+        "category": "design",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["color", "css", "hex", "rgb", "design"]
+      },
+      {
+        "id": "email-verifier",
+        "name": "Email Verifier",
+        "description": "Verify email address validity — checks syntax, domain validity, MX records, and disposable email provider detection.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/email-verify",
+          "method": "GET",
+          "parameters": {
+            "email": {"type": "string", "required": true}
+          }
+        },
+        "mcp_tool": "verify_email",
+        "category": "email",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["email", "verify", "validation", "disposable"]
+      },
+      {
+        "id": "ip-geolocator",
+        "name": "IP Geolocator",
+        "description": "Get geolocation data for any IP address — city, country, ISP, timezone, latitude/longitude. Auto-detects caller IP if omitted.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/ip",
+          "method": "GET",
+          "parameters": {
+            "ip_address": {
+              "type": "string",
+              "required": false,
+              "description": "IP address to look up (defaults to caller's IP)"
+            }
+          }
+        },
+        "mcp_tool": "geolocate_ip",
+        "category": "network",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["ip", "geolocation", "geoip", "isp", "timezone"]
+      },
+      {
+        "id": "timestamp-converter",
+        "name": "Timestamp Converter",
+        "description": "Convert between Unix epoch timestamps and human-readable date formats (ISO 8601, RFC 2822, Unix).",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/timestamp",
+          "method": "GET",
+          "parameters": {
+            "value": {"type": "string", "required": true},
+            "format": {"type": "string", "enum": ["iso", "unix", "rfc2822"], "default": "iso"}
+          }
+        },
+        "mcp_tool": "convert_timestamp",
+        "category": "date-time",
+        "pricing": {"free_tier": "100 req/day", "pro_tier": "$5/mo unlimited"},
+        "tags": ["timestamp", "date", "time", "unix", "iso8601"]
+      },
+      {
+        "id": "health-check",
+        "name": "API Health Check",
+        "description": "Check the health and availability of all 11 API Hub endpoints. Returns per-endpoint status (UP/DOWN) and overall system health.",
+        "endpoint": {
+          "url": "https://api.gadgethumans.com/health",
+          "method": "GET"
+        },
+        "mcp_tool": "health",
+        "category": "monitoring",
+        "pricing": {"free_tier": "unlimited", "pro_tier": "unlimited"},
+        "tags": ["health", "monitoring", "status", "uptime"]
+      }
+    ],
+    "authentication": {
+      "type": "none",
+      "note": "No API key required for basic usage (100 req/day). Rate limiting applies."
+    },
+    "protocols": {
+      "rest": {
+        "version": "1.0",
+        "base_url": "https://api.gadgethumans.com",
+        "openapi_url": "https://gadgethumans.com/openapi.json",
+        "format": "JSON"
+      },
+      "mcp": {
+        "version": "1.0",
+        "endpoint": "https://api.gadgethumans.com/mcp",
+        "protocol": "streamable-http",
+        "package": "gadgethumans-api-hub-mcp",
+        "tools_count": 12
+      }
+    },
+    "rate_limiting": {
+      "free_tier": "100 requests/day per endpoint",
+      "pro_tier": "$5/month — unlimited requests",
+      "pro_features": "Higher rate limits, priority support, production SLA"
+    }
+  },
+  "discovery_endpoints": [
+    {"rel": "llms.txt", "href": "https://gadgethumans.com/llms.txt", "type": "text/plain"},
+    {"rel": "llms-full.txt", "href": "https://gadgethumans.com/llms-full.txt", "type": "text/plain"},
+    {"rel": "api-hub.llms.txt", "href": "https://gadgethumans.com/api-hub.llms.txt", "type": "text/plain"},
+    {"rel": "openapi", "href": "https://gadgethumans.com/openapi.json", "type": "application/json"},
+    {"rel": "ai-plugin", "href": "https://gadgethumans.com/.well-known/ai-plugin.json", "type": "application/json"},
+    {"rel": "mcp", "href": "https://gadgethumans.com/.well-known/mcp.json", "type": "application/json"},
+    {"rel": "tool-sitemap", "href": "https://gadgethumans.com/tools/sitemap.xml", "type": "application/xml"},
+    {"rel": "llmstxt-index", "href": "https://gadgethumans.com/llmstxt-index.json", "type": "application/json"}
+  ]
+}

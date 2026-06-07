@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAPI Spec for AI Agent Integration — Full 3.1 Specification for 200+ Tools</title>
+<meta name="description" content="Complete OpenAPI 3.1 specification for 200+ AI agent tools. QR codes, passwords, UUIDs, hashing, Base64, JSON, color, email, IP, timestamps. Machine-readable API documentation.">
+<meta name="keywords" content="OpenAPI spec, OpenAPI 3.1, AI agent integration, API specification, MCP server, AI tools API, OpenAPI documentation">
+<link rel="canonical" href="https://gadgethumans.com/blog/openapi-spec-ai-agent-integration">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans API Hub (OpenAPI 3.1)","description":"Complete OpenAPI 3.1 specification for 200+ AI agent tools. Machine-readable spec at /openapi.json. 11 endpoints, 12 MCP tools, full parameter documentation.","url":"https://api.gadgethumans.com","documentation":"https://gadgethumans.com/openapi.json","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans API Hub OpenAPI Spec","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"OpenAPI 3.1 spec for 200+ free API tools. Machine-readable for AI agent integration.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>OpenAPI Spec for AI Agent Integration — Full 3.1 Specification</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Why OpenAPI Matters for AI Agents</h2>
+<p>The <strong>OpenAPI Specification (OAS)</strong> is the industry standard for describing REST APIs in a machine-readable format. AI agents parse OpenAPI specs to understand available endpoints, parameters, and response schemas. The GadgetHumans API Hub provides a comprehensive <strong>OpenAPI 3.1 specification</strong> at <code>/openapi.json</code> — the definitive API contract for our 200+ tool collection.</p>
+<h2>OpenAPI Spec Features</h2>
+<ul>
+<li><strong>Version:</strong> OpenAPI 3.1.0 (latest standard)</li>
+<li><strong>Servers:</strong> https://api.gadgethumans.com</li>
+<li><strong>Endpoints:</strong> 11 documented paths with full parameter schemas</li>
+<li><strong>MCP Extension:</strong> x-mcp metadata linking to MCP tools</li>
+<li><strong>LLM Extension:</strong> x-llms linking to llms.txt files</li>
+<li><strong>ChatGPT Extension:</strong> x-openai-plugin for GPT integration</li>
+<li><strong>Tags:</strong> Categorized by function (QR, Security, Data, etc.)</li>
+<li><strong>Response Schemas:</strong> Full JSON Schema for every response</li>
+</ul>
+<h2>Spec Endpoint</h2>
+<pre><code>GET https://gadgethumans.com/openapi.json</code></pre>
+<h2>What Agents Can Learn from the Spec</h2>
+<table>
+<tr><th>Endpoint</th><th>Operation ID</th><th>Parameters</th><th>Response Type</th></tr>
+<tr><td>GET /qr</td><td>generateQrCode</td><td>7 params</td><td>image/png, svg, gif</td></tr>
+<tr><td>GET /password</td><td>generatePassword</td><td>6 params</td><td>application/json</td></tr>
+<tr><td>GET /uuid</td><td>generateUuid</td><td>2 params</td><td>application/json</td></tr>
+<tr><td>GET /hash</td><td>hashText</td><td>3 params</td><td>application/json</td></tr>
+<tr><td>GET /base64</td><td>encodeBase64</td><td>2 params</td><td>application/json</td></tr>
+<tr><td>GET /lorem</td><td>generateLoremIpsum</td><td>2 params</td><td>text/plain</td></tr>
+<tr><td>GET /json</td><td>processJson</td><td>2 params</td><td>application/json</td></tr>
+<tr><td>GET /color</td><td>convertColor</td><td>3 params</td><td>application/json</td></tr>
+<tr><td>GET /email-verify</td><td>verifyEmail</td><td>1 param</td><td>application/json</td></tr>
+<tr><td>GET /ip</td><td>geolocateIp</td><td>1 param</td><td>application/json</td></tr>
+<tr><td>GET /timestamp</td><td>convertTimestamp</td><td>2 params</td><td>application/json</td></tr>
+<tr><td>GET /health</td><td>healthCheck</td><td>0 params</td><td>application/json</td></tr>
+</table>
+<h2>How AI Agents Use the OpenAPI Spec</h2>
+<ol>
+<li><strong>Discover:</strong> Fetch /openapi.json to learn all available endpoints</li>
+<li><strong>Parse:</strong> Extract operationId, parameters, and schemas</li>
+<li><strong>Call:</strong> Construct HTTP requests with correct parameters</li>
+<li><strong>Handle:</strong> Parse responses using documented schemas</li>
+</ol>
+<h2>Integration with Agent Frameworks</h2>
+<ul>
+<li><strong>OpenAI GPTs:</strong> Load OpenAPI spec as custom action</li>
+<li><strong>LangChain:</strong> OpenAPI agent tool loader</li>
+<li><strong>AutoGPT:</strong> OpenAPI spec parsing for tool discovery</li>
+<li><strong>Custom Agents:</strong> Direct HTTP calls using spec documentation</li>
+</ul>
+<h2>Spec Location</h2>
+<p>The OpenAPI spec is published at <code>https://gadgethumans.com/openapi.json</code> and referenced from the agent card, AI plugin manifest, and MCP configuration files. It stays synchronized with the live API.</p>
+<p><strong>OpenAPI spec</strong> | <strong>OpenAPI 3.1</strong> | <strong>AI agent integration</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

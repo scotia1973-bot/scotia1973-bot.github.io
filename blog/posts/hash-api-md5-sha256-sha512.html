@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hash API — Free MD5, SHA-256, SHA-512 Cryptographic Hashing via REST or MCP</title>
+<meta name="description" content="Free hash API for MD5, SHA-1, SHA-256, SHA-512 cryptographic hashing. Hex or base64 output. REST API or MCP tool. No auth. Free tier: 100 req/day.">
+<meta name="keywords" content="hash API, MD5 API, SHA256 API, SHA512 API, cryptographic hash API, MCP server, AI tools API, free API tools">
+<link rel="canonical" href="https://gadgethumans.com/blog/hash-api-md5-sha256-sha512">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+    {"@type":"WebAPI","name":"GadgetHumans Hash API","description":"Free MD5, SHA-1, SHA-256, SHA-512 cryptographic hashing API. Hex or base64. REST: GET /hash. MCP: hash_text.","url":"https://api.gadgethumans.com/hash","documentation":"https://gadgethumans.com/api-hub/hash-text","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans Hash API","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free cryptographic hashing API. MD5, SHA1, SHA256, SHA512.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Hash API — Free MD5, SHA-256, SHA-512 Cryptographic Hashing</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p><strong>Cryptographic hashing</strong> is fundamental to security — used for password storage, data integrity verification, digital signatures, and checksums. The GadgetHumans <strong>Hash API</strong> provides four industry-standard algorithms (MD5, SHA-1, SHA-256, SHA-512) with hex or base64 output, all accessible with zero authentication.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/hash</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Default</th><th>Options</th></tr>
+<tr><td>text</td><td>Yes</td><td>—</td><td>Any string</td></tr>
+<tr><td>algorithm</td><td>No</td><td>sha256</td><td>md5, sha1, sha256, sha512</td></tr>
+<tr><td>encoding</td><td>No</td><td>hex</td><td>hex, base64</td></tr></table>
+<h2>Examples</h2>
+<h3>SHA-256 Hash</h3>
+<pre><code>curl "https://api.gadgethumans.com/hash?text=hello+world&algorithm=sha256&encoding=hex"
+# Returns SHA-256 hash of "hello world" in hex</code></pre>
+<h3>SHA-512 Hash in Base64</h3>
+<pre><code>curl "https://api.gadgethumans.com/hash?text=data+integrity&algorithm=sha512&encoding=base64"</code></pre>
+<h3>MD5 Hash</h3>
+<pre><code>curl "https://api.gadgethumans.com/hash?text=quick+check&algorithm=md5"</code></pre>
+<h2>MCP Tool: hash_text</h2>
+<p>For AI agents, the <code>hash_text</code> MCP tool provides the same functionality. Install the <strong>MCP server</strong> via <code>pip install gadgethumans-api-hub-mcp</code> or call the Streamable HTTP endpoint directly.</p>
+<h2>8 Unique Configurations + Unlimited Text</h2>
+<p>4 algorithms × 2 encodings = 8 core configurations, plus unlimited text inputs. Each combination produces unique hashes suitable for different use cases.</p>
+<h2>Use Cases</h2>
+<ul><li>Password hashing verification</li><li>File integrity checksums</li><li>API request signing</li><li>Data deduplication</li></ul>
+<p><strong>hash API</strong> | <strong>SHA256 API</strong> | <strong>MD5 API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

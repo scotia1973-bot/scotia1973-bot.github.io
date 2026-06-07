@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free UUID API Generator — Generate UUID v4 Identifiers via REST or MCP</title>
+<meta name="description" content="Free UUID API generator. Generate UUID v4 identifiers via REST API or MCP. Batch up to 100. Standard, JSON, or array format. No signup. Free tier: 100 req/day.">
+<meta name="keywords" content="UUID API, UUID generator API, free UUID API, MCP server, AI tools API, UUID v4, identifier API">
+<link rel="canonical" href="https://gadgethumans.com/blog/free-uuid-api-generator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebAPI","name":"GadgetHumans UUID Generator API","description":"Free UUID v4 API generator. Batch 1-100 UUIDs. Standard/JSON/array format. REST endpoint: GET /uuid. MCP tool: generate_uuid.","url":"https://api.gadgethumans.com/uuid","documentation":"https://gadgethumans.com/api-hub/uuid-generator","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans UUID API","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free UUID v4 generation API. 300 configurations. No auth.","url":"https://gadgethumans.com","downloadUrl":"https://pypi.org/project/gadgethumans-api-hub-mcp/","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Free UUID API Generator — Generate UUID v4 Identifiers via REST or MCP</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p>UUIDs (Universally Unique Identifiers) are essential for database records, API resources, session IDs, and distributed systems. The GadgetHumans <strong>UUID API</strong> provides a free, no-auth endpoint for generating UUID v4 (random) identifiers with batch support and multiple output formats.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/uuid</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Range</th></tr>
+<tr><td>count</td><td>integer</td><td>1</td><td>1-100</td></tr>
+<tr><td>format</td><td>string</td><td>standard</td><td>standard, json, array</td></tr></table>
+<h2>Examples</h2>
+<h3>Single UUID</h3>
+<pre><code>curl https://api.gadgethumans.com/uuid
+# Returns: "550e8400-e29b-41d4-a716-446655440000"</code></pre>
+<h3>Batch 10 UUIDs as JSON</h3>
+<pre><code>curl https://api.gadgethumans.com/uuid?count=10&format=json
+# Returns: {"uuids": ["...", "...", ...]}</code></pre>
+<h3>Batch 5 UUIDs as Array</h3>
+<pre><code>curl https://api.gadgethumans.com/uuid?count=5&format=array
+# Returns: ["...", "...", "...", "...", "..."]</code></pre>
+<h2>300 Configurations</h2>
+<p>With 100 count levels and 3 output formats, the UUID API provides 300 unique configurations — perfect for any identifier generation need.</p>
+<h2>Use Cases</h2>
+<ul><li>Database primary keys</li><li>API resource identifiers</li><li>Session and token IDs</li><li>Distributed system correlation IDs</li></ul>
+<p><strong>UUID API</strong> | <strong>UUID generator API</strong> | <strong>free UUID API</strong> | <strong>MCP server</strong></p>
+</article>
+</body>
+</html>

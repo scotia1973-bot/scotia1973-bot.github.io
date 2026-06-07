@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Formatter API Tool — Prettify, Validate, and Minify JSON via REST or MCP</title>
+<meta name="description" content="Free JSON formatter API tool. Prettify, validate, or minify JSON strings. REST API or MCP. No auth required. Free tier: 100 req/day. Perfect for debugging API responses.">
+<meta name="keywords" content="JSON formatter API, JSON validator API, JSON minifier API, MCP server, AI tools API, free API tools, JSON processor">
+<link rel="canonical" href="https://gadgethumans.com/blog/json-formatter-api-tool">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebAPI","name":"GadgetHumans JSON Processor API","description":"Free JSON formatter API. Prettify, validate, or minify JSON strings. REST: GET /json. MCP: process_json.","url":"https://api.gadgethumans.com/json","documentation":"https://gadgethumans.com/api-hub/json-processor","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans JSON Processor","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free JSON processing API — prettify, validate, minify. MCP tool: process_json.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>JSON Formatter API Tool — Prettify, Validate, and Minify JSON</h1>
+<time datetime="2026-06-07">June 6, 2026</time>
+<h2>Why a JSON Formatter API?</h2>
+<p>Working with JSON is fundamental to modern development. Whether you're debugging API responses, cleaning configuration files, or processing data for AI agents, a <strong>JSON formatter API</strong> is essential. The GadgetHumans JSON Processor provides three modes — prettify, validate, and minify — all accessible via a simple GET request with no authentication.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/json</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Default</th><th>Options</th></tr>
+<tr><td>json_string</td><td>Yes</td><td>—</td><td>Any JSON string</td></tr>
+<tr><td>mode</td><td>No</td><td>prettify</td><td>prettify, validate, minify</td></tr></table>
+<h2>Examples</h2>
+<h3>Prettify</h3>
+<pre><code>curl "https://api.gadgethumans.com/json?json_string=%7B%22name%22%3A%22test%22%2C%22value%22%3A42%7D&mode=prettify"
+# Returns formatted JSON with indentation</code></pre>
+<h3>Validate</h3>
+<pre><code>curl "https://api.gadgethumans.com/json?json_string=%7B%22invalid&mode=validate"
+# Returns {"valid": false, "error": "..."}</code></pre>
+<h3>Minify</h3>
+<pre><code>curl "https://api.gadgethumans.com/json?json_string=%7B%22name%22%3A%22test%22%7D&mode=minify"
+# Returns compact JSON with no whitespace</code></pre>
+<h2>MCP Tool: process_json</h2>
+<p>AI agents using the <strong>MCP server</strong> can call <code>process_json</code> to handle JSON processing tasks. Available via the Streamable HTTP endpoint at <code>https://api.gadgethumans.com/mcp</code>.</p>
+<h2>Use Cases</h2>
+<ul><li>Debugging API responses</li><li>Preparing JSON for config files</li><li>Validating JSON before deserialization</li><li>Minifying JSON for storage or transmission</li></ul>
+<p><strong>JSON formatter API</strong> | <strong>JSON validator API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

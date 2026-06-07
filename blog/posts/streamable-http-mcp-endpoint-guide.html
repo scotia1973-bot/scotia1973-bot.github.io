@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streamable HTTP MCP Endpoint Guide — How to Connect AI Agents to 200+ Tools</title>
+<meta name="description" content="Complete guide to the Streamable HTTP MCP endpoint. Connect AI agents to 200+ free tools via MCP protocol. QR codes, passwords, UUIDs, hashing, Base64, JSON, and more.">
+<meta name="keywords" content="Streamable HTTP MCP, MCP endpoint, MCP server, AI tools API, MCP tools directory, free API tools for AI, MCP HTTP">
+<link rel="canonical" href="https://gadgethumans.com/blog/streamable-http-mcp-endpoint-guide">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebAPI","name":"GadgetHumans MCP Endpoint","description":"Streamable HTTP MCP endpoint for AI agents. POST https://api.gadgethumans.com/mcp. 12 MCP tools, 200+ configurations, zero auth.","url":"https://api.gadgethumans.com/mcp","documentation":"https://gadgethumans.com/mcp-server","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans MCP Server","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Streamable HTTP MCP server with 12 tools. Install: pip install gadgethumans-api-hub-mcp.","url":"https://gadgethumans.com","downloadUrl":"https://pypi.org/project/gadgethumans-api-hub-mcp/","installCommand":"pip install gadgethumans-api-hub-mcp","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Streamable HTTP MCP Endpoint Guide — Connect AI Agents to 200+ Tools</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>What is Streamable HTTP MCP?</h2>
+<p>The <strong>Model Context Protocol (MCP)</strong> defines how AI agents discover and call external tools. <strong>Streamable HTTP</strong> is the transport layer that enables agent-to-server communication over standard HTTP. The GadgetHumans API Hub exposes a <strong>Streamable HTTP MCP endpoint</strong> at <code>https://api.gadgethumans.com/mcp</code>, giving any MCP-compatible agent access to 200+ tool configurations.</p>
+<h2>MCP Endpoint Details</h2>
+<ul>
+<li><strong>URL:</strong> POST https://api.gadgethumans.com/mcp</li>
+<li><strong>Protocol:</strong> JSON-RPC 2.0</li>
+<li><strong>Content-Type:</strong> application/json</li>
+<li><strong>Transport:</strong> Streamable HTTP (SSE support)</li>
+<li><strong>Authentication:</strong> None</li>
+<li><strong>Rate Limit:</strong> 100 req/day per tool (free)</li>
+</ul>
+<h2>How Agents Use the MCP Endpoint</h2>
+<h3>Step 1: Tool Discovery</h3>
+<pre><code>POST https://api.gadgethumans.com/mcp
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "tools/list",
+  "id": 1
+}</code></pre>
+<h3>Step 2: Call a Tool</h3>
+<pre><code>POST https://api.gadgethumans.com/mcp
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "generate_password",
+    "arguments": {
+      "length": 20,
+      "count": 3,
+      "symbols": true,
+      "numbers": true
+    }
+  },
+  "id": 2
+}</code></pre>
+<h3>Step 3: Resource Access (Optional)</h3>
+<pre><code>POST https://api.gadgethumans.com/mcp
+Content-Type: application/json
+
+{
+  "jsonrpc": "2.0",
+  "method": "resources/list",
+  "id": 3
+}</code></pre>
+<h2>All 12 MCP Tools Available</h2>
+<ol>
+<li><strong>generate_qr_code</strong> — QR code image generation</li>
+<li><strong>generate_password</strong> — Secure password generation</li>
+<li><strong>generate_uuid</strong> — UUID v4 generation</li>
+<li><strong>hash_text</strong> — MD5/SHA1/SHA256/SHA512 hashing</li>
+<li><strong>encode_base64</strong> — Base64 encode/decode</li>
+<li><strong>generate_lorem_ipsum</strong> — Placeholder text</li>
+<li><strong>process_json</strong> — JSON prettify/validate/minify</li>
+<li><strong>convert_color</strong> — Hex ↔ RGB conversion</li>
+<li><strong>verify_email</strong> — Email validation</li>
+<li><strong>geolocate_ip</strong> — IP geolocation</li>
+<li><strong>convert_timestamp</strong> — Timestamp/date conversion</li>
+<li><strong>health</strong> — System health check</li>
+</ol>
+<h2>Compatible Clients</h2>
+<ul>
+<li><strong>Claude Desktop</strong> — Add to mcpServers config</li>
+<li><strong>OpenAI GPTs</strong> — Via ChatGPT plugin (/.well-known/ai-plugin.json)</li>
+<li><strong>Google A2A Agents</strong> — Via agent card (/.well-known/agent-card.json)</li>
+<li><strong>Custom MCP Clients</strong> — Any HTTP client supporting JSON-RPC 2.0</li>
+<li><strong>Python</strong> — pip install gadgethumans-api-hub-mcp</li>
+</ul>
+<h2>Claude Desktop Configuration</h2>
+<pre><code>{
+  "mcpServers": {
+    "gadgethumans": {
+      "command": "uvx",
+      "args": ["gadgethumans-api-hub-mcp"]
+    }
+  }
+}</code></pre>
+<h2>Performance and Reliability</h2>
+<p>The MCP endpoint runs on serverless infrastructure with typical response times under 200ms. The <strong>health</strong> tool checks all 11 upstream REST endpoints and returns per-endpoint status. Free tier: 100 calls/day per tool. Pro tier ($5/mo): unlimited.</p>
+<p><strong>Streamable HTTP MCP</strong> | <strong>MCP endpoint</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>

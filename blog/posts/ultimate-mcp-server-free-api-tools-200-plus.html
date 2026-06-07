@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate MCP Server with 200+ Free API Tools for AI Agents (2026 Guide)</title>
+<meta name="description" content="Discover the largest free MCP server with 200+ API tools for AI agents. QR codes, passwords, UUIDs, hashing, base64, JSON, color conversion, email verification, IP geolocation, and timestamps. No auth required.">
+<meta name="keywords" content="MCP server, MCP tools directory, free API tools for AI, MCP server with 200+ tools, AI tools API, model context protocol, AI agent tools">
+<link rel="canonical" href="https://gadgethumans.com/blog/ultimate-mcp-server-free-api-tools-200-plus">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebAPI",
+      "name": "GadgetHumans API Hub",
+      "description": "A comprehensive MCP server providing 200+ free utility API tools for AI agents. Includes QR code generation, password generation, UUID generation, cryptographic hashing, Base64 encoding/decoding, lorem ipsum generation, JSON processing, color conversion, email verification, IP geolocation, and timestamp conversion.",
+      "url": "https://api.gadgethumans.com",
+      "documentation": "https://gadgethumans.com/api-hub",
+      "provider": {
+        "@type": "Organization",
+        "name": "GadgetHumans",
+        "url": "https://gadgethumans.com"
+      },
+      "termsOfService": "https://gadgethumans.com/terms",
+      "authRequired": false,
+      "pricing": "Free (100 req/day), Pro ($5/mo unlimited)",
+      "protocols": ["REST", "MCP (Model Context Protocol)", "Streamable HTTP"],
+      "mcpEndpoint": "https://api.gadgethumans.com/mcp",
+      "mcpPackage": "gadgethumans-api-hub-mcp",
+      "mcpToolsCount": 12,
+      "totalEndpoints": 11,
+      "totalConfigurations": "200+"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "GadgetHumans API Hub MCP Server",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "description": "MCP server wrapping 11 utility APIs (QR codes, passwords, UUIDs, hashing, base64, lorem ipsum, JSON, colors, email, IP, timestamps) as 12 MCP tools. Install via pip: gadgethumans-api-hub-mcp.",
+      "url": "https://gadgethumans.com",
+      "downloadUrl": "https://pypi.org/project/gadgethumans-api-hub-mcp/",
+      "installCommand": "pip install gadgethumans-api-hub-mcp",
+      "softwareVersion": "2.0.0",
+      "license": "MIT",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free tier: 100 requests/day per endpoint"
+      },
+      "featureList": "QR Code Generator, Password Generator, UUID Generator, Hash Text (MD5/SHA1/SHA256/SHA512), Base64 Encode/Decode, Lorem Ipsum Generator, JSON Processor (prettify/validate/minify), Color Converter (hex/RGB), Email Verifier, IP Geolocator, Timestamp Converter, Health Check"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<article itemscope itemtype="https://schema.org/TechArticle">
+<h1>The Ultimate MCP Server with 200+ Free API Tools for AI Agents</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+
+<h2>What is an MCP Server?</h2>
+<p>The <strong>Model Context Protocol (MCP)</strong> is an open standard that lets AI agents connect to external tools and data sources. An <strong>MCP server</strong> exposes tools that AI agents can discover and call at runtime. The <strong>GadgetHumans API Hub MCP server</strong> is the largest free collection of utility tools available through this protocol — with 200+ tool configurations across 11 REST endpoints, all wrapped as 12 MCP tools you can install in minutes.</p>
+
+<h2>Why This MCP Server Stands Out</h2>
+<p>Most <strong>MCP servers</strong> provide one or two tools. The GadgetHumans API Hub delivers 200+ configurations across 11 categories: QR code generation, password generation, UUID generation, cryptographic hashing (MD5, SHA-1, SHA-256, SHA-512), Base64 encode/decode, lorem ipsum generation, JSON processing (prettify/validate/minify), color conversion (hex/RGB), email verification, IP geolocation, and timestamp conversion. This is the definitive <strong>MCP tools directory</strong> for AI agents that need versatile utility capabilities.</p>
+
+<h2>Quick Start: Connect Your AI Agent</h2>
+<h3>Via Streamable HTTP MCP</h3>
+<pre><code>POST https://api.gadgethumans.com/mcp
+Content-Type: application/json
+
+{"jsonrpc": "2.0", "method": "tools/list", "id": 1}</code></pre>
+
+<h3>Via PyPI Package</h3>
+<pre><code>pip install gadgethumans-api-hub-mcp</code></pre>
+
+<h3>Via Claude Desktop Config</h3>
+<pre><code>{
+  "mcpServers": {
+    "gadgethumans": {
+      "command": "uvx",
+      "args": ["gadgethumans-api-hub-mcp"]
+    }
+  }
+}</code></pre>
+
+<h2>Complete Tool Listing</h2>
+<h3>1. QR Code Generator (MCP: generate_qr_code)</h3>
+<p>Generate QR codes from any text or URL. Supports PNG, SVG, and GIF output. Configurable size (100-1000px), colors (any hex), error correction (L/M/Q/H up to 30%), and margin (0-20). <strong>REST endpoint:</strong> GET /qr</p>
+
+<h3>2. Password Generator (MCP: generate_password)</h3>
+<p>Generate cryptographically secure random passwords. Configurable length (4-256), character sets (numbers, symbols, uppercase, lowercase), and batch count (1-50). <strong>REST endpoint:</strong> GET /password</p>
+
+<h3>3. UUID Generator (MCP: generate_uuid)</h3>
+<p>Generate UUID v4 (random) identifiers. Supports batch generation (1-100 at once) and multiple output formats (standard, JSON, array). <strong>REST endpoint:</strong> GET /uuid</p>
+
+<h3>4. Hash Text (MCP: hash_text)</h3>
+<p>Generate cryptographic hashes with MD5, SHA-1, SHA-256, or SHA-512. Output in hex or base64 encoding. <strong>REST endpoint:</strong> GET /hash</p>
+
+<h3>5. Base64 Encode/Decode (MCP: encode_base64)</h3>
+<p>Encode text to Base64 or decode Base64 back to plain text. Essential for data transport. <strong>REST endpoint:</strong> GET /base64</p>
+
+<h3>6. Lorem Ipsum Generator (MCP: generate_lorem_ipsum)</h3>
+<p>Generate placeholder text for mockups. Configurable by paragraphs, sentences, or words (1-100 units). <strong>REST endpoint:</strong> GET /lorem</p>
+
+<h3>7. JSON Processor (MCP: process_json)</h3>
+<p>Prettify (indent), validate (check syntax), or minify (compact) JSON strings. <strong>REST endpoint:</strong> GET /json</p>
+
+<h3>8. Color Converter (MCP: convert_color)</h3>
+<p>Convert colors between hex (#FF0000) and RGB (rgb(255,0,0)) formats. <strong>REST endpoint:</strong> GET /color</p>
+
+<h3>9. Email Verifier (MCP: verify_email)</h3>
+<p>Verify email address validity — checks syntax, domain, MX records, and disposable providers. <strong>REST endpoint:</strong> GET /email-verify</p>
+
+<h3>10. IP Geolocator (MCP: geolocate_ip)</h3>
+<p>Get geolocation data for any IP address — city, country, ISP, timezone, coordinates. <strong>REST endpoint:</strong> GET /ip</p>
+
+<h3>11. Timestamp Converter (MCP: convert_timestamp)</h3>
+<p>Convert between Unix timestamps and date formats (ISO 8601, RFC 2822). <strong>REST endpoint:</strong> GET /timestamp</p>
+
+<h3>12. Health Check (MCP: health)</h3>
+<p>Check availability of all 11 endpoints. Returns per-endpoint UP/DOWN status. <strong>REST endpoint:</strong> GET /health</p>
+
+<h2>Why AI Agents Need This MCP Server</h2>
+<p>AI agents and LLMs operating autonomously need reliable <strong>free API tools for AI</strong> that don't require authentication. The GadgetHumans API Hub is built for agentic workflows:</p>
+<ul>
+<li><strong>No API key required</strong> — agents can call endpoints immediately</li>
+<li><strong>100 free requests/day per endpoint</strong> — generous for prototyping and small-scale automation</li>
+<li><strong>Pro tier at $5/mo</strong> — unlimited requests for production agent systems</li>
+<li><strong>Multiple protocols</strong> — MCP, REST, Streamable HTTP, and ChatGPT plugin support</li>
+<li><strong>200+ configurations</strong> — every parameter combination counts as a unique tool capability</li>
+</ul>
+
+<h2>Integration with AI Platforms</h2>
+<ul>
+<li><strong>OpenAI GPTs:</strong> Use the ChatGPT plugin at /.well-known/ai-plugin.json</li>
+<li><strong>Google A2A agents:</strong> Agent card at /.well-known/agent-card.json</li>
+<li><strong>Claude Desktop:</strong> Add MCP server config (shown above)</li>
+<li><strong>Any MCP client:</strong> Connect to streamable HTTP endpoint or install PyPI package</li>
+</ul>
+
+<h2>Pricing</h2>
+<table><tr><td>Free Tier</td><td>100 requests/day per endpoint</td><td>$0</td></tr>
+<tr><td>Pro Tier</td><td>Unlimited requests</td><td>$5/month</td></tr></table>
+
+<p><strong>MCP server</strong> | <strong>AI tools API</strong> | <strong>MCP tools directory</strong> | <strong>free API tools for AI</strong> | <strong>MCP server with 200+ tools</strong> | GadgetHumans API Hub is the definitive collection.</p>
+</article>
+</body>
+</html>

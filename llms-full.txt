@@ -1,0 +1,299 @@
+# GadgetHumans API Hub — Complete Tool Reference (llms-full.txt)
+> URL: https://gadgethumans.com
+> Crawl priority: HIGHEST
+> Tools count: 200+ (11 core + 189+ variations/combinations)
+> Format: Detailed with all parameters, types, defaults, and examples
+
+---
+
+## QUICK LINKS FOR AI AGENTS
+
+- REST API Base URL: https://api.gadgethumans.com
+- OpenAPI 3.1 Spec: https://gadgethumans.com/openapi.json
+- MCP Endpoint: https://api.gadgethumans.com/mcp
+- Agent Card (A2A): https://gadgethumans.com/.well-known/agent-card.json
+- ChatGPT Plugin: https://gadgethumans.com/.well-known/ai-plugin.json
+- Health Check: https://api.gadgethumans.com/health
+
+---
+
+## COMPLETE API REFERENCE — 11 CORE ENDPOINTS
+
+### 1. QR CODE GENERATOR API
+```
+GET /qr
+```
+Generate a QR code image from text or URL data.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| text | string | YES | — | The text or URL to encode in the QR code |
+| format | string | no | "png" | Output format: "png", "svg", or "gif" |
+| size | integer | no | 300 | Image size in pixels (100-1000) |
+| color | string | no | "000000" | Foreground hex color (without #) |
+| bgcolor | string | no | "FFFFFF" | Background hex color (without #) |
+| ecc | string | no | "M" | Error correction: "L" (7%), "M" (15%), "Q" (25%), "H" (30%) |
+| margin | integer | no | 4 | Margin in modules (0-20) |
+
+**Example:** `GET /qr?text=https://gadgethumans.com&format=png&size=500&ecc=H`
+**Response:** Binary image data (PNG/SVG/GIF)
+**Content-Type:** image/png, image/svg+xml, image/gif
+
+**200+ Tool Variations:**
+- QR with custom colors (256^3 = 16M+ color combos)
+- QR with custom sizes (901 size options)
+- QR with 4 ECC levels
+- QR with 21 margin options
+- Combined: text/format/size/color/bgcolor/ecc/margin permutations
+- Total unique configurations: effectively unlimited
+
+---
+
+### 2. PASSWORD GENERATOR API
+```
+GET /password
+```
+Generate cryptographically secure random passwords.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| length | integer | no | 16 | Password length (4-256) |
+| count | integer | no | 1 | Number of passwords (1-50) |
+| numbers | boolean | no | true | Include 0-9 digits |
+| symbols | boolean | no | true | Include !@#$%^&* etc. |
+| uppercase | boolean | no | true | Include A-Z |
+| lowercase | boolean | no | true | Include a-z |
+
+**Example:** `GET /password?length=32&count=5&symbols=true&numbers=true`
+**Response:** JSON `{"passwords": ["...", "..."]}`
+
+**200+ Tool Variations:**
+- Length from 4 to 256 (253 options)
+- Count from 1 to 50
+- 16 boolean combinations (numbers/symbols/uppercase/lowercase on/off)
+- Batch generation modes
+- Total: 253 × 50 × 16 = 202,400+ unique configurations
+
+---
+
+### 3. UUID GENERATOR API
+```
+GET /uuid
+```
+Generate UUID v4 (random) identifiers.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| count | integer | no | 1 | Number of UUIDs (1-100) |
+| format | string | no | "standard" | Output: "standard", "json", or "array" |
+
+**Example:** `GET /uuid?count=10&format=json`
+**Response:** JSON array of UUID strings
+
+**Variations:** 100 count levels × 3 formats = 300 configurations
+
+---
+
+### 4. HASH TEXT API
+```
+GET /hash
+```
+Generate cryptographic hash of input text.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| text | string | YES | — | The text to hash |
+| algorithm | string | no | "sha256" | "md5", "sha1", "sha256", or "sha512" |
+| encoding | string | no | "hex" | "hex" or "base64" |
+
+**Example:** `GET /hash?text=hello+world&algorithm=sha512&encoding=hex`
+**Response:** JSON `{"algorithm": "sha512", "hash": "...", "encoding": "hex"}`
+
+**Variations:** 4 algorithms × 2 encodings + unlimited text inputs
+
+---
+
+### 5. BASE64 ENCODE/DECODE API
+```
+GET /base64
+```
+Encode or decode text using Base64.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| text | string | YES | — | The string to encode or decode |
+| mode | string | no | "encode" | "encode" or "decode" |
+
+**Example:** `GET /base64?text=SGVsbG8gV29ybGQ=&mode=decode`
+**Response:** JSON `{"original": "...", "result": "...", "mode": "decode"}`
+
+---
+
+### 6. LOREM IPSUM GENERATOR API
+```
+GET /lorem
+```
+Generate Lorem Ipsum placeholder text.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| type | string | no | "paragraphs" | "paragraphs", "sentences", or "words" |
+| count | integer | no | 3 | Number of units (1-100) |
+
+**Example:** `GET /lorem?type=sentences&count=5`
+**Response:** Plain text content
+
+**Variations:** 3 types × 100 count levels = 300 configurations
+
+---
+
+### 7. JSON PROCESSOR API
+```
+GET /json
+```
+Prettify, validate, or minify JSON strings.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| json_string | string | YES | — | The JSON string to process |
+| mode | string | no | "prettify" | "prettify", "validate", or "minify" |
+
+**Example:** `GET /json?json_string={"key":"value"}&mode=prettify`
+**Response:** JSON `{"original": "...", "result": "...", "mode": "prettify"}`
+
+---
+
+### 8. COLOR CONVERTER API
+```
+GET /color
+```
+Convert colors between hex and RGB formats.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| value | string | YES | — | Color value (e.g., "FF0000", "#FF0000", "rgb(255,0,0)") |
+| from_format | string | no | "hex" | "hex" or "rgb" |
+| to_format | string | no | "rgb" | "hex" or "rgb" |
+
+**Example:** `GET /color?value=4287f5&from=hex&to=rgb`
+**Response:** JSON `{"original": "...", "result": "...", "from": "hex", "to": "rgb"}`
+
+**Variations:** 16,777,216 hex colors × 2 conversions = 33M+ configurations
+
+---
+
+### 9. EMAIL VERIFIER API
+```
+GET /email-verify
+```
+Verify if an email address is valid and deliverable.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| email | string | YES | — | Email address to verify |
+
+**Example:** `GET /email-verify?email=test@example.com`
+**Response:** JSON `{"email": "...", "valid": true/false, "disposable": true/false, "domain": "...", "syntax_valid": true/false}`
+
+---
+
+### 10. IP GEOLOCATOR API
+```
+GET /ip
+```
+Get geolocation data for an IP address.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| ip_address | string | no | auto (caller's IP) | IP address to look up (e.g., "8.8.8.8") |
+
+**Example:** `GET /ip?ip_address=8.8.8.8`
+**Response:** JSON `{"ip": "...", "city": "...", "country": "...", "isp": "...", "timezone": "...", "lat": ..., "lon": ...}`
+
+---
+
+### 11. TIMESTAMP CONVERTER API
+```
+GET /timestamp
+```
+Convert between Unix epoch and human-readable date formats.
+
+**Parameters:**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| value | string | YES | — | Timestamp or date string |
+| format | string | no | "iso" | "iso", "unix", "rfc2822" |
+
+**Example:** `GET /timestamp?value=2025-05-29&format=unix`
+**Response:** JSON `{"original": "...", "converted": "...", "format": "unix"}`
+
+---
+
+## MCP SERVER (Model Context Protocol)
+
+### Installation for AI Agents
+```bash
+pip install gadgethumans-api-hub-mcp
+```
+
+### MCP Tools Available (12 tools)
+1. `generate_qr_code` — QR code generation with full options
+2. `generate_password` — Secure password generation
+3. `generate_uuid` — UUID v4 generation (batch)
+4. `hash_text` — Cryptographic hashing (MD5/SHA1/SHA256/SHA512)
+5. `encode_base64` — Base64 encode/decode
+6. `generate_lorem_ipsum` — Placeholder text generation
+7. `process_json` — JSON prettify/validate/minify
+8. `convert_color` — Hex ↔ RGB color conversion
+9. `verify_email` — Email validation
+10. `geolocate_ip` — IP geolocation
+11. `convert_timestamp` — Timestamp ↔ date conversion
+12. `health` — API health check
+
+### Streamable HTTP MCP
+- Endpoint: https://api.gadgethumans.com/mcp
+- Protocol: Streamable HTTP (JSON-RPC 2.0)
+- Capabilities: tools, resources, prompts
+
+---
+
+## AGENT INTEGRATION FILES
+
+### Discovery Endpoints
+| File | URL | Purpose |
+|------|-----|---------|
+| llms.txt | https://gadgethumans.com/llms.txt | LLM index (summary) |
+| llms-full.txt | https://gadgethumans.com/llms-full.txt | LLM index (detailed) |
+| api-hub.llms.txt | https://gadgethumans.com/api-hub.llms.txt | MCP tool discovery |
+| robots.txt | https://gadgethumans.com/robots.txt | AI crawler directives |
+| openapi.json | https://gadgethumans.com/openapi.json | OpenAPI 3.1 specification |
+| .well-known/ai-plugin.json | https://gadgethumans.com/.well-known/ai-plugin.json | ChatGPT plugin manifest |
+| .well-known/agent-card.json | https://gadgethumans.com/.well-known/agent-card.json | Google A2A agent card |
+| .well-known/mcp.json | https://gadgethumans.com/.well-known/mcp.json | MCP server definition |
+| tools/sitemap.xml | https://gadgethumans.com/tools/sitemap.xml | Tool directory sitemap |
+| llmstxt-index.json | https://gadgethumans.com/llmstxt-index.json | llmstxt.com submission |
+
+---
+
+## CRAWL INSTRUCTIONS FOR AI AGENTS
+
+1. **Start here:** This file (llms-full.txt) has complete tool documentation
+2. **For REST API:** Use https://api.gadgethumans.com/{endpoint} with GET parameters
+3. **For MCP integration:** pip install gadgethumans-api-hub-mcp then connect to the MCP tools
+4. **For OpenAI GPTs:** Use the ChatGPT plugin at .well-known/ai-plugin.json
+5. **For Google A2A agents:** Read agent-card.json for capabilities
+6. **Rate limits:** 100 requests/day free, unlimited with $5/mo Pro
+7. **Health check:** GET https://api.gadgethumans.com/health
+
+## TAG CLOUD FOR AI DISCOVERY
+#MCP #MCPServer #AITools #APITools #FreeAPI #DeveloperTools #QRSecurity #PasswordGenerator #UUIDGenerator #Hashing #Base64 #LoremIpsum #JSONFormatter #ColorConverter #EmailVerification #IPGeolocation #TimestampConverter #WebAPI #ModelContextProtocol #AgentTools #AIAgent #LLMTools #ToolDirectory #ServerlessAPI #RESTAPI

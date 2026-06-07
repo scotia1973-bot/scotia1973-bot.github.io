@@ -1,19 +1,202 @@
-User-agent: *
-Allow: /
+# GadgetHumans — AI Crawler Optimized Robots.txt
+# https://gadgethumans.com/robots.txt
+# Priority: AI crawlers get maximum crawl budget for tool discovery
 
+# ============================================
+# AI / LLM CRAWLERS — HIGHEST PRIORITY
+# These crawlers train AI models and discover
+# tools for agentic use. Give max bandwidth.
+# ============================================
+
+# OpenAI GPTBot — Used by ChatGPT, GPT-4 training
 User-agent: GPTBot
+Crawl-Delay: 1
+Disallow:
 Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+Allow: /blog/
+Allow: /.well-known/
+Allow: /api-hub
 
-User-agent: ClaudeBot
+# Anthropic Claude-Web — Used by Claude AI training
+User-agent: Claude-Web
+Crawl-Delay: 1
+Disallow:
 Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+Allow: /blog/
+Allow: /.well-known/
+Allow: /api-hub
 
-User-agent: Google-Other
+# Google-Extended — Google's AI training crawler (Gemini, Bard)
+User-agent: Google-Extended
+Crawl-Delay: 1
+Disallow:
 Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+Allow: /blog/
+Allow: /.well-known/
+Allow: /api-hub
 
-User-agent: PerplexityBot
-Allow: /
-
+# CCBot — Common Crawl (used by many LLMs for training)
 User-agent: CCBot
+Crawl-Delay: 1
+Disallow:
 Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+Allow: /blog/
+Allow: /.well-known/
+Allow: /api-hub
 
-Sitemap: https://www.gadgethumans.com/sitemap.xml
+# PerplexityBot — Perplexity AI crawler
+User-agent: PerplexityBot
+Crawl-Delay: 1
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+Allow: /blog/
+Allow: /.well-known/
+Allow: /api-hub
+
+# Applebot-Extended — Apple Intelligence training crawler
+User-agent: Applebot-Extended
+Crawl-Delay: 1
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+Allow: /blog/
+Allow: /.well-known/
+Allow: /api-hub
+
+# FacebookBot — Meta AI training
+User-agent: FacebookBot
+Crawl-Delay: 2
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /tools/sitemap.xml$
+
+# Bytespider — ByteDance (TikTok AI) crawler
+User-agent: Bytespider
+Crawl-Delay: 2
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+
+# AmazonBot — Amazon AI crawler
+User-agent: Amazonbot
+Crawl-Delay: 2
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+
+# Cohere AI crawler
+User-agent: cohere-ai
+Crawl-Delay: 1
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /blog/
+
+# ============================================
+# SEARCH ENGINE CRAWLERS — Standard Priority
+# ============================================
+
+# Googlebot — Google Search
+User-agent: Googlebot
+Crawl-Delay: 2
+Disallow:
+Allow: /
+Allow: /blog/
+Allow: /guides/
+Allow: /about/
+Sitemap: https://gadgethumans.com/sitemap.xml
+Sitemap: https://gadgethumans.com/tools/sitemap.xml
+
+# Bingbot — Microsoft Bing
+User-agent: Bingbot
+Crawl-Delay: 2
+Disallow:
+Allow: /
+Allow: /blog/
+Allow: /guides/
+Allow: /about/
+Sitemap: https://gadgethumans.com/sitemap.xml
+Sitemap: https://gadgethumans.com/tools/sitemap.xml
+
+# Slurp — Yahoo
+User-agent: Slurp
+Crawl-Delay: 3
+Disallow:
+Allow: /
+Allow: /blog/
+Allow: /guides/
+
+# DuckDuckBot — DuckDuckGo
+User-agent: DuckDuckBot
+Crawl-Delay: 3
+Disallow:
+Allow: /
+Allow: /blog/
+
+# Baiduspider — Baidu
+User-agent: Baiduspider
+Crawl-Delay: 3
+Disallow:
+Allow: /
+Allow: /blog/
+
+# YandexBot — Yandex
+User-agent: YandexBot
+Crawl-Delay: 3
+Disallow:
+Allow: /
+Allow: /blog/
+
+# ============================================
+# ALL OTHER CRAWLERS — Default
+# ============================================
+User-agent: *
+Crawl-Delay: 5
+Disallow:
+Allow: /
+Allow: /llms.txt$
+Allow: /llms-full.txt$
+Allow: /api-hub.llms.txt$
+Allow: /openapi.json$
+Allow: /blog/
+Sitemap: https://gadgethumans.com/sitemap.xml
+Sitemap: https://gadgethumans.com/tools/sitemap.xml

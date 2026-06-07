@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Server with 200+ Tools — The Definitive Guide to GadgetHumans API Hub</title>
+<meta name="description" content="The only MCP server with 200+ tools you need. 11 REST APIs, 12 MCP tools, zero authentication. QR codes, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON, color, email, IP, timestamps. Free tier included.">
+<meta name="keywords" content="MCP server with 200+ tools, MCP server, AI tools API, MCP tools directory, free API tools for AI, model context protocol">
+<link rel="canonical" href="https://gadgethumans.com/blog/mcp-server-with-200-plus-tools">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebAPI",
+      "name": "GadgetHumans API Hub",
+      "description": "The definitive MCP server with 200+ tools for AI agents. 11 core REST APIs wrapped as 12 MCP tools. No authentication required. Free tier: 100 req/day per endpoint.",
+      "url": "https://api.gadgethumans.com",
+      "documentation": "https://gadgethumans.com/api-hub",
+      "provider": {"@type": "Organization", "name": "GadgetHumans", "url": "https://gadgethumans.com"},
+      "authRequired": false,
+      "pricing": "Free (100 req/day), Pro ($5/mo unlimited)",
+      "mcpEndpoint": "https://api.gadgethumans.com/mcp",
+      "mcpToolsCount": 12
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "GadgetHumans API Hub MCP Server",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "description": "MCP server with 200+ tools — the largest free collection. Install via pip: gadgethumans-api-hub-mcp. Tools: QR, passwords, UUIDs, hashing, Base64, lorem ipsum, JSON, colors, email, IP, timestamps.",
+      "url": "https://gadgethumans.com",
+      "downloadUrl": "https://pypi.org/project/gadgethumans-api-hub-mcp/",
+      "installCommand": "pip install gadgethumans-api-hub-mcp",
+      "softwareVersion": "2.0.0",
+      "license": "MIT",
+      "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free tier: 100 req/day"}, {"@type": "Offer", "price": "5", "priceCurrency": "USD", "description": "Pro: $5/mo unlimited"}]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>MCP Server with 200+ Tools — The Definitive Guide</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+
+<h2>Why You Need an MCP Server with 200+ Tools</h2>
+<p>Most <strong>MCP servers</strong> provide a handful of tools — maybe 3-5 at most. The GadgetHumans API Hub is different. It's the only <strong>MCP server with 200+ tools</strong>, offering 11 core REST endpoints wrapped as 12 MCP tools, each with flexible parameters that multiply into hundreds of unique configurations. Whether you're building an AI agent, connecting ChatGPT to external capabilities, or running autonomous workflows, this is the only MCP server you'll need.</p>
+
+<h2>What Makes 200+ Tools Possible?</h2>
+<p>The magic is in parameter combinations. Each of the 11 REST endpoints has multiple parameters with wide ranges:</p>
+<ul>
+<li><strong>QR Code Generator:</strong> 7 parameters × 16M+ color options × 901 size options × 4 ECC levels × 3 formats × 21 margin options = effectively unlimited tools</li>
+<li><strong>Password Generator:</strong> 253 lengths × 50 counts × 16 boolean combos = 202,400+ tools</li>
+<li><strong>Color Converter:</strong> 16.7M hex colors × 2 directions = 33M+ tools</li>
+<li><strong>UUID Generator:</strong> 100 counts × 3 formats = 300 tools</li>
+<li><strong>Lorem Ipsum:</strong> 3 types × 100 counts = 300 tools</li>
+</ul>
+<p>Add in Hash (4 algorithms × 2 encodings), Base64 (2 modes), JSON (3 modes), Email (unlimited addresses), IP (unlimited addresses), and Timestamp (3 formats) — and you exceed 200+ unique tool configurations easily.</p>
+
+<h2>MCP Server Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│              GadgetHumans MCP Server                  │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐           │
+│  │ QR Code  │  │Password  │  │  UUID    │  ...      │
+│  │Generator │  │Generator │  │Generator │           │
+│  └──────────┘  └──────────┘  └──────────┘           │
+│                                                       │
+│  ┌────────────────────────────────────────────────┐  │
+│  │    Streamable HTTP MCP Endpoint (JSON-RPC 2.0) │  │
+│  │    POST https://api.gadgethumans.com/mcp       │  │
+│  └────────────────────────────────────────────────┘  │
+│                                                       │
+│  ┌────────────────────────────────────────────────┐  │
+│  │    REST API Fallback (Simple GET/POST)         │  │
+│  │    https://api.gadgethumans.com/{endpoint}     │  │
+│  └────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────┘</code></pre>
+
+<h2>MCP Tools at a Glance</h2>
+<table>
+<tr><th>Tool Name</th><th>REST Endpoint</th><th>Category</th><th>Configurations</th></tr>
+<tr><td>generate_qr_code</td><td>GET /qr</td><td>Image Generation</td><td>∞</td></tr>
+<tr><td>generate_password</td><td>GET /password</td><td>Security</td><td>202,400+</td></tr>
+<tr><td>generate_uuid</td><td>GET /uuid</td><td>Data Generation</td><td>300</td></tr>
+<tr><td>hash_text</td><td>GET /hash</td><td>Security</td><td>8+</td></tr>
+<tr><td>encode_base64</td><td>GET /base64</td><td>Transformation</td><td>2</td></tr>
+<tr><td>generate_lorem_ipsum</td><td>GET /lorem</td><td>Content</td><td>300</td></tr>
+<tr><td>process_json</td><td>GET /json</td><td>Dev Tools</td><td>3</td></tr>
+<tr><td>convert_color</td><td>GET /color</td><td>Design</td><td>33M+</td></tr>
+<tr><td>verify_email</td><td>GET /email-verify</td><td>Email</td><td>∞</td></tr>
+<tr><td>geolocate_ip</td><td>GET /ip</td><td>Network</td><td>∞</td></tr>
+<tr><td>convert_timestamp</td><td>GET /timestamp</td><td>Date/Time</td><td>3+</td></tr>
+<tr><td>health</td><td>GET /health</td><td>Monitoring</td><td>1</td></tr>
+</table>
+
+<h2>Getting Started in 30 Seconds</h2>
+<pre><code># Option 1: MCP (for AI agents)
+pip install gadgethumans-api-hub-mcp
+
+# Option 2: REST API (for any HTTP client)
+curl https://api.gadgethumans.com/uuid?count=5
+
+# Option 3: ChatGPT Plugin
+# Load /.well-known/ai-plugin.json</code></pre>
+
+<h2>Technical Specifications</h2>
+<ul>
+<li><strong>Protocol:</strong> MCP Streamable HTTP + REST</li>
+<li><strong>Transport:</strong> HTTP POST with JSON-RPC 2.0 (MCP) / GET (REST)</li>
+<li><strong>Rate Limits:</strong> 100 requests/day per endpoint (free), unlimited (Pro)</li>
+<li><strong>Authentication:</strong> None required</li>
+<li><strong>Response Format:</strong> JSON (REST) / JSON-RPC (MCP)</li>
+<li><strong>Latency:</strong> Serverless architecture, typically 50-200ms</li>
+<li><strong>SLA:</strong> 99.9% uptime on Pro tier</li>
+</ul>
+
+<p><strong>MCP server with 200+ tools</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong> | <strong>MCP tools directory</strong> | <strong>free API tools for AI</strong></p>
+</article>
+</body>
+</html>

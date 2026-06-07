@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Encode Decode API — Free Online Base64 Converter via REST or MCP</title>
+<meta name="description" content="Free Base64 encode decode API. Encode text to Base64 or decode Base64 back to plain text. REST API or MCP tool. No auth required. Free tier: 100 req/day.">
+<meta name="keywords" content="Base64 encode API, Base64 decode API, Base64 converter, MCP server, AI tools API, free API tools, base64">
+<link rel="canonical" href="https://gadgethumans.com/blog/base64-encode-decode-api">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebAPI","name":"GadgetHumans Base64 API","description":"Free Base64 encode decode API. REST: GET /base64. MCP: encode_base64. Encode or decode text. No auth.","url":"https://api.gadgethumans.com/base64","documentation":"https://gadgethumans.com/api-hub/base64","provider":{"@type":"Organization","name":"GadgetHumans","url":"https://gadgethumans.com"},"authRequired":false,"pricing":"Free (100 req/day), Pro ($5/mo unlimited)"},
+    {"@type":"SoftwareApplication","name":"GadgetHumans Base64 API","applicationCategory":"DeveloperApplication","operatingSystem":"All","description":"Free Base64 encode/decode API and MCP tool.","url":"https://gadgethumans.com","license":"MIT"}
+  ]
+}
+</script>
+</head>
+<body>
+<article>
+<h1>Base64 Encode Decode API — Free Online Base64 Converter</h1>
+<time datetime="2026-06-07">June 7, 2026</time>
+<h2>Introduction</h2>
+<p>Base64 encoding is fundamental to data transport on the web — used in JSON payloads, URL parameters, email attachments, and API requests. The GadgetHumans <strong>Base64 Encode Decode API</strong> provides a simple, no-auth endpoint for both encoding text to Base64 and decoding Base64 back to plain text.</p>
+<h2>API Endpoint</h2>
+<pre><code>GET https://api.gadgethumans.com/base64</code></pre>
+<h3>Parameters</h3>
+<table><tr><th>Parameter</th><th>Required</th><th>Default</th><th>Options</th></tr>
+<tr><td>text</td><td>Yes</td><td>—</td><td>String to encode or decode</td></tr>
+<tr><td>mode</td><td>No</td><td>encode</td><td>encode, decode</td></tr></table>
+<h2>Examples</h2>
+<h3>Encode to Base64</h3>
+<pre><code>curl "https://api.gadgethumans.com/base64?text=Hello+World&mode=encode"
+# Returns {"original": "Hello World", "result": "SGVsbG8gV29ybGQ=", "mode": "encode"}</code></pre>
+<h3>Decode from Base64</h3>
+<pre><code>curl "https://api.gadgethumans.com/base64?text=SGVsbG8gV29ybGQ=&mode=decode"
+# Returns {"original": "SGVsbG8gV29ybGQ=", "result": "Hello World", "mode": "decode"}</code></pre>
+<h2>MCP Tool: encode_base64</h2>
+<p>For AI agents using the <strong>MCP server</strong>, the <code>encode_base64</code> tool provides the same functionality. Call it via the Streamable HTTP endpoint at <code>https://api.gadgethumans.com/mcp</code> or install the PyPI package.</p>
+<h2>Use in AI Agent Workflows</h2>
+<ul><li>Decoding Base64-encoded API responses</li><li>Encoding data for transport in JSON</li><li>Processing image data as Base64 strings</li><li>Debugging encoded payloads</li></ul>
+<p><strong>Base64 encode API</strong> | <strong>Base64 decode API</strong> | <strong>MCP server</strong> | <strong>AI tools API</strong></p>
+</article>
+</body>
+</html>
