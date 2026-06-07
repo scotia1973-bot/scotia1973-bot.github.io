@@ -1,0 +1,18 @@
+{
+  "name": "UAAP Protocol v0.1.0",
+  "description": "Universal Agent Authorization Protocol — cross-domain agent identity, delegation, and scope attenuation",
+  "specification": "https://github.com/scotia1973-bot/uaap/blob/main/SPEC.md",
+  "python_package": "https://pypi.org/project/uaap-protocol/",
+  "reference_implementation": "https://github.com/scotia1973-bot/uaap",
+  "version": "0.1.0",
+  "endpoints": {
+    "identity": "https://gadgethumans.com/.well-known/uaap/identity",
+    "delegate": "https://gadgethumans.com/.well-known/uaap/delegate",
+    "verify": "https://gadgethumans.com/.well-known/uaap/verify",
+    "revocations": "https://gadgethumans.com/.well-known/uaap/revocations",
+    "check_intent": "https://gadgethumans.com/.well-known/uaap/check-intent"
+  },
+  "install": "pip install uaap-protocol",
+  "mcp_server": "uvx uaap-mcp-server",
+  "license": "MIT"
+}
