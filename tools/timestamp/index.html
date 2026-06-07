@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Timestamp Converter API | GadgetHumans</title>
+  <meta name="description" content="Free Timestamp Converter API. Convert Unix timestamps to human-readable dates and back. REST API for developers working with epoch time and ISO 8601.">
+  <meta name="keywords" content="timestamp converter api, timestamp api, free timestamp api, timestamp rest api">
+  <meta property="og:title" content="Timestamp Converter API — Free Unix Time REST API">
+  <meta property="og:description" content="Convert Unix timestamps to dates and dates to timestamps via REST API. ISO 8601, RFC 2822, Unix formats. Free tier, no signup.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/timestamp/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.gadgethumans.com/images/og-tools.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/timestamp/">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebAPI",
+    "name": "Timestamp Converter API",
+    "description": "Free Timestamp Converter API. Convert Unix timestamps to human-readable dates and back. REST API for developers working with epoch time and ISO 8601.",
+    "url": "https://www.gadgethumans.com/tools/timestamp/",
+    "provider": {
+      "@type": "Organization",
+      "name": "GadgetHumans",
+      "url": "https://www.gadgethumans.com"
+    },
+    "documentation": "https://api.gadgethumans.com/timestamp/",
+    "endpoint": "https://api.gadgethumans.com/timestamp"
+  }
+  </script>
+  <style>
+    .breadcrumb { font-size: 0.82rem; color: var(--muted); margin: 20px 0 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: var(--muted); }
+    .tool-hero { text-align: center; padding: 40px 0 24px; }
+    .tool-hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .tool-hero p { font-size: 1.05rem; color: var(--text2); max-width: 640px; margin: 0 auto 8px; line-height: 1.6; }
+    .tool-hero .endpoint-badge { display: inline-block; font-family: var(--mono); font-size: 0.85rem; background: var(--accent-dim); color: var(--accent); padding: 6px 16px; border-radius: 980px; margin-top: 8px; }
+    .section { margin: 40px 0; }
+    .section h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .section h3 { font-size: 1.1rem; font-weight: 600; margin: 20px 0 8px; }
+    .section p, .section li { color: var(--text2); line-height: 1.7; font-size: 0.95rem; }
+    .section ul { padding-left: 20px; margin: 12px 0; }
+    .section ul li { margin-bottom: 6px; }
+    .code-block { background: #1a1a2e; color: #e4e4e4; padding: 16px 20px; border-radius: var(--radius); overflow-x: auto; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; margin: 12px 0; }
+    .code-block .comment { color: #6a9955; }
+    .code-block .keyword { color: #569cd6; }
+    .code-block .string { color: #ce9178; }
+    .code-block .function { color: #dcdcaa; }
+    .try-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 28px; margin: 24px 0; }
+    .try-card h3 { margin-bottom: 16px; }
+    .try-card label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+    .try-card input, .try-card select { width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.9rem; color: var(--text); outline: none; margin-bottom: 14px; }
+    .try-card input:focus, .try-card select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .try-card .btn { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .try-card .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .try-card .result { margin-top: 16px; padding: 16px; background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); min-height: 80px; word-break: break-all; font-family: var(--mono); font-size: 0.82rem; }
+    .faq-item { margin-bottom: 16px; }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; cursor: pointer; }
+    .faq-item h4:hover { color: var(--accent); }
+    .faq-item p { font-size: 0.9rem; color: var(--text2); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
+    .related-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 12px; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); text-decoration: none; color: inherit; transition: all 0.2s; gap: 6px; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); }
+    .related-card .emoji { font-size: 1.8rem; }
+    .related-card .name { font-size: 0.85rem; font-weight: 600; }
+    .related-card .desc { font-size: 0.72rem; color: var(--muted); }
+    @media (max-width: 480px) { .tool-hero h1 { font-size: 1.6rem; } .related-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> › <a href="/tools/">Tools</a> › <span>Timestamp Converter API</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="tool-hero">
+    <h1>🕐 Timestamp Converter API</h1>
+    <p>Free Timestamp Converter API. Convert Unix timestamps to human-readable dates and back. REST API for developers working with epoch time and ISO 8601.</p>
+    <span class="endpoint-badge">GET https://api.gadgethumans.com/timestamp?...</span>
+  </div>
+
+  <!-- API Services Banner -->
+  <div class="api-banner" style="margin: 24px 0; padding: 20px 24px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;">
+    <span style="font-size: 1.1rem; font-weight: 700;">⚡ API Hub — All Endpoints</span>
+    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📱 API Hub Overview</a>
+    <a href="https://api.gadgethumans.com/timestamp/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #a78bfa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📖 API Docs</a>
+  </div>
+
+  <!-- Description Section -->
+  <div class="section">
+    <h2>What is the Timestamp Converter API?</h2>
+    <p>The GadgetHumans Timestamp Converter API is a free REST API that converts between Unix epoch timestamps and human-readable date formats. Whether you need to convert a Unix timestamp (like 1717000000) to ISO 8601, or parse a date string back to a Unix timestamp, this API handles it instantly with a single HTTP request.</p>
+    <p>The API accepts Unix timestamps in seconds since epoch, as well as various date string formats including ISO 8601 (2025-05-29T00:00:00Z), RFC 2822, and natural language dates. Output formats include iso, unix, rfc2822, and more. The free tier offers 100 requests per day with no API key required, making it perfect for developers debugging logs, working with database timestamps, building calendar applications, or processing time-series data from APIs that use epoch time.</p>
+  </div>
+
+  <!-- Quick Start Code Examples -->
+  <div class="section">
+    <h2>⚡ Quick Start</h2>
+    <p>Get started with a simple GET request. No authentication required.</p>
+
+    <h3>cURL</h3>
+    <div class="code-block">
+      <span class="comment"># Quick example</span><br>
+      # Convert Unix timestamp to ISO 8601<br>      curl "https://api.gadgethumans.com/timestamp?value=1717000000&format=iso"<br>      <br>      # Convert date string to Unix<br>      curl "https://api.gadgethumans.com/timestamp?value=2025-05-29&format=unix"
+    </div>
+
+    <h3>Python</h3>
+    <div class="code-block">
+      import requests<br>      <br>      # Convert Unix timestamp to ISO date<br>      url = "https://api.gadgethumans.com/timestamp"<br>      params = {"value": "1717000000", "format": "iso"}<br>      response = requests.get(url, params=params)<br>      data = response.json()<br>      print(f"Unix 1717000000 = {data["result"]}")<br>      <br>      # Convert date to Unix<br>      params = {"value": "2025-05-29", "format": "unix"}<br>      response = requests.get(url, params=params)<br>      data = response.json()<br>      print(f"2025-05-29 = Unix {data["result"]}")
+    </div>
+
+    <h3>JavaScript (Fetch)</h3>
+    <div class="code-block">
+      // Convert a timestamp from the browser<br>      const timestamp = "1717000000";<br>      fetch(`https://api.gadgethumans.com/timestamp?value=${timestamp}&format=iso`)<br>        .then(res => res.json())<br>        .then(data => {<br>          console.log("ISO date:", data.result);<br>          document.getElementById("tsResult").textContent = data.result;<br>        });
+    </div>
+  </div>
+
+  <!-- Features / Benefits -->
+  <div class="section">
+    <h2>✨ Features &amp; Benefits</h2>
+    <ul>
+      <li><strong>✅ Unix to Date</strong> — Convert epoch timestamps to ISO 8601, RFC 2822, and other human-readable formats.</li>
+      <li><strong>✅ Date to Unix</strong> — Parse date strings back to Unix timestamps for database and API use.</li>
+      <li><strong>✅ Multiple Formats</strong> — ISO 8601, RFC 2822, Unix, and more output formats available.</li>
+      <li><strong>✅ Flexible Input</strong> — Accepts Unix timestamps, ISO 8601, RFC 2822, and many common date formats.</li>
+      <li><strong>✅ 100% Free Tier</strong> — No API key, no signup, no credit card. 100 requests per day included.</li>
+      <li><strong>✅ Pro Tier</strong> — $5/month unlocks 10,000 requests/day with dedicated API key.</li>
+
+    </ul>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h4>What input formats are accepted?</h4>
+      <p>Unix timestamps (seconds since epoch), ISO 8601 (2025-05-29), RFC 2822, and many common date formats.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I need an API key?</h4>
+      <p>No! The free tier requires no API key or signup.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What output formats are supported?</h4>
+      <p>iso (ISO 8601), unix (epoch seconds), rfc2822, and other standard date formats.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Does it handle timezones?</h4>
+      <p>The API returns UTC by default. Specify timezone offsets in the input for localized conversions.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I convert milliseconds timestamps?</h4>
+      <p>The API uses seconds since epoch. Divide milliseconds by 1000 before passing to the API.</p>
+    </div>
+
+  </div>
+
+  <!-- Internal Links -->
+  <div class="section">
+    <h2>🔗 Related Tools &amp; APIs</h2>
+    <div class="related-grid">
+      <a href="/tools/ip-geolocation/" class="related-card">
+        <span class="emoji">🌍</span>
+        <span class="name">IP Geolocation API</span>
+        <span class="desc">IP address location data</span>
+      </a>
+      <a href="/tools/weather/" class="related-card">
+        <span class="emoji">⛅</span>
+        <span class="name">Weather API</span>
+        <span class="desc">Current weather data</span>
+      </a>
+      <a href="/tools/currency/" class="related-card">
+        <span class="emoji">💱</span>
+        <span class="name">Currency Converter</span>
+        <span class="desc">Exchange rates and conversion</span>
+      </a>
+      <a href="/tools/geocoding/" class="related-card">
+        <span class="emoji">📍</span>
+        <span class="name">Geocoding API</span>
+        <span class="desc">Address to coordinates</span>
+      </a>
+
+      <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" class="related-card">
+        <span class="emoji">⚡</span>
+        <span class="name">API Hub</span>
+        <span class="desc">All free APIs</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+      <a href="https://payhip.com/b/fdwTJ">✨ Free</a><a href="https://payhip.com/b/Vu3q0" class="nav-cta-mid">📋 Pro €7</a><a href="https://payhip.com/b/9x3Ee" class="nav-cta-pro">🚀 Launch €17</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+    <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+  </footer>
+</div>
+
+<script src="../../js/script.js"></script>
+<!-- Premium Upsell CTA -->
+<div class="card" style="max-width: 620px; margin: 40px auto 24px; text-align: center;">
+  <div style="position: relative; z-index: 1;">
+    <h3 style="margin: 0 0 12px; font-size: 1.15rem; font-weight: 700; color: var(--text);">🚀 Need more power?</h3>
+    <p style="margin: 0 0 18px; font-size: 0.85rem; color: var(--text2); line-height: 1.5;">
+      Get the <strong>AI Agent Launch Plan</strong> with 50+ pro prompts
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://payhip.com/b/9x3Ee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: linear-gradient(135deg, #007AFF, #5856D6); color: #fff; border: none; border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);">🚀 AI Agent Launch Plan — €17</a>
+      <a href="https://payhip.com/b/Vu3q0" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); color: var(--text); border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.25s ease;">📋 Implementation Checklist — €7</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

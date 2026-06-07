@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Random Number & Data Generator API | GadgetHumans</title>
+  <meta name="description" content="Free Random Number Generator API. Generate random integers, floats, dice rolls, lottery numbers, and more. REST API for games, simulations, and data sampling.">
+  <meta name="keywords" content="random number & data generator api, random generator api, free random generator api, random generator rest api">
+  <meta property="og:title" content="Random Generator API — Free Random Number & Data REST API">
+  <meta property="og:description" content="Generate random numbers, dice rolls, and data via REST API. Min/max range, multiple values, and various data types. Free tier, no signup.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/random-generator/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.gadgethumans.com/images/og-tools.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/random-generator/">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebAPI",
+    "name": "Random Number & Data Generator API",
+    "description": "Free Random Number Generator API. Generate random integers, floats, dice rolls, lottery numbers, and more. REST API for games, simulations, and data sampling.",
+    "url": "https://www.gadgethumans.com/tools/random-generator/",
+    "provider": {
+      "@type": "Organization",
+      "name": "GadgetHumans",
+      "url": "https://www.gadgethumans.com"
+    },
+    "documentation": "https://api.gadgethumans.com/random/",
+    "endpoint": "https://api.gadgethumans.com/random"
+  }
+  </script>
+  <style>
+    .breadcrumb { font-size: 0.82rem; color: var(--muted); margin: 20px 0 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: var(--muted); }
+    .tool-hero { text-align: center; padding: 40px 0 24px; }
+    .tool-hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .tool-hero p { font-size: 1.05rem; color: var(--text2); max-width: 640px; margin: 0 auto 8px; line-height: 1.6; }
+    .tool-hero .endpoint-badge { display: inline-block; font-family: var(--mono); font-size: 0.85rem; background: var(--accent-dim); color: var(--accent); padding: 6px 16px; border-radius: 980px; margin-top: 8px; }
+    .section { margin: 40px 0; }
+    .section h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .section h3 { font-size: 1.1rem; font-weight: 600; margin: 20px 0 8px; }
+    .section p, .section li { color: var(--text2); line-height: 1.7; font-size: 0.95rem; }
+    .section ul { padding-left: 20px; margin: 12px 0; }
+    .section ul li { margin-bottom: 6px; }
+    .code-block { background: #1a1a2e; color: #e4e4e4; padding: 16px 20px; border-radius: var(--radius); overflow-x: auto; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; margin: 12px 0; }
+    .code-block .comment { color: #6a9955; }
+    .code-block .keyword { color: #569cd6; }
+    .code-block .string { color: #ce9178; }
+    .code-block .function { color: #dcdcaa; }
+    .try-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 28px; margin: 24px 0; }
+    .try-card h3 { margin-bottom: 16px; }
+    .try-card label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+    .try-card input, .try-card select { width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.9rem; color: var(--text); outline: none; margin-bottom: 14px; }
+    .try-card input:focus, .try-card select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .try-card .btn { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .try-card .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .try-card .result { margin-top: 16px; padding: 16px; background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); min-height: 80px; word-break: break-all; font-family: var(--mono); font-size: 0.82rem; }
+    .faq-item { margin-bottom: 16px; }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; cursor: pointer; }
+    .faq-item h4:hover { color: var(--accent); }
+    .faq-item p { font-size: 0.9rem; color: var(--text2); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
+    .related-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 12px; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); text-decoration: none; color: inherit; transition: all 0.2s; gap: 6px; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); }
+    .related-card .emoji { font-size: 1.8rem; }
+    .related-card .name { font-size: 0.85rem; font-weight: 600; }
+    .related-card .desc { font-size: 0.72rem; color: var(--muted); }
+    @media (max-width: 480px) { .tool-hero h1 { font-size: 1.6rem; } .related-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> › <a href="/tools/">Tools</a> › <span>Random Number & Data Generator API</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="tool-hero">
+    <h1>🎲 Random Number & Data Generator API</h1>
+    <p>Free Random Number Generator API. Generate random integers, floats, dice rolls, lottery numbers, and more. REST API for games, simulations, and data sampling.</p>
+    <span class="endpoint-badge">GET https://api.gadgethumans.com/random?...</span>
+  </div>
+
+  <!-- API Services Banner -->
+  <div class="api-banner" style="margin: 24px 0; padding: 20px 24px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;">
+    <span style="font-size: 1.1rem; font-weight: 700;">⚡ API Hub — All Endpoints</span>
+    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📱 API Hub Overview</a>
+    <a href="https://api.gadgethumans.com/random/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #a78bfa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📖 API Docs</a>
+  </div>
+
+  <!-- Description Section -->
+  <div class="section">
+    <h2>What is the Random Number & Data Generator API?</h2>
+    <p>The GadgetHumans Random Number & Data Generator API is a free REST API that generates cryptographically secure random numbers and data. Generate random integers within a range, floating-point numbers, simulate dice rolls, pick lottery numbers, shuffle lists, and more. Perfect for game development, statistical sampling, simulations, testing, and any application that needs unbiased random data.</p>
+    <p>Specify the type of random data you need: integers between min and max values, floating-point numbers, dice rolls (1d6, 2d20, etc.), lottery-style number picks without replacement, or random boolean values. Control how many results to generate in a single request. Uses cryptographically secure random number generation for true unpredictability. The free tier offers 100 requests per day with no API key required, making it ideal for game developers, data scientists, educators building probability demonstrations, and developers needing test data generation.</p>
+  </div>
+
+  <!-- Quick Start Code Examples -->
+  <div class="section">
+    <h2>⚡ Quick Start</h2>
+    <p>Get started with a simple GET request. No authentication required.</p>
+
+    <h3>cURL</h3>
+    <div class="code-block">
+      <span class="comment"># Quick example</span><br>
+      # Generate a random integer between 1 and 100<br>      curl "https://api.gadgethumans.com/random?type=integer&min=1&max=100&count=1"<br>      <br>      # Roll 2 six-sided dice<br>      curl "https://api.gadgethumans.com/random?type=dice&dice=2d6"<br>      <br>      # Pick 6 lottery numbers from 1-49<br>      curl "https://api.gadgethumans.com/random?type=lottery&min=1&max=49&count=6"
+    </div>
+
+    <h3>Python</h3>
+    <div class="code-block">
+      import requests<br>      <br>      # Generate random numbers<br>      url = "https://api.gadgethumans.com/random"<br>      <br>      # Random integer<br>      params = {"type": "integer", "min": 1, "max": 100, "count": 5}<br>      response = requests.get(url, params=params)<br>      data = response.json()<br>      print(f"Random numbers: {data["numbers"]}")<br>      <br>      # Roll dice<br>      params = {"type": "dice", "dice": "2d6"}<br>      response = requests.get(url, params=params)<br>      data = response.json()<br>      print(f"Dice roll: {data["result"]}")
+    </div>
+
+    <h3>JavaScript (Fetch)</h3>
+    <div class="code-block">
+      // Get random numbers from the browser<br>      fetch("https://api.gadgethumans.com/random?type=integer&min=1&max=100&count=5")<br>        .then(res => res.json())<br>        .then(data => {<br>          console.log("Random numbers:", data.numbers);<br>          document.getElementById("randomResult").textContent = <br>            data.numbers.join(", ");<br>        });
+    </div>
+  </div>
+
+  <!-- Features / Benefits -->
+  <div class="section">
+    <h2>✨ Features &amp; Benefits</h2>
+    <ul>
+      <li><strong>✅ Multiple Data Types</strong> — Integers, floats, dice rolls, lottery picks, booleans, and list shuffles.</li>
+      <li><strong>✅ Configurable Range</strong> — Set minimum and maximum values for random number generation.</li>
+      <li><strong>✅ Dice Roll Simulator</strong> — Simulate any dice: 1d6, 2d20, 3d10, etc. Returns individual rolls and totals.</li>
+      <li><strong>✅ Cryptographically Secure</strong> — Uses secure random generation — truly unpredictable results.</li>
+      <li><strong>✅ 100% Free Tier</strong> — No API key, no signup, no credit card. 100 requests per day included.</li>
+      <li><strong>✅ Pro Tier</strong> — $5/month unlocks 10,000 requests/day with dedicated API key.</li>
+
+    </ul>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h4>What types of random data can I generate?</h4>
+      <p>Integers, floating-point numbers, dice rolls, lottery picks (without replacement), booleans, and list shuffles.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I need an API key?</h4>
+      <p>No! The free tier requires no API key or signup.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Are the numbers truly random?</h4>
+      <p>Yes, the API uses cryptographically secure pseudo-random number generation (CSPRNG).</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I roll multiple dice at once?</h4>
+      <p>Yes! Use dice notation like '2d20' to roll two 20-sided dice. The API returns individual rolls and the total.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What is lottery mode?</h4>
+      <p>Lottery mode picks N numbers from a range without replacement — like drawing lottery balls from a drum.</p>
+    </div>
+
+  </div>
+
+  <!-- Internal Links -->
+  <div class="section">
+    <h2>🔗 Related Tools &amp; APIs</h2>
+    <div class="related-grid">
+      <a href="/tools/password/" class="related-card">
+        <span class="emoji">🔐</span>
+        <span class="name">Secure Password Generator</span>
+        <span class="desc">Generate secure random passwords</span>
+      </a>
+      <a href="/tools/uuid/" class="related-card">
+        <span class="emoji">🎲</span>
+        <span class="name">UUID Generator</span>
+        <span class="desc">v4 unique identifiers</span>
+      </a>
+      <a href="/tools/lorem-ipsum/" class="related-card">
+        <span class="emoji">📄</span>
+        <span class="name">Lorem Ipsum Generator</span>
+        <span class="desc">Placeholder text generation</span>
+      </a>
+      <a href="/tools/dice-roller/" class="related-card">
+        <span class="emoji">🎲</span>
+        <span class="name">Dice Roller</span>
+        <span class="desc">Virtual dice rolling</span>
+      </a>
+
+      <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" class="related-card">
+        <span class="emoji">⚡</span>
+        <span class="name">API Hub</span>
+        <span class="desc">All free APIs</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+      <a href="https://payhip.com/b/fdwTJ">✨ Free</a><a href="https://payhip.com/b/Vu3q0" class="nav-cta-mid">📋 Pro €7</a><a href="https://payhip.com/b/9x3Ee" class="nav-cta-pro">🚀 Launch €17</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+    <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+  </footer>
+</div>
+
+<script src="../../js/script.js"></script>
+<!-- Premium Upsell CTA -->
+<div class="card" style="max-width: 620px; margin: 40px auto 24px; text-align: center;">
+  <div style="position: relative; z-index: 1;">
+    <h3 style="margin: 0 0 12px; font-size: 1.15rem; font-weight: 700; color: var(--text);">🚀 Need more power?</h3>
+    <p style="margin: 0 0 18px; font-size: 0.85rem; color: var(--text2); line-height: 1.5;">
+      Get the <strong>AI Agent Launch Plan</strong> with 50+ pro prompts
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://payhip.com/b/9x3Ee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: linear-gradient(135deg, #007AFF, #5856D6); color: #fff; border: none; border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);">🚀 AI Agent Launch Plan — €17</a>
+      <a href="https://payhip.com/b/Vu3q0" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); color: var(--text); border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.25s ease;">📋 Implementation Checklist — €7</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

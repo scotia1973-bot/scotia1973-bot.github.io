@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
   <meta name="p:domain_verify" content="8f84b78dc448265e46a961b39ed56e32"/>
-  <title>Free Online Tools — 28+ Utility Tools | GadgetHumans</title>
-  <meta name="description" content="100% free online tools. Stopwatch, timer, BMI calculator, unit converter, JSON formatter, AI cost calculator, TTS character counter, password generator, and more. No signup, no ads.">
-  <meta name="keywords" content="free online tools, stopwatch, timer, bmi calculator, unit converter, password generator, color picker, mortgage calculator, screen resolution">
-  <meta property="og:title" content="Free Online Tools — 25+ Utility Tools">
-  <meta property="og:description" content="Free stopwatch, timer, BMI, converter, calculators, color picker and more. No ads, no signup.">
+  <title>Free Online Tools — 50+ Developer APIs & Utility Tools | GadgetHumans</title>
+  <meta name="description" content="100% free online tools and developer APIs. QR Code Generator, Password Generator, UUID, Hash, Base64, JSON Formatter, Color Converter, Email Verification, IP Geolocation, Currency Converter, Weather, Geocoding, Unit Converter, and more. No signup, no ads.">
+  <meta name="keywords" content="free online tools, developer APIs, QR code API, password generator, UUID generator, hash generator, base64 encode, JSON formatter, color converter, email verification, IP geolocation, currency converter, weather API, geocoding, unit converter, text tools, timers, calculators">
+  <meta property="og:title" content="Free Online Tools — 50+ Developer APIs & Utility Tools">
+  <meta property="og:description" content="Free developer APIs, text tools, converters, generators, and calculators. No ads, no signup.">
   <meta property="og:url" content="https://www.gadgethumans.com/tools/">
   <link rel="canonical" href="https://www.gadgethumans.com/tools/">
   <link rel="stylesheet" href="../css/theme.css?v=3">
@@ -96,20 +96,20 @@
   </div>
 </nav>
 <div class="tools-header">
-  <div class="count-badge">28 Free Tools</div>
-  <h1>🛠️ Free Online Tools</h1>
-  <p>Utility tools — no signup, no ads, works offline</p>
+  <div class="count-badge">50+ Free Tools & APIs</div>
+  <h1>🛠️ Free Online Tools & Developer APIs</h1>
+  <p>Developer APIs, text tools, converters, calculators, generators — no signup, no ads</p>
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="Search tools..." autocomplete="off">
   </div>
   <div class="category-filter" id="categoryFilter">
     <button class="cat-btn active" data-cat="all">All</button>
-    <button class="cat-btn" data-cat="calculators">Calculators</button>
-    <button class="cat-btn" data-cat="converters">Converters</button>
+    <button class="cat-btn" data-cat="apis">Developer APIs</button>
     <button class="cat-btn" data-cat="text">Text Tools</button>
-    <button class="cat-btn" data-cat="timers">Timers</button>
+    <button class="cat-btn" data-cat="converters">Converters</button>
     <button class="cat-btn" data-cat="generators">Generators</button>
+    <button class="cat-btn" data-cat="calculators">Calculators</button>
     <button class="cat-btn" data-cat="utilities">Utilities</button>
   </div>
 </div>
@@ -117,9 +117,10 @@
 <div class="container">
   <!-- API Services Banner -->
   <div class="api-banner" style="margin: 24px 0; padding: 20px 24px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;">
-    <span style="font-size: 1.1rem; font-weight: 700;">⚡ New Developer APIs</span>
-    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📱 QR Code API — Free Tier</a>
-    <a href="https://email-verify.scotia1973.workers.dev/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #a78bfa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">✉️ Email Verify API — Free Tier</a>
+    <span style="font-size: 1.1rem; font-weight: 700;">⚡ Developer API Hub</span>
+    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📱 API Hub Overview</a>
+    <a href="/tools/qr-code/" style="padding: 6px 16px; background: #a78bfa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📱 QR Code API</a>
+    <a href="/tools/email-verify/" style="padding: 6px 16px; background: #34d399; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">✉️ Email Verify API</a>
   </div>
 
   <div class="tools-grid" id="toolsGrid"></div>
@@ -148,35 +149,60 @@
   'use strict';
 
   const tools = [
+    // Developer APIs
+    { name: 'QR Code Generator', emoji: '📱', desc: 'Generate QR codes from URLs & text', file: 'qr-code/', cat: 'apis' },
+    { name: 'Secure Password Gen', emoji: '🔐', desc: 'Cryptographically secure passwords', file: 'password/', cat: 'apis' },
+    { name: 'UUID Generator', emoji: '🎲', desc: 'v4 unique identifiers, bulk gen', file: 'uuid/', cat: 'apis' },
+    { name: 'Hash Generator', emoji: '🔑', desc: 'MD5, SHA-256, SHA-512', file: 'hash/', cat: 'apis' },
+    { name: 'Base64 Encode/Decode', emoji: '🔤', desc: 'Encode & decode Base64', file: 'base64/', cat: 'apis' },
+    { name: 'JSON Formatter', emoji: '📋', desc: 'Prettify, validate & minify JSON', file: 'json/', cat: 'apis' },
+    { name: 'Color Converter', emoji: '🎨', desc: 'HEX to RGB conversion', file: 'color/', cat: 'apis' },
+    { name: 'Email Verification', emoji: '✉️', desc: 'Validate email addresses', file: 'email-verify/', cat: 'apis' },
+    { name: 'IP Geolocation', emoji: '🌍', desc: 'IP address location data', file: 'ip-geolocation/', cat: 'apis' },
+    { name: 'Timestamp Converter', emoji: '🕐', desc: 'Unix to date conversion', file: 'timestamp/', cat: 'apis' },
+    { name: 'Lorem Ipsum Gen', emoji: '📄', desc: 'Placeholder text generator', file: 'lorem-ipsum/', cat: 'apis' },
+    { name: 'Currency Converter', emoji: '💱', desc: '170+ currencies, real-time rates', file: 'currency/', cat: 'apis' },
+    { name: 'Weather API', emoji: '⛅', desc: 'Current weather conditions', file: 'weather/', cat: 'apis' },
+    { name: 'Geocoding API', emoji: '📍', desc: 'Address to coordinates', file: 'geocoding/', cat: 'apis' },
+    { name: 'Unit Converter', emoji: '📐', desc: 'Length, weight, temp, more', file: 'unit-converter/', cat: 'apis' },
+    { name: 'Roman Numeral Conv', emoji: '🏛️', desc: 'Numbers to Roman numerals', file: 'roman-numerals/', cat: 'apis' },
+    { name: 'Text Case Converter', emoji: '🔤', desc: 'UPPER, lower, Title, camelCase', file: 'case-converter/', cat: 'apis' },
+    { name: 'Morse Code Converter', emoji: '📡', desc: 'Text to Morse code', file: 'morse-code/', cat: 'apis' },
+    { name: 'NATO Phonetic Alpha', emoji: '🔊', desc: 'Text to NATO alphabet', file: 'nato-phonetic/', cat: 'apis' },
+    { name: 'Random Data Gen', emoji: '🎲', desc: 'Random numbers, dice, lottery', file: 'random-generator/', cat: 'apis' },
+    // Calculators
     { name: 'Mortgage Calculator', emoji: '🏠', desc: 'Monthly payments, PITI, amortization', file: 'mortgage-calculator.html', cat: 'calculators' },
-    { name: 'Screen Resolution', emoji: '🖥️', desc: 'Check your display specs', file: 'screen-resolution.html', cat: 'utilities' },
-    { name: 'Stopwatch', emoji: '⏱️', desc: 'Lap timing, 1/100th sec', file: 'stopwatch.html', cat: 'timers' },
-    { name: 'Timer', emoji: '⏲️', desc: 'Presets 1min to 1hr+', file: 'stopwatch.html', cat: 'timers' },
-    { name: 'Countdown', emoji: '⏰', desc: 'Custom HH:MM:SS', file: 'stopwatch.html', cat: 'timers' },
     { name: 'BMI Calculator', emoji: '⚖️', desc: 'Metric or imperial', file: 'bmi.html', cat: 'calculators' },
-    { name: 'Unit Converter', emoji: '📐', desc: 'Length, weight, temp, volume', file: 'converter.html', cat: 'converters' },
     { name: 'Percentage Calc', emoji: '💯', desc: '3 modes, step-by-step', file: 'percentage.html', cat: 'calculators' },
     { name: 'Age Calculator', emoji: '🎂', desc: 'Years, months, days', file: 'age.html', cat: 'calculators' },
-    { name: 'Password Generator', emoji: '🔐', desc: 'Secure passwords, strength meter', file: 'password.html', cat: 'generators' },
-    { name: 'Random Number', emoji: '🎲', desc: 'Min/max roller, history', file: 'random.html', cat: 'generators' },
-    { name: 'Word Counter', emoji: '📝', desc: 'Words, chars, lines, reading time', file: 'wordcount.html', cat: 'text' },
-    { name: 'Color Picker', emoji: '🎨', desc: 'Hex, RGB, HSL values', file: 'colorpicker.html', cat: 'utilities' },
     { name: 'Tip Calculator', emoji: '💵', desc: 'Split bill with tip', file: 'tip.html', cat: 'calculators' },
     { name: 'Date Calculator', emoji: '📅', desc: 'Days between dates', file: 'dates.html', cat: 'calculators' },
     { name: 'Loan Calculator', emoji: '🏦', desc: 'Amortization schedule', file: 'loan.html', cat: 'calculators' },
     { name: 'Calorie Calculator', emoji: '🥗', desc: 'BMR + TDEE', file: 'calorie.html', cat: 'calculators' },
+    { name: 'AI Cost Calculator', emoji: '🤖', desc: 'Compare API token pricing', file: 'ai-cost-calculator.html', cat: 'calculators' },
+    // Text Tools
+    { name: 'Word Counter', emoji: '📝', desc: 'Words, chars, lines, reading time', file: 'wordcount.html', cat: 'text' },
+    { name: 'Text Case Conv', emoji: '🔤', desc: 'Multi-case converter', file: 'textcase.html', cat: 'text' },
+    { name: 'TTS Char Counter', emoji: '🗣️', desc: 'Count chars for TTS APIs', file: 'tts-character-counter.html', cat: 'text' },
+    // Converters
+    { name: 'Unit Converter', emoji: '📐', desc: 'Length, weight, temp, volume', file: 'converter.html', cat: 'converters' },
     { name: 'Hex/Bin/Dec Conv', emoji: '🔢', desc: 'Number base converter', file: 'hex.html', cat: 'converters' },
-    { name: 'Case Converter', emoji: '🔤', desc: 'UPPER, lower, Title, Sentence', file: 'textcase.html', cat: 'text' },
-    { name: 'Lorem Ipsum Gen', emoji: '📄', desc: 'Paragraph generator', file: 'lorem.html', cat: 'generators' },
-    { name: 'SHA-256 Hash', emoji: '🔑', desc: 'Hash any text', file: 'hash.html', cat: 'utilities' },
     { name: 'URL Encode/Decode', emoji: '🔗', desc: 'Encode / decode URLs', file: 'urlencode.html', cat: 'converters' },
     { name: 'Time Zone Conv', emoji: '🌍', desc: 'Compare timezones', file: 'timezone.html', cat: 'converters' },
+    // Generators
+    { name: 'Password Generator', emoji: '🔐', desc: 'Secure passwords, strength meter', file: 'password.html', cat: 'generators' },
+    { name: 'Random Number', emoji: '🎲', desc: 'Min/max roller, history', file: 'random.html', cat: 'generators' },
+    { name: 'Lorem Ipsum Gen', emoji: '📄', desc: 'Paragraph generator', file: 'lorem.html', cat: 'generators' },
+    // Utilities
+    { name: 'Screen Resolution', emoji: '🖥️', desc: 'Check your display specs', file: 'screen-resolution.html', cat: 'utilities' },
+    { name: 'Color Picker', emoji: '🎨', desc: 'Hex, RGB, HSL values', file: 'colorpicker.html', cat: 'utilities' },
+    { name: 'SHA-256 Hash', emoji: '🔑', desc: 'Hash any text', file: 'hash.html', cat: 'utilities' },
+    { name: 'JSON Formatter', emoji: '📋', desc: 'Format, validate & minify JSON', file: 'json-formatter-validator.html', cat: 'utilities' },
+    // Timers
+    { name: 'Stopwatch', emoji: '⏱️', desc: 'Lap timing, 1/100th sec', file: 'stopwatch.html', cat: 'timers' },
+    { name: 'Timer', emoji: '⏲️', desc: 'Presets 1min to 1hr+', file: 'stopwatch.html', cat: 'timers' },
+    { name: 'Countdown', emoji: '⏰', desc: 'Custom HH:MM:SS', file: 'stopwatch.html', cat: 'timers' },
     { name: 'Birthday Countdown', emoji: '🎉', desc: 'Age in seconds, next bday', file: 'birthday.html', cat: 'timers' },
-    { name: 'Text Case Conv', emoji: '🔤', desc: 'Multi-case converter', file: 'textcase.html', cat: 'text' },
-    // AI & Developer Tools
-    { name: 'AI Cost Calculator', emoji: '🤖', desc: 'Compare API token pricing', file: 'ai-cost-calculator.html', cat: 'calculators' },
-    { name: 'TTS Character Counter', emoji: '🗣️', desc: 'Count chars for TTS APIs', file: 'tts-character-counter.html', cat: 'text' },
-    { name: 'JSON Formatter', emoji: '📋', desc: 'Format, validate & minify JSON', file: 'json-formatter-validator.html', cat: 'utilities' }
   ];
 
   const grid = document.getElementById('toolsGrid');
@@ -190,9 +216,7 @@
   function render() {
     const q = searchQuery.toLowerCase().trim();
     const filtered = tools.filter(t => {
-      // Category filter
       if (activeCat !== 'all' && t.cat !== activeCat) return false;
-      // Search filter
       if (q) {
         const inName = t.name.toLowerCase().includes(q);
         const inDesc = t.desc.toLowerCase().includes(q);
@@ -210,8 +234,7 @@
 
     noResults.style.display = 'none';
     grid.innerHTML = filtered.map(t => {
-      // Handle file path for root-level tools
-      const href = t.file;
+      const href = t.file.endsWith('.html') ? t.file : t.file;
       return `<a class="tool-tile" href="${href}">
         <span class="emoji">${t.emoji}</span>
         <span class="name">${t.name}</span>
@@ -220,10 +243,8 @@
     }).join('');
   }
 
-  // Search input
   searchInput.addEventListener('input', render);
 
-  // Category buttons
   catBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       catBtns.forEach(b => b.classList.remove('active'));
@@ -233,7 +254,6 @@
     });
   });
 
-  // Initial render
   render();
 })();
 </script>

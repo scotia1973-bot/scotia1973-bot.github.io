@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="UDV2Y8alLItYNDuunh6l8XiwbiljzzxK-UGWnWY6biA" />
+  <title>Base64 Encode/Decode API | GadgetHumans</title>
+  <meta name="description" content="Free Base64 Encode and Decode API. Encode text to Base64 or decode Base64 back to text. REST API for data transport, email encoding, and API payloads.">
+  <meta name="keywords" content="base64 encode/decode api, base64 api, free base64 api, base64 rest api">
+  <meta property="og:title" content="Base64 Encode/Decode API — Free REST API">
+  <meta property="og:description" content="Encode and decode Base64 via REST API. Perfect for data transport, email encoding, JSON payloads, and more. Free tier, no signup.">
+  <meta property="og:url" content="https://www.gadgethumans.com/tools/base64/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.gadgethumans.com/images/og-tools.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.gadgethumans.com/tools/base64/">
+  <link rel="stylesheet" href="../../css/theme.css?v=3">
+  <script src="../../js/liquid-glass.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebAPI",
+    "name": "Base64 Encode/Decode API",
+    "description": "Free Base64 Encode and Decode API. Encode text to Base64 or decode Base64 back to text. REST API for data transport, email encoding, and API payloads.",
+    "url": "https://www.gadgethumans.com/tools/base64/",
+    "provider": {
+      "@type": "Organization",
+      "name": "GadgetHumans",
+      "url": "https://www.gadgethumans.com"
+    },
+    "documentation": "https://api.gadgethumans.com/base64/",
+    "endpoint": "https://api.gadgethumans.com/base64"
+  }
+  </script>
+  <style>
+    .breadcrumb { font-size: 0.82rem; color: var(--muted); margin: 20px 0 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: var(--muted); }
+    .tool-hero { text-align: center; padding: 40px 0 24px; }
+    .tool-hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .tool-hero p { font-size: 1.05rem; color: var(--text2); max-width: 640px; margin: 0 auto 8px; line-height: 1.6; }
+    .tool-hero .endpoint-badge { display: inline-block; font-family: var(--mono); font-size: 0.85rem; background: var(--accent-dim); color: var(--accent); padding: 6px 16px; border-radius: 980px; margin-top: 8px; }
+    .section { margin: 40px 0; }
+    .section h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .section h3 { font-size: 1.1rem; font-weight: 600; margin: 20px 0 8px; }
+    .section p, .section li { color: var(--text2); line-height: 1.7; font-size: 0.95rem; }
+    .section ul { padding-left: 20px; margin: 12px 0; }
+    .section ul li { margin-bottom: 6px; }
+    .code-block { background: #1a1a2e; color: #e4e4e4; padding: 16px 20px; border-radius: var(--radius); overflow-x: auto; font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; margin: 12px 0; }
+    .code-block .comment { color: #6a9955; }
+    .code-block .keyword { color: #569cd6; }
+    .code-block .string { color: #ce9178; }
+    .code-block .function { color: #dcdcaa; }
+    .try-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 28px; margin: 24px 0; }
+    .try-card h3 { margin-bottom: 16px; }
+    .try-card label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text2); margin-bottom: 6px; }
+    .try-card input, .try-card select { width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.9rem; color: var(--text); outline: none; margin-bottom: 14px; }
+    .try-card input:focus, .try-card select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .try-card .btn { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 980px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .try-card .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .try-card .result { margin-top: 16px; padding: 16px; background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); min-height: 80px; word-break: break-all; font-family: var(--mono); font-size: 0.82rem; }
+    .faq-item { margin-bottom: 16px; }
+    .faq-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; cursor: pointer; }
+    .faq-item h4:hover { color: var(--accent); }
+    .faq-item p { font-size: 0.9rem; color: var(--text2); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
+    .related-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px 12px; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); text-decoration: none; color: inherit; transition: all 0.2s; gap: 6px; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glass-shadow-hover); }
+    .related-card .emoji { font-size: 1.8rem; }
+    .related-card .name { font-size: 0.85rem; font-weight: 600; }
+    .related-card .desc { font-size: 0.72rem; color: var(--muted); }
+    @media (max-width: 480px) { .tool-hero h1 { font-size: 1.6rem; } .related-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GadgetHumans</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> › <a href="/tools/">Tools</a> › <span>Base64 Encode/Decode API</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="tool-hero">
+    <h1>🔤 Base64 Encode/Decode API</h1>
+    <p>Free Base64 Encode and Decode API. Encode text to Base64 or decode Base64 back to text. REST API for data transport, email encoding, and API payloads.</p>
+    <span class="endpoint-badge">GET https://api.gadgethumans.com/base64?...</span>
+  </div>
+
+  <!-- API Services Banner -->
+  <div class="api-banner" style="margin: 24px 0; padding: 20px 24px; background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(167,139,250,0.08)); border: 1px solid rgba(96,165,250,0.2); border-radius: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;">
+    <span style="font-size: 1.1rem; font-weight: 700;">⚡ API Hub — All Endpoints</span>
+    <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #60a5fa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📱 API Hub Overview</a>
+    <a href="https://api.gadgethumans.com/base64/" target="_blank" rel="noopener" style="padding: 6px 16px; background: #a78bfa; color: #fff; border-radius: 980px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">📖 API Docs</a>
+  </div>
+
+  <!-- Description Section -->
+  <div class="section">
+    <h2>What is the Base64 Encode/Decode API?</h2>
+    <p>The GadgetHumans Base64 Encode/Decode API is a free REST API that converts text to Base64 encoding and decodes Base64 strings back to plain text. Base64 encoding is essential for safely transmitting binary data over text-based protocols like HTTP, embedding images in HTML/CSS, encoding binary data in JSON payloads, and email attachments (MIME).</p>
+    <p>With a single HTTP GET request, you can encode any text to Base64 or decode any valid Base64 string back to its original form. The API handles all padding and character set requirements automatically. The free tier offers 100 requests per day with no API key required, making it ideal for developers building integrations, processing API payloads, debugging encoded data, or working with data pipelines. For higher throughput requirements, the Pro tier is available.</p>
+  </div>
+
+  <!-- Quick Start Code Examples -->
+  <div class="section">
+    <h2>⚡ Quick Start</h2>
+    <p>Get started with a simple GET request. No authentication required.</p>
+
+    <h3>cURL</h3>
+    <div class="code-block">
+      <span class="comment"># Quick example</span><br>
+      # Encode text to Base64<br>      curl "https://api.gadgethumans.com/base64?text=Hello%20World&mode=encode"<br>      <br>      # Decode Base64 back to text<br>      curl "https://api.gadgethumans.com/base64?text=SGVsbG8gV29ybGQ=&mode=decode"
+    </div>
+
+    <h3>Python</h3>
+    <div class="code-block">
+      import requests<br>      <br>      # Encode text to Base64<br>      url = "https://api.gadgethumans.com/base64"<br>      params = {"text": "Hello, World!", "mode": "encode"}<br>      response = requests.get(url, params=params)<br>      data = response.json()<br>      print(f"Encoded: {data["result"]}")<br>      <br>      # Decode it back<br>      params["mode"] = "decode"<br>      response = requests.get(url, params=params)<br>      data = response.json()<br>      print(f"Decoded: {data["result"]}")
+    </div>
+
+    <h3>JavaScript (Fetch)</h3>
+    <div class="code-block">
+      // Base64 encode from the browser<br>      const text = "Hello, World!";<br>      fetch(`https://api.gadgethumans.com/base64?text=${encodeURIComponent(text)}&mode=encode`)<br>        .then(res => res.json())<br>        .then(data => {<br>          console.log("Encoded:", data.result);<br>          document.getElementById("result").textContent = data.result;<br>        });
+    </div>
+  </div>
+
+  <!-- Features / Benefits -->
+  <div class="section">
+    <h2>✨ Features &amp; Benefits</h2>
+    <ul>
+      <li><strong>✅ Encode & Decode</strong> — Convert text to Base64 and decode Base64 back to text with a single API call.</li>
+      <li><strong>✅ 100% Free Tier</strong> — No API key, no signup, no credit card. 100 requests per day included.</li>
+      <li><strong>✅ Simple REST API</strong> — GET-based API with intuitive parameters. Works with any HTTP client.</li>
+      <li><strong>✅ Edge-Deployed</strong> — Cloudflare Workers with 320+ global edge locations for minimal latency.</li>
+      <li><strong>✅ Auto Padding</strong> — Handles Base64 padding automatically. Decodes both padded and unpadded input.</li>
+      <li><strong>✅ Pro Tier</strong> — $5/month unlocks 10,000 requests/day with dedicated API key.</li>
+
+    </ul>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="section">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h4>What is Base64 encoding used for?</h4>
+      <p>Base64 encodes binary data into ASCII text for safe transport over text-based protocols like HTTP, JSON, email, and XML.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I need an API key?</h4>
+      <p>No! The free tier requires no API key or signup.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I decode any Base64 string?</h4>
+      <p>Yes, the API handles standard Base64 strings with or without padding characters (=).</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is the encoding URL-safe?</h4>
+      <p>The API returns standard Base64 encoding. For URL-safe Base64 (using - and _ instead of + and /), you can post-process the output.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What happens if I try to decode invalid Base64?</h4>
+      <p>The API will return an error message indicating the input is not valid Base64.</p>
+    </div>
+
+  </div>
+
+  <!-- Internal Links -->
+  <div class="section">
+    <h2>🔗 Related Tools &amp; APIs</h2>
+    <div class="related-grid">
+      <a href="/tools/hash/" class="related-card">
+        <span class="emoji">🔑</span>
+        <span class="name">Hash Generator</span>
+        <span class="desc">MD5, SHA-1/256/512</span>
+      </a>
+      <a href="/tools/json/" class="related-card">
+        <span class="emoji">📋</span>
+        <span class="name">JSON Formatter</span>
+        <span class="desc">Prettify, validate, minify JSON</span>
+      </a>
+      <a href="/tools/password/" class="related-card">
+        <span class="emoji">🔐</span>
+        <span class="name">Secure Password Generator</span>
+        <span class="desc">Generate secure random passwords</span>
+      </a>
+      <a href="/tools/case-converter/" class="related-card">
+        <span class="emoji">🔤</span>
+        <span class="name">Text Case Converter</span>
+        <span class="desc">UPPER, lower, Title, Sentence</span>
+      </a>
+
+      <a href="https://api.gadgethumans.com/" target="_blank" rel="noopener" class="related-card">
+        <span class="emoji">⚡</span>
+        <span class="name">API Hub</span>
+        <span class="desc">All free APIs</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tools/">Tools</a>
+      <a href="/bluetooth-speakers/reviews/">Reviews</a>
+      <a href="/bluetooth-speakers/guides/">Buying Guides</a>
+      <a href="/bluetooth-speakers/blog/">Blog</a>
+      <a href="https://payhip.com/b/fdwTJ">✨ Free</a><a href="https://payhip.com/b/Vu3q0" class="nav-cta-mid">📋 Pro €7</a><a href="https://payhip.com/b/9x3Ee" class="nav-cta-pro">🚀 Launch €17</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p>© 2026 <a href="https://www.gadgethumans.com">GadgetHumans</a> — Tech reviews, deals &amp; AI tools</p>
+    <p class="affiliate-disclosure">As an Amazon Associate, GadgetHumans earns from qualifying purchases.</p>
+  </footer>
+</div>
+
+<script src="../../js/script.js"></script>
+<!-- Premium Upsell CTA -->
+<div class="card" style="max-width: 620px; margin: 40px auto 24px; text-align: center;">
+  <div style="position: relative; z-index: 1;">
+    <h3 style="margin: 0 0 12px; font-size: 1.15rem; font-weight: 700; color: var(--text);">🚀 Need more power?</h3>
+    <p style="margin: 0 0 18px; font-size: 0.85rem; color: var(--text2); line-height: 1.5;">
+      Get the <strong>AI Agent Launch Plan</strong> with 50+ pro prompts
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://payhip.com/b/9x3Ee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: linear-gradient(135deg, #007AFF, #5856D6); color: #fff; border: none; border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);">🚀 AI Agent Launch Plan — €17</a>
+      <a href="https://payhip.com/b/Vu3q0" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur-sm)); -webkit-backdrop-filter: blur(var(--glass-blur-sm)); border: 1px solid var(--glass-border); color: var(--text); border-radius: 980px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.25s ease;">📋 Implementation Checklist — €7</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
