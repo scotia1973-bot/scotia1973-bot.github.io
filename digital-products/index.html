@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Products — GadgetHumans</title>
+<meta name="description" content="Premium digital products for AI developers, MCP server builders, and prompt engineers. Instant download after purchase.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f5f7;
+  --text: #1d1d1f;
+  --text2: #86868b;
+  --accent: #0071e3;
+  --card: #fff;
+  --border: #d2d2d7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1e;
+    --text: #f5f5f7;
+    --text2: #98989d;
+    --accent: #2997ff;
+    --card: #2c2c2e;
+    --border: #38383a;
+  }
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+header { text-align: center; margin-bottom: 60px; }
+header h1 { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+header p { font-size: 20px; color: var(--text2); max-width: 600px; margin: 0 auto; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 60px; }
+.product-card { background: var(--card); border-radius: 20px; padding: 32px; border: 1px solid var(--border); display: flex; flex-direction: column; transition: transform .2s; }
+.product-card:hover { transform: translateY(-4px); }
+.product-emoji { font-size: 48px; margin-bottom: 16px; }
+.product-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.product-card .price { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 16px; }
+.product-card .price small { font-size: 16px; font-weight: 400; color: var(--text2); }
+.product-card .desc { color: var(--text2); font-size: 15px; margin-bottom: 20px; flex: 1; }
+.product-card .features { list-style: none; margin-bottom: 24px; }
+.product-card .features li { padding: 6px 0; font-size: 14px; position: relative; padding-left: 24px; }
+.product-card .features li::before { content: '✓'; position: absolute; left: 0; color: #30d158; font-weight: 700; }
+.btn-stripe { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 980px; font-size: 17px; font-weight: 600; text-align: center; transition: opacity .2s; }
+.btn-stripe:hover { opacity: .85; }
+.info-section { max-width: 700px; margin: 0 auto; }
+.info-section h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; margin-top: 32px; }
+.info-section p, .info-section ol { color: var(--text2); font-size: 15px; line-height: 1.7; }
+.info-section ol { padding-left: 20px; }
+.info-section ol li { margin-bottom: 8px; }
+.badge { display: inline-block; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 100px; margin-bottom: 12px; }
+@media (max-width: 768px) {
+  header h1 { font-size: 32px; }
+  .products { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📦 Digital Products</h1>
+    <p>Premium resources for AI developers, MCP server builders, and prompt engineers. Instant download after purchase.</p>
+  </header>
+
+  <div class="products">
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-emoji">🧠</div>
+      <span class="badge">Best Seller</span>
+      <h2>300 MCP Server Prompts &amp; Templates Pack</h2>
+      <div class="price">$12 <small>one-time</small></div>
+      <p class="desc">Battle-tested prompts for every MCP server category. 300 proven prompts organized into 10 categories with a bonus template pack.</p>
+      <ul class="features">
+        <li>30 prompts for File System operations</li>
+        <li>40 prompts for Web &amp; Browser automation</li>
+        <li>35 prompts for Database operations</li>
+        <li>35 prompts for Cloud Platform management</li>
+        <li>30 prompts for Communication &amp; Email</li>
+        <li>30 prompts for Finance &amp; Crypto</li>
+        <li>35 prompts for Developer Tools</li>
+        <li>25 prompts for AI &amp; LLM operations</li>
+        <li>20 prompts for MCP Server Development</li>
+        <li>Bonus: config templates, code examples, prompt templates</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/bJe28ren05KMf8c9vDabK0a" target="_blank" rel="noopener">Buy Now — $12</a>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-emoji">🔧</div>
+      <span class="badge">Comprehensive</span>
+      <h2>MCP Server Builder Blueprint</h2>
+      <div class="price">$17 <small>one-time</small></div>
+      <p class="desc">Complete step-by-step guide to building, testing, and deploying production-ready MCP servers. 10 chapters with code examples.</p>
+      <ul class="features">
+        <li>MCP architecture fundamentals</li>
+        <li>Stack selection guide (TypeScript, Python, Go, Rust)</li>
+        <li>Complete TypeScript &amp; Python server examples</li>
+        <li>Tool design best practices &amp; naming conventions</li>
+        <li>Authentication patterns (API Key, OAuth, x402)</li>
+        <li>Testing &amp; debugging workflows</li>
+        <li>Deployment guides (VPS, Cloudflare Workers, AWS Lambda)</li>
+        <li>Monetization strategies ($0 → $200)</li>
+        <li>Production checklist &amp; monitoring setup</li>
+        <li>Templates &amp; quick reference cards</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/7sY28ra6Ka124ty5fnabK0b" target="_blank" rel="noopener">Buy Now — $17</a>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-emoji">🤖</div>
+      <span class="badge">Starter</span>
+      <h2>50 ChatGPT Prompt Templates for AI Agents</h2>
+      <div class="price">$9 <small>one-time</small></div>
+      <p class="desc">Ready-to-use prompt templates for building autonomous AI agent workflows. Optimized for GPT-4, Claude, and Gemini.</p>
+      <ul class="features">
+        <li>10 agent orchestration templates</li>
+        <li>15 research &amp; analysis templates</li>
+        <li>15 automation &amp; workflow templates</li>
+        <li>10 web &amp; API interaction templates</li>
+        <li>Self-correction &amp; state recovery patterns</li>
+        <li>Multi-agent consensus protocols</li>
+        <li>Budget-aware execution frameworks</li>
+        <li>Human-in-the-loop gate patterns</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/28E7sLfr44GI8JO6jrabK0c" target="_blank" rel="noopener">Buy Now — $9</a>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h3>How It Works</h3>
+    <ol>
+      <li><strong>Purchase</strong> — Click the Buy button and complete checkout via Stripe (credit cards, Apple Pay, Google Pay accepted).</li>
+      <li><strong>Instant Delivery</strong> — After payment, Stripe sends a receipt. Your download link is provided on the confirmation page.</li>
+      <li><strong>Access Forever</strong> — All products are delivered as Markdown files, compatible with any text editor or note-taking app.</li>
+    </ol>
+
+    <h3>What You Get</h3>
+    <p>Each product is delivered as a professionally formatted Markdown (.md) file. Open in any text editor, VS Code, Obsidian, Notion, or import directly into your AI toolchain. All prompts are battle-tested and ready to use — no editing required.</p>
+
+    <h3>Need Help?</h3>
+    <p>Contact <a href="mailto:scotia1973@gmail.com" style="color:var(--accent)">scotia1973@gmail.com</a> for support. All products include free updates.</p>
+  </div>
+</div>
+</body>
+</html>
