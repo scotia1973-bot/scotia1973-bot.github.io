@@ -1,879 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services — GadgetHumans</title>
-  <meta name="description" content="Professional Resume Rewrite (€147) and SEO Audit (€97) services. AI-powered, fast delivery, results guaranteed. Secure Stripe checkout.">
-  <meta property="og:title" content="Services — GadgetHumans | Resume Rewrite & SEO Audit">
-  <meta property="og:description" content="AI-powered Resume Rewrite for tech/PM roles (€147) and 8-page SEO Audit report (€97). Fast delivery, Stripe-secure checkout.">
-  <meta property="og:image" content="https://www.gadgethumans.com/og-image.png">
-  <meta property="og:url" content="https://www.gadgethumans.com/services/">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://www.gadgethumans.com/services/">
-  <link rel="stylesheet" href="/css/theme.css?v=3">
-  <style>
-    /* ── Self-contained Services Page Styles ── */
-    :root {
-      --glass-bg: rgba(255,255,255,0.32);
-      --glass-bg-hover: rgba(255,255,255,0.42);
-      --glass-border: rgba(255,255,255,0.55);
-      --glass-border-hover: rgba(255,255,255,0.75);
-      --glass-shadow: 0 4px 16px rgba(0,0,0,0.04),0 1px 3px rgba(0,0,0,0.02);
-      --glass-shadow-hover: 0 8px 32px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
-      --glass-blur: 40px;
-      --glass-blur-sm: 20px;
-      --bg: #f0f2f5;
-      --bg-gradient: linear-gradient(165deg, #f0f2f5 0%, #e4e8ed 50%, #dce1e8 100%);
-      --text: #1d1d1f;
-      --text2: #515154;
-      --muted: #86868b;
-      --accent: #007AFF;
-      --accent-hover: #0062cc;
-      --accent-glow: rgba(0,122,255,0.25);
-      --success: #34C759;
-      --danger: #FF3B30;
-      --warning: #FF9500;
-      --font: 'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;
-      --radius: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
-      --max-w: 1100px;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --glass-bg: rgba(255,255,255,0.06);
-        --glass-bg-hover: rgba(255,255,255,0.10);
-        --glass-border: rgba(255,255,255,0.10);
-        --glass-border-hover: rgba(255,255,255,0.18);
-        --glass-shadow: 0 4px 16px rgba(0,0,0,0.2),0 1px 3px rgba(0,0,0,0.1);
-        --glass-shadow-hover: 0 8px 32px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.15);
-        --bg: #0a0a0f;
-        --bg-gradient: radial-gradient(ellipse at 50% 0%, #1a1a2e 0%, #0a0a0f 60%, #050508 100%);
-        --text: #f5f5f7;
-        --text2: #aeaeb2;
-        --muted: #636366;
-        --accent: #0A84FF;
-        --accent-hover: #409CFF;
-        --accent-glow: rgba(10,132,255,0.3);
-      }
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      background-image: var(--bg-gradient);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 22px; width: 100%; position: relative; z-index: 1; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Services — GadgetHumans</title>
+<meta name="description" content="Professional MCP server development, security audits, and AI automation services. Custom-built Model Context Protocol servers for Claude, ChatGPT, Cursor, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #0a0a0f; --text: #f5f5f7; --text2: #86868b; --accent: #2997ff; --card: #141418; --card2: #1c1c22; --border: #2a2a32; --green: #30d158; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
 
-    /* ── Hero ── */
-    .services-hero {
-      position: relative;
-      text-align: center;
-      padding: 80px 20px 56px;
-      overflow: hidden;
-    }
-    .services-hero .hero-bg {
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .services-hero .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.3;
-      animation: orb-float 8s ease-in-out infinite alternate;
-    }
-    .services-hero .hero-orb:nth-child(1) { width: 400px; height: 400px; background: var(--accent-glow); top: -10%; left: -10%; }
-    .services-hero .hero-orb:nth-child(2) { width: 300px; height: 300px; background: rgba(88,86,214,0.25); top: 20%; right: -5%; animation-delay: -3s; }
-    .services-hero .hero-orb:nth-child(3) { width: 200px; height: 200px; background: rgba(52,199,89,0.15); bottom: 0; left: 30%; animation-delay: -6s; }
-    @keyframes orb-float {
-      0% { transform: translate(0,0) scale(1); }
-      100% { transform: translate(30px,-20px) scale(1.1); }
-    }
-    .services-hero .hero-content { position: relative; z-index: 1; }
-    .services-hero .hero-glass-module {
-      display: inline-block;
-      background: var(--glass-bg);
-      backdrop-filter: blur(60px);
-      -webkit-backdrop-filter: blur(60px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: 40px 48px;
-      box-shadow: var(--glass-shadow-hover);
-      max-width: 780px;
-    }
-    .services-hero h1 {
-      font-size: 2.8rem; font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--text) 0%, var(--text2) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 16px;
-    }
-    .services-hero p { font-size: 1.1rem; color: var(--text2); max-width: 620px; margin: 0 auto; line-height: 1.6; }
-    .services-hero .hero-badge {
-      display: inline-block;
-      padding: 6px 16px;
-      background: var(--accent-dim, rgba(0,122,255,0.08));
-      color: var(--accent);
-      border-radius: 980px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      letter-spacing: 0.3px;
-    }
+/* Hero */
+.hero { text-align: center; padding: 80px 0 60px; }
+.hero .badge { display: inline-block; background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 100px; margin-bottom: 20px; letter-spacing: 0.5px; }
+.hero h1 { font-size: 56px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 16px; line-height: 1.1; }
+.hero h1 span { background: linear-gradient(135deg, #2997ff, #7b68ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 20px; color: var(--text2); max-width: 640px; margin: 0 auto 40px; }
+.hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.hero-stats .stat { text-align: center; }
+.hero-stats .stat-num { font-size: 28px; font-weight: 800; color: var(--accent); }
+.hero-stats .stat-label { font-size: 13px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
-    /* ── Section Titles ── */
-    .section-label {
-      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--muted); margin-bottom: 14px;
-      text-align: center;
-    }
-    .section-title {
-      font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em;
-      margin: 0 0 12px; color: var(--text); text-align: center;
-    }
-    .section-subtitle {
-      color: var(--muted); font-size: 0.9rem; text-align: center;
-      margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto;
-    }
-    section { margin: 64px 0; }
+/* Trust Bar */
+.trust-bar { text-align: center; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 80px; }
+.trust-bar p { font-size: 14px; color: var(--text2); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.trust-bar .logos { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; color: var(--text2); font-size: 13px; }
+.trust-bar .logos span { opacity: 0.5; }
 
-    /* ── Service Cards ── */
-    .service-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--glass-shadow);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.2,0,0,1);
-      display: flex;
-      flex-direction: column;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-    .service-card:hover {
-      border-color: var(--glass-border-hover);
-      transform: translateY(-4px);
-      box-shadow: var(--glass-shadow-hover);
-    }
-    .service-card:hover::before { opacity: 1; }
-    .service-card.featured {
-      border-color: var(--accent);
-      border-width: 1.5px;
-      background: var(--glass-bg-hover);
-    }
-    .service-card.featured::after {
-      content: 'Popular';
-      position: absolute;
-      top: 16px; right: 16px;
-      padding: 4px 12px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 980px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-    .service-card .emoji { font-size: 2.2rem; margin-bottom: 8px; }
-    .service-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
-    .service-card .price {
-      font-size: 2rem; font-weight: 800; color: var(--accent);
-      margin: 8px 0 16px;
-      letter-spacing: -0.02em;
-    }
-    .service-card .price small { font-size: 0.9rem; font-weight: 500; color: var(--muted); }
-    .service-card .desc { font-size: 0.88rem; color: var(--text2); margin-bottom: 16px; line-height: 1.5; }
-    .service-card .features {
-      list-style: none;
-      margin-bottom: 20px;
-      flex: 1;
-    }
-    .service-card .features li {
-      padding: 6px 0;
-      font-size: 0.85rem;
-      color: var(--text2);
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .service-card .features li::before { content: '✓'; color: var(--success); font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
-    .service-card .btn-stripe {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 14px 24px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 980px;
-      font-family: var(--font);
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 14px var(--accent-glow);
-    }
-    .service-card .btn-stripe:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--accent-glow);
-    }
+/* Packages */
+.packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 80px; }
+.package { background: var(--card); border-radius: 24px; padding: 40px 32px; border: 1px solid var(--border); display: flex; flex-direction: column; position: relative; transition: transform .2s, border-color .2s; }
+.package:hover { transform: translateY(-6px); border-color: var(--accent); }
+.package.featured { border-color: var(--accent); background: var(--card2); }
+.package.featured::before { content: 'Most Popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 16px; border-radius: 100px; letter-spacing: 0.5px; }
+.package .emoji { font-size: 40px; margin-bottom: 16px; }
+.package h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.package .subtitle { color: var(--text2); font-size: 14px; margin-bottom: 20px; }
+.package .price { font-size: 44px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+.package .price small { font-size: 16px; font-weight: 400; color: var(--text2); }
+.package .price-note { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+.package .features { list-style: none; margin-bottom: 28px; flex: 1; }
+.package .features li { padding: 8px 0; font-size: 14px; position: relative; padding-left: 28px; color: #ccc; }
+.package .features li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 16px; }
+.btn-stripe { display: block; background: var(--accent); color: #fff; text-decoration: none; padding: 16px 32px; border-radius: 980px; font-size: 17px; font-weight: 600; text-align: center; transition: opacity .2s; }
+.btn-stripe:hover { opacity: .85; }
+.btn-outline { display: block; background: transparent; color: var(--accent); text-decoration: none; padding: 16px 32px; border-radius: 980px; font-size: 17px; font-weight: 600; text-align: center; border: 1px solid var(--border); transition: all .2s; }
+.btn-outline:hover { border-color: var(--accent); background: rgba(41,151,255,0.08); }
 
-    /* ── How It Works ── */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .step-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur-sm));
-      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      text-align: center;
-      box-shadow: var(--glass-shadow);
-      transition: all 0.3s cubic-bezier(0.2,0,0,1);
-    }
-    .step-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--glass-border-hover);
-      box-shadow: var(--glass-shadow-hover);
-    }
-    .step-card .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px; height: 48px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .step-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-    .step-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+/* Process */
+.process { max-width: 900px; margin: 0 auto 80px; }
+.process h2 { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.02em; }
+.process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.process-step { text-align: center; padding: 24px; }
+.process-step .step-num { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.process-step h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.process-step p { font-size: 14px; color: var(--text2); }
 
-    /* ── Post-Purchase Flow ── */
-    .flow-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-    .flow-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur-sm));
-      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: var(--glass-shadow);
-    }
-    .flow-item .flow-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      width: 40px;
-      text-align: center;
-    }
-    .flow-item h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; }
-    .flow-item p { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+/* CTA */
+.cta-section { text-align: center; background: var(--card); border-radius: 24px; padding: 60px 40px; border: 1px solid var(--border); margin-bottom: 60px; }
+.cta-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+.cta-section p { font-size: 18px; color: var(--text2); max-width: 500px; margin: 0 auto 32px; }
+.cta-section .btn-cta { display: inline-block; background: linear-gradient(135deg, #2997ff, #7b68ee); color: #fff; text-decoration: none; padding: 18px 48px; border-radius: 980px; font-size: 18px; font-weight: 600; transition: opacity .2s; }
+.cta-section .btn-cta:hover { opacity: .85; }
+.cta-section .small-text { font-size: 13px; color: var(--text2); margin-top: 16px; }
 
-    /* ── About Section ── */
-    .about-content {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: 40px;
-      box-shadow: var(--glass-shadow);
-    }
-    .about-content p { font-size: 0.92rem; color: var(--text2); max-width: 720px; line-height: 1.7; margin: 0 auto 16px; text-align: center; }
-    .about-content p:last-child { margin-bottom: 0; }
-    .about-content strong { color: var(--text); }
+/* FAQ */
+.faq { max-width: 700px; margin: 0 auto 60px; }
+.faq h2 { font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 32px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+.faq-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.faq-item p { font-size: 14px; color: var(--text2); }
 
-    /* ── FAQ ── */
-    .faq-list { max-width: 720px; margin: 0 auto; }
-    .faq-item {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur-sm));
-      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: 20px 24px;
-      margin-bottom: 10px;
-      box-shadow: var(--glass-shadow);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .faq-item:hover { border-color: var(--glass-border-hover); }
-    .faq-item .faq-q {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      font-size: 0.92rem;
-      color: var(--text);
-    }
-    .faq-item .faq-q::after {
-      content: '+';
-      font-size: 1.2rem;
-      color: var(--muted);
-      transition: transform 0.2s ease;
-      flex-shrink: 0;
-      margin-left: 12px;
-    }
-    .faq-item.open .faq-q::after { content: '−'; }
-    .faq-item .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      font-size: 0.85rem;
-      color: var(--text2);
-      line-height: 1.6;
-    }
-    .faq-item.open .faq-a {
-      max-height: 300px;
-      padding-top: 12px;
-    }
+/* Simple Contact Form */
+.contact-form { max-width: 500px; margin: 0 auto 40px; }
+.contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 15px; font-family: inherit; margin-bottom: 16px; outline: none; }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form button { width: 100%; padding: 16px; border-radius: 980px; border: none; background: var(--accent); color: #fff; font-size: 17px; font-weight: 600; cursor: pointer; transition: opacity .2s; }
+.contact-form button:hover { opacity: .85; }
 
-    /* ── Contact Section ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .contact-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur-sm));
-      -webkit-backdrop-filter: blur(var(--glass-blur-sm));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      text-align: center;
-      box-shadow: var(--glass-shadow);
-    }
-    .contact-card .contact-icon { font-size: 1.8rem; margin-bottom: 8px; }
-    .contact-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-    .contact-card p { font-size: 0.85rem; color: var(--text2); }
-    .contact-card a { color: var(--accent); text-decoration: none; font-weight: 500; }
-    .contact-card a:hover { text-decoration: underline; }
+/* Inline contact for Stripe-less inquiries */
+.inline-contact { margin-top: 24px; }
 
-    /* ── CTA Banner ── */
-    .cta-banner {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: 48px 32px;
-      text-align: center;
-      box-shadow: var(--glass-shadow);
-    }
-    .cta-banner h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
-    .cta-banner p { font-size: 0.92rem; color: var(--text2); margin-bottom: 24px; }
-    .cta-banner .cta-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border); }
+footer p { font-size: 13px; color: var(--text2); }
+footer a { color: var(--accent); text-decoration: none; }
 
-    /* ── Footer ── */
-    .services-footer {
-      text-align: center;
-      padding: 32px 0;
-      border-top: 1px solid var(--glass-border);
-      margin-top: 64px;
-    }
-    .services-footer p { font-size: 0.78rem; color: var(--muted); }
-
-    /* ── Success Toast ── */
-    .success-toast {
-      display: none;
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--success);
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 980px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      box-shadow: 0 8px 32px rgba(52,199,89,0.35);
-      z-index: 999;
-      animation: toast-in 0.4s ease;
-    }
-    .success-toast.show { display: block; }
-    @keyframes toast-in {
-      0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-
-    /* ── Intake Form ── */
-    .form-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-xl);
-      padding: 36px;
-      box-shadow: var(--glass-shadow);
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .form-group { margin-bottom: 16px; }
-    .form-group label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text2);
-      margin-bottom: 5px;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      font-family: var(--font);
-      font-size: 0.88rem;
-      color: var(--text);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: border-color 0.2s ease;
-      outline: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-    .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-group .form-hint { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
-    .btn-submit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 14px 24px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 980px;
-      font-family: var(--font);
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 14px var(--accent-glow);
-    }
-    .btn-submit:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--accent-glow);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .services-hero { padding: 48px 12px 36px; }
-      .services-hero h1 { font-size: 1.8rem; }
-      .services-hero .hero-glass-module { padding: 28px 20px; }
-      .service-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .section-title { font-size: 1.3rem; }
-      .form-card { padding: 24px; }
-      .about-content { padding: 24px; }
-      .service-card.featured::after { font-size: 0.65rem; padding: 3px 10px; }
-    }
-    @media (max-width: 480px) {
-      .services-hero h1 { font-size: 1.5rem; }
-      .services-hero p { font-size: 0.92rem; }
-      .service-card { padding: 24px; }
-      .service-card .price { font-size: 1.6rem; }
-      .cta-banner { padding: 32px 20px; }
-    }
-  </style>
+@media (max-width: 768px) {
+  .hero h1 { font-size: 36px; }
+  .hero-stats { gap: 24px; }
+  .packages { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .cta-section { padding: 40px 24px; }
+  .cta-section h2 { font-size: 28px; }
+}
+</style>
 </head>
 <body>
-
-<div class="success-toast" id="successToast">✓ Purchase successful! Scroll down to submit your materials.</div>
-
-<!-- ─── HERO ─── -->
-<div class="services-hero">
-  <div class="hero-bg">
-    <div class="hero-orb"></div>
-    <div class="hero-orb"></div>
-    <div class="hero-orb"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-glass-module">
-      <div class="hero-badge">🔧 Professional Services</div>
-      <h1>Get Your Resume &amp; SEO<br>Optimized by Experts</h1>
-      <p>Two targeted services to accelerate your career and grow your online presence. AI-powered, human-reviewed, delivered fast.</p>
-    </div>
-  </div>
-</div>
-
 <div class="container">
 
-  <!-- ─── SERVICE CARDS ─── -->
-  <section id="services">
-    <div class="section-label">Choose Your Service</div>
-    <h2 class="section-title">What We Offer</h2>
-    <p class="section-subtitle">Pick the service that matches your need. Secure checkout via Stripe.</p>
-
-    <div class="service-grid">
-      <!-- Resume Rewrite -->
-      <div class="service-card featured">
-        <div class="emoji">📄</div>
-        <h3>Resume Rewrite</h3>
-        <div class="price">€147 <small>one-time</small></div>
-        <p class="desc">AI-powered resume rewrite designed for tech and product management roles. ATS-optimized, tailored, and ready to land interviews.</p>
-        <ul class="features">
-          <li>AI-powered rewrite for tech / PM roles</li>
-          <li>ATS-optimized formatting (parses perfectly)</li>
-          <li>2 cover letter variants included</li>
-          <li>Before/after comparison so you see the difference</li>
-          <li>24-hour delivery from order</li>
-          <li>Unlimited revisions within 7 days</li>
-        </ul>
-        <a class="btn-stripe" href="https://buy.stripe.com/aFa6oH92Ggpq8JOazHabK03" target="_blank" rel="noopener">
-          Buy Resume Rewrite · €147 →
-        </a>
-      </div>
-
-      <!-- SEO Audit -->
-      <div class="service-card">
-        <div class="emoji">🔍</div>
-        <h3>SEO Audit</h3>
-        <div class="price">€97 <small>one-time</small></div>
-        <p class="desc">In-depth 8-page SEO audit of your website. Lighthouse scores, keyword gaps, competitor analysis, and actionable fixes.</p>
-        <ul class="features">
-          <li>8-page detailed SEO report</li>
-          <li>Lighthouse performance scores</li>
-          <li>Keyword gap analysis</li>
-          <li>Competitor benchmarking</li>
-          <li>5 actionable fixes emailed within 48 hours</li>
-          <li>Google My Business review included</li>
-        </ul>
-        <a class="btn-stripe" href="https://buy.stripe.com/14A7sL1Aec9a0di5fnabK04" target="_blank" rel="noopener">
-          Buy SEO Audit · €97 →
-        </a>
-      </div>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge">⚡ Now Accepting Clients</div>
+    <h1>MCP Servers &amp; AI<br><span>Automation Services</span></h1>
+    <p>Custom Model Context Protocol servers, security audits, and full AI automation workflows. Built for Claude, ChatGPT, Cursor, and any LLM platform.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">300+</div><div class="stat-label">MCP Tools Built</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Open-Source Audits</div></div>
+      <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Avg. Delivery</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
     </div>
-  </section>
-
-  <!-- ─── HOW IT WORKS ─── -->
-  <section id="how-it-works">
-    <div class="section-label">Simple Process</div>
-    <h2 class="section-title">How It Works</h2>
-    <p class="section-subtitle">Three steps from purchase to delivery.</p>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <h4>Purchase &amp; Submit</h4>
-        <p>Buy your chosen service via Stripe. After payment, fill out the intake form below with your resume or website URL.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <h4>We Analyze &amp; Optimize</h4>
-        <p>Our AI tools and human experts process your materials. You'll receive a confirmation within 2 hours of submission.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <h4>Receive Your Deliverable</h4>
-        <p>Your rewritten resume or SEO audit lands in your inbox within 24–48 hours. Unlimited revisions included if needed.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── WHAT HAPPENS AFTER YOU ORDER ─── -->
-  <section id="after-order">
-    <div class="section-label">Post-Purchase Flow</div>
-    <h2 class="section-title">What Happens After You Order</h2>
-    <p class="section-subtitle">Clear steps so you know exactly what to expect.</p>
-
-    <div class="flow-steps">
-      <div class="flow-item">
-        <div class="flow-icon">💳</div>
-        <div>
-          <h5>1. Payment Confirmed</h5>
-          <p>Stripe sends you a receipt. You'll also receive a confirmation email from us within minutes.</p>
-        </div>
-      </div>
-      <div class="flow-item">
-        <div class="flow-icon">📝</div>
-        <div>
-          <h5>2. Submit Your Materials</h5>
-          <p>Use the intake form below to upload your resume or provide your website URL. This is where the work begins.</p>
-        </div>
-      </div>
-      <div class="flow-item">
-        <div class="flow-icon">⚙️</div>
-        <div>
-          <h5>3. Processing &amp; Review</h5>
-          <p>Our AI engine processes your materials, then a human expert reviews and polishes everything for quality.</p>
-        </div>
-      </div>
-      <div class="flow-item">
-        <div class="flow-icon">📬</div>
-        <div>
-          <h5>4. Delivery via Email</h5>
-          <p>We send your final deliverable to your email. Resume clients get before/after comparison + 2 cover letters.</p>
-        </div>
-      </div>
-      <div class="flow-item">
-        <div class="flow-icon">💬</div>
-        <div>
-          <h5>5. Feedback &amp; Revisions</h5>
-          <p>Not happy? Reply to the email or reach out via WhatsApp/Telegram. Free revisions within 7 days.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── INTAKE FORM ─── -->
-  <section id="intake">
-    <div class="section-label">Get Started</div>
-    <h2 class="section-title">Submit Your Materials</h2>
-    <p class="section-subtitle">Already purchased? Fill out the form below with your details and we'll get started immediately.</p>
-
-    <div class="form-card">
-      <form id="intakeForm" onsubmit="return handleFormSubmit(event)">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="service">Service Purchased</label>
-          <select id="service" name="service" required>
-            <option value="">Select your service...</option>
-            <option value="Resume Rewrite - €147">Resume Rewrite (€147)</option>
-            <option value="SEO Audit - €97">SEO Audit (€97)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="materials">Your Resume / Website URL</label>
-          <textarea id="materials" name="materials" placeholder="Paste a link to your resume (Google Docs, Dropbox) or your website URL for the SEO audit." required></textarea>
-          <div class="form-hint">For resumes: share a Google Doc / Dropbox link with edit access. For audits: provide your full website URL (e.g., https://yoursite.com).</div>
-        </div>
-        <div class="form-group">
-          <label for="notes">Additional Notes (optional)</label>
-          <textarea id="notes" name="notes" placeholder="Target roles, specific keywords, competitors to analyze, etc."></textarea>
-        </div>
-        <button type="submit" class="btn-submit" id="formSubmitBtn">Submit My Materials →</button>
-        <p style="font-size:0.78rem;color:var(--muted);text-align:center;margin-top:12px;">📧 Your submission will be sent to our team. We'll respond within 2 hours.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- ─── ABOUT ─── -->
-  <section id="about">
-    <div class="section-label">Who We Are</div>
-    <h2 class="section-title">About GadgetHumans Services</h2>
-    <div class="about-content">
-      <p>GadgetHumans is run by <strong>Scotty Wishart</strong> — a career tech professional who understands what recruiters and hiring managers look for. Every resume rewrite combines <strong>AI-powered optimization</strong> with real-world hiring expertise to ensure your application stands out in both ATS systems and human reviews.</p>
-      <p>Our SEO audits are built on the same methodology we use for our own sites: <strong>Lighthouse benchmarks, keyword gap analysis, competitor intelligence</strong>, and a prioritized action plan you can implement immediately. We don't just tell you what's wrong — we show you exactly how to fix it.</p>
-      <p>Every service includes <strong>unlimited revisions within 7 days</strong> and direct access via email, WhatsApp, or Telegram. Your satisfaction is guaranteed.</p>
-    </div>
-  </section>
-
-  <!-- ─── FAQ ─── -->
-  <section id="faq">
-    <div class="section-label">Got Questions?</div>
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <p class="section-subtitle">Everything you need to know before ordering.</p>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">How do I submit my resume after purchase?</div>
-        <div class="faq-a">After your Stripe payment is confirmed, scroll down to the intake form on this page. Upload your resume via Google Docs or Dropbox link, and we'll take it from there. You'll receive a confirmation email within 2 hours.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What if I don't like the rewrite?</div>
-        <div class="faq-a">We offer unlimited revisions within 7 days of delivery. Just reply to your delivery email or reach out via WhatsApp / Telegram and tell us what you'd like changed. We keep iterating until you're happy.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How is the SEO audit delivered?</div>
-        <div class="faq-a">You'll receive an 8-page PDF report via email within 48 hours. It includes Lighthouse scores, keyword gap analysis, competitor benchmarking, and 5 prioritized fixes you can implement right away. Your Google My Business listing is also reviewed.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What formats do you accept for resumes?</div>
-        <div class="faq-a">We accept Google Docs links (preferred), Dropbox/Drive PDFs, or Word documents (.docx). For best results, share a link with edit access so our team can work directly. We'll return your final file as both PDF and DOCX.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Is my payment secure?</div>
-        <div class="faq-a">Absolutely. All payments are processed through Stripe — the same payment processor used by Amazon, Shopify, and millions of businesses worldwide. Your card details never touch our servers. We support all major credit cards and Apple Pay / Google Pay.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── CONTACT ─── -->
-  <section id="contact">
-    <div class="section-label">Get in Touch</div>
-    <h2 class="section-title">Contact &amp; Support</h2>
-    <p class="section-subtitle">Questions? Need help? Reach out any time.</p>
-
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-icon">📧</div>
-        <h4>Email</h4>
-        <p><a href="mailto:scotia1973@gmail.com">scotia1973@gmail.com</a></p>
-        <p style="font-size:0.78rem;color:var(--muted);margin-top:4px;">We reply within 2 hours during business hours</p>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">💬</div>
-        <h4>WhatsApp / Telegram</h4>
-        <p>Prefer instant messaging? Reach out and we'll connect you directly.</p>
-        <p><a href="mailto:scotia1973@gmail.com?subject=WhatsApp%20contact%20request">Request WhatsApp contact →</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── CTA BANNER ─── -->
-  <section>
-    <div class="cta-banner">
-      <h2>Ready to Level Up?</h2>
-      <p>Choose your service above and get started in under 2 minutes. Secure checkout, fast delivery, satisfaction guaranteed.</p>
-      <div class="cta-buttons">
-        <a class="btn-stripe" href="https://buy.stripe.com/aFa6oH92Ggpq8JOazHabK03" target="_blank" rel="noopener" style="width:auto;padding:14px 32px;">
-          📄 Resume Rewrite · €147
-        </a>
-        <a class="btn-stripe" href="https://buy.stripe.com/14A7sL1Aec9a0di5fnabK04" target="_blank" rel="noopener" style="width:auto;padding:14px 32px;background:linear-gradient(135deg,#5856D6,#007AFF);">
-          🔍 SEO Audit · €97
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FOOTER ─── -->
-  <div class="services-footer">
-    <p>&copy; 2026 GadgetHumans. All rights reserved. <a href="mailto:scotia1973@gmail.com" style="color:var(--accent);text-decoration:none;">Contact</a></p>
   </div>
 
+  <!-- Social Proof -->
+  <div class="trust-bar">
+    <p>Active On</p>
+    <div class="logos">
+      <span>GitHub (scotia1973-bot)</span>
+      <span>•</span>
+      <span>MCP Auditor</span>
+      <span>•</span>
+      <span>GadgetHumans</span>
+      <span>•</span>
+      <span>Moltbook</span>
+    </div>
+  </div>
+
+  <!-- Packages -->
+  <div class="packages">
+    <!-- Starter -->
+    <div class="package">
+      <div class="emoji">🛠️</div>
+      <h2>Custom MCP Server</h2>
+      <p class="subtitle">One server, fully built and deployed</p>
+      <div class="price">$250 <small>flat</small></div>
+      <p class="price-note">Single MCP server — 3-5 business days</p>
+      <ul class="features">
+        <li>Custom tool design &amp; implementation</li>
+        <li>API integration (any REST/graphQL source)</li>
+        <li>Authentication (API key, OAuth, x402)</li>
+        <li>MCP Inspector testing &amp; validation</li>
+        <li>Deployment guide &amp; documentation</li>
+        <li>1 revision round included</li>
+        <li>7-day post-delivery support</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/cNi9AT6Uy5KM5xC5fnabK0d" target="_blank" rel="noopener">Buy Now — $250</a>
+      <div class="inline-contact" style="text-align:center;margin-top:12px">
+        <a href="mailto:scotia1973@gmail.com?subject=MCP%20Server%20Inquiry" style="color:var(--text2);font-size:13px;text-decoration:none">Questions? Email me →</a>
+      </div>
+    </div>
+
+    <!-- Pro (Featured) -->
+    <div class="package featured">
+      <div class="emoji">🔒</div>
+      <h2>MCP Security Audit</h2>
+      <p class="subtitle">Find vulnerabilities before attackers do</p>
+      <div class="price">$350 <small>flat</small></div>
+      <p class="price-note">Comprehensive audit — 2-3 business days</p>
+      <ul class="features">
+        <li>Automated scan via MCP Auditor engine</li>
+        <li>Tool discovery &amp; schema validation</li>
+        <li>Timeout &amp; error handling analysis</li>
+        <li>Authentication &amp; permission review</li>
+        <li>Rate limiting &amp; resource leak detection</li>
+        <li>Detailed report with CVSS-style scoring</li>
+        <li>Remediation guide with code examples</li>
+        <li>30-day follow-up re-scan included</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/eVq7sL5Qua126BG8rzabK0e" target="_blank" rel="noopener">Buy Now — $350</a>
+      <div class="inline-contact" style="text-align:center;margin-top:12px">
+        <a href="https://api.gadgethumans.com/mcp-audit" style="color:var(--text2);font-size:13px;text-decoration:none">Try the free tier first →</a>
+      </div>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="package">
+      <div class="emoji">🤖</div>
+      <h2>Full Automation Workflow</h2>
+      <p class="subtitle">End-to-end AI agent system</p>
+      <div class="price">$600 <small>flat</small></div>
+      <p class="price-note">Complete system — 7-10 business days</p>
+      <ul class="features">
+        <li>Multiple MCP servers (up to 5 tools)</li>
+        <li>Multi-agent orchestration architecture</li>
+        <li>RAG pipeline with vector database</li>
+        <li>n8n / LangChain workflow integration</li>
+        <li>Custom web UI or API layer</li>
+        <li>Deployment on VPS / Cloudflare / AWS</li>
+        <li>Monitoring &amp; error alerting setup</li>
+        <li>Full documentation &amp; handover</li>
+        <li>14-day post-delivery support</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/bJeeVd0waehigcgdLTabK0f" target="_blank" rel="noopener">Buy Now — $600</a>
+      <div class="inline-contact" style="text-align:center;margin-top:12px">
+        <a href="mailto:scotia1973@gmail.com?subject=Automation%20Workflow%20Inquiry" style="color:var(--text2);font-size:13px;text-decoration:none">Tell me about your project →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Process -->
+  <div class="process">
+    <h2>How It Works</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h3>Purchase</h3>
+        <p>Choose your service and complete checkout via Stripe. Credit cards, Apple Pay, and Google Pay accepted.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h3>Briefing</h3>
+        <p>I'll email you within 24 hours with a project brief and intake form. Share your requirements and timelines.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h3>Build &amp; Review</h3>
+        <p>I build your solution and share progress. You get to review, request changes, and approve before final delivery.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h3>Delivery &amp; Support</h3>
+        <p>Receive your finished solution with documentation. Post-delivery support included to ensure everything runs smoothly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="cta-section" id="contact">
+    <h2>Not Sure Which Service You Need?</h2>
+    <p>Tell me about your project and I'll recommend the best approach. Free consultation — no obligation.</p>
+    <form class="contact-form" action="https://formsubmit.co/scotia1973@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Service Inquiry from GadgetHumans">
+      <input type="hidden" name="_next" value="https://gadgethumans.com/services/thanks">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Tell me about your project... What are you building? What tools do you need? What's your timeline?" required></textarea>
+      <button type="submit">Send Message →</button>
+    </form>
+    <p class="small-text">No spam. I'll respond within 24 hours.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>What is an MCP server?</h3>
+      <p>Model Context Protocol (MCP) is an open standard that connects AI agents (Claude, ChatGPT, Cursor) to external tools, APIs, and data sources. An MCP server acts as a bridge, letting your AI interact with the real world.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How fast can you deliver?</h3>
+      <p>Single MCP servers typically take 3-5 business days. Security audits take 2-3 days. Full automation workflows take 7-10 days. Rush delivery is available on request.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you offer revisions?</h3>
+      <p>Yes. Each package includes a revision round. Additional revisions are available at $50/hour.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I see examples of your work?</h3>
+      <p>Check our GitHub profile (scotia1973-bot) for open-source MCP server audit issues and contributions. We've audited and improved MCP servers for multiple popular repositories.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What happens after I buy?</h3>
+      <p>You'll receive a confirmation email from Stripe with your receipt. Within 24 hours, I'll email you at the address you used for checkout with a project brief and next steps.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you offer refunds?</h3>
+      <p>Yes. If I can't deliver what was promised, you'll receive a full refund. I stand behind the quality of my work.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 GadgetHumans — <a href="https://gadgethumans.com">gadgethumans.com</a> — <a href="mailto:scotia1973@gmail.com">scotia1973@gmail.com</a></p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text2)">All transactions processed securely via Stripe. Payments protected.</p>
+  </footer>
+
 </div>
-
-<script>
-  // ── FAQ toggle ──
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('open');
-    });
-  });
-
-  // ── Success toast ──
-  (function() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('success') === 'resume' || params.get('success') === 'seo') {
-      const toast = document.getElementById('successToast');
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 6000);
-      // Scroll to intake form
-      setTimeout(() => {
-        document.getElementById('intake')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 800);
-      // Clean URL
-      if (window.history.replaceState) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-    }
-  })();
-
-  // ── Intake Form – sends data via email ──
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('formSubmitBtn');
-    const form = document.getElementById('intakeForm');
-
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const service = form.service.value;
-    const materials = form.materials.value.trim();
-    const notes = form.notes.value.trim();
-
-    const subject = encodeURIComponent(`[GadgetHumans] New Order – ${service} – ${name}`);
-    const body = encodeURIComponent(
-      `New Service Submission\n\n` +
-      `Name: ${name}\n` +
-      `Email: ${email}\n` +
-      `Service: ${service}\n` +
-      `Materials: ${materials}\n` +
-      `Notes: ${notes || 'None'}\n\n` +
-      `---\nSubmitted via gadgethumans.com/services/`
-    );
-
-    btn.textContent = '📧 Opening email...';
-    btn.disabled = true;
-
-    window.location.href = `mailto:scotia1973@gmail.com?subject=${subject}&body=${body}`;
-
-    setTimeout(() => {
-      btn.textContent = '✅ Sent! Check your email for confirmation.';
-      setTimeout(() => {
-        btn.textContent = 'Submit My Materials →';
-        btn.disabled = false;
-      }, 3000);
-    }, 500);
-
-    return false;
-  }
-</script>
-
 </body>
 </html>
