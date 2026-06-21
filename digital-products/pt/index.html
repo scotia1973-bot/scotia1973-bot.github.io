@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos Digitais — GadgetHumans</title>
+<meta name="description" content="Produtos digitais premium para desenvolvedores de IA, builders de MCP e engenheiros de prompt. Download instantâneo após a compra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f5f7;
+  --text: #1d1d1f;
+  --text2: #86868b;
+  --accent: #0071e3;
+  --card: #fff;
+  --border: #d2d2d7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1e;
+    --text: #f5f5f7;
+    --text2: #98989d;
+    --accent: #2997ff;
+    --card: #2c2c2e;
+    --border: #38383a;
+  }
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+header { text-align: center; margin-bottom: 60px; }
+header h1 { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+header p { font-size: 20px; color: var(--text2); max-width: 600px; margin: 0 auto; }
+.lang-switch { text-align: right; margin-bottom: 20px; }
+.lang-switch a { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600; }
+.lang-switch a:hover { text-decoration: underline; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 60px; }
+.product-card { background: var(--card); border-radius: 20px; padding: 32px; border: 1px solid var(--border); display: flex; flex-direction: column; transition: transform .2s; }
+.product-card:hover { transform: translateY(-4px); }
+.product-emoji { font-size: 48px; margin-bottom: 16px; }
+.product-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.product-card .price { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 16px; }
+.product-card .price small { font-size: 16px; font-weight: 400; color: var(--text2); }
+.product-card .desc { color: var(--text2); font-size: 15px; margin-bottom: 20px; flex: 1; }
+.product-card .features { list-style: none; margin-bottom: 24px; }
+.product-card .features li { padding: 6px 0; font-size: 14px; position: relative; padding-left: 24px; }
+.product-card .features li::before { content: '✓'; position: absolute; left: 0; color: #30d158; font-weight: 700; }
+.btn-stripe { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 980px; font-size: 17px; font-weight: 600; text-align: center; transition: opacity .2s; }
+.btn-stripe:hover { opacity: .85; }
+.info-section { max-width: 700px; margin: 0 auto; }
+.info-section h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; margin-top: 32px; }
+.info-section p, .info-section ol { color: var(--text2); font-size: 15px; line-height: 1.7; }
+.info-section ol { padding-left: 20px; }
+.info-section ol li { margin-bottom: 8px; }
+.badge { display: inline-block; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 100px; margin-bottom: 12px; }
+.brl-note { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 40px; text-align: center; }
+.brl-note p { font-size: 14px; color: var(--text2); }
+.brl-note strong { color: var(--text); }
+@media (max-width: 768px) {
+  header h1 { font-size: 32px; }
+  .products { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="lang-switch">
+    <a href="/digital-products/">🇺🇸 English</a>
+  </div>
+
+  <header>
+    <h1>📦 Produtos Digitais</h1>
+    <p>Recursos premium para desenvolvedores de IA, criadores de servidores MCP e engenheiros de prompt. Download instantâneo após a compra.</p>
+  </header>
+
+  <div class="brl-note">
+    <p>💳 <strong>Preços em Reais (BRL)</strong> — Pagamento via Stripe. Cartão de crédito, boleto e Pix aceitos. Preços aproximados com base no câmbio atual.</p>
+  </div>
+
+  <div class="products">
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-emoji">🧠</div>
+      <span class="badge">Mais Vendido</span>
+      <h2>300 Prompts &amp; Modelos para Servidor MCP</h2>
+      <div class="price">R$ 65 <small>pagamento único</small></div>
+      <p class="desc">Prompts testados em batalha para cada categoria de servidor MCP. 300 prompts comprovados organizados em 10 categorias com pacote de modelos bônus.</p>
+      <ul class="features">
+        <li>30 prompts para operações de File System</li>
+        <li>40 prompts para Web &amp; automação de navegador</li>
+        <li>35 prompts para operações de Database</li>
+        <li>35 prompts para gerenciamento de Cloud Platform</li>
+        <li>30 prompts para Comunicação &amp; Email</li>
+        <li>30 prompts para Finanças &amp; Cripto</li>
+        <li>35 prompts para Ferramentas de Desenvolvedor</li>
+        <li>25 prompts para operações de IA &amp; LLM</li>
+        <li>20 prompts para Desenvolvimento de Servidor MCP</li>
+        <li>Bônus: modelos de configuração, exemplos de código, modelos de prompt</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/bJe28ren05KMf8c9vDabK0a" target="_blank" rel="noopener">Comprar — R$ 65</a>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-emoji">🔧</div>
+      <span class="badge">Completo</span>
+      <h2>Blueprint Construtor de Servidor MCP</h2>
+      <div class="price">R$ 90 <small>pagamento único</small></div>
+      <p class="desc">Guia passo a passo completo para construir, testar e implantar servidores MCP prontos para produção. 10 capítulos com exemplos de código.</p>
+      <ul class="features">
+        <li>Fundamentos da arquitetura MCP</li>
+        <li>Guia de seleção de stack (TypeScript, Python, Go, Rust)</li>
+        <li>Exemplos completos de servidor em TypeScript &amp; Python</li>
+        <li>Melhores práticas de design de ferramentas &amp; convenções de nomenclatura</li>
+        <li>Padrões de autenticação (API Key, OAuth, x402)</li>
+        <li>Workflows de teste &amp; depuração</li>
+        <li>Guias de implantação (VPS, Cloudflare Workers, AWS Lambda)</li>
+        <li>Estratégias de monetização ($0 → $200)</li>
+        <li>Checklist de produção &amp; configuração de monitoramento</li>
+        <li>Modelos &amp; cartões de referência rápida</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/7sY28ra6Ka124ty5fnabK0b" target="_blank" rel="noopener">Comprar — R$ 90</a>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-emoji">🤖</div>
+      <span class="badge">Iniciante</span>
+      <h2>50 Modelos de Prompt ChatGPT para Agentes de IA</h2>
+      <div class="price">R$ 50 <small>pagamento único</small></div>
+      <p class="desc">Modelos de prompt prontos para uso na construção de workflows autônomos de agentes de IA. Otimizados para GPT-4, Claude e Gemini.</p>
+      <ul class="features">
+        <li>10 modelos de orquestração de agentes</li>
+        <li>15 modelos de pesquisa &amp; análise</li>
+        <li>15 modelos de automação &amp; workflow</li>
+        <li>10 modelos de interação web &amp; API</li>
+        <li>Padrões de autocorreção &amp; recuperação de estado</li>
+        <li>Protocolos de consenso multi-agente</li>
+        <li>Frameworks de execução conscientes de orçamento</li>
+        <li>Padrões de gate human-in-the-loop</li>
+      </ul>
+      <a class="btn-stripe" href="https://buy.stripe.com/28E7sLfr44GI8JO6jrabK0c" target="_blank" rel="noopener">Comprar — R$ 50</a>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h3>Como Funciona</h3>
+    <ol>
+      <li><strong>Compra</strong> — Clique no botão Comprar e finalize o checkout via Stripe (cartões de crédito, Apple Pay, Google Pay aceitos).</li>
+      <li><strong>Entrega Instantânea</strong> — Após o pagamento, o Stripe envia um recibo. Seu link de download está na página de confirmação.</li>
+      <li><strong>Acesso Vitalício</strong> — Todos os produtos são entregues como arquivos Markdown, compatíveis com qualquer editor de texto ou aplicativo de anotações.</li>
+    </ol>
+
+    <h3>O Que Você Recebe</h3>
+    <p>Cada produto é entregue como um arquivo Markdown (.md) formatado profissionalmente. Abra em qualquer editor de texto, VS Code, Obsidian, Notion ou importe diretamente para sua ferramenta de IA. Todos os prompts são testados em batalha e prontos para uso — sem necessidade de edição.</p>
+
+    <h3>Precisa de Ajuda?</h3>
+    <p>Contato: <a href="mailto:scotia1973@gmail.com" style="color:var(--accent)">scotia1973@gmail.com</a>. Todos os produtos incluem atualizações gratuitas.</p>
+  </div>
+</div>
+</body>
+</html>
